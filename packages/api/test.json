@@ -1,0 +1,20 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "employee": 2
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "employee": {
+      "1": "{\"name\":\"neha\",\"ID\":1,\"email\":\"test@test.com\",\"points\":10,\"id\":1}"
+    }
+  }
+}
