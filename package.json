@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "heroku-prebuild": "npm install rimraf && npm install -g lerna@2.1.2 && lerna init",
+    "heroku-postbuild": "npm install --only=dev && npm run compile:heroku",
     "start" : "cd packages/api && npm run start"
   },
 	"devDependencies": {
