@@ -1,6 +1,6 @@
 {
-  "name": "user",
-  "plural": "users",
+  "name": "participation",
+  "plural": "participations",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,26 +11,35 @@
       "type": "string",
       "required": true
     },
-	"roleId": {
+	"eventId": {
       "type": "string",
       "required": true
     },
-    "points": {
+    "userId": {
       "type": "number",
       "required": true
     },
-	"logonId": {
+	"points": {
+      "type": "number",
+      "required": true
+    },
+	"ratings": {
       "type": "string",
       "required": true
     },
-	"email": {
+	"registrationFlag": {
       "type": "string",
       "required": true
     },
-	"password": {
+	"attendanceFlag": {
+      "type": "string",
+      "required": true
+    },
+	"participationTypeId": {
       "type": "string",
       "required": true
     }
+	
   },
   "validations": [],
   "relations": {},
