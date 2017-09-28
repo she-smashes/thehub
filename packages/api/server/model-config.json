@@ -41,5 +41,21 @@
   "employee": {
     "dataSource": "db",
     "public": true
+  },
+  "user": {
+    "dataSource": "db",
+    "public": true
+  },
+  "event": {
+    "dataSource": "db",
+    "public": true
+  },
+  "user_badge": {
+    "dataSource": "db",
+    "public": true
+  },
+  "role": {
+    "dataSource": "db",
+    "public": false
   }
 }
