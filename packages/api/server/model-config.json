@@ -45,11 +45,7 @@
   "user": {
     "dataSource": "db",
     "public": true
-  },
-  "event": {
-    "dataSource": "db",
-    "public": true
-  },
+  }
   "user_badge": {
     "dataSource": "db",
     "public": true
@@ -57,5 +53,45 @@
   "role": {
     "dataSource": "db",
     "public": false
+  },
+  "badge": {
+    "dataSource": "db",
+    "public": false
+  },
+  "category": {
+    "dataSource": "db",
+    "public": false
+  },
+  "config": {
+    "dataSource": "db",
+    "public": false
+  },
+  "event": {
+    "dataSource": "db",
+    "public": true
+  },
+  "initiative": {
+    "dataSource": "db",
+    "public": true
+  },
+  "level": {
+    "dataSource": "db",
+    "public": false
+  },
+  "participation": {
+    "dataSource": "db",
+    "public": true
+  },
+  "participation_type": {
+    "dataSource": "db",
+    "public": false
+  },
+  "point": {
+    "dataSource": "db",
+    "public": false
+  },
+  "tasklist": {
+    "dataSource": "db",
+    "public": true
   }
 }
