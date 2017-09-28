@@ -7,15 +7,11 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
     "initiativeId": {
       "type": "string",
       "required": true
     },
-    "name": {
+    "title": {
       "type": "string",
       "required": true
     },
@@ -38,7 +34,15 @@
     "description": {
       "type": "string",
       "required": true
-    }
+    },
+	"categoryId": {
+	  "type": "string",
+      "required": true
+	},
+	"lead": {
+	  "type": "string",
+      "required": true
+	}
   },
   "validations": [],
   "relations": {},

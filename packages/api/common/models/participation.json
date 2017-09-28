@@ -11,7 +11,7 @@
       "type": "string",
       "required": true
     },
-	"eventId": {
+    "eventId": {
       "type": "string",
       "required": true
     },
@@ -19,27 +19,26 @@
       "type": "number",
       "required": true
     },
-	"points": {
+    "points": {
       "type": "number",
       "required": true
     },
-	"ratings": {
+    "ratings": {
       "type": "string",
       "required": true
     },
-	"registrationFlag": {
+    "registrationFlag": {
       "type": "string",
       "required": true
     },
-	"attendanceFlag": {
+    "attendanceFlag": {
       "type": "string",
       "required": true
     },
-	"participationTypeId": {
+    "participationTypeId": {
       "type": "string",
       "required": true
     }
-	
   },
   "validations": [],
   "relations": {},
