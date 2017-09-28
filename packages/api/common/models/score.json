@@ -1,6 +1,6 @@
 {
-  "name": "point",
-  "plural": "points",
+  "name": "score",
+  "plural": "scores",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

@@ -1,6 +1,6 @@
 {
-  "name": "user",
-  "plural": "users",
+  "name": "task",
+  "plural": "tasks",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,23 +11,11 @@
       "type": "string",
       "required": true
     },
-    "roleId": {
+    "eventId": {
       "type": "string",
       "required": true
     },
-    "points": {
-      "type": "number",
-      "required": true
-    },
-    "logonId": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
-      "type": "string",
-      "required": true
-    },
-    "password": {
+    "approverRoleId": {
       "type": "string",
       "required": true
     }

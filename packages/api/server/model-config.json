@@ -35,24 +35,13 @@
     "dataSource": "db",
     "public": false
   },
-  "Message": {
-    "dataSource": null
-  },
   "employee": {
-    "dataSource": "db",
-    "public": true
-  },
-  "user": {
     "dataSource": "db",
     "public": true
   },
   "user_badge": {
     "dataSource": "db",
     "public": true
-  },
-  "role": {
-    "dataSource": "db",
-    "public": false
   },
   "badge": {
     "dataSource": "db",
@@ -86,11 +75,11 @@
     "dataSource": "db",
     "public": false
   },
-  "point": {
+  "score": {
     "dataSource": "db",
     "public": false
   },
-  "tasklist": {
+  "task": {
     "dataSource": "db",
     "public": true
   }
