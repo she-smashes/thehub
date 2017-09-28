@@ -35,10 +35,6 @@
     "dataSource": "db",
     "public": false
   },
-  "employee": {
-    "dataSource": "db",
-    "public": true
-  },
   "user_badge": {
     "dataSource": "db",
     "public": true
