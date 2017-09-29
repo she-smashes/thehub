@@ -1,22 +1,18 @@
 {
-  "name": "user_badge",
-  "plural": "user_badges",
+  "name": "eventInitiative",
+  "plural": "eventInitiatives",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
+    "eventId": {
       "type": "string",
       "required": true
     },
-    "userId": {
+    "initiativeId": {
       "type": "string",
-      "required": true
-    },
-    "badgeId": {
-      "type": "number",
       "required": true
     }
   },

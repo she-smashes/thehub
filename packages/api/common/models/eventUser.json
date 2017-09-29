@@ -1,17 +1,17 @@
 {
-  "name": "participation_type",
-  "plural": "participation_types",
+  "name": "eventUser",
+  "plural": "eventUsers",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
+    "eventId": {
       "type": "string",
       "required": true
     },
-    "name": {
+    "userId": {
       "type": "string",
       "required": true
     }

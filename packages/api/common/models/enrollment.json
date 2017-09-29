@@ -1,6 +1,6 @@
 {
-  "name": "participation",
-  "plural": "participations",
+  "name": "enrollment",
+  "plural": "enrollments",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -35,7 +35,7 @@
       "type": "string",
       "required": true
     },
-    "participationTypeId": {
+    "enrollmentType": {
       "type": "string",
       "required": true
     }

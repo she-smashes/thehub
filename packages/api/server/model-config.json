@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "db",
-	"public": false
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -36,7 +36,7 @@
     "dataSource": "db",
     "public": false
   },
-  "user_badge": {
+  "userBadge": {
     "dataSource": "db",
     "public": true
   },
@@ -64,13 +64,9 @@
     "dataSource": "db",
     "public": false
   },
-  "participation": {
+  "enrollment": {
     "dataSource": "db",
     "public": true
-  },
-  "participation_type": {
-    "dataSource": "db",
-    "public": false
   },
   "score": {
     "dataSource": "db",
@@ -83,5 +79,13 @@
   "user": {
     "dataSource": "db",
     "public": true
+  },
+  "eventUser": {
+    "dataSource": "db",
+    "public": false
+  },
+  "eventInitiative": {
+    "dataSource": "db",
+    "public": false
   }
 }

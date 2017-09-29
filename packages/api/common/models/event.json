@@ -1,14 +1,14 @@
 {
   "name": "event",
   "plural": "events",
-  "base": "PersistedModel",
+  "base": "initiative",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "initiativeId": {
-      "type": "string",
+    "eventInitiative": {
+      "type": "object",
       "required": true
     },
     "title": {
@@ -35,14 +35,14 @@
       "type": "string",
       "required": true
     },
-	"categoryId": {
-	  "type": "string",
+    "categoryId": {
+      "type": "string",
       "required": true
-	},
-	"lead": {
-	  "type": "string",
+    },
+    "eventUser": {
+      "type": "object",
       "required": true
-	}
+    }
   },
   "validations": [],
   "relations": {},

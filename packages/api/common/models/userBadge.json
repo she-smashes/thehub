@@ -1,22 +1,22 @@
 {
-  "name": "initiative",
-  "plural": "initiatives",
+  "name": "userBadge",
+  "plural": "userBadges",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "ID": {
       "type": "string",
       "required": true
     },
-    "description": {
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "badgeId": {
       "type": "number",
-      "required": true
-    },
-    "categoryId": {
-      "type": "string",
       "required": true
     }
   },
