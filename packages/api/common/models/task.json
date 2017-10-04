@@ -1,26 +1,22 @@
 {
-  "name": "employee",
-  "plural": "employees",
+  "name": "task",
+  "plural": "tasks",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "ID": {
-      "type": "number",
-      "required": true
-    },
-    "email": {
       "type": "string",
       "required": true
     },
-    "points": {
-      "type": "number",
+    "eventId": {
+      "type": "string",
+      "required": true
+    },
+    "approverRoleId": {
+      "type": "string",
       "required": true
     }
   },

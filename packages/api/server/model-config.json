@@ -14,7 +14,8 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -35,11 +36,56 @@
     "dataSource": "db",
     "public": false
   },
-  "Message": {
-    "dataSource": null
-  },
-  "employee": {
+  "userBadge": {
     "dataSource": "db",
     "public": true
+  },
+  "badge": {
+    "dataSource": "db",
+    "public": false
+  },
+  "category": {
+    "dataSource": "db",
+    "public": false
+  },
+  "config": {
+    "dataSource": "db",
+    "public": false
+  },
+  "event": {
+    "dataSource": "db",
+    "public": true
+  },
+  "initiative": {
+    "dataSource": "db",
+    "public": true
+  },
+  "level": {
+    "dataSource": "db",
+    "public": false
+  },
+  "enrollment": {
+    "dataSource": "db",
+    "public": true
+  },
+  "score": {
+    "dataSource": "db",
+    "public": false
+  },
+  "task": {
+    "dataSource": "db",
+    "public": true
+  },
+  "user": {
+    "dataSource": "db",
+    "public": true
+  },
+  "eventUser": {
+    "dataSource": "db",
+    "public": false
+  },
+  "eventInitiative": {
+    "dataSource": "db",
+    "public": false
   }
 }
