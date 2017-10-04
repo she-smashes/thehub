@@ -66,7 +66,7 @@
   },
   "enrollment": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "score": {
     "dataSource": "db",
@@ -74,17 +74,17 @@
   },
   "task": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "user": {
     "dataSource": "db",
     "public": true
   },
-  "eventUser": {
+  "eventUserVO": {
     "dataSource": "db",
     "public": false
   },
-  "eventInitiative": {
+  "eventInitiativeVO": {
     "dataSource": "db",
     "public": false
   }
