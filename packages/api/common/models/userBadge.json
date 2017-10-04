@@ -1,11 +1,22 @@
 {
-  "name": "userbadge",
+  "name": "userBadge",
+  "plural": "userBadges",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+ "properties": {
+    
+    "userIid": {
+      "type": "object",
+      "required": true
+    },
+    "badgeIid": {
+      "type": "number",
+      "required": true
+    }
+  },
   "validations": [],
   "relations": {},
   "acls": [],
