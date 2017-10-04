@@ -1,0 +1,47 @@
+{
+  "name": "enrollment",
+  "plural": "enrollments",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "ID": {
+      "type": "string",
+      "required": true
+    },
+    "eventId": {
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "type": "number",
+      "required": true
+    },
+    "points": {
+      "type": "number",
+      "required": true
+    },
+    "ratings": {
+      "type": "string",
+      "required": true
+    },
+    "registrationFlag": {
+      "type": "string",
+      "required": true
+    },
+    "attendanceFlag": {
+      "type": "string",
+      "required": true
+    },
+    "enrollmentType": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

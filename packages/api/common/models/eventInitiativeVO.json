@@ -1,0 +1,23 @@
+{
+  "name": "eventInitiativeVO",
+  "plural": "eventInitiativeVOs",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "required": true
+    },
+    "initiativeId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,33 @@
+{
+  "name": "task",
+  "plural": "tasks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "ID": {
+      "type": "string",
+      "required": true
+    },
+    "eventId": {
+      "type": "string",
+      "required": true
+    },
+    "approverRoleId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+"relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

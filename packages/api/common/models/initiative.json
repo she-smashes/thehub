@@ -1,0 +1,36 @@
+{
+  "name": "initiative",
+  "plural": "initiatives",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "number",
+      "required": true
+    },
+    "categoryId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "events": {
+      "type": "hasMany",
+      "model": "event",
+      "foreignKey": "initiativeId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

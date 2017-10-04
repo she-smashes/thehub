@@ -1,0 +1,52 @@
+{
+  "name": "user",
+  "plural": "users",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  "role_id": {
+      "type": "number",
+      "required": true
+    },
+    "points": {
+      "type": "number",
+      "required": true
+    },
+    "password": {
+      "type": "object",
+      "required": true
+    },
+    "email": {
+      "type": "object",
+      "required": true
+    },
+    "logonid": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+"relations": {
+    "tasks": {
+      "type": "hasMany",
+      "model": "task",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "enrollments": {
+      "type": "hasMany",
+      "model": "enrollment",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

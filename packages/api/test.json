@@ -5,7 +5,8 @@
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "employee": 2
+    "employee": 2,
+    "event": 2
   },
   "models": {
     "User": {},
@@ -15,6 +16,9 @@
     "Role": {},
     "employee": {
       "1": "{\"name\":\"neha\",\"ID\":1,\"email\":\"test@test.com\",\"points\":10,\"id\":1}"
+    },
+    "event": {
+      "1": "{\"initiativeId\":\"string\",\"startDate\":\"string\",\"endDate\":\"string\",\"location\":\"string\",\"status\":\"string\",\"lead\":\"string\",\"title\":\"string\",\"description\":0,\"categoryId\":\"string\",\"id\":1}"
     }
   }
 }

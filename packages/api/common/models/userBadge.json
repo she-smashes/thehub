@@ -1,25 +1,18 @@
 {
-  "name": "employee",
-  "plural": "employees",
+  "name": "userBadge",
+  "plural": "userBadges",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "name": {
-      "type": "string",
+ "properties": {
+    
+    "userIid": {
+      "type": "object",
       "required": true
     },
-    "ID": {
-      "type": "number",
-      "required": true
-    },
-    "email": {
-      "type": "string",
-      "required": true
-    },
-    "points": {
+    "badgeIid": {
       "type": "number",
       "required": true
     }
