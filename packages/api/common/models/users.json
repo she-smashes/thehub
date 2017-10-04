@@ -1,0 +1,38 @@
+{
+  "name": "USERS",
+  "base": "user",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "users_id": {
+      "type": "object",
+      "required": true
+    },
+    "role_id": {
+      "type": "number",
+      "required": true
+    },
+    "points": {
+      "type": "number",
+      "required": true
+    },
+    "password": {
+      "type": "object",
+      "required": true
+    },
+    "email": {
+      "type": "object",
+      "required": true
+    },
+    "logonid": {
+      "type": "object",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
