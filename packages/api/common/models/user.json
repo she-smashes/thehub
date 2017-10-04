@@ -6,7 +6,28 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+  "role_id": {
+      "type": "number",
+      "required": true
+    },
+    "points": {
+      "type": "number",
+      "required": true
+    },
+    "password": {
+      "type": "object",
+      "required": true
+    },
+    "email": {
+      "type": "object",
+      "required": true
+    },
+    "logonid": {
+      "type": "object",
+      "required": true
+    }
+  },
   "validations": [],
 "relations": {
     "tasks": {

@@ -7,8 +7,8 @@
     "validateUpsert": true
   },
   "properties": {
-    "eventInitiative": {
-      "type": "object",
+    "initiativeId": {
+      "type": "string",
       "required": true
     },
     "title": {
@@ -39,10 +39,10 @@
       "type": "string",
       "required": true
     },
-    "eventUser": {
-      "type": "object",
+   "lead": {
+	  "type": "string",
       "required": true
-    }
+	  }
   },
   "validations": [],
 "relations": {

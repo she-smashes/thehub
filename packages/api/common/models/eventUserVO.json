@@ -1,7 +1,7 @@
 {
-  "name": "eventInitiative",
-  "plural": "eventInitiatives",
-  "base": "PersistedModel",
+  "name": "eventUserVO",
+  "plural": "eventUserVOs",
+  "base": "Model",
   "idInjection": false,
   "options": {
     "validateUpsert": true
@@ -11,7 +11,7 @@
       "type": "string",
       "required": true
     },
-    "initiativeId": {
+    "userId": {
       "type": "string",
       "required": true
     }
