@@ -8,7 +8,24 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+"relations": {
+    "tasks": {
+      "type": "hasMany",
+      "model": "task",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "enrollments": {
+      "type": "hasMany",
+      "model": "enrollment",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
