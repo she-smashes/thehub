@@ -7,8 +7,8 @@
     "validateUpsert": true
   },
   "properties": {
-    "eventInitiative": {
-      "type": "object",
+    "initiativeId": {
+      "type": "string",
       "required": true
     },
     "title": {
@@ -34,18 +34,27 @@
     "description": {
       "type": "string",
       "required": true
-    },
-    "categoryId": {
+    }, 
+      "categoryId": {
       "type": "string",
       "required": true
     },
-    "eventUser": {
-      "type": "object",
+   "lead": {
+	  "type": "string",
       "required": true
-    }
+	  }
   },
   "validations": [],
-  "relations": {},
+"relations": {
+    "enrollments": {
+      "type": "hasMany",
+      "model": "enrollment",
+      "foreignKey": "eventId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

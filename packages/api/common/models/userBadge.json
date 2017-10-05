@@ -6,16 +6,13 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "ID": {
-      "type": "string",
+ "properties": {
+    
+    "userIid": {
+      "type": "object",
       "required": true
     },
-    "userId": {
-      "type": "string",
-      "required": true
-    },
-    "badgeId": {
+    "badgeIid": {
       "type": "number",
       "required": true
     }

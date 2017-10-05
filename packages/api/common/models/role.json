@@ -1,17 +1,16 @@
 {
-  "name": "eventInitiative",
-  "plural": "eventInitiatives",
+  "name": "ROLE",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "eventId": {
-      "type": "string",
+    "role_id": {
+      "type": "number",
       "required": true
     },
-    "initiativeId": {
+    "name": {
       "type": "string",
       "required": true
     }

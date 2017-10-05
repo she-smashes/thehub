@@ -80,11 +80,11 @@
     "dataSource": "db",
     "public": true
   },
-  "eventUser": {
+  "eventUserVO": {
     "dataSource": "db",
     "public": false
   },
-  "eventInitiative": {
+  "eventInitiativeVO": {
     "dataSource": "db",
     "public": false
   }

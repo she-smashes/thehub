@@ -1,7 +1,7 @@
 {
-  "name": "eventUser",
-  "plural": "eventUsers",
-  "base": "PersistedModel",
+  "name": "eventUserVO",
+  "plural": "eventUserVOs",
+  "base": "Model",
   "idInjection": false,
   "options": {
     "validateUpsert": true
