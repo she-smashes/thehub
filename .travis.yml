@@ -7,7 +7,7 @@ install:
   npm install
 
 deploy:
-  app: shesmashes-thehub
+  app:
     master: shesmashes-thehub
     development: develop-shesmashes-thehub
   provider: heroku
