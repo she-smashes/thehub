@@ -2,6 +2,9 @@
   "name": "initiative",
   "plural": "initiatives",
   "base": "PersistedModel",
+  "mixins": {
+     "Timestamp": {}
+   },
   "idInjection": true,
   "options": {
     "validateUpsert": true
