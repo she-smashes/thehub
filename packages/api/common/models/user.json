@@ -7,29 +7,34 @@
     "validateUpsert": true
   },
   "properties": {
-    "role_id": {
-      "type": "number",
-      "required": true
-    },
     "points": {
       "type": "number",
       "required": true
     },
     "logonid": {
-      "type": "object",
+      "type": "string",
       "required": true
     }
   },
   "validations": [],
   "relations": {
-  },
-  "acls": [
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$anonymous",
-      "permission": "ALLOW"
+    "tasks": {
+      "type": "hasMany",
+      "model": "task",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "enrollments": {
+      "type": "hasMany",
+      "model": "enrollment",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
     }
-  ],
+  },
+  "acls": [],
   "methods": {}
 }

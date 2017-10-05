@@ -14,78 +14,78 @@
     ]
   },
   "User": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "userBadge": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": true
   },
   "badge": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "category": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "config": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "event": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": true
   },
   "initiative": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": true
   },
   "level": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "enrollment": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "score": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "task": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "user": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": true
   },
   "eventUserVO": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   },
   "eventInitiativeVO": {
-    "dataSource": "db",
+    "dataSource": "MongoDB",
     "public": false
   }
 }
