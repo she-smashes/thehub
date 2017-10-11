@@ -28,10 +28,12 @@
     "events": {
       "type": "hasMany",
       "model": "event",
-      "foreignKey": "initiativeId",
-      "options": {
-        "disableInclude": true
-      }
+      "foreignKey": "initiativeId"
+    },
+    "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "categoryId"
     }
   },
   "acls": [

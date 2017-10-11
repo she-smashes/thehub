@@ -56,6 +56,14 @@
       "options": {
         "disableInclude": true
       }
+    },
+	 "users": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "lead",
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [
