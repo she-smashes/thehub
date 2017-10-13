@@ -38,7 +38,7 @@
   },
   "userBadge": {
     "dataSource": "MongoDB",
-    "public": false
+    "public": true
   },
   "badge": {
     "dataSource": "MongoDB",
@@ -58,7 +58,7 @@
   },
   "initiative": {
     "dataSource": "MongoDB",
-    "public": false
+    "public": true
   },
   "level": {
     "dataSource": "MongoDB",
@@ -78,7 +78,7 @@
   },
   "user": {
     "dataSource": "MongoDB",
-    "public": false
+    "public": true
   },
   "eventUserVO": {
     "dataSource": "MongoDB",
