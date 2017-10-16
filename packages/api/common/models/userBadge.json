@@ -2,15 +2,14 @@
   "name": "userBadge",
   "plural": "userBadges",
   "base": "PersistedModel",
-  "mixins": {
-     "Timestamp": {}
-   },
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
- "properties": {
-    
+  "mixins": {
+    "Timestamp": {}
+  },
+  "properties": {
     "userIid": {
       "type": "object",
       "required": true

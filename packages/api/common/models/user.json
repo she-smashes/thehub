@@ -2,21 +2,20 @@
   "name": "user",
   "plural": "users",
   "base": "User",
-  "mixins": {
-     "Timestamp": {}
-   },
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {}
+  },
   "properties": {
     "points": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
-    "logonid": {
+    "password": {
       "type": "string",
-      "required": true
+      "required": false
     }
   },
   "validations": [],
@@ -46,7 +45,7 @@
       "permission": "ALLOW"
     },
     {
-      "accessType": "READ",
+      "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
       "permission": "DENY"
@@ -62,7 +61,7 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
-    }  
+    }
   ],
   "methods": {}
 }

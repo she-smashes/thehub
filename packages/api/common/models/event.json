@@ -2,12 +2,12 @@
   "name": "event",
   "plural": "events",
   "base": "initiative",
-  "mixins": {
-     "Timestamp": {}
-   },
   "idInjection": true,
   "options": {
     "validateUpsert": true
+  },
+  "mixins": {
+    "Timestamp": {}
   },
   "properties": {
     "initiativeId": {
@@ -57,7 +57,7 @@
         "disableInclude": true
       }
     },
-	 "users": {
+    "users": {
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "lead",
@@ -98,6 +98,12 @@
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
       "permission": "ALLOW",
       "property": "updateAttributes"
     }

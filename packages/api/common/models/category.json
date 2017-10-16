@@ -22,7 +22,7 @@
   },
   "validations": [],
   "relations": {
-   "initiatives": {
+    "initiatives": {
       "type": "hasMany",
       "model": "initiative",
       "foreignKey": "categoryId"
