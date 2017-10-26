@@ -53,7 +53,11 @@ module.exports = function(User) {
 	
 	User.afterRemote ('login', function (context, modelInstance, next) {  
 
-		let permissions = getPermissibleActions(User);
+	let accessToken = "";
+	if(context && context.req.accessToken != undefined) {
+		accessToken = context.req.accessToken;
+	}
+		let permissions = getPermissibleActions(User, accessToken);
 		
 		Promise.resolve(permissions)
 		.then((results)=>{
@@ -71,8 +75,7 @@ module.exports = function(User) {
 	}); 
 };
 
-function getPermissibleActions(user) {
-	
+function getPermissibleActions(user, accessToken) {
 	const modelNames = [
         'user',
         'event',
@@ -102,7 +105,7 @@ function getPermissibleActions(user) {
 	  
 	modelNames.forEach(function (modelName) {
 		methodNames.forEach(function (methodName) {
-			let accessTokenResult = user.app.models.ACL.checkAccessForToken({id:'59eec22a9b59460a10c4d278'}, modelName, '', methodName )
+			let accessTokenResult = user.app.models.ACL.checkAccessForToken({id:accessToken}, modelName, '', methodName )
 				.then((result)=>{
 					return {
 						isAllowed: result,
