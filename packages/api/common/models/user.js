@@ -50,4 +50,68 @@ module.exports = function(User) {
 		http: {path:'/list-enrollments', verb: 'get'}
 		
 	});
+	
+	User.afterRemote ('login', function (context, modelInstance, next) {  
+
+		let permissions = getPermissibleActions(User);
+		
+		Promise.resolve(permissions)
+		.then((results)=>{
+			let permissionObj = [];
+			results.forEach(function (result) {
+				if(result.isAllowed) {
+					permissionObj.push(result.modelName + "_" + result.methodName);
+				}
+			});
+			context.result.allowedActionList = permissionObj;
+		})
+		.then(()=>{
+			next();
+		});
+	}); 
 };
+
+function getPermissibleActions(user) {
+	
+	const modelNames = [
+        'user',
+        'event',
+        'initiative'
+    ];
+	
+	const methodNames = [
+        'create',
+        'upsert',
+        'deleteById',
+        'updateAll',
+        'updateAttributes',
+        'patchAttributes',
+        'createChangeStream',
+        'findOne',
+        'find',
+        'findById',
+        'count',
+        'exists',
+        'replace',
+        'replaceById',
+        'upsertWithWhere',
+        'replaceOrCreate'
+    ];
+
+	let promises = [];
+	  
+	modelNames.forEach(function (modelName) {
+		methodNames.forEach(function (methodName) {
+			let accessTokenResult = user.app.models.ACL.checkAccessForToken({id:'59eec22a9b59460a10c4d278'}, modelName, '', methodName )
+				.then((result)=>{
+					return {
+						isAllowed: result,
+						modelName: modelName,
+						methodName: methodName
+					}; 
+				});
+			promises.push(accessTokenResult);
+		});
+	});
+	return Promise.all(promises);
+}
