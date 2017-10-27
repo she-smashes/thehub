@@ -1,0 +1,1 @@
+export const GET_EVENTS = "https://shesmashes-thehub.herokuapp.com/api/events";
