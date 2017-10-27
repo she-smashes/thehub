@@ -4,45 +4,44 @@ const sampleData = require('./create-user-list.json');
 
 module.exports = function (app, cb) {
 
-  const employeePromises = [];
-  const appadminPromises = [];
-  const sysadminPromises = [];
-
+	const rolePromises = {};
+ 
 	Object.keys(sampleData).forEach(modelName => {
 		const Model = app.models[modelName];
 		const modelItems = sampleData[modelName];
 
 		modelItems.forEach(modelItem => {
-			if(modelItem.role === 'employee') {
-				 employeePromises.push(new Promise(resolve => {
+			if(rolePromises[modelItem.role] === undefined) {
+				const promises = [];
+				promises.push(new Promise(resolve => {
 					Model.upsertWithWhere({ 'email': modelItem.email }, modelItem).then(resolve);
-				}))
-			} else if(modelItem.role === 'appadmin') {
-				 appadminPromises.push(new Promise(resolve => {
+				}));
+				rolePromises[modelItem.role] = promises;
+			} else {
+				rolePromises[modelItem.role].push(new Promise(resolve => {
 					Model.upsertWithWhere({ 'email': modelItem.email }, modelItem).then(resolve);
-				}))
-			} else if(modelItem.role === 'sysadmin') {
-				 sysadminPromises.push(new Promise(resolve => {
-					Model.upsertWithWhere({ 'email': modelItem.email }, modelItem).then(resolve);
-				}))
+				}));
 			}
+			
 			delete modelItem.role;
 		})
 	});
   
-	handleRoleMapping(app, employeePromises, 'employee');
-	handleRoleMapping(app, appadminPromises, 'appadmin');
-	handleRoleMapping(app, sysadminPromises, 'sysadmin');
+	for (let key in rolePromises) {
+		if (rolePromises.hasOwnProperty(key)) {
+			handleRoleMapping(app, rolePromises[key], key);
+		}
+	}
 
 	console.log('Sample users, roles and their mapping set up successfully');
 };
 
 function handleRoleMapping(app, promises, roleName) {
+
 	var role;
-	
-	app.models.Role.findOne({where: {name: roleName}}, function(err, adminRole) {
-		if(adminRole) {
-		  role = adminRole;
+	app.models.Role.findOne({where: {name: roleName}}, function(err, userRole) {
+		if(userRole) {
+		  role = userRole;
 		} else {
 		  console.log(err);
 		}
@@ -55,7 +54,7 @@ function handleRoleMapping(app, promises, roleName) {
 
 				const rolemappingpromises = [];
 				var roleId = role.id;
-		
+	
 				res.forEach(usr => {
 					rolemappingpromises.push(new Promise(resolve => {
 						app.models.RoleMapping.findOne({where: {principalType: 'USER', principalId: usr.id, roleId: role.id}}, function(err, oldprincipal) {
