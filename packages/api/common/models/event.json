@@ -6,6 +6,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {}
+  },
   "properties": {
     "initiativeId": {
       "type": "string",
@@ -34,18 +37,18 @@
     "description": {
       "type": "string",
       "required": true
-    }, 
-      "categoryId": {
+    },
+    "categoryId": {
       "type": "string",
       "required": true
     },
-   "lead": {
-	  "type": "string",
+    "lead": {
+      "type": "string",
       "required": true
-	  }
+    }
   },
   "validations": [],
-"relations": {
+  "relations": {
     "enrollments": {
       "type": "hasMany",
       "model": "enrollment",
@@ -53,8 +56,57 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "users": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "lead",
+      "options": {
+        "disableInclude": true
+      }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "listEvents"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    }
+  ],
   "methods": {}
 }
