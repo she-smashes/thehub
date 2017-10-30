@@ -11,19 +11,21 @@ module.exports = function (app, cb) {
     const modelItems = sampleData[modelName];
 
     modelItems.forEach(modelItem => {
-      promises.push(new Promise(resolve => {
-        Model.upsertWithWhere({ 'name': modelItem.name }, modelItem).then(resolve);
-      }))
+      promises.push(Model.upsertWithWhere({ 'name': modelItem.name }, modelItem));
     })
   });
 
 
-  return Promise
-    .all(promises)
-    .then((res) => {
-      console.log('Roles set up', res.length);
-      return cb()
-    })
-    .catch(cb);
+	 Promise.all(promises.map(p => p.catch(() => undefined)))
+			.then((res) => {
+				console.log('Roles set up', res.length);
+				return cb()
+			});
+
+
 
 };
+
+function errorHandler (promises) {
+	console.log('error');
+}

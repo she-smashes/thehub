@@ -13,14 +13,10 @@ module.exports = function (app, cb) {
 		modelItems.forEach(modelItem => {
 			if(rolePromises[modelItem.role] === undefined) {
 				const promises = [];
-				promises.push(new Promise(resolve => {
-					Model.upsertWithWhere({ 'email': modelItem.email }, modelItem).then(resolve);
-				}));
+				promises.push(Model.upsertWithWhere({ 'email': modelItem.email }, modelItem));
 				rolePromises[modelItem.role] = promises;
 			} else {
-				rolePromises[modelItem.role].push(new Promise(resolve => {
-					Model.upsertWithWhere({ 'email': modelItem.email }, modelItem).then(resolve);
-				}));
+				rolePromises[modelItem.role].push(Model.upsertWithWhere({ 'email': modelItem.email }, modelItem));
 			}
 			
 			delete modelItem.role;
@@ -48,8 +44,7 @@ function handleRoleMapping(app, promises, roleName) {
 		}
 	});
 
-	return Promise
-		    .all(promises)
+	Promise.all(promises.map(p => p.catch(() => undefined)))
 		    .then((res) => {
 				var i = 0;
 
@@ -57,6 +52,7 @@ function handleRoleMapping(app, promises, roleName) {
 				var roleId = role.id;
 	
 				res.forEach(usr => {
+					if(usr !== undefined) {
 					rolemappingpromises.push(new Promise(resolve => {
 						app.models.RoleMapping.findOne({where: {principalType: 'USER', principalId: usr.id, roleId: role.id}}, function(err, oldprincipal) {
 						if(!oldprincipal) {
@@ -75,6 +71,7 @@ function handleRoleMapping(app, promises, roleName) {
 					})
 					
 					}))
+				}
 				});
 		
 			});
