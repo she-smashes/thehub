@@ -1,1 +1,1 @@
-web : cd packages/api && npm run start
+web: npm run start:heroku
