@@ -1,7 +1,15 @@
 {
   "db": {
     "name": "db",
-    "connector": "memory",
-    "file": "test.json"
+    "file": "test.json",
+    "connector": "memory"
+  },
+  "MongoDB": {
+    "host": "BLRUGOVI166368.sapient.com",
+    "port": 27017,
+    "url": "",
+    "database": "MongoDB",
+    "name": "MongoDB",
+    "connector": "mongodb"
   }
 }

@@ -6,30 +6,20 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {}
+  },
   "properties": {
-  "role_id": {
-      "type": "number",
-      "required": true
-    },
     "points": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "password": {
-      "type": "object",
-      "required": true
-    },
-    "email": {
-      "type": "object",
-      "required": true
-    },
-    "logonid": {
-      "type": "object",
-      "required": true
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
-"relations": {
+  "relations": {
     "tasks": {
       "type": "hasMany",
       "model": "task",
@@ -47,6 +37,31 @@
       }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }
