@@ -19,7 +19,14 @@
   },
   "AccessToken": {
     "dataSource": "db",
-    "public": false
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "user",
+        "foreignKey": "userId"
+      }
+    }
   },
   "ACL": {
     "dataSource": "db",
@@ -66,7 +73,7 @@
   },
   "enrollment": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "score": {
     "dataSource": "db",
@@ -74,7 +81,7 @@
   },
   "task": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "user": {
     "dataSource": "db",
