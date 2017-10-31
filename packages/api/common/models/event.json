@@ -77,9 +77,8 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "listEvents"
-    },
+      "permission": "ALLOW"
+	},
     {
       "accessType": "READ",
       "principalType": "ROLE",
