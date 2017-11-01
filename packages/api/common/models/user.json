@@ -14,8 +14,32 @@
       "type": "number"
     },
     "password": {
+      "type": "object",
+      "required": true
+    },
+    "firstName": {
       "type": "string",
-      "required": false
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "modifiedOn": {
+      "type": "date",
+      "required": true
+    },
+    "registeredOn": {
+      "type": "date",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
