@@ -19,11 +19,11 @@
       "required": true
     },
     "startDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "location": {
@@ -96,7 +96,14 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "appadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
       "permission": "ALLOW",
       "property": "updateAttributes"
     },
