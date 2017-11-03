@@ -1,0 +1,11 @@
+{
+	"test": {
+		"name": "test",
+		"host": "ds243325.mlab.com",
+		"database": "shesmashes-dev",
+		"username": "admin",
+		"password": "admin",
+		"connector": "mongodb",
+		"port": 43325
+	}
+}
