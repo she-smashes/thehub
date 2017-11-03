@@ -15,7 +15,7 @@
       "required": true
     },
     "description": {
-      "type": "number",
+      "type": "string",
       "required": true
     },
     "categoryId": {
@@ -60,14 +60,28 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "sysadmin",
       "permission": "ALLOW",
       "property": "create"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "sysadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "appadmin",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "appadmin",
       "permission": "ALLOW",
       "property": "updateAttributes"
     }
