@@ -11,7 +11,8 @@ import AttendanceWidget from './attendanceWidget';
 import ProgressWidget from './progressWidget';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
-import BadgeWidget from './badgeWidget'
+import BadgeWidget from './badgeWidget';
+import CreateInitiative from './createInitiative';
 
 class Dashboard extends Component {
     
@@ -53,6 +54,13 @@ class Dashboard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                     title={<AttendanceWidget />}
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                    />
+                </Card>
+                <Card style={styles.card}>
+                    <CardHeader
+                    title={<CreateInitiative />}
                     actAsExpander={true}
                     showExpandableButton={true}
                     />

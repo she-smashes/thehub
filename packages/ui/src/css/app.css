@@ -21,6 +21,15 @@
 .App-intro {
   font-size: large;
 }
+.create-initiative-page{
+  padding: 20px 50px;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.create-initiative-page .field-line{
+  
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
