@@ -21,7 +21,7 @@
      this.state = {
        errors: {},
        user: {
-         username: '',
+         email: '',
          password: ''
        },
        response: ''
@@ -30,7 +30,7 @@
    resetForm = () => {
      this.setState({
        user: {
-         username: '',
+         email: '',
          password: ''
        }
    });
@@ -40,9 +40,9 @@
        let errors = {};
        let formIsValid = true;
 
-       if(!fields["username"]){
+       if(!fields["email"]){
           formIsValid = false;
-          errors["username"] = "Enter username";
+          errors["email"] = "Enter email address";
        }
        if(!fields["password"]){
           formIsValid = false;
@@ -68,7 +68,7 @@
         History.push("/dashboard")
 
       }, (error) => {
-        alert(INVALID_LOGIN);        
+        alert(INVALID_LOGIN);
         this.resetForm();
       });
     }
@@ -102,12 +102,12 @@
 
            <div className="field-line">
              <TextField
-               floatingLabelText="Username"
-               name="username"
+               floatingLabelText="Email"
+               name="email"
                onChange={this.changeUser}
-               value={this.state.user.username}
+               value={this.state.user.email}
                className="align-left"
-               errorText={this.state.errors.username}
+               errorText={this.state.errors.email}
              />
            </div>
 

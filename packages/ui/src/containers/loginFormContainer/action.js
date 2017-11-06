@@ -9,9 +9,9 @@ export const getUserInfo = (userInfo) => {
   //const request = JSON.stringify(myData);
   console.log(userInfo);
 
-  const request = axios.post(LOGGIN_USER, 
+  const request = axios.post(LOGGIN_USER,
   {
-      "email": userInfo.username,
+      "email": userInfo.email,
       "password": userInfo.password
   });
   console.log(request)
