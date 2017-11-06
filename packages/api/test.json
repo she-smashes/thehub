@@ -1,7 +1,7 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 1,
+    "AccessToken": 2,
     "ACL": 1,
     "RoleMapping": 10,
     "Role": 4,
@@ -21,7 +21,9 @@
   },
   "models": {
     "User": {},
-    "AccessToken": {},
+    "AccessToken": {
+      "sMsWypzmAbWynVG8J8Bvnm84elJHCOgwMKbkEqVJXnCBDMdw4xTUsmkBt0kAgHhF": "{\"id\":\"sMsWypzmAbWynVG8J8Bvnm84elJHCOgwMKbkEqVJXnCBDMdw4xTUsmkBt0kAgHhF\",\"ttl\":1209600,\"created\":\"2017-11-06T09:41:19.815Z\",\"userId\":1}"
+    },
     "ACL": {},
     "RoleMapping": {
       "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",

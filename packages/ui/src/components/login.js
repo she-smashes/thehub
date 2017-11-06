@@ -43,7 +43,6 @@
       return formIsValid;
   }
   componentWillReceiveProps = (nextProps) => {
-    console.log(JSON.stringify(nextProps.user[0].id)+"sudha");
     this.setState({
       response: nextProps.user
     });
@@ -57,14 +56,9 @@
      // prevent default action. in this case, action is the form submission event
      event.preventDefault();
      if(this.handleValidation()){
-       this.props.getUserInfo();      
+       this.props.getUserInfo();
      }
-   }
-   renderEvents = () => {
-     <Route render={({ history}) => (
-       history.push('/dashboard')
-      )} />
-   }
+   }   
    /**
     * Change the user object.
     *
