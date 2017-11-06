@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Event-details{
+  padding:20px;
+}
+.Event-details > .Date
+{
+  font-weight: bold;
+}
+.Event-details > p{
+  padding-top: 15px;
+}
