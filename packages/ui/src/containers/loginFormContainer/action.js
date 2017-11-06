@@ -10,14 +10,10 @@ export const getUserInfo = (userInfo) => {
   console.log(userInfo);
 
   const request = axios.post(LOGGIN_USER, 
-    {
-      "email":"customer1@example.com",
-      "password":"customer1"
-      }  )
-  // {
-  //     "email": userInfo.username,
-  //     "password": userInfo.password
-  // });
+  {
+      "email": userInfo.username,
+      "password": userInfo.password
+  });
   console.log(request)
   return {
     type: AUTHORIZED_USER,
