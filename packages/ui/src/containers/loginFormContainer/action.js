@@ -5,20 +5,22 @@ import { LOGGIN_USER } from "../../constants/apiList"
 import { GET_EVENTS } from "../../constants/apiList"
 import LoginWidget from '../../components/login';
 
-export const getUserInfo = () => {
-
-  const url = process.env.REACT_APP_API_PROFILE_URL;
+export const getUserInfo = (userInfo) => {
   //const request = JSON.stringify(myData);
+  console.log(userInfo);
 
-  const request = axios.get(LOGGIN_USER, {
-    params: {
-      "username": this.state.user.username,
-      "password": this.state.user.password
-    }
-  });
-  console.log(JSON.stringify(request)+"request");
+  const request = axios.post(LOGGIN_USER, 
+    {
+      "email":"customer1@example.com",
+      "password":"customer1"
+      }  )
+  // {
+  //     "email": userInfo.username,
+  //     "password": userInfo.password
+  // });
+  console.log(request)
   return {
     type: AUTHORIZED_USER,
-    payload: request
+    payload:request
   };
 }

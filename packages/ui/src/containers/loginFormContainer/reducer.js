@@ -7,7 +7,6 @@
  */
 import { AUTHORIZED_USER } from "../../constants/actions";
 export default function (state = [], action) {
-    console.log('In', action.type)
     switch (action.type) {
         case 'AUTHORIZED_USER':
             return action.payload.data;

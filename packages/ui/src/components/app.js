@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Router history={History}>
         <Switch>
-          <Route path='/' exact={true} component={AsyncLogin} />
+          <Route path='/login' exact={true} component={AsyncLogin} />
           <Route path='/dashboard' exact={true} component={AsyncDashboard} />
           <Route component={PageNotFound}/>
         </Switch>

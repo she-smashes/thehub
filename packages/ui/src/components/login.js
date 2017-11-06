@@ -4,7 +4,9 @@
  * @desc This component renders the login page
  */
  import React, {Component} from 'react';
- import LoginForm from './loginForm.js';
+ import { Card } from 'material-ui/Card';
+ import RaisedButton from 'material-ui/RaisedButton';
+ import TextField from 'material-ui/TextField';
  import { Route } from 'react-router-dom';
  import History from '../history';
  class LoginWidget extends Component {
@@ -54,11 +56,17 @@
     */
    processForm = (event) => {
      // prevent default action. in this case, action is the form submission event
-     event.preventDefault();
-     if(this.handleValidation()){
-       this.props.getUserInfo();
-     }
-   }   
+    event.preventDefault();
+    if(this.handleValidation()){
+      this.props.getUserInfo(this.state.user)
+      .then((response) => {
+        // You get the logged in response here
+        console.log(response);
+        History.push("/dashboard")
+
+      })
+    }
+  }   
    /**
     * Change the user object.
     *
@@ -80,12 +88,40 @@
    render = () => {
 
      return (
-       <LoginForm
-         onSubmit={this.processForm}
-         onChange={this.changeUser}
-         errors={this.state.errors}
-         user={this.state.user}
-       />
+       <Card className="container login-page">
+       <form onSubmit={this.processForm}>
+           <h2 className="card-heading">Login</h2>
+     
+           {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
+     
+           <div className="field-line">
+             <TextField
+               floatingLabelText="Username"
+               name="username"
+               onChange={this.changeUser}
+               value={this.state.user.username}
+               className="align-left"
+               errorText={this.state.errors.username}
+             />
+           </div>
+     
+           <div className="field-line">
+             <TextField
+               floatingLabelText="Password"
+               type="password"
+               name="password"
+               onChange={this.changeUser}
+               value={this.state.user.password}
+               className="align-left"
+               errorText={this.state.errors.password}
+             />
+           </div>
+     
+           <div className="button-line">
+             <RaisedButton type="submit" label="Log in" primary />
+           </div>
+         </form>
+       </Card>
      );
    }
 

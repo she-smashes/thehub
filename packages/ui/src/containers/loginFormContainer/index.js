@@ -3,7 +3,6 @@ import LoginWidget from '../../components/login';
 import {getUserInfo} from './action';
 
 const mapStateToProps = (state) => {  
-  console.log(JSON.stringify(state.userInfo)+"state.eventsList");
   return {
     user: state.userInfo
   }
@@ -11,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getUserInfo : () => {
-      dispatch(getUserInfo(dispatch))
+    getUserInfo : (userInfo) => {
+      return dispatch(getUserInfo(userInfo, dispatch))
     }
   }
 }
