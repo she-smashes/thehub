@@ -10,11 +10,12 @@ import {Card, CardHeader} from 'material-ui/Card';
 import AttendanceWidget from './attendanceWidget';
 import ProgressWidget from './progressWidget';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
+import LoginWidget from '../containers/loginFormContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
 import BadgeWidget from './badgeWidget'
 
 class Dashboard extends Component {
-    
+
     render = () => {
         const styles ={
             card: {margin: 10}

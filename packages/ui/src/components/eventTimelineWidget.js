@@ -13,6 +13,7 @@ class EventTimelineWidget extends Component {
     }
 
     renderEvents = () => {
+      
         return this.props.events.map((event, index) => {
             return <div key={index}>
                 <div>Event : {event.description}</div>
@@ -20,7 +21,7 @@ class EventTimelineWidget extends Component {
             </div>
         })
     }
-    
+
     render = () => {
         console.log(this.props)
         return (

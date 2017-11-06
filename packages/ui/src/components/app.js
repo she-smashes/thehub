@@ -7,7 +7,7 @@ import asyncComponent from './asyncComponent';
 import '../css/app.css';
 
 
-const AsyncLogin = asyncComponent(() => import('./login'));
+const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 
 class App extends Component {
@@ -15,8 +15,8 @@ class App extends Component {
     return (
       <Router history={History}>
         <Switch>
-          <Route path='/login' exact={true} component={AsyncLogin} />
-          <Route path='/' exact={true} component={AsyncDashboard} />
+          <Route path='/' exact={true} component={AsyncLogin} />
+          <Route path='/dashboard' exact={true} component={AsyncDashboard} />
           <Route component={PageNotFound}/>
         </Switch>
       </Router>

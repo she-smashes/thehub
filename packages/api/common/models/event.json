@@ -19,11 +19,11 @@
       "required": true
     },
     "startDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "location": {
@@ -77,9 +77,8 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "listEvents"
-    },
+      "permission": "ALLOW"
+	},
     {
       "accessType": "READ",
       "principalType": "ROLE",
@@ -97,7 +96,14 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "appadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
       "permission": "ALLOW",
       "property": "updateAttributes"
     },

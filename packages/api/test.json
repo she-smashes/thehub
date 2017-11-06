@@ -3,22 +3,76 @@
     "User": 1,
     "AccessToken": 1,
     "ACL": 1,
-    "RoleMapping": 1,
-    "Role": 1,
-    "employee": 2,
-    "event": 2
+    "RoleMapping": 10,
+    "Role": 4,
+    "userBadge": 1,
+    "badge": 1,
+    "category": 9,
+    "config": 1,
+    "initiative": 3,
+    "event": 1,
+    "level": 1,
+    "enrollment": 1,
+    "score": 1,
+    "task": 1,
+    "user": 10,
+    "eventUserVO": 1,
+    "eventInitiativeVO": 1
   },
   "models": {
     "User": {},
     "AccessToken": {},
     "ACL": {},
-    "RoleMapping": {},
-    "Role": {},
-    "employee": {
-      "1": "{\"name\":\"neha\",\"ID\":1,\"email\":\"test@test.com\",\"points\":10,\"id\":1}"
+    "RoleMapping": {
+      "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",
+      "2": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":1,\"id\":2}",
+      "3": "{\"principalType\":\"USER\",\"principalId\":\"3\",\"roleId\":1,\"id\":3}",
+      "4": "{\"principalType\":\"USER\",\"principalId\":\"4\",\"roleId\":2,\"id\":4}",
+      "5": "{\"principalType\":\"USER\",\"principalId\":\"5\",\"roleId\":2,\"id\":5}",
+      "6": "{\"principalType\":\"USER\",\"principalId\":\"6\",\"roleId\":2,\"id\":6}",
+      "7": "{\"principalType\":\"USER\",\"principalId\":\"7\",\"roleId\":3,\"id\":7}",
+      "8": "{\"principalType\":\"USER\",\"principalId\":\"8\",\"roleId\":3,\"id\":8}",
+      "9": "{\"principalType\":\"USER\",\"principalId\":\"9\",\"roleId\":3,\"id\":9}"
     },
-    "event": {
-      "1": "{\"initiativeId\":\"string\",\"startDate\":\"string\",\"endDate\":\"string\",\"location\":\"string\",\"status\":\"string\",\"lead\":\"string\",\"title\":\"string\",\"description\":0,\"categoryId\":\"string\",\"id\":1}"
-    }
+    "Role": {
+      "1": "{\"name\":\"employee\",\"description\":\"employee\",\"id\":1}",
+      "2": "{\"name\":\"appadmin\",\"description\":\"appadmin\",\"id\":2}",
+      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}"
+    },
+    "userBadge": {},
+    "badge": {},
+    "category": {
+      "1": "{\"name\":\"Cricket\",\"type\":\"Sports\",\"id\":1}",
+      "2": "{\"name\":\"Zumba\",\"type\":\"Sports\",\"id\":2}",
+      "3": "{\"name\":\"Marathon\",\"type\":\"Sports\",\"id\":3}",
+      "4": "{\"name\":\"Carnatic\",\"type\":\"Music\",\"id\":4}",
+      "5": "{\"name\":\"Western\",\"type\":\"Music\",\"id\":5}",
+      "6": "{\"name\":\"Classical\",\"type\":\"Dance\",\"id\":6}",
+      "7": "{\"name\":\"Western\",\"type\":\"Dance\",\"id\":7}",
+      "8": "{\"name\":\"CSR\",\"type\":\"CSR\",\"id\":8}"
+    },
+    "config": {},
+    "initiative": {
+      "1": "{\"title\":\"Prayaas\",\"description\":\"Helping people\",\"categoryId\":8,\"id\":1}",
+      "2": "{\"title\":\"Fitness\",\"description\":\"Keeping people fit\",\"categoryId\":2,\"id\":2}"
+    },
+    "event": {},
+    "level": {},
+    "enrollment": {},
+    "score": {},
+    "task": {},
+    "user": {
+      "1": "{\"password\":\"$2a$10$JmKn04XqRbY2H9M/Z3s6rupjyEYVIYQYQoEchL57MzVG58P0/aZV6\",\"username\":\"customer1\",\"email\":\"customer1@example.com\",\"id\":1}",
+      "2": "{\"password\":\"$2a$10$W.k8muvEojiadC/7cb3oBuosIeJHgwF2JnNZ4uAqi98n01pItkHiC\",\"username\":\"customer2\",\"email\":\"customer2@example.com\",\"id\":2}",
+      "3": "{\"password\":\"$2a$10$J0IJcVju0LGXl.mZG/WGu.hxrYnMcNMMR0FH7Vr365fLCdQlCuWMC\",\"username\":\"customer3\",\"email\":\"customer3@example.com\",\"id\":3}",
+      "4": "{\"password\":\"$2a$10$kIm6.D8n55JFiz9K1gtMMOsVj0DYbPw/whheJFwhKw8zICmDG1yey\",\"username\":\"appadmin1\",\"email\":\"appadmin1@example.com\",\"id\":4}",
+      "5": "{\"password\":\"$2a$10$VTfEzy8zKG07vqeyGlOIm.SWkWiebD2eBZwE0kudWp9DDKFQKWOAm\",\"username\":\"appadmin2\",\"email\":\"appadmin2@example.com\",\"id\":5}",
+      "6": "{\"password\":\"$2a$10$vkOEnI/lVK9xjtiJH7/jzuqujZChNypqYRrPR1xOOKjdsimn8qI1W\",\"username\":\"appadmin3\",\"email\":\"appadmin3@example.com\",\"id\":6}",
+      "7": "{\"password\":\"$2a$10$ut0F.5PR2dR751D1aHGSqOHPkf1X5EAvJMGOWPUU46dyl1bIm1qPe\",\"username\":\"sysadmin1\",\"email\":\"sysadmin1@example.com\",\"id\":7}",
+      "8": "{\"password\":\"$2a$10$bhCByPFwGZGwNSxhCp39m.s6sB73vlwKPAeWmMAJv//udgfYKaV7m\",\"username\":\"sysadmin2\",\"email\":\"sysadmin2@example.com\",\"id\":8}",
+      "9": "{\"password\":\"$2a$10$UuFzoKcr1FHLJcLeH37qZOYg9zZhNVrrc2yskaBFZd3aZjGl989aG\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":9}"
+    },
+    "eventUserVO": {},
+    "eventInitiativeVO": {}
   }
 }

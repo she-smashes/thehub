@@ -5,8 +5,12 @@
  */
  import React, {Component} from 'react';
  import LoginForm from './loginForm.js';
- import { Route } from 'react-router-dom';
- import History from '../history';
+
+ import {Router, Route, Switch} from 'react-router-dom';
+
+ import asyncComponent from './asyncComponent';
+
+ const AsyncDashboard = asyncComponent(() => import('./dashboard'));
  class LoginWidget extends Component {
 
    /**
@@ -20,12 +24,14 @@
        user: {
          username: '',
          password: ''
-       },
-       response: ''
+       }
      };
    }
-
-   handleValidation = () => {
+   componentDidMount =  () => {
+       this.props.getUserInfo();
+       console.log(this.props.username+"Sudha");
+   }
+   handleValidation =  () => {
        let fields = this.state.user;
        let errors = {};
        let formIsValid = true;
@@ -42,29 +48,29 @@
       this.setState({errors: errors});
       return formIsValid;
   }
-  componentWillReceiveProps = (nextProps) => {
-    console.log(JSON.stringify(nextProps.user[0].id)+"sudha");
-    this.setState({
-      response: nextProps.user
-    });
-  }
    /**
     * Process the form.
     *
     * @param {object} event - the JavaScript event object
     */
-   processForm = (event) => {
+   processForm =  ()  => {
      // prevent default action. in this case, action is the form submission event
-     event.preventDefault();
      if(this.handleValidation()){
-       this.props.getUserInfo();      
+       /*return this.props.username.map((event, index) => {
+         return
+           <Router history={History}>
+             <Switch>
+               <Route path='/' exact={true} component={AsyncDashboard} />
+             </Switch>
+           </Router>
+
+       })*/
+       console.log(this.props);
+       console.log('username:', this.state.user.username);
+       console.log('password:', this.state.user.password);
      }
    }
-   renderEvents = () => {
-     <Route render={({ history}) => (
-       history.push('/dashboard')
-      )} />
-   }
+
    /**
     * Change the user object.
     *
@@ -84,7 +90,7 @@
     * Render the component.
     */
    render = () => {
-
+     console.log(JSON.stringify(this.props) + "this.props");
      return (
        <LoginForm
          onSubmit={this.processForm}
