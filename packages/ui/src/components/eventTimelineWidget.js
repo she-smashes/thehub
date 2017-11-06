@@ -9,7 +9,7 @@ import {List, ListItem} from 'material-ui/List';
 class EventTimelineWidget extends Component {
 
     componentDidMount =  () => {
-        this.props.getEventList()
+        this.props.getEventList(this.props.userInfo.id)
     }
 
     resolveBackgroundColor = (startDate, endDate) => {
