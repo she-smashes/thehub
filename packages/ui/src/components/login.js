@@ -44,11 +44,11 @@
       this.setState({errors: errors});
       return formIsValid;
   }
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({
-      response: nextProps.user
-    });
-  }
+  // componentWillReceiveProps = (nextProps) => {
+  //   this.setState({
+  //     response: nextProps.user
+  //   });
+  // }
    /**
     * Process the form.
     *
@@ -59,11 +59,13 @@
     event.preventDefault();
     if(this.handleValidation()){
       this.props.getUserInfo(this.state.user)
-      .then((response) => {
+      .then((response, error) => {
         // You get the logged in response here
-        console.log(response);
+        console.log(error);
         History.push("/dashboard")
 
+      }, (error) => {
+        console.log(error)
       })
     }
   }   
