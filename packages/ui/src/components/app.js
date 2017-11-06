@@ -9,6 +9,7 @@ import '../css/app.css';
 
 const AsyncLogin = asyncComponent(() => import('./login'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
+const AsyncCreateIntiative = asyncComponent(() => import('./createInitiative'));
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Switch>
           <Route path='/login' exact={true} component={AsyncLogin} />
           <Route path='/' exact={true} component={AsyncDashboard} />
+          <Route path='/createinitiative' exact={true} component={AsyncCreateIntiative} />
           <Route component={PageNotFound}/>
         </Switch>
       </Router>
