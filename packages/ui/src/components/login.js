@@ -9,6 +9,7 @@
  import TextField from 'material-ui/TextField';
  import { Route } from 'react-router-dom';
  import History from '../history';
+ import { INVALID_LOGIN } from "../constants/actions";
  class LoginWidget extends Component {
 
    /**
@@ -26,7 +27,14 @@
        response: ''
      };
    }
-
+   resetForm = () => {
+     this.setState({
+       user: {
+         username: '',
+         password: ''
+       }
+   });
+   }
    handleValidation = () => {
        let fields = this.state.user;
        let errors = {};
@@ -44,11 +52,6 @@
       this.setState({errors: errors});
       return formIsValid;
   }
-  // componentWillReceiveProps = (nextProps) => {
-  //   this.setState({
-  //     response: nextProps.user
-  //   });
-  // }
    /**
     * Process the form.
     *
@@ -65,10 +68,11 @@
         History.push("/dashboard")
 
       }, (error) => {
-        console.log(error)
-      })
+        alert(INVALID_LOGIN);        
+        this.resetForm();
+      });
     }
-  }   
+  }
    /**
     * Change the user object.
     *
@@ -93,9 +97,9 @@
        <Card className="container login-page">
        <form onSubmit={this.processForm}>
            <h2 className="card-heading">Login</h2>
-     
+
            {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
-     
+
            <div className="field-line">
              <TextField
                floatingLabelText="Username"
@@ -106,7 +110,7 @@
                errorText={this.state.errors.username}
              />
            </div>
-     
+
            <div className="field-line">
              <TextField
                floatingLabelText="Password"
@@ -118,7 +122,7 @@
                errorText={this.state.errors.password}
              />
            </div>
-     
+
            <div className="button-line">
              <RaisedButton type="submit" label="Log in" primary />
            </div>
