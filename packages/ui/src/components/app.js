@@ -8,7 +8,7 @@ import Header from './header'
 import '../css/app.css';
 
 
-const AsyncLogin = asyncComponent(() => import('./login'));
+const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
           </Switch>
         </Router>
       </div>
-      
+
     );
   }
 }
