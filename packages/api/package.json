@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "start:heroku": "NODE_ENV=dev && node ."
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
