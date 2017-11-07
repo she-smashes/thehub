@@ -1,25 +1,136 @@
 /**
- * @author Shalini Jha
+ * @author Ragasudha Aradhyula
  * @name Login
  * @desc This component renders the login page
  */
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+ import React, {Component} from 'react';
+ import { Card } from 'material-ui/Card';
+ import RaisedButton from 'material-ui/RaisedButton';
+ import TextField from 'material-ui/TextField';
+ import { Route } from 'react-router-dom';
+ import History from '../history';
+ import { INVALID_LOGIN } from "../constants/actions";
+ class LoginWidget extends Component {
 
-class Login extends Component {
-    
-    /**
-     * @name render
-     * @desc Renders the login HTML
-     */
-    render = () => {
-        return (
-            <div>
-                <Link to={`/`}>Login</Link>
-            </div>
-        )
+   /**
+    * Class constructor.
+    */
+   constructor(props) {
+     super(props);
+     // set the initial component state
+     this.state = {
+       errors: {},
+       user: {
+         email: '',
+         password: ''
+       },
+       response: ''
+     };
+   }
+   resetForm = () => {
+     this.setState({
+       user: {
+         email: '',
+         password: ''
+       }
+   });
+   }
+   handleValidation = () => {
+       let fields = this.state.user;
+       let errors = {};
+       let formIsValid = true;
+
+       if(!fields["email"]){
+          formIsValid = false;
+          errors["email"] = "Enter email address";
+       }
+       if(!fields["password"]){
+          formIsValid = false;
+          errors["password"] = "Enter password";
+       }
+
+      this.setState({errors: errors});
+      return formIsValid;
+  }
+   /**
+    * Process the form.
+    *
+    * @param {object} event - the JavaScript event object
+    */
+   processForm = (event) => {
+     // prevent default action. in this case, action is the form submission event
+    event.preventDefault();
+    if(this.handleValidation()){
+      this.props.getUserInfo(this.state.user)
+      .then((response, error) => {
+        // You get the logged in response here
+        console.log(error);
+        History.push("/dashboard")
+
+      }, (error) => {        
+        alert(INVALID_LOGIN);
+        this.resetForm();
+      });
     }
-}
+  }
+   /**
+    * Change the user object.
+    *
+    * @param {object} event - the JavaScript event object
+    */
+   changeUser = (event) => {
+     const field = event.target.name;
+     const user = this.state.user;
+     user[field] = event.target.value;
 
-export default Login;
+     this.setState({
+       user
+     });
+   };
 
+   /**
+    * Render the component.
+    */
+   render = () => {
+
+     return (
+       <Card className="container login-page">
+       <form onSubmit={this.processForm}>
+           <h2 className="card-heading">Login</h2>
+
+           {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
+
+           <div className="field-line">
+             <TextField
+               floatingLabelText="Email"
+               name="email"
+               onChange={this.changeUser}
+               value={this.state.user.email}
+               className="align-left"
+               errorText={this.state.errors.email}
+             />
+           </div>
+
+           <div className="field-line">
+             <TextField
+               floatingLabelText="Password"
+               type="password"
+               name="password"
+               onChange={this.changeUser}
+               value={this.state.user.password}
+               className="align-left"
+               errorText={this.state.errors.password}
+             />
+           </div>
+
+           <div className="button-line">
+             <RaisedButton type="submit" label="Log in" primary />
+           </div>
+         </form>
+       </Card>
+     );
+   }
+
+ }
+
+ export default LoginWidget;
