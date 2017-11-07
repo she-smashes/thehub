@@ -67,7 +67,7 @@
         console.log(error);
         History.push("/dashboard")
 
-      }, (error) => {
+      }, (error) => {        
         alert(INVALID_LOGIN);
         this.resetForm();
       });
