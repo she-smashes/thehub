@@ -1,1 +1,2 @@
 export const DEFAULT_EVENTS = 'DEFAULT_EVENTS';
+export const UPDATE_EVENT_LIST = 'UPDATE_EVENT_LIST';
