@@ -33,8 +33,6 @@ class Dashboard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                     title={<EventTimelineWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
                     />
                 </Card>
                 <Card style={styles.card}>
