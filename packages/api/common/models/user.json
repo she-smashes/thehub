@@ -18,7 +18,7 @@
       "type": "object",
       "required": true
     },
-    "firstName": {
+    "firstname": {
       "type": "string",
       "required": true
     },
@@ -26,15 +26,11 @@
       "type": "string",
       "required": true
     },
-    "role": {
-      "type": "string",
-      "required": true
-    },
-    "modifiedOn": {
+    "modifiedon": {
       "type": "date",
       "required": true
     },
-    "registeredOn": {
+    "registeredon": {
       "type": "date",
       "required": true
     },
