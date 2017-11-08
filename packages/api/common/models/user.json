@@ -2,6 +2,7 @@
   "name": "user",
   "plural": "users",
   "base": "User",
+  "ttl": 60,
   "idInjection": true,
   "options": {
     "validateUpsert": true

@@ -4,22 +4,27 @@ import {Router, Route, Switch} from 'react-router-dom';
 import History from '../history';
 import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
+import Header from './header'
 import '../css/app.css';
 
 
-const AsyncLogin = asyncComponent(() => import('./login'));
+const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 
 class App extends Component {
   render() {
     return (
-      <Router history={History}>
-        <Switch>
-          <Route path='/login' exact={true} component={AsyncLogin} />
-          <Route path='/' exact={true} component={AsyncDashboard} />
-          <Route component={PageNotFound}/>
-        </Switch>
-      </Router>
+      <div>
+        <Header />
+        <Router history={History}>
+          <Switch>
+            <Route path='/login' exact={true} component={AsyncLogin} />
+            <Route path='/dashboard' exact={true} component={AsyncDashboard} />
+            <Route component={PageNotFound}/>
+          </Switch>
+        </Router>
+      </div>
+
     );
   }
 }
