@@ -18,5 +18,12 @@
       "limit": "100kb"
     },
     "cors": false
+  },
+  "bootScripts": {
+  "tokenRefresh": {
+	"enabled": true,
+    "onceIn": 15,
+    "ttl": 30
   }
+}
 }
