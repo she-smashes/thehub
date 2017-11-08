@@ -14,6 +14,11 @@
     "points": {
       "type": "number"
     },
+	
+	"role": {
+      "type": "string",
+      "required": false
+    },
     "password": {
       "type": "object",
       "required": true
