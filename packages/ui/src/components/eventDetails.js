@@ -1,8 +1,19 @@
+/**
+ * @author Thenmozhi Subramaniam
+ * @name EventDetails
+ * @desc renders event details component
+ */
+
 import React, {Component} from 'react';
-/*import BreadCrumb from './breadcrumb';*/
+/*import {nav} from 'material-ui/nav';
+import BreadCrumb from './breadcrumb';*/
 
 class EventDetails extends Component
 {
+  componentDidMount =  () => {
+     this.props.getEventDetails();
+  }
+
   constructor(props){
     super(props);
     this.state = {'Event' : {
@@ -14,14 +25,21 @@ class EventDetails extends Component
     };
   }
 
+  renderBreadCrumb = () => {
+    console.log(this.props);
+    return this.state.BreadCrumb.map((item, index) => {
+        return (<li key={index}> <a href={item.Url}> {item.Title} </a> </li>);
+    })
+  }
+
   render()
   {
+    console.log(JSON.stringify(this.props)+"props");
     return (
         <div className="">
-          <div className="BreadCrumb">
-            <ul>
-              <div data={this.state.BreadCrumb} />
-            </ul>
+          {/*}<BreadCrumb data={this.state.BreadCrumb} />*/}
+          <div className="Breadcrumb">
+            {this.state.BreadCrumb.length > 0 ? <ul> {this.renderBreadCrumb()} </ul> : ""}
           </div>
           <div className="Event-details">
             <h1 className=""> {this.state.Event.EventName} </h1>
@@ -33,7 +51,6 @@ class EventDetails extends Component
         </div>
     );
   }
-
 }
 
 export default EventDetails;

@@ -37,3 +37,11 @@
 .Event-details > p{
   padding-top: 15px;
 }
+.Breadcrumb > ul > li{
+  list-style-type : none;
+  display:inline;
+
+}
+.Breadcrumb > ul > li:after{
+  content:" -> ";
+}
