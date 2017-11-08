@@ -6,8 +6,10 @@
   "options": {
     "validateUpsert": true
   },
- "properties": {
-    
+  "mixins": {
+    "Timestamp": {}
+  },
+  "properties": {
     "userIid": {
       "type": "object",
       "required": true

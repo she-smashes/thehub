@@ -1,0 +1,8 @@
+{
+  "initiative": [
+    {"title": "Prayaas", "description": "Helping people", "category": "CSR"},
+    {"title": "Fitness", "description": "Keeping people fit", "category": "Zumba"},
+	{"title": "Run for fun", "description": "Marathon for Sapient Nitro", "category": "Marathon"}
+	
+  ]
+}

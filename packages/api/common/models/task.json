@@ -21,7 +21,7 @@
     }
   },
   "validations": [],
-"relations": {
+  "relations": {
     "user": {
       "type": "belongsTo",
       "model": "user",
