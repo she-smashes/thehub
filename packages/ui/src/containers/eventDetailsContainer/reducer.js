@@ -1,6 +1,6 @@
 /**
  * @author Thenmozhi Subramaniam
- * @description A reducer function that returns the events list
+ * @description A reducer function that returns the event details
  * based on the action type passed to it
  * @param {Object} state
  * @param {Object} action

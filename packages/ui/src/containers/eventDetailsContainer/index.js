@@ -4,7 +4,8 @@ import {getEventDetails} from './action';
 
 const mapStateToProps = (state) => {
   return {
-    eventDetails: state.eventDetails
+    eventDetails: state.eventDetails,
+    userInfo: state.userInfo
   }
 }
 

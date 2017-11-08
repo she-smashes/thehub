@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-import { DEFAULT_EVENT } from "../../constants/actions";
-import { GET_EVENTDETAILS } from "../../constants/apiList"
-
-export const getEventDetails = (eventId) => {
+import { GET_EVENTDETAILS } from "../../constants/actions";
+import { GET_EVENTS } from "../../constants/apiList"
+export const getEventDetails = (eventId, access_token) => {
   console.log('Actions')
-//  const request = axios.get(GET_EVENTDETAILS + eventId);
-  //console.log(request)
+  const request = axios.get(GET_EVENTS + "/" + eventId + "?"+access_token);
+  console.log(request)
   return {
     type: GET_EVENTDETAILS,
-    payload: {'event' :'name','eventStart':'23-2-2018'}//request
+    payload: request
   };
 }

@@ -5,24 +5,17 @@
  */
 
 import React, {Component} from 'react';
+import { ACCESS_TOKEN} from "../constants/testContent"
 /*import {nav} from 'material-ui/nav';
 import BreadCrumb from './breadcrumb';*/
 
 class EventDetails extends Component
 {
   componentDidMount =  () => {
-     this.props.getEventDetails();
+     this.props.getEventDetails(2,ACCESS_TOKEN );
   }
-
   constructor(props){
     super(props);
-    this.state = {'Event' : {
-      'EventName' : 'Hub creation',
-      'EventStartDate' : '10, September 2017',
-      'EventEndDate' : '1, December 2017',
-      'EventDescription' : 'Creating a website for adding and maintaining initiatives and events.'},
-      'BreadCrumb' : [{'Title' : "initiatives", "Url" : "/initiatives"},{'Title' : "EventName", "Url":''}]
-    };
   }
 
   renderBreadCrumb = () => {
@@ -37,15 +30,14 @@ class EventDetails extends Component
     console.log(JSON.stringify(this.props)+"props");
     return (
         <div className="">
-          {/*}<BreadCrumb data={this.state.BreadCrumb} />*/}
           <div className="Breadcrumb">
-            {this.state.BreadCrumb.length > 0 ? <ul> {this.renderBreadCrumb()} </ul> : ""}
+            {this.props.eventDetails.length > 0 ? <ul> {this.renderBreadCrumb()} </ul> : ""}
           </div>
           <div className="Event-details">
-            <h1 className=""> {this.state.Event.EventName} </h1>
-            <span className="Date"> {this.state.Event.EventStartDate} - {this.state.Event.EventEndDate} </span>
+            <h1 className=""> {this.props.eventDetails.title} </h1>
+            <span className="Date"> {this.props.eventDetails.startDate  } - {this.props.eventDetails.endDate} </span>
             <p className="">
-              {this.state.Event.EventDescription}
+              {this.props.eventDetails.description}
             </p>
           </div>
         </div>
