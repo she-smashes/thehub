@@ -18,9 +18,16 @@
       "type": "string",
       "required": true
     },
-    "categoryId": {
+    "status": {
       "type": "string",
       "required": true
+    },
+    "createdOn": {
+      "type": "date",
+      "required": true
+    },
+    "active": {
+      "type": "boolean"
     }
   },
   "validations": [],
@@ -30,10 +37,20 @@
       "model": "event",
       "foreignKey": "initiativeId"
     },
-    "category": {
-      "type": "belongsTo",
-      "model": "category",
-      "foreignKey": "categoryId"
+    "lead": {
+      "type": "hasOne",
+      "model": "user",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "createdBy": {
+      "type": "hasOne",
+      "model": "user",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [
