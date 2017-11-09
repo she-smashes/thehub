@@ -80,8 +80,7 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "findById"
+      "permission": "ALLOW"
     },
     {
       "accessType": "WRITE",

@@ -22,8 +22,8 @@
   "bootScripts": {
   "tokenRefresh": {
 	"enabled": true,
-    "onceIn": 15,
-    "ttl": 30
+    "onceIn": 1800,
+    "ttl": 3600
   }
 }
 }
