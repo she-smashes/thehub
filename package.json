@@ -4,6 +4,7 @@
 		"heroku-postbuild": "lerna bootstrap && lerna run build && cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
 		"start:heroku": "cd packages/api && npm run start:heroku"
+
 	},
 	"devDependencies": {
 		"lerna": "2.2.0"
