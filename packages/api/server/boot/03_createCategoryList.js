@@ -21,7 +21,4 @@ module.exports = function (app, cb) {
 				console.log('Categories set up', res.length);
 				return cb()
 			});
-
-
-
 };
