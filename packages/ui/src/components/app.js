@@ -21,7 +21,7 @@ class App extends Component {
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />
-            <Route path='/eventdetails' exact={true} component = {AsyncEvent} />
+            <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
             <Route component={PageNotFound}/>
           </Switch>
         </Router>

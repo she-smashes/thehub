@@ -6,13 +6,11 @@
 
 import React, {Component} from 'react';
 import { ACCESS_TOKEN} from "../constants/testContent"
-/*import {nav} from 'material-ui/nav';
-import BreadCrumb from './breadcrumb';*/
 
 class EventDetails extends Component
 {
   componentDidMount =  () => {
-     this.props.getEventDetails(2,ACCESS_TOKEN );
+     this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id);
   }
   constructor(props){
     super(props);
