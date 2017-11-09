@@ -32,7 +32,7 @@ module.exports = function (app, cb) {
 		}
 	}
 
-	Promise.all(allPromises)
+	Promise.all(allPromises.map(p => p.catch(() => undefined)))
 		.then((res) => {
 			console.log('Sample Users set up', res.length);
 			for (let key in rolePromises) {
@@ -60,7 +60,7 @@ function handleRoleMapping(app, promises, roleName) {
 		}
 	});
 
-	Promise.all(promises)
+	Promise.all(promises.map(p => p.catch(() => undefined)))
 		.then((res) => {
 			var i = 0;
 			const rolemappingpromises = [];
