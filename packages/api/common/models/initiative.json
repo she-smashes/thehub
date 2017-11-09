@@ -36,21 +36,6 @@
       "type": "hasMany",
       "model": "event",
       "foreignKey": "initiativeId"
-    },
-    "lead": {
-      "type": "hasOne",
-      "model": "user",
-      "options": {
-        "nestRemoting": true
-      }
-    },
-    "createdBy": {
-      "type": "hasOne",
-      "model": "user",
-      "foreignKey": "",
-      "options": {
-        "nestRemoting": true
-      }
     }
   },
   "acls": [

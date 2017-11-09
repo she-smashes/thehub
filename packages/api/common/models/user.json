@@ -2,11 +2,11 @@
   "name": "user",
   "plural": "users",
   "base": "User",
-  "ttl": 60,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
+  "ttl": 60,
   "mixins": {
     "Timestamp": {}
   },
@@ -36,6 +36,16 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "lead": {
+      "type": "hasOne",
+      "model": "initiative",
+      "foreignKey": "lead_id"
+    },
+    "createdBy": {
+      "type": "hasOne",
+      "model": "initiative",
+      "foreignKey": "createdby_id"
     }
   },
   "acls": [
