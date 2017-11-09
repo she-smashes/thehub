@@ -18,9 +18,16 @@
       "type": "string",
       "required": true
     },
-    "categoryId": {
+    "status": {
       "type": "string",
       "required": true
+    },
+    "createdOn": {
+      "type": "date",
+      "required": true
+    },
+    "active": {
+      "type": "boolean"
     }
   },
   "validations": [],
@@ -29,11 +36,6 @@
       "type": "hasMany",
       "model": "event",
       "foreignKey": "initiativeId"
-    },
-    "category": {
-      "type": "belongsTo",
-      "model": "category",
-      "foreignKey": "categoryId"
     }
   },
   "acls": [
