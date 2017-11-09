@@ -5,7 +5,6 @@
  */
 
 import React, {Component} from 'react';
-import { ACCESS_TOKEN} from "../constants/testContent"
 
 class EventDetails extends Component
 {
