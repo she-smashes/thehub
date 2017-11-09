@@ -5,8 +5,8 @@
   "main": "server/server.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
-    "start:heroku": "NODE_ENV=dev && node .",
+    "start": "slc loopback:export-api-def --o swagger-out.json && grunt swagger && node .",
+    "start:heroku": "NODE_ENV=dev && slc loopback:export-api-def --o swagger-out.json && grunt swagger && node .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
@@ -24,6 +24,9 @@
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
+    "grunt": "^1.0.1",
+    "grunt-swagger-js-codegen": "https://github.com/UmaGovindaraj/grunt-swagger-js-codegen/tarball/master",
+    "matchdep": "^2.0.0",
     "nsp": "^2.1.0"
   },
   "author": "",
