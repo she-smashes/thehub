@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
+import History from '../history';
 class EventTimelineWidget extends Component {
 
     componentDidMount =  () => {
@@ -30,30 +31,41 @@ class EventTimelineWidget extends Component {
     }
 
     /**
+     * @name loadEventDetails
+     * @desc Move to event details page
+     * @return Loads the event details page
+     */
+    loadEventDetails = (id) => {
+      console.log(id)
+      History.push(`/eventDetails/${id}`)
+    }
+
+    /**
      * @name renderEvents
      * @desc Iterates through the list of the events and renders the list of events
      * @return Rendered events list {HTML}
      */
     renderEvents = () => {
         return this.props.events.map((event, index) => {
-            return <ListItem 
-            key={index} 
+            return <ListItem
+            key={index}
             primaryText={event.title}
+            onClick={() => this.loadEventDetails(event.id)}
             style={this.resolveBackgroundColor(Number(event.startDate), Number(event.endDate))} />
         })
     }
-    
-    
+
+
     render = () => {
         console.log(this.props)
         return (
             <div>
-                <h3>This is event timeline!</h3>   
+                <h3>This is event timeline!</h3>
                 <List>
-                    {this.props.events.length>0?this.renderEvents():<div></div>}             
+                    {this.props.events.length>0?this.renderEvents():<div></div>}
                 </List>
             </div>
-            
+
         )
     }
 }
