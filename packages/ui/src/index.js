@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import ReduxPromise from 'redux-promise';
 
+
 import './index.css';
 // Components
 import App from './components/app';
