@@ -12,10 +12,10 @@
   },
   "properties": {
     "points": {
-      "type": "number"
+      "type": "number",
+      "required": false
     },
-	
-	"role": {
+    "role": {
       "type": "string",
       "required": false
     },
