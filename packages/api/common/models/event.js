@@ -2,7 +2,9 @@
 
 module.exports = function(Event) {
   Event.listEvents = function(cb) {
-    Event.find({}, cb);
+    Event.find(
+      {startDate: {gt: Date.now()}},
+       cb);
   };
   Event.remoteMethod('listEvents', {
     returns: {arg: 'events', type: 'array'},

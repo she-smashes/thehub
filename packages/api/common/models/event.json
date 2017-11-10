@@ -19,11 +19,11 @@
       "required": true
     },
     "startDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "location": {
@@ -79,13 +79,6 @@
       "principalId": "$authenticated",
       "permission": "ALLOW"
 	},
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "findById"
-    },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",

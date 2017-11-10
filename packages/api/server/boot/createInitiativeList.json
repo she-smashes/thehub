@@ -1,8 +1,8 @@
 {
   "initiative": [
-    {"title": "Prayaas", "description": "Helping people", "category": "CSR"},
-    {"title": "Fitness", "description": "Keeping people fit", "category": "Zumba"},
-	{"title": "Run for fun", "description": "Marathon for Sapient Nitro", "category": "Marathon"}
+    {"title": "Prayaas", "description": "Helping people", "status":"approved", "createdOn":"2017-05-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin1"},
+    {"title": "Fitness", "description": "Keeping people fit", "status":"approved", "createdOn":"2017-06-01T11:49:20.305Z", "leadUser":"customer2", "createdByUser":"appadmin1"},
+	  {"title": "Run for fun", "description": "Marathon for Sapient Nitro", "status":"approved", "createdOn":"2017-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin2"}
 	
   ]
 }
