@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import History from '../history';
 class EventTimelineWidget extends Component {
 
+    
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id)
     }

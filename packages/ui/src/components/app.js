@@ -7,7 +7,6 @@ import asyncComponent from './asyncComponent';
 import Header from './header'
 import '../css/app.css';
 
-
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));

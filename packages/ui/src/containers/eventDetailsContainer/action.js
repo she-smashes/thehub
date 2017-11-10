@@ -9,3 +9,4 @@ export const getEventDetails = (eventId, access_token) => {
     payload: request
   };
 }
+

@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 
+
 class EventDetails extends Component
 {
   constructor(props){

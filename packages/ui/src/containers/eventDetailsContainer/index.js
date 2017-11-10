@@ -15,4 +15,5 @@ const mapDisptchToProps = (dispatch, ownProps) => {
     }
   }
 }
+
 export default connect(mapStateToProps, mapDisptchToProps)(EventDetails);
