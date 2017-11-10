@@ -20,6 +20,7 @@ module.exports = function (app, cb) {
 								if (initiativeCreatedUser) {
 									modelItem.lead = initiativeLeadUser.id;
 									modelItem.createdBy = initiativeCreatedUser.id;
+									modelItem.createdOn = new Date(modelItem.createdOn);
 									delete modelItem.leadUser;
 									delete modelItem.createdByUser;
 
@@ -47,6 +48,10 @@ module.exports = function (app, cb) {
 																			app.models.user.findOne({ where: { 'username': eventmodelItem.createdByUser } }, function (err, eventCreatedByUser) {
 																				if (eventCreatedByUser) {
 																					eventmodelItem.createdBy = eventCreatedByUser.id;
+																					eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
+																					eventmodelItem.startDate = new Date(eventmodelItem.startDate);
+																					eventmodelItem.endDate = new Date(eventmodelItem.endDate);
+																					
 
 																					delete eventmodelItem.category;
 																					delete eventmodelItem.initiative;
