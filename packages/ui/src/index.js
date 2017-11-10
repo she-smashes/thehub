@@ -18,8 +18,7 @@ import registerServiceWorker from './registerServiceWorker';
 // root reducer configuration
 const rootReducer = combineReducers({
     userInfo,
-    eventsList,
-    // eventDetails
+    eventsList
 });
 
 const store = createStore(

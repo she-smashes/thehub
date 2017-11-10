@@ -48,3 +48,7 @@
 .event-details > p{
   padding-top: 15px;
 }
+.event-timeline a{
+  text-decoration: none;
+  color: inherit;
+}
