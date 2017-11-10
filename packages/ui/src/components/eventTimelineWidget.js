@@ -32,16 +32,6 @@ class EventTimelineWidget extends Component {
     }
 
     /**
-     * @name loadEventDetails
-     * @desc Move to event details page
-     * @return Loads the event details page
-     */
-    loadEventDetails = (id) => {
-      console.log(id)
-      History.push(`/eventDetails/${id}`)
-    }
-
-    /**
      * @name renderEvents
      * @desc Iterates through the list of the events and renders the list of events
      * @return Rendered events list {HTML}

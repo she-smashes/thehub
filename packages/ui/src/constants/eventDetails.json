@@ -1,7 +1,0 @@
-{'Event' : {
-  'EventName' : 'Hub creation',
-  'EventStartDate' : '10, September 2017',
-  'EventEndDate' : '1, December 2017',
-  'EventDescription' : 'Creating a website for adding and maintaining initiatives and events.'},
-  'BreadCrumb' : [{'Title' : "initiatives", "Url" : "/initiatives"},{'Title' : "EventName", "Url":''}]
-};
