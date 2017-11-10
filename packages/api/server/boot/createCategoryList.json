@@ -1,6 +1,7 @@
 {
   "category": [
     {"name": "Cricket", "type": "Sports"},
+    {"name": "FootBall", "type": "Sports"},
 	{"name": "Zumba", "type": "Sports"},
     {"name": "Marathon", "type": "Sports"},
 	{"name": "Carnatic", "type": "Music"},
