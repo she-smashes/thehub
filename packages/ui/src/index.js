@@ -13,14 +13,13 @@ import App from './components/app';
 // Reducers
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
-import eventDetails from './containers/eventDetailsContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
 // root reducer configuration
 const rootReducer = combineReducers({
     userInfo,
     eventsList,
-    eventDetails
+    // eventDetails
 });
 
 const store = createStore(

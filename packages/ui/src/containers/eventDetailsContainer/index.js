@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     getEventDetails : (id) => {
-      dispatch(getEventDetails(id, dispatch))
+      return dispatch(getEventDetails(id, dispatch))
     }
   }
 }
