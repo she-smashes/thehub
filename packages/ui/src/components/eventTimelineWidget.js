@@ -53,7 +53,8 @@ class EventTimelineWidget extends Component {
             primaryText={
                 <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
             }
-            style={this.resolveBackgroundColor(Number(event.startDate), Number(event.endDate))} />
+            style={this.resolveBackgroundColor(Number(event.startDate), Number(event.endDate))}
+            className = "event-timeline"/>
         })
     }
 
