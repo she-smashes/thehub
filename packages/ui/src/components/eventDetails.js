@@ -8,11 +8,18 @@ import React, {Component} from 'react';
 
 class EventDetails extends Component
 {
-  componentDidMount =  () => {
-     this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id);
-  }
   constructor(props){
     super(props);
+    this.state = {
+      eventDetails:{}
+    }
+  }
+  
+  componentDidMount =  () => {
+    this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id)
+    .then((resp) => {
+      this.setState({eventDetails: resp.payload.data})
+    })
   }
 
   /**
@@ -25,10 +32,10 @@ class EventDetails extends Component
     return (
         <div className="">
           <div className="event-details">
-            <h1 className=""> {this.props.eventDetails.title} </h1>
-            <span className="date"> {this.props.eventDetails.startDate  } - {this.props.eventDetails.endDate} </span>
+            <h1 className=""> {this.state.eventDetails.title} </h1>
+            <span className="date"> {this.state.eventDetails.startDate  } - {this.state.eventDetails.endDate} </span>
             <p className="">
-              {this.props.eventDetails.description}
+              {this.state.eventDetails.description}
             </p>
           </div>
         </div>
