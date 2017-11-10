@@ -7,6 +7,7 @@
   height: 80px;
 }
 
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -36,4 +37,19 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.event-details{
+  padding:20px;
+}
+.event-details > .date
+{
+  font-weight: bold;
+}
+.event-details > p{
+  padding-top: 15px;
+}
+.event-timeline a{
+  text-decoration: none;
+  color: inherit;
 }
