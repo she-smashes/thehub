@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import {List, ListItem} from 'material-ui/List';
 class ViewInitiative extends Component {
 
-    componentDidMount =  () => {        
+    componentDidMount =  () => {
         console.log(this.props.userInfo.id);
         this.props.getInitiativeList(this.props.userInfo.id);
     }
@@ -24,8 +24,7 @@ class ViewInitiative extends Component {
                         <div>
                             <h1> Initiative Details </h1>
                             <p> <b> Title : </b> <span> { initiative.title } </span> </p>
-                            <p> <b> Date : </b> <span> { initiative.startDate } - { initiative.endDate } </span> </p>
-                            <p> <b> Location : </b> <span> { initiative.location } </span> </p>
+                            <p> <b> Date : </b> <span> { initiative.createdOn } </span> </p>                            
                             <p> <b> Description : </b> <span> { initiative.description } </span> </p>
                         </div>
                     );
