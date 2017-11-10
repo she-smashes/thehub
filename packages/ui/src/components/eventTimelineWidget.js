@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
+import {Link} from 'react-router-dom'
 import History from '../history';
 class EventTimelineWidget extends Component {
 
@@ -49,8 +50,9 @@ class EventTimelineWidget extends Component {
         return this.props.events.map((event, index) => {
             return <ListItem
             key={index}
-            primaryText={event.title}
-            onClick={() => this.loadEventDetails(event.id)}
+            primaryText={
+                <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+            }
             style={this.resolveBackgroundColor(Number(event.startDate), Number(event.endDate))} />
         })
     }

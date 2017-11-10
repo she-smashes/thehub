@@ -38,21 +38,13 @@
   to { transform: rotate(360deg); }
 }
 
-.Event-details{
+.event-details{
   padding:20px;
 }
-.Event-details > .Date
+.event-details > .date
 {
   font-weight: bold;
 }
-.Event-details > p{
+.event-details > p{
   padding-top: 15px;
-}
-.Breadcrumb > ul > li{
-  list-style-type : none;
-  display:inline;
-
-}
-.Breadcrumb > ul > li:after{
-  content:" -> ";
 }
