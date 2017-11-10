@@ -14,9 +14,34 @@
     "points": {
       "type": "number"
     },
-    "password": {
+	
+	"role": {
       "type": "string",
       "required": false
+    },
+    "password": {
+      "type": "object",
+      "required": true
+    },
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true
+    },
+    "registeredon": {
+      "type": "date",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
