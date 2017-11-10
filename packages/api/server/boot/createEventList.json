@@ -1,8 +1,11 @@
 {
   "event": [
-    {"title": "School Painting", "startDate": "26/10/2016", "endDate": "28/10/2016","location": "Bangalore", "status":  "not approved", "description": "Painting the government school walls", "category":"CSR", "user":"customer1", "initiative": "Prayaas"},
-    {"title": "Diya Painting", "startDate": "01/10/2017", "endDate": "28/10/2017","location": "Bangalore", "status":  "approved", "description": "Painting the Diyas for Diwali", "category":"CSR", "user":"customer1", "initiative": "Prayaas"},
-    {"title": "School Teaching", "startDate": "20/09/2016", "endDate": "28/10/2016","location": "Gurgoan", "status":  "not approved", "description": "Teaching in government schools", "category":"CSR", "user":"customer2", "initiative": "Prayaas"},
-    {"title": "Pinkathon", "startDate": "18/05/2017", "endDate": "19/05/2017","location": "Bangalore", "status":  "approved", "description": "Women's Marathon", "category":"Marathon", "user":"customer3", "initiative": "Run for fun"}
+    {"title": "School Painting", "startDate": "2017-09-02T11:49:20.305Z", "endDate": "2017-09-08T11:49:20.305Z","location": "Bangalore", "status":  "not approved", "description": "Painting the government school walls", "category":"CSR", "leadUser":"customer1", "initiative": "Prayaas", "createdOn":"2017-11-01T11:49:20.305Z", "createdByUser":"appadmin1"},
+    {"title": "Diya Painting", "startDate": "2017-08-02T11:49:20.305Z", "endDate": "2017-08-04T11:49:20.305Z","location": "Bangalore", "status":  "approved", "description": "Painting the Diyas for Diwali", "category":"CSR", "leadUser":"customer1", "initiative": "Prayaas", "createdOn":"2017-10-02T11:49:20.305Z", "createdByUser":"appadmin2"},
+    {"title": "School Teaching", "startDate": "2017-07-02T11:49:20.305Z", "endDate": "2017-07-04T11:49:20.305Z","location": "Gurgoan", "status":  "not approved", "description": "Teaching in government schools", "category":"CSR", "leadUser":"customer2", "initiative": "Prayaas", "createdOn":"2017-11-02T11:49:20.305Z", "createdByUser":"appadmin1"},
+    {"title": "Pinkathon", "startDate": "2017-06-02T11:49:20.305Z", "endDate": "2017-06-04T11:49:20.305Z","location": "Bangalore", "status":  "approved", "description": "Women's Marathon", "category":"Marathon", "leadUser":"customer3", "initiative": "Run for fun", "createdOn":"2017-09-02T11:49:20.305Z", "createdByUser":"appadmin3"},
+    {"title": "Auction", "startDate": "2017-11-16T11:49:20.305Z", "endDate": "2017-12-20T11:49:20.305Z","location": "Bangalore", "status":  "approved", "description": "Silent auction for a cause", "category":"CSR", "leadUser":"customer2", "initiative": "Silent Auction", "createdOn":"2017-09-02T11:49:20.305Z", "createdByUser":"appadmin3"},
+    {"title": "Sapient Football League - Men", "startDate": "2017-11-18T11:49:20.305Z", "endDate": "2017-12-22T11:49:20.305Z","location": "Bangalore", "status":  "approved", "description": "Sapient Football Tournament for Men", "category":"FootBall", "leadUser":"customer2", "initiative": "Annual Sports Tournament", "createdOn":"2017-09-02T11:49:20.305Z", "createdByUser":"appadmin3"}
+    
   ]
 }
