@@ -5,8 +5,8 @@
   "main": "server/server.js",
   "scripts": {
     "lint": "eslint .",
-    "start": "slc loopback:export-api-def --o swagger-out.json && grunt swagger && node .",
-    "start:heroku": "NODE_ENV=dev && slc loopback:export-api-def --o swagger-out.json && grunt swagger && node .",
+    "start": "node .",
+    "start:heroku": "NODE_ENV=dev && node .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
