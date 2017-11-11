@@ -1,0 +1,13 @@
+{
+  "category": [
+    {"name": "Cricket", "type": "Sports"},
+    {"name": "FootBall", "type": "Sports"},
+	{"name": "Zumba", "type": "Sports"},
+    {"name": "Marathon", "type": "Sports"},
+	{"name": "Carnatic", "type": "Music"},
+    {"name": "Western", "type": "Music"},
+	{"name": "Classical", "type": "Dance"},
+    {"name": "Western", "type": "Dance"},
+	{"name": "CSR", "type": "CSR"}	
+  ]
+}

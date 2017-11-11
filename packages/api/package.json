@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "start:heroku": "NODE_ENV=dev && node .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
@@ -16,12 +17,16 @@
     "loopback-boot": "^2.26.2",
     "loopback-component-explorer": "^5.1.0",
     "loopback-component-visualizer": "^1.2.1",
+    "loopback-connector-mongodb": "^3.3.0",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
+    "grunt": "^1.0.1",
+    "grunt-swagger-js-codegen": "https://github.com/UmaGovindaraj/grunt-swagger-js-codegen/tarball/master",
+    "matchdep": "^2.0.0",
     "nsp": "^2.1.0"
   },
   "author": "",

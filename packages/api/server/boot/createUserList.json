@@ -1,0 +1,16 @@
+{
+  "user": [
+    {"username": "customer1", "email": "customer1@example.com", "password": "customer1", "role": "employee","firstname": "customer1","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "customer2", "email": "customer2@example.com", "password": "customer2", "role": "employee","firstname": "customer2","lastname": "customer2","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "customer3", "email": "customer3@example.com", "password": "customer3", "role": "employee","firstname": "customer3","lastname": "customer3","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "customer4", "email": "customer4@example.com", "password": "customer4", "role": "employee","firstname": "customer4","lastname": "customer4","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "customer5", "email": "customer5@example.com", "password": "customer5", "role": "employee","firstname": "customer5","lastname": "customer5","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "customer6", "email": "customer6@example.com", "password": "customer6", "role": "employee","firstname": "customer6","lastname": "customer6","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "appadmin1", "email": "appadmin1@example.com", "password": "appadmin1", "role": "appadmin","firstname": "appadmin1","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "appadmin2", "email": "appadmin2@example.com", "password": "appadmin2", "role": "appadmin","firstname": "appadmin2","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "appadmin3", "email": "appadmin3@example.com", "password": "appadmin3", "role": "appadmin","firstname": "appadmin3","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "sysadmin1", "email": "sysadmin1@example.com", "password": "sysadmin1", "role": "sysadmin","firstname": "sysadmin1","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "sysadmin2", "email": "sysadmin2@example.com", "password": "sysadmin2", "role": "sysadmin","firstname": "sysadmin2","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"},
+    {"username": "sysadmin3", "email": "sysadmin3@example.com", "password": "sysadmin3", "role": "sysadmin","firstname": "sysadmin3","lastname": "customer1","modifiedon": "2017-11-01T11:49:20.305Z","registeredon": "2017-11-01T11:49:20.305Z" , "location": "Bangalore"}
+  ]
+}

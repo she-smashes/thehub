@@ -6,18 +6,36 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {}
+  },
   "properties": {
     "title": {
       "type": "string",
       "required": true
     },
     "description": {
-      "type": "number",
-      "required": true
-    },
-    "categoryId": {
       "type": "string",
       "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "createdOn": {
+      "type": "date",
+      "required": false
+    },
+    "active": {
+      "type": "boolean"
+    }, 
+    "lead": {
+      "type": "string",
+      "required": true
+    },
+    "createdBy": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
@@ -25,12 +43,73 @@
     "events": {
       "type": "hasMany",
       "model": "event",
-      "foreignKey": "initiativeId",
+      "foreignKey": "initiativeId"
+    },
+    "users": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "lead",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "createdByUsers": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "createdBy",
       "options": {
         "disableInclude": true
       }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "listInitiatives"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "appadmin",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "appadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    }
+  ],
   "methods": {}
 }

@@ -14,11 +14,11 @@
     ]
   },
   "User": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false,
     "relations": {
       "user": {
@@ -29,70 +29,70 @@
     }
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "userBadge": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": true
   },
   "badge": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "category": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "config": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "event": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": true
   },
   "initiative": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": true
   },
   "level": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "enrollment": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "score": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "task": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "user": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": true
   },
   "eventUserVO": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   },
   "eventInitiativeVO": {
-    "dataSource": "db",
+    "dataSource": "test",
     "public": false
   }
 }

@@ -9,6 +9,7 @@ import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router-dom';
 class EventTimelineWidget extends Component {
 
+    
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id)
     }
@@ -53,18 +54,18 @@ class EventTimelineWidget extends Component {
             className = "event-timeline"/>
         })
     }
-    
-    
+
+
     render = () => {
         console.log(this.props)
         return (
             <div>
-                <h3>This is event timeline!</h3>   
+                <h3>This is event timeline!</h3>
                 <List>
-                    {this.props.events.length>0?this.renderEvents():<div></div>}             
+                    {this.props.events.length>0?this.renderEvents():<div></div>}
                 </List>
             </div>
-            
+
         )
     }
 }

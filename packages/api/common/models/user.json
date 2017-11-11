@@ -2,34 +2,50 @@
   "name": "user",
   "plural": "users",
   "base": "User",
+  "ttl": 3600,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {}
+  },
   "properties": {
-  "role_id": {
-      "type": "number",
-      "required": true
-    },
     "points": {
       "type": "number",
-      "required": true
+      "required": false
+    },
+    "role": {
+      "type": "string",
+      "required": false
     },
     "password": {
       "type": "object",
       "required": true
     },
-    "email": {
-      "type": "object",
+    "firstname": {
+      "type": "string",
       "required": true
     },
-    "logonid": {
-      "type": "object",
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true
+    },
+    "registeredon": {
+      "type": "date",
+      "required": true
+    },
+    "location": {
+      "type": "string",
       "required": true
     }
   },
   "validations": [],
-"relations": {
+  "relations": {
     "tasks": {
       "type": "hasMany",
       "model": "task",
@@ -47,6 +63,31 @@
       }
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": {}
 }

@@ -1,0 +1,7 @@
+{
+  "Role": [
+    {"name": "employee", "description": "employee"},
+    {"name": "appadmin", "description": "appadmin"},
+	{"name": "sysadmin", "description": "sysadmin"}
+  ]
+}

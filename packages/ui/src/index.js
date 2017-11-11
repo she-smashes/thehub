@@ -6,12 +6,13 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import ReduxPromise from 'redux-promise';
 
+
 import './index.css';
 // Components
 import App from './components/app';
 
 // Reducers
-import userInfo from './reducers/userInfo';
+import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
