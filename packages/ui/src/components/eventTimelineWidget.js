@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
+import {Link} from 'react-router-dom';
 class EventTimelineWidget extends Component {
 
     componentDidMount =  () => {
