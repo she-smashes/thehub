@@ -12,7 +12,8 @@ import ProgressWidget from './progressWidget';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
 import LoginWidget from '../containers/loginFormContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
-import BadgeWidget from './badgeWidget'
+import BadgeWidget from './badgeWidget';
+import ViewInitiative from '../containers/viewInitiativeContainer/index';
 
 class Dashboard extends Component {
 
@@ -22,7 +23,6 @@ class Dashboard extends Component {
           }
         return (
             <div>
-                This is Dashboard!
                 <Card style={styles.card}>
                     <CardHeader
                     title={<ClaimYourBadgeWidget />}
@@ -33,6 +33,11 @@ class Dashboard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                     title={<EventTimelineWidget />}
+                    />
+                </Card>
+                <Card style={styles.card}>
+                    <CardHeader
+                    title={<ViewInitiative />}
                     />
                 </Card>
                 <Card style={styles.card}>
