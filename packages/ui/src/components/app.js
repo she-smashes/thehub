@@ -12,6 +12,7 @@ const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
+const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
 
 class App extends Component {
   render() {
@@ -22,8 +23,9 @@ class App extends Component {
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />
-			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
-			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
+      			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
+      			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
+            <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
             <Route component={PageNotFound}/>
 		</Switch>
         </Router>

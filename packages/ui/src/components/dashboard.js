@@ -14,6 +14,7 @@ import LoginWidget from '../containers/loginFormContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
 import BadgeWidget from './badgeWidget';
 import ViewInitiative from '../containers/viewInitiativeContainer/index';
+import CreateinitiativeWidget from '../containers/createInitiativeContainer/index';
 
 class Dashboard extends Component {
 
@@ -59,6 +60,11 @@ class Dashboard extends Component {
                     title={<AttendanceWidget />}
                     actAsExpander={true}
                     showExpandableButton={true}
+                    />
+                </Card>
+                <Card style={styles.card}>
+                    <CardHeader
+                    title={<CreateinitiativeWidget />}                   
                     />
                 </Card>
             </div>
