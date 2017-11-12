@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import Moment from 'moment';
+
 class EventDetails extends Component
 {
   constructor(props){
@@ -19,6 +20,8 @@ class EventDetails extends Component
     this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id)
     .then((resp) => {
       this.setState({eventDetails: resp.payload.data})
+      this.setState({eventDate: Moment(resp.payload.data.startDate).format('LL') + " - " +
+      Moment(resp.payload.data.endDate).format('LL')})
     })
   }
 
@@ -33,7 +36,7 @@ class EventDetails extends Component
         <div className="">
           <div className="event-details">
             <h1 className=""> {this.state.eventDetails.title} </h1>
-            <span className="date"> {Moment(this.state.eventDetails.startDate).format('LL')} - {Moment(this.state.eventDetails.endDate).format('LL')} </span>
+            <span className="date"> {this.state.eventDate}</span>
             <p className="">
               {this.state.eventDetails.description}
             </p>

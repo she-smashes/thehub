@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import ReduxPromise from 'redux-promise';
 
+
 import './index.css';
 // Components
 import App from './components/app';
@@ -13,12 +14,15 @@ import App from './components/app';
 // Reducers
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
+import viewInitiatives from './containers/viewInitiativeContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
+
 
 // root reducer configuration
 const rootReducer = combineReducers({
     userInfo,
-    eventsList
+    eventsList,
+    viewInitiatives
 });
 
 const store = createStore(
