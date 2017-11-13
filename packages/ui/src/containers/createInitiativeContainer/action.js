@@ -19,7 +19,7 @@ export const sendInitiativeDetails = (initiativeDetails,userInfoObj) => {
   		"created": userInfoObj.created
   }*/
   {
-    "title": "prayaas2",
+    "title": initiativeDetails.initiativeName,
     "description": "prayaas2 desc",
     "status": "Open",
     "createdOn": "2017-11-12",
