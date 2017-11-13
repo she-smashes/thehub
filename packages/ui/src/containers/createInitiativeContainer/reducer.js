@@ -8,9 +8,8 @@
 
 import { CREATE_AN_INITIATIVE } from "../../constants/actions"; 
 export default function (state = [], action) {
-    console.log('In', action.type)
     switch (action.type) {
-        case CREATE_AN_INITIATIVE:        	
+        case CREATE_AN_INITIATIVE:
             return action.payload.data;
         default:
             return state;

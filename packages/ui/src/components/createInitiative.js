@@ -43,10 +43,10 @@ class CreateInitiative extends React.Component {
         };
 
     }
-    componentDidMount =  () => {
-        console.log(this.props.userInfo.id);
-        //this.props.getInitiativeList(this.props.userInfo.id);
-    }
+    /**
+     * Function to validate the form
+     *
+     */
     handleValidation=()=> {
         let fields = this.state.createInitiativeformData;
         let errors = {};
@@ -70,17 +70,13 @@ class CreateInitiative extends React.Component {
 
     /**
      * Process the form.
-     *\
+     *
      * @param {object} event - the JavaScript event object
      */
     processForm=(event)=> {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
-        console.log("submit");
-
         if (this.handleValidation()) {
-            //alert('validation passed');
-            
             this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo)
             .then((response,error) =>{
                 alert('Initiative Created!!!')
@@ -114,19 +110,28 @@ class CreateInitiative extends React.Component {
             return Date.parse(date) < startSeconds;
         }
     };
-
+    /**
+     * Function to set the value into the state for participant drop down
+     *
+    */
     onParticipantDropDownChange=(event,index,value)=>{  
         this.setState({
             createInitiativeformData : {...this.state.createInitiativeformData, totalParticipants: value}
         });
     };
-
+    /**
+     * Function to set the value into the state for initiative start date
+     *
+    */
     handleStartDateChange=(event,date)=>{
         this.setState({
             createInitiativeformData : {...this.state.createInitiativeformData, intiativeStartDate: date}
         });
     };
-
+    /**
+     * Function to set the value into the state for initiative end date
+     *
+    */
     handleEndDateChange=(event,date)=>{
         this.setState({
             createInitiativeformData : {...this.state.createInitiativeformData, intiativeEndDate: date}
