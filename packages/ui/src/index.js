@@ -15,6 +15,7 @@ import App from './components/app';
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
 import viewInitiatives from './containers/viewInitiativeContainer/reducer';
+import newInitiative from './containers/createInitiativeContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -22,7 +23,8 @@ import registerServiceWorker from './registerServiceWorker';
 const rootReducer = combineReducers({
     userInfo,
     eventsList,
-    viewInitiatives
+    viewInitiatives,
+    newInitiative
 });
 
 const store = createStore(
