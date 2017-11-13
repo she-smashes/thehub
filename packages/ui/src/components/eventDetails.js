@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-
+import Moment from 'moment';
 
 class EventDetails extends Component
 {
@@ -15,11 +15,13 @@ class EventDetails extends Component
       eventDetails:{}
     }
   }
-  
+
   componentDidMount =  () => {
     this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id)
     .then((resp) => {
       this.setState({eventDetails: resp.payload.data})
+      this.setState({eventDate: Moment(resp.payload.data.startDate).format('LL') + " - " +
+      Moment(resp.payload.data.endDate).format('LL')})
     })
   }
 
@@ -34,7 +36,7 @@ class EventDetails extends Component
         <div className="">
           <div className="event-details">
             <h1 className=""> {this.state.eventDetails.title} </h1>
-            <span className="date"> {this.state.eventDetails.startDate  } - {this.state.eventDetails.endDate} </span>
+            <span className="date"> {this.state.eventDate}</span>
             <p className="">
               {this.state.eventDetails.description}
             </p>

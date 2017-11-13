@@ -6,8 +6,7 @@
 
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
-import {Link} from 'react-router-dom'
-import History from '../history';
+import {Link} from 'react-router-dom';
 class EventTimelineWidget extends Component {
 
     
@@ -23,11 +22,16 @@ class EventTimelineWidget extends Component {
      * @return css property
      */
     resolveBackgroundColor = (startDate, endDate) => {
-        if(endDate < Date.now()) {
+        // End date < current date => past event
+        if(new Date(endDate).getTime() < Date.now()) {
             return {margin:10, backgroundColor:"#e5e5e5", color:"silver"};
-        }else if(startDate > Date.now()) {
+        }
+        // Start date > current date => Future event
+        else if(new Date(startDate).getTime() > Date.now()) {
             return {margin:10, backgroundColor:"green"};
-        }else {
+        }
+        // Present events
+        else {
             return {margin:10, backgroundColor:"yellow"};
         }
     }
@@ -42,9 +46,11 @@ class EventTimelineWidget extends Component {
             return <ListItem
             key={index}
             primaryText={
-                <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+                <div>
+                    <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+                </div>
             }
-            style={this.resolveBackgroundColor(Number(event.startDate), Number(event.endDate))}
+            style={this.resolveBackgroundColor(event.startDate, event.endDate)}
             className = "event-timeline"/>
         })
     }
