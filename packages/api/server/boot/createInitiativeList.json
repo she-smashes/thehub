@@ -1,9 +1,9 @@
 {
   "initiative": [
-    {"title": "Prayaas", "description": "Helping people", "status":"approved", "createdOn":"2017-05-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin1"},
-    {"title": "Fitness", "description": "Keeping people fit", "status":"approved", "createdOn":"2017-06-01T11:49:20.305Z", "leadUser":"customer2", "createdByUser":"appadmin1"},
-    {"title": "Run for fun", "description": "Marathon for Sapient Nitro", "status":"approved", "createdOn":"2017-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin2"},
-    {"title": "Silent Auction", "description": "Silent Auction for a cause", "status":"approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin2"},
-    {"title": "Annual Sports Tournament", "description": "Annual Sports Tournament", "status":"approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"appadmin2"}
+    {"title": "Prayaas", "description": "Helping people", "status":"approved", "createdOn":"2017-05-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver1"},
+    {"title": "Fitness", "description": "Keeping people fit", "status":"approved", "createdOn":"2017-06-01T11:49:20.305Z", "leadUser":"customer2", "createdByUser":"approver1"},
+    {"title": "Run for fun", "description": "Marathon for Sapient Nitro", "status":"approved", "createdOn":"2017-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
+    {"title": "Silent Auction", "description": "Silent Auction for a cause", "status":"approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
+    {"title": "Annual Sports Tournament", "description": "Annual Sports Tournament", "status":"approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"}
   ]
 }

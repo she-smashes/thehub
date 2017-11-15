@@ -7,17 +7,21 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
     "eventId": {
+      "type": "string"
+    },
+    "initiativeId": {
+      "type": "string"
+    },
+    "status": {
       "type": "string",
       "required": true
     },
-    "approverRoleId": {
-      "type": "string",
-      "required": true
+    "approverId": {
+      "type": "string"
+    },
+    "actionedOn": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -28,6 +32,27 @@
       "foreignKey": "userId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+	},
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    }
+  ],
   "methods": {}
 }
