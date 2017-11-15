@@ -9,11 +9,13 @@
     "moment": "^2.19.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-native": "^0.50.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
+    "redux-persist": "^5.3.5",
     "redux-promise": "^0.5.3"
   },
   "scripts": {
@@ -21,5 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-loader": "^1.9.0"
   }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import ReduxPromise from 'redux-promise';
-
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage'; // default: localStorage if web, AsyncStorage if react-native
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 import './index.css';
 // Components
@@ -18,32 +20,53 @@ import viewInitiatives from './containers/viewInitiativeContainer/reducer';
 import newInitiative from './containers/createInitiativeContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
+const config = {
+    key: 'primary',
+    storage,
+    whitelist: ['userInfo']
+}
 
-// root reducer configuration
-const rootReducer = combineReducers({
+const rootReducer = persistCombineReducers(config, {
     userInfo,
     eventsList,
     viewInitiatives,
     newInitiative
-});
+})
 
-const store = createStore(
-    rootReducer,
-    {}, // initial state
-    compose(
-      applyMiddleware( ReduxPromise),
-      // added for redux dev tools extension
-      (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
-    )
-);
+const { persistor, store } = configureStore()
+
+
+function configureStore() {
+
+    let store = createStore(rootReducer,
+        {}, // initial state
+        compose(
+            applyMiddleware(ReduxPromise),
+            // added for redux dev tools extension
+            (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+        ))
+    let persistor = persistStore(store, undefined, () => {
+        store.getState()
+    }
+    );
+    return { persistor, store }
+}
+
 
 injectTapEventPlugin();
 
 ReactDOM.render(
-    <Provider  store={store}>
-        <MuiThemeProvider>
-            <App/>
-        </MuiThemeProvider>
+
+
+    <Provider store={store}>
+        <PersistGate persistor={persistor}>
+            <MuiThemeProvider>
+                <App />
+            </MuiThemeProvider>
+        </PersistGate>
     </Provider>
-, document.getElementById('root'));
+
+
+
+    , document.getElementById('root'));
 registerServiceWorker();
