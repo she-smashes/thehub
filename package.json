@@ -1,10 +1,10 @@
 {
 	"scripts": {
-		"heroku-prebuild": "npm install -g lerna@2.2.0 strongloop@latest",
-		"heroku-postbuild": "lerna bootstrap && lerna run build && cp -R packages/ui/build/* packages/api/client",
+		"heroku-prebuild": "npm install -g lerna@2.2.0",
+		"heroku-postbuild": "cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
-		"start:heroku": "cd packages/api && npm run start:heroku"
-
+		"start:heroku": "cd packages/api && npm run start:heroku",
+		"build": "lerna bootstrap && lerna run build && cd packages/api && npm run generate-swagger-lib && grunt swagger"
 	},
 	"devDependencies": {
 		"lerna": "2.2.0"

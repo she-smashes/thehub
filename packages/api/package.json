@@ -7,7 +7,8 @@
     "lint": "eslint .",
     "start": "node .",
     "start:heroku": "NODE_ENV=dev && node .",
-    "posttest": "npm run lint && nsp check"
+    "posttest": "npm run lint && nsp check",
+    "generate-swagger-lib": "lb export-api-def --o swagger-out.json"
   },
   "dependencies": {
     "compression": "^1.0.3",

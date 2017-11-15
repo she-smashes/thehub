@@ -81,12 +81,6 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW"
     }
   ],
   "methods": {}
