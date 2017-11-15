@@ -6,8 +6,9 @@
  import React, {Component} from 'react';
  import { Card } from 'material-ui/Card';
  import RaisedButton from 'material-ui/RaisedButton';
- import TextField from 'material-ui/TextField';
- import { Route } from 'react-router-dom';
+ import Dialog from 'material-ui/Dialog';
+ import FlatButton from 'material-ui/FlatButton';
+ import TextField from 'material-ui/TextField'; 
  import History from '../history';
  import { INVALID_LOGIN } from "../constants/actions";
  class LoginWidget extends Component {
@@ -24,9 +25,17 @@
          email: '',
          password: ''
        },
-       response: ''
+       response: '',
+       open: false
      };
    }
+   handleOpen = () => {
+     this.setState({open: true});
+   };
+
+   handleClose = () => {
+     this.setState({open: false});
+   };
    resetForm = () => {
      this.setState({
        user: {
@@ -67,8 +76,9 @@
         console.log(error);
         History.push("/dashboard")
 
-      }, (error) => {        
-        alert(INVALID_LOGIN);
+      }, (error) => {
+        this.handleOpen();
+        //alert(INVALID_LOGIN);
         this.resetForm();
       });
     }
@@ -92,7 +102,14 @@
     * Render the component.
     */
    render = () => {
-
+     const actions = [
+       <FlatButton
+         label="OK"
+         primary={true}
+         keyboardFocused={true}
+         onClick={this.handleClose}
+       />,
+     ];
      return (
        <Card className="container login-page">
        <form onSubmit={this.processForm}>
@@ -127,6 +144,15 @@
              <RaisedButton type="submit" label="Log in" primary />
            </div>
          </form>
+         <Dialog
+           title="Message"
+           actions={actions}
+           modal={false}
+           open={this.state.open}
+           onRequestClose={this.handleClose}
+         >
+           { INVALID_LOGIN }
+         </Dialog>
        </Card>
      );
    }
