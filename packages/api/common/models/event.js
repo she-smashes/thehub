@@ -6,7 +6,8 @@ module.exports = function (Event) {
     let configs = ctx.req.configs;
     Event.find({
       where: {
-        startDate: { lt: Date.now() }
+        startDate: { lt: Date.now() },
+        status: 'approved'
       },
       order: 'startDate DESC',
       limit: configs[0].value
@@ -14,7 +15,8 @@ module.exports = function (Event) {
       
       Event.find({
         where: {
-          startDate: { gte: Date.now() }
+          startDate: { gte: Date.now() },
+          status: 'approved'
         },
         order: 'startDate DESC',
         limit: configs[1].value
@@ -60,4 +62,24 @@ module.exports = function (Event) {
     }
   }
   );
+
+  Event.observe('before save', function (ctx, next) {
+    if (ctx.instance) {
+      console.log('updating Event status');
+        ctx.instance.status = 'not approved'; 
+    }
+    next();
+  });
+  Event.observe('after save', function (ctx, next) {
+    if (ctx.instance) {
+      console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
+      Event.app.models.Task.create({eventId: ctx.instance.id, initiativeId:null, status: 'Pending'});
+    } else {
+      console.log('Updated Event %s matching %j',
+        ctx.Model.pluralModelName,
+        ctx.where);
+    }
+    next();
+  });
+
 }

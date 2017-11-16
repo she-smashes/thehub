@@ -72,30 +72,13 @@ module.exports = function (User) {
 				context.result.allowedActionList = permissionObj;
 			})
 			.then(() => {
-				console.log('context.result', context.result.userId);
 
-				if (context && context.result && context.result.userId != undefined) {
-
-					User.find({
-						where: {
-							id: context.result.userId
-						}
-					}, function (err, userInstance) {
-
-						if (userInstance) {
-							Object.assign(context.result, userInstance[0]);
-						}
-						next();
-					});
-				} else {
+				User.app.models.Task.count({ status: 'Pending' }, function (err, count) {
+					if (count > 0) {
+						context.result.notificationCount = new String(count);
+					}
 					next();
-				}
-
-
-
-
-
-
+				});
 			});
 	});
 };
