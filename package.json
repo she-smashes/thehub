@@ -4,7 +4,7 @@
 		"heroku-postbuild": "lerna run build && cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
 		"start:heroku": "cd packages/api && npm run start:heroku",
-		"postinstall": "cd packages/api && npm run generate-swagger-lib && grunt swagger"
+		"postinstall": "cd packages/api && npm run generate-swagger-lib && ./node_modules/grunt-cli/bin/grunt swagger"
 	},
 	"devDependencies": {
 		"lerna": "2.2.0"
