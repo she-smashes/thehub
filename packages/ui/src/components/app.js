@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
 
 import History from '../history';
-import PageNotFound from './404';
+// import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
 import Header from './header';
 import Footer from './footer'
