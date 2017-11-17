@@ -30,29 +30,26 @@
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "userId"
+    },
+    "event": {
+      "type": "embedsOne",
+      "model": "Event",
+      "property": "event",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "initiative": {
+      "type": "embedsOne",
+      "model": "Initiative",
+      "property": "initiative",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
     }
   },
-  "acls": [
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "DENY"
-    },
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "approver",
-      "permission": "ALLOW",
-      "property": "updateAttributes"
-	},
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "create"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

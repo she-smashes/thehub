@@ -15,6 +15,8 @@ import ClaimYourBadgeWidget from './claimYourBadgeWidget';
 import BadgeWidget from './badgeWidget';
 import ViewInitiative from '../containers/viewInitiativeContainer/index';
 import CreateinitiativeWidget from '../containers/createInitiativeContainer/index';
+import Task from '../containers/viewApprovalContainer/index';
+
 
 class Dashboard extends Component {
 
@@ -65,6 +67,11 @@ class Dashboard extends Component {
                 <Card style={styles.card}>
                     <CardHeader
                     title={<CreateinitiativeWidget />}                   
+                    />
+                </Card>
+                <Card style={styles.card}>
+                    <CardHeader
+                    title={<Task />}                   
                     />
                 </Card>
             </div>

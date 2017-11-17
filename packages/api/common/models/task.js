@@ -1,21 +1,23 @@
 'use strict';
 
 module.exports = function (Task) {
-    Task.listPendingTasks= function (ctx, cb) {
+  Task.listPendingTasks = function (ctx, cb) {
 
-        Task.find({
-            where: {
-                status: 'Pending'
-            }
-        }, function (err, taskInstanses) {
-            cb(null, taskInstanses);
-        });
-    };
+    Task.find({
+      where: {
+        status: 'Pending'
+      }
+    }, function (err, taskInstanses) {
+
+      console.log(taskInstanses);
+      cb(null, taskInstanses);
+    });
+  };
 
 
   Task.remoteMethod('listPendingTasks', {
     accepts: [
-      { arg: 'ctx', type: 'object', http: { source: 'context' }}
+      { arg: 'ctx', type: 'object', http: { source: 'context' } }
     ],
     http: {
       path: '/list-pending-tasks',
@@ -25,6 +27,5 @@ module.exports = function (Task) {
       arg: 'pendingTasks',
       type: 'array'
     }
-  }
-  );
+  });
 };

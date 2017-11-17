@@ -73,7 +73,7 @@ module.exports = function (Event) {
   Event.observe('after save', function (ctx, next) {
     if (ctx.instance) {
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
-      Event.app.models.Task.create({eventId: ctx.instance.id, initiativeId:null, status: 'Pending'});
+      Event.app.models.Task.create({eventId: ctx.instance.id, initiativeId:null, status: 'Pending', event: ctx.instance});
     } else {
       console.log('Updated Event %s matching %j',
         ctx.Model.pluralModelName,
