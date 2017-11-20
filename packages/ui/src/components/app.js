@@ -29,7 +29,7 @@ class App extends Component {
       			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
             <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
             <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
-            <Route component={PageNotFound}/>
+            <Route component={AsyncLogin}/>
 		</Switch>
         </Router>
         <Footer />

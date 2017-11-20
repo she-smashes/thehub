@@ -1,7 +1,6 @@
 /**
- * @author Kriti Aggarwal
- * @description A reducer function that returns the initiative list
- * based on the action type passed to it
+ * @author Uma Govindaraj
+ * @description A reducer function that returns the task list and approves the specified task.
  * @param {Object} state
  * @param {Object} action
  */
@@ -11,11 +10,8 @@ import { APPROVE_TASK } from "../../constants/actions";
 
 export default function (state = [], action) {
 
-    console.log('In', action.type)
-
     switch (action.type) {
         case DEFAULT_TASKS: {
-            console.log('In', action.payload.data.pendingTasks);
             return action.payload.data.pendingTasks;
         }
         case APPROVE_TASK: {

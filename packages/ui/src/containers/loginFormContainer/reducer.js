@@ -8,7 +8,7 @@
 import { AUTHORIZED_USER } from "../../constants/actions";
 export default function (state = [], action) {
     switch (action.type) {
-        case 'AUTHORIZED_USER':
+        case AUTHORIZED_USER:
             return action.payload.data;
         default:
             return state;

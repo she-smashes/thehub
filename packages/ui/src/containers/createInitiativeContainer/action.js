@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { CREATE_AN_INITIATIVE } from "../../constants/actions";
-import CreateInitiative from '../../components/createInitiative';
 import { CREATE_NEW_INITIATIVE } from "../../constants/apiList"
 
 export const sendInitiativeDetails = (initiativeDetails,userInfoObj) => {
