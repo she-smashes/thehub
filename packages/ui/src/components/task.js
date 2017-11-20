@@ -26,17 +26,17 @@ class Task extends Component {
 
     renderTasks = () => {
 
+        
         return (
-
             <Accordion class="react-sanfona">
                 {this.props.viewTasks.map(item => {
 
-                    if (item.eventId != null) {
+
                         return (
-                            <AccordionItem class="react-sanfona-item" title={item.event.title} key={item.id}>
+                            <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
                                 
                                     <div>
-                                        {item.event.description}
+                                    {item.approvable.description} 
                                     </div>
 
                                     <br /> <br />
@@ -46,22 +46,7 @@ class Task extends Component {
                                 
                             </AccordionItem>
                         );
-                    } else {
-                        return (
-                            <AccordionItem class="react-sanfona-item" title={item.initiative.title} key={item.id}>
-
-                                    <div>
-                                        {item.initiative.description}
-                                    </div>
-                                    <br /><br />
-                                    <div className="button-line">
-                                        <RaisedButton label="APPROVE" primary key={item.id} onClick={()=>{this.processForm(item.id)}}/>
-                                    </div>
-                 
-                            </AccordionItem>
-                        );
-                    }
-
+                    
                 })}
             </Accordion>
         );

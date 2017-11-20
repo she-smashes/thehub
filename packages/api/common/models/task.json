@@ -6,13 +6,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {},
+    "Approvable":{}
+  },
   "properties": {
-    "eventId": {
-      "type": "string"
-    },
-    "initiativeId": {
-      "type": "string"
-    },
     "status": {
       "type": "string",
       "required": true
@@ -30,24 +28,6 @@
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "userId"
-    },
-    "event": {
-      "type": "embedsOne",
-      "model": "Event",
-      "property": "event",
-      "options": {
-        "validate": true,
-        "forceId": false
-      }
-    },
-    "initiative": {
-      "type": "embedsOne",
-      "model": "Initiative",
-      "property": "initiative",
-      "options": {
-        "validate": true,
-        "forceId": false
-      }
     }
   },
   "acls": [],

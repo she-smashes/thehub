@@ -19,7 +19,7 @@ module.exports = function (Initiative) {
   Initiative.observe('after save', function (ctx, next) {
     if (ctx.instance) {
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
-      Initiative.app.models.Task.create({eventId: null, initiativeId:ctx.instance.id, status: 'Pending', initiative: ctx.instance});
+      Initiative.app.models.Task.create({type: 'initiative', approvableId:ctx.instance.id, status: 'Pendinggggggggggg'});
     } else {
       console.log('Updated Initiative %s matching %j',
         ctx.Model.pluralModelName,

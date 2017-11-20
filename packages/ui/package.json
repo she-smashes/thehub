@@ -17,7 +17,9 @@
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
     "redux-persist": "^5.3.5",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "redux-swagger-client": "github:noh4ck/redux-swagger-client",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -12,8 +12,8 @@ module.exports = function (grunt) {
                     },
                     {
                         swagger: 'swagger-out.json',
-                        fileName: 'userBadge.js',
-                        className: 'userBadge',
+                        fileName: 'task.js',
+                        className: 'task',
                         type: 'react'
                     },
                     {

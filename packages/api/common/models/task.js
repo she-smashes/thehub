@@ -28,4 +28,27 @@ module.exports = function (Task) {
       type: 'array'
     }
   });
+
+  Task.afterRemote('listPendingTasks', function (context, modelInstance, next) {
+
+    let approvables = [];
+    const promises = [];
+    let taskMap = {};
+    context.result.pendingTasks.forEach(function (task) {
+      taskMap[task.id] = task;
+      let Model = Task.app.models[task.type];
+      promises.push(Promise.resolve(Model.find({
+        where: {
+          id: task.approvableId
+        }
+      }, function (err,approvable) {
+        task.approvable = approvable[0];
+      })));
+    });
+
+    Promise.all(promises.map(p => p.catch(() => undefined)))
+      .then((response) => {
+        next();
+      });
+  });
 };
