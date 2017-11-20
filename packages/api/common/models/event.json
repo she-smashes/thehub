@@ -1,7 +1,7 @@
 {
   "name": "event",
   "plural": "events",
-  "base": "initiative",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -38,13 +38,26 @@
       "type": "string",
       "required": true
     },
-    "categoryId": {
-      "type": "string",
-      "required": true
-    },
     "lead": {
       "type": "string",
       "required": true
+    },
+    "createdOn": {
+      "type": "date",
+      "required": false,
+      "default" :  "$now"
+    },
+    "createdBy":{
+      "type" : "string",
+      "required" : true
+    },
+    "eventHourFlag":{
+      "type" : "number",
+      "required" : "false"
+    },
+    "participantType":{
+      "type" : "array",
+      "required" : "false"
     }
   },
   "validations": [],
@@ -57,10 +70,18 @@
         "disableInclude": true
       }
     },
-    "users": {
+    "usersLead": {
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "lead",
+      "options": {
+        "disableInclude": true
+      }
+    },
+     "usersCreatedBy": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "createdBy",
       "options": {
         "disableInclude": true
       }
