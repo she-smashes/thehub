@@ -81,7 +81,7 @@
   },
   "task": {
     "dataSource": "test",
-    "public": false
+    "public": true
   },
   "user": {
     "dataSource": "test",

@@ -99,14 +99,14 @@
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "appadmin",
+      "principalId": "approver",
       "permission": "ALLOW",
       "property": "create"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "appadmin",
+      "principalId": "approver",
       "permission": "ALLOW",
       "property": "updateAttributes"
     }

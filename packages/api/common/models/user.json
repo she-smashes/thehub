@@ -15,10 +15,6 @@
       "type": "number",
       "required": false
     },
-    "role": {
-      "type": "string",
-      "required": false
-    },
     "password": {
       "type": "object",
       "required": true
@@ -80,12 +76,6 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$owner",
       "permission": "ALLOW"
     }
   ],

@@ -1,7 +1,7 @@
 {
   "name": "event",
   "plural": "events",
-  "base": "initiative",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -77,19 +77,20 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "*"
 	},
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "$owner",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "create"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "appadmin",
+      "principalId": "approver",
       "permission": "ALLOW",
       "property": "updateAttributes"
     },

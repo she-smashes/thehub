@@ -81,7 +81,7 @@
   },
   "task": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "user": {
     "dataSource": "db",

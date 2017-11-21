@@ -4,14 +4,11 @@
  * @desc This component renders the create initiative page
  */
 import React from 'react';
-import { Card } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { Route } from 'react-router-dom';
-import History from '../history';
 
 const items = [
   <MenuItem key={1} value={1} primaryText="1-5" />,
