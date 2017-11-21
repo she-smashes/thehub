@@ -1,21 +1,23 @@
 'use strict';
 
 module.exports = function (Task) {
-    Task.listPendingTasks= function (ctx, cb) {
+  Task.listPendingTasks = function (ctx, cb) {
 
-        Task.find({
-            where: {
-                status: 'Pending'
-            }
-        }, function (err, taskInstanses) {
-            cb(null, taskInstanses);
-        });
-    };
+    Task.find({
+      where: {
+        status: 'Pending'
+      }
+    }, function (err, taskInstanses) {
+
+      console.log(taskInstanses);
+      cb(null, taskInstanses);
+    });
+  };
 
 
   Task.remoteMethod('listPendingTasks', {
     accepts: [
-      { arg: 'ctx', type: 'object', http: { source: 'context' }}
+      { arg: 'ctx', type: 'object', http: { source: 'context' } }
     ],
     http: {
       path: '/list-pending-tasks',
@@ -25,6 +27,28 @@ module.exports = function (Task) {
       arg: 'pendingTasks',
       type: 'array'
     }
-  }
-  );
+  });
+
+  Task.afterRemote('listPendingTasks', function (context, modelInstance, next) {
+
+    let approvables = [];
+    const promises = [];
+    let taskMap = {};
+    context.result.pendingTasks.forEach(function (task) {
+      taskMap[task.id] = task;
+      let Model = Task.app.models[task.type];
+      promises.push(Promise.resolve(Model.find({
+        where: {
+          id: task.approvableId
+        }
+      }, function (err,approvable) {
+        task.approvable = approvable[0];
+      })));
+    });
+
+    Promise.all(promises.map(p => p.catch(() => undefined)))
+      .then((response) => {
+        next();
+      });
+  });
 };

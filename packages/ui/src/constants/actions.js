@@ -7,3 +7,6 @@ export const INVALID_LOGIN = "Please enter correct email/password";
 export const DEFAULT_EVENT = 'DEFAULT_EVENT';
 export const DEFAULT_INITIATIVES = 'DEFAULT_INITIATIVES';
 export const CREATE_AN_INITIATIVE = "CREATE_AN_INITIATIVE";
+export const DEFAULT_TASKS = 'DEFAULT_TASKS';
+export const APPROVE_TASK = 'APPROVE_TASK';
+

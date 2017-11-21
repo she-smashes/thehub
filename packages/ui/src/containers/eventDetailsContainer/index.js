@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
-    getEventDetails : (id) => {
-      return dispatch(getEventDetails(id, dispatch))
+    getEventDetails : (id, access_token) => {
+      return dispatch(getEventDetails(id, access_token, dispatch))
     }
   }
 }

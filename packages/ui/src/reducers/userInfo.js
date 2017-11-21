@@ -8,6 +8,9 @@
 
 export default function (state = {userName: "Shalini"}, action) {
     switch (action.type) {
+	case "persist/REHYDRATE": {
+            return { ...state, ...action.payload }
+          }
         case 'UPDATE_USER_INFO':
             return action.payload;
         case 'RESET_TO_DEFAULT':
