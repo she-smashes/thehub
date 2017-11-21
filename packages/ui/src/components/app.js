@@ -5,6 +5,7 @@ import History from '../history';
 import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
 import Header from './header';
+import NavigationWidget from './navigationWidget'
 import Footer from './footer'
 import '../css/app.css';
 
@@ -17,10 +18,11 @@ const AsyncCreateinitiative = asyncComponent(() => import('../containers/createI
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <Header />
+        <NavigationWidget />        
         <Router history={History}>
-          <Switch>          
+          <Switch>
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />
       			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
       			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
