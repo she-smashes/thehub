@@ -53,7 +53,7 @@
   },
   "category": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "config": {
     "dataSource": "db",

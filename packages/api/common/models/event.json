@@ -38,13 +38,30 @@
       "type": "string",
       "required": true
     },
-    "categoryId": {
-      "type": "string",
+    "lead": {
+      "type": "number",
       "required": true
     },
-    "lead": {
-      "type": "string",
-      "required": true
+    "createdOn": {
+      "type": "date",
+      "required": false,
+      "default" :  "$now"
+    },
+    "createdBy":{
+      "type" : "number",
+      "required" : true
+    },
+    "eventHourFlag":{
+      "type" : "number",
+      "required" : "true"
+    },
+    "participantType":{
+      "type" : "array",
+      "required" : "true"
+    },
+     "categoryId":{
+      "type" : "number",
+      "required" : true
     }
   },
   "validations": [],
@@ -57,14 +74,30 @@
         "disableInclude": true
       }
     },
-    "users": {
+    "usersLead": {
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "lead",
       "options": {
         "disableInclude": true
       }
-    }
+    },
+     "usersCreatedBy": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "createdBy",
+      "options": {
+        "disableInclude": true
+      }
+    },
+     "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "categoryId",
+      "options": {
+        "disableInclude": true
+      }
+     }
   },
   "acls": [
     {
