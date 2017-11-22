@@ -6,3 +6,4 @@ export const CREATE_NEW_INITIATIVE = "https://develop-shesmashes-thehub.herokuap
 export const GET_TASKS = "https://develop-shesmashes-thehub.herokuapp.com/api/tasks/list-pending-tasks";
 export const UPDATE_TASK = "https://develop-shesmashes-thehub.herokuapp.com/api/tasks";
 export const CREATE_NEW_EVENT = "http://localhost:4000/api/events";
+export const APPROVED_INITIATIVES = 'http://localhost:4000/api/initiatives?filter={"where":{"status" : "approved"}}';

@@ -56,7 +56,7 @@ class CreateEvent extends Component {
     handleValidation=()=> {
         let fields = this.state.createEventformData;
         let errors = {};
-        let formIsValid = true;       
+        let formIsValid = true;
 
         if (!fields["initiativeName"]) {
             formIsValid = false;
@@ -156,9 +156,8 @@ class CreateEvent extends Component {
      * @desc Iterates through the list of the initiatives and renders the list of initiatives
      * @return Rendered events list {HTML}
      */
-    renderInitiatives = () => {
-        var approved_list = this.props.approvedInitiatives.filter((task) => task.status == "approved" );
-        return approved_list.map((event, index) => {
+    renderInitiatives = () => {        
+        return this.props.approvedInitiatives.map((event, index) => {
             return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
         });
     }
@@ -179,7 +178,6 @@ class CreateEvent extends Component {
                     </div>
                     <div>
                     <SelectField  className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
-
                      {this.props.approvedInitiatives.length>0?this.renderInitiatives():<div></div>}
                     </SelectField>
                     </div>
