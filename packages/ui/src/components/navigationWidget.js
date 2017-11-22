@@ -9,10 +9,6 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
-
-import CreateinitiativeWidget from '../containers/createInitiativeContainer/index';
-import CreateEventWidget from '../containers/createEventContainer/index';
-
 import '../css/header.css'
 
 /**
@@ -45,7 +41,9 @@ class NavigationWidget extends Component {
               </IconButton>
             }
           >
-          <MenuItem primaryText="Create Events" />
+          <MenuItem primaryText={
+            <Link to={`/createevent`}> Create Event</Link>
+          } />
           <MenuItem primaryText="View Events" />
           </IconMenu>
           <ToolbarSeparator className="margin-30" />
@@ -57,8 +55,10 @@ class NavigationWidget extends Component {
               </IconButton>
             }
           >
-            <MenuItem primaryText="Create Initiative" />
-            <MenuItem primaryText="View Initiatives" />
+            <MenuItem primaryText={
+              <Link to={`/createinitiative`}> Create Initiative</Link>
+            } />
+            <MenuItem primaryText="View Initiative" />
           </IconMenu>
           <ToolbarSeparator  className="margin-30"/>
           <ToolbarTitle text="Gallery" />

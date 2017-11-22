@@ -83,9 +83,9 @@ class CreateEvent extends Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createEventformData,this.props.userInfo)
+            this.props.sendEventDetails(this.state.createEventformData,this.props.userInfo)
             .then((response,error) =>{
-                alert('Initiative Created!!!')
+                alert('Event Created!!!')
             },(error)=>{
                 alert('Error'+error);
             });
@@ -120,9 +120,9 @@ class CreateEvent extends Component {
      * Function to set the value into the state for participant drop down
      *
     */
-    onParticipantDropDownChange=(event,index,value)=>{
+    onInitiativeDropDownChange=(event,index,value)=>{
         this.setState({
-            createEventformData : {...this.state.createEventformData, totalParticipants: value}
+            createEventformData : {...this.state.createEventformData, initiativeName: value}
         });
     };
     /**
@@ -159,30 +159,22 @@ class CreateEvent extends Component {
                         <TextField floatingLabelText="Description" className="align-left" name="description" onChange={this.changeUser} value={this.state.createEventformData.description} errorText={this.state.errors.description} />
                     </div>
                     <div>
-                    <SelectField  className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onParticipantDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
+                    <SelectField  className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
                         {items}
                     </SelectField>
                     </div>
                     <div>
-                        <DatePicker hintText="Initiative start date" name="initiativeStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
+                        <DatePicker hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
                     </div>
                     <div>
-                        <DatePicker hintText="Initiative end date" name="initiativeEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
+                        <DatePicker hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
                     </div>
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    <div className="select-radio">
-                    <RadioButtonGroup name="duration" defaultSelected="hourly">
-                      <RadioButton
-                        value="hourly"
-                        label="Hourly"
-                      />
-                      <RadioButton
-                        value="non-hourly"
-                        label="Non-Hourly"
-                      />
-                    </RadioButtonGroup>
+                    <div className="select-radio margin-30 align-left">
+                      <input type="radio" name="duration" value="hourly" checked /> Hourly
+                      <input type="radio" name="duration" value="nonhourly" />Non-Hourly
                     </div>
                     <div className="button-line">
                         <RaisedButton type="submit" label="Submit" primary />
