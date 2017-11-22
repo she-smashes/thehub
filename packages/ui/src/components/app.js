@@ -22,17 +22,19 @@ class App extends Component {
     return (
       <div className="container">
         <Header />
-        <NavigationWidget />        
-        <Router history={History}>
-          <Switch>
-            <Route path='/dashboard' exact={true} component={AsyncDashboard} />
-      			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
-      			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
-            <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
-            <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
-            <Route component={AsyncLogin}/>
-		</Switch>
-        </Router>
+          <Router history={History}>
+            <div>
+              <NavigationWidget />        
+              <Switch>
+                <Route path='/dashboard' exact={true} component={AsyncDashboard} />
+                <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
+                <Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
+                <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
+                <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
+                <Route component={AsyncLogin}/>
+              </Switch>
+            </div>
+          </Router>
         <Footer />
       </div>
 
