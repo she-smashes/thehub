@@ -54,7 +54,7 @@ class CreateEvent extends Component {
 
     }
     componentDidMount =  () => {
-        this.props.getApprovedInitiatives(this.props.userInfo.id)
+        this.props.getApprovedInitiatives({accessToken:this.props.userInfo.id, filterParam: JSON.stringify({"where":{"status":"approved"}})})
     }
     /**
      * Function to validate the form
