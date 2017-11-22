@@ -11,7 +11,9 @@ const mapStateToProps = (state) => {
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     getEventDetails : (id, access_token) => {
-      return dispatch(getEventDetails(id, access_token, dispatch))
+      return dispatch(getEventDetails(id, access_token, dispatch)).then(() =>
+     console.log('hhhhhhhhhhh')
+    );
     }
   }
 }

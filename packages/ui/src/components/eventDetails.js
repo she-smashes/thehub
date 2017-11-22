@@ -17,8 +17,12 @@ class EventDetails extends Component
   }
 
   componentDidMount =  () => {
+    
+    console.log('this.props = ', this.props );
+
     this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id)
     .then((resp) => {
+      console.log('resp = ' , resp.payload.data);
       this.setState({eventDetails: resp.payload.data})
       this.setState({eventDate: Moment(resp.payload.data.startDate).format('LL') + " - " +
       Moment(resp.payload.data.endDate).format('LL')})
@@ -32,6 +36,7 @@ class EventDetails extends Component
    */
   render()
   {
+    console.log('aaaaaaaaaaaaaaaaaaaaa' + this.state.eventDetails);
     return (
         <div className="">
           <div className="event-details">
