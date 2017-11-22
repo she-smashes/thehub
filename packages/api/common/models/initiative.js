@@ -2,6 +2,20 @@
 
 module.exports = function (Initiative) {
 
+Initiative.disableRemoteMethodByName('upsert');
+Initiative.disableRemoteMethodByName('upsertWithWhere');
+Initiative.disableRemoteMethodByName('exists');
+Initiative.disableRemoteMethodByName('updateAll');
+Initiative.disableRemoteMethodByName('count');
+Initiative.disableRemoteMethodByName('createChangeStream');
+Initiative.disableRemoteMethodByName('replaceById');
+Initiative.disableRemoteMethodByName('replaceOrCreate');
+Initiative.disableRemoteMethodByName('prototype.__findByById__events_deleteById');
+Initiative.disableRemoteMethodByName('prototype.__findById__events_updateById');
+Initiative.disableRemoteMethodByName('prototype.__findById__events_count');
+
+
+
   Initiative.listInitiatives = function (cb) {
     Initiative.find({}, cb);
   };
