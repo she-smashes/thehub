@@ -39,7 +39,7 @@
       "required": true
     },
     "lead": {
-      "type": "string",
+      "type": "number",
       "required": true
     },
     "createdOn": {
@@ -48,16 +48,20 @@
       "default" :  "$now"
     },
     "createdBy":{
-      "type" : "string",
+      "type" : "number",
       "required" : true
     },
     "eventHourFlag":{
       "type" : "number",
-      "required" : "false"
+      "required" : "true"
     },
     "participantType":{
       "type" : "array",
-      "required" : "false"
+      "required" : "true"
+    },
+     "categoryId":{
+      "type" : "number",
+      "required" : true
     }
   },
   "validations": [],
@@ -85,7 +89,15 @@
       "options": {
         "disableInclude": true
       }
-    }
+    },
+     "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "categoryId",
+      "options": {
+        "disableInclude": true
+      }
+     }
   },
   "acls": [
     {
