@@ -14,13 +14,6 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { Route } from 'react-router-dom';
 import History from '../history';
 
-const items = [
-  <MenuItem key={1} value={1} primaryText="Prayaas" />,
-  <MenuItem key={2} value={2} primaryText="Silent Auction" />,
-  <MenuItem key={3} value={3} primaryText="Run for Fun" />,
-  <MenuItem key={4} value={4} primaryText="Annual Tournament" />,
-  <MenuItem key={5} value={5} primaryText="Fitness" />
-];
 const participants = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
   <MenuItem key={2} value={2} primaryText="Volunteer" />
@@ -63,8 +56,7 @@ class CreateEvent extends Component {
     handleValidation=()=> {
         let fields = this.state.createEventformData;
         let errors = {};
-        let formIsValid = true;
-        console.log(this.state.createEventformData.intiativeEndDate);
+        let formIsValid = true;       
 
         if (!fields["initiativeName"]) {
             formIsValid = false;
@@ -165,16 +157,16 @@ class CreateEvent extends Component {
      * @return Rendered events list {HTML}
      */
     renderInitiatives = () => {
-        return this.props.approvedInitiatives.map((event, index) => {
+        var approved_list = this.props.approvedInitiatives.filter((task) => task.status == "approved" );
+        return approved_list.map((event, index) => {
             return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
-        })
+        });
     }
 
     /**
      * Render the component.
      */
     render=()=> {
-        alert(JSON.stringify(this.props.approvedInitiatives)+"Initiative");
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
