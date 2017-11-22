@@ -40,7 +40,7 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
   };
 }
 export const getApprovedInitiatives = (accessToken) => {
-  const request = axios.get(CREATE_NEW_INITIATIVE+'?access_token='+accessToken);  
+  const request = axios.get(CREATE_NEW_INITIATIVE+'?filter={"where":{"status":"approved"}}&access_token='+accessToken);  
   return {
     type: GET_INITIATIVES,
     payload: request
