@@ -1,6 +1,6 @@
 {
 	"db": {
-		"name": "db",
+		"name": "local",
 		"connector": "memory",
 		"file": "test.json"
 	}
