@@ -6,7 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import ReduxPromise from 'redux-promise';
 import { persistStore, persistCombineReducers } from 'redux-persist';
-import storage from 'redux-persist/es/storage'; 
+import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import './index.css';
@@ -20,6 +20,7 @@ import viewInitiatives from './containers/viewInitiativeContainer/reducer';
 import newInitiative from './containers/createInitiativeContainer/reducer';
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
+import approvedInitiatives from './containers/createEventContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const config = {
@@ -34,7 +35,8 @@ const rootReducer = persistCombineReducers(config, {
     eventsList,
     viewInitiatives,
     newInitiative,
-    viewTasks
+    viewTasks,
+    approvedInitiatives
 });
 
 

@@ -15,11 +15,15 @@ import { Route } from 'react-router-dom';
 import History from '../history';
 
 const items = [
-  <MenuItem key={1} value={1} primaryText="1-5" />,
-  <MenuItem key={2} value={2} primaryText="6-10" />,
-  <MenuItem key={3} value={3} primaryText="11-15" />,
-  <MenuItem key={4} value={4} primaryText="16-25" />,
-  <MenuItem key={5} value={5} primaryText="26-35" />,
+  <MenuItem key={1} value={1} primaryText="Prayaas" />,
+  <MenuItem key={2} value={2} primaryText="Silent Auction" />,
+  <MenuItem key={3} value={3} primaryText="Run for Fun" />,
+  <MenuItem key={4} value={4} primaryText="Annual Tournament" />,
+  <MenuItem key={5} value={5} primaryText="Fitness" />
+];
+const participants = [
+  <MenuItem key={1} value={1} primaryText="Organizer" />,
+  <MenuItem key={2} value={2} primaryText="Volunteer" />
 ];
 
 class CreateEvent extends Component {
@@ -48,6 +52,9 @@ class CreateEvent extends Component {
 
         };
 
+    }
+    componentDidMount =  () => {
+        this.props.getApprovedInitiatives(this.props.userInfo.id)
     }
     /**
      * Function to validate the form
@@ -117,12 +124,21 @@ class CreateEvent extends Component {
         }
     };
     /**
-     * Function to set the value into the state for participant drop down
+     * Function to set the value into the state for Initiative name
      *
     */
     onInitiativeDropDownChange=(event,index,value)=>{
         this.setState({
             createEventformData : {...this.state.createEventformData, initiativeName: value}
+        });
+    };
+    /**
+     * Function to set the value into the state for participant drop down
+     *
+    */
+    onParticipantDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, participantType: value}
         });
     };
     /**
@@ -143,11 +159,22 @@ class CreateEvent extends Component {
             createEventformData : {...this.state.createEventformData, eventEndDate: date}
         });
     };
+    /**
+     * @name renderInitiatives
+     * @desc Iterates through the list of the initiatives and renders the list of initiatives
+     * @return Rendered events list {HTML}
+     */
+    renderInitiatives = () => {
+        return this.props.approvedInitiatives.map((event, index) => {
+            return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
+        })
+    }
 
     /**
      * Render the component.
      */
     render=()=> {
+        alert(JSON.stringify(this.props.approvedInitiatives)+"Initiative");
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -160,7 +187,8 @@ class CreateEvent extends Component {
                     </div>
                     <div>
                     <SelectField  className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
-                        {items}
+
+                     {this.props.approvedInitiatives.length>0?this.renderInitiatives():<div></div>}
                     </SelectField>
                     </div>
                     <div>
@@ -172,9 +200,14 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    <div className="select-radio margin-30 align-left">
+                    <div className="align-left">
                       <input type="radio" name="duration" value="hourly" checked /> Hourly
                       <input type="radio" name="duration" value="nonhourly" />Non-Hourly
+                    </div>
+                    <div>
+                    <SelectField  className="align-left" name="participantType" value={this.state.createEventformData.participantType} onChange={(event, index, value)=> this.onParticipantDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Participant Type">
+                        {participants}
+                    </SelectField>
                     </div>
                     <div className="button-line">
                         <RaisedButton type="submit" label="Submit" primary />

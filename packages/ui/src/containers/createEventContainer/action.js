@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 import { CREATE_AN_EVENT } from "../../constants/actions";
+import { GET_INITIATIVES } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
-import { CREATE_NEW_EVENT } from "../../constants/apiList"
+import { CREATE_NEW_EVENT, CREATE_NEW_INITIATIVE } from "../../constants/apiList";
 
 export const sendEventDetails = (eventObj,userInfoObj) => {
 
@@ -33,6 +34,20 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
 
   return {
     type: CREATE_AN_EVENT,
+    payload: request
+  };
+}
+export const getApprovedInitiatives = (accessToken) => {
+  const request = axios.get(CREATE_NEW_INITIATIVE, {
+      params: {
+        accessToken: accessToken,
+        "status": "approved"
+      }
+    });
+
+  console.log(JSON.stringify(request)+"initiative payload");
+  return {
+    type: GET_INITIATIVES,
     payload: request
   };
 }
