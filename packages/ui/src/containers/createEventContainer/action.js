@@ -4,6 +4,8 @@ import { CREATE_AN_EVENT } from "../../constants/actions";
 import { GET_INITIATIVES } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
 import { CREATE_NEW_EVENT, CREATE_NEW_INITIATIVE } from "../../constants/apiList";
+import { APPROVED_INITIATIVES } from "../../constants/apiList";
+
 
 export const sendEventDetails = (eventObj,userInfoObj) => {
 
@@ -38,14 +40,7 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
   };
 }
 export const getApprovedInitiatives = (accessToken) => {
-  const request = axios.get(CREATE_NEW_INITIATIVE, {
-      params: {
-        accessToken: accessToken,
-        "status": "approved"
-      }
-    });
-
-  console.log(JSON.stringify(request)+"initiative payload");
+  const request = axios.get(CREATE_NEW_INITIATIVE+'?access_token='+accessToken);  
   return {
     type: GET_INITIATIVES,
     payload: request
