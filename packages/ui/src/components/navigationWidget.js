@@ -33,7 +33,9 @@ class NavigationWidget extends Component {
       <div className="menu-bar">
       <Toolbar>
         <ToolbarGroup>
-          <ToolbarTitle text="Dashboard" />
+          <ToolbarTitle text={
+            <Link to={`/dashboard`}> Dashboard</Link>
+          } />
           <ToolbarSeparator className="margin-30" />
           <ToolbarTitle text="Events" />
           <IconMenu
