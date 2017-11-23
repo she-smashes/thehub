@@ -1,0 +1,24 @@
+{
+  "name": "participant",
+  "plural": "participants",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "participantType": {
+      "type": "string",
+      "required": true
+    },
+    "hourly": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -23,16 +23,16 @@
       "type": "number",
       "required": true
     },
-    "ratings": {
-      "type": "string",
-      "required": true
-    },
-    "registrationFlag": {
+    "attendanceHours": {
       "type": "string",
       "required": true
     },
     "attendanceFlag": {
       "type": "string",
+      "required": true
+    },
+    "registeredOn": {
+      "type": "date",
       "required": true
     },
     "enrollmentType": {
@@ -41,7 +41,72 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "participants": {
+      "type": "hasMany",
+      "model": "participant",
+      "foreignKey": "participantType",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "users": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [
+  {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+	},
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+	{
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    }
+   
+  ],
   "methods": {}
 }
