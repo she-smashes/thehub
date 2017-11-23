@@ -1,11 +1,11 @@
 {
 	"scripts": {
-		"preinstall": "npm install -g lerna@2.2.0 loopback-cli@latest && lerna bootstrap",
+		"preinstall": "npm install -g lerna@2.2.0 loopback-cli@latest mocha@latest && lerna bootstrap",
 		"heroku-postbuild": "lerna run build && cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
 		"start:heroku": "cd packages/api && npm run start:heroku",
 		"postinstall": "cd packages/api && npm run generate-swagger-lib && ./node_modules/grunt-cli/bin/grunt swagger",
-		"test": "lerna run test"
+		//"test": "lerna run test"
 	},
 	"devDependencies": {
 		"lerna": "2.2.0"
