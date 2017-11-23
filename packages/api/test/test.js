@@ -4,6 +4,12 @@ var assert = require('chai').assert,
   tests = require('./apiTestConfig.json'),
   async = require('async');
 
+/* var dataSource = app.dataSource('testdb', {
+  "name": "db",
+  "connector": "memory",
+  "file": "test.json"
+});
+ */
 var baseURL = "http://localhost:4000/api";
 
 async.each(tests, function (data, asyncCallback) {

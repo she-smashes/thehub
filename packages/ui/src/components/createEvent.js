@@ -18,6 +18,18 @@ const participants = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
   <MenuItem key={2} value={2} primaryText="Volunteer" />
 ];
+const hourly = [
+  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
+  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
+  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
+  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
+];
+const nonhourly = [
+  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
+  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
+  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
+  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
+];
 
 class CreateEvent extends Component {
     /**
@@ -39,8 +51,8 @@ class CreateEvent extends Component {
                 eventEndDate:'',
                 location: '',
                 category: '',
-                timeSpan: '',
-                participantType: ''
+                hourlyParticipantType: '',
+                nonHourlyParticipantType: ''
             },
 
         };
@@ -134,6 +146,24 @@ class CreateEvent extends Component {
         });
     };
     /**
+     * Function to set the value into the state for hourly drop down
+     *
+    */
+    onHourlyDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, hourlyParticipantType: value}
+        });
+    };
+    /**
+     * Function to set the value into the state for hourly drop down
+     *
+    */
+    onNonHourlyDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, nonHourlyParticipantType: value}
+        });
+    };
+    /**
      * Function to set the value into the state for initiative start date
      *
     */
@@ -156,7 +186,7 @@ class CreateEvent extends Component {
      * @desc Iterates through the list of the initiatives and renders the list of initiatives
      * @return Rendered events list {HTML}
      */
-    renderInitiatives = () => {        
+    renderInitiatives = () => {
         return this.props.approvedInitiatives.map((event, index) => {
             return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
         });
@@ -166,6 +196,7 @@ class CreateEvent extends Component {
      * Render the component.
      */
     render=()=> {
+      console.log(JSON.stringify(this.state.createEventformData)+"eventFormData");
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -190,13 +221,14 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    <div className="align-left">
-                      <input type="radio" name="duration" value="hourly" checked /> Hourly
-                      <input type="radio" name="duration" value="nonhourly" />Non-Hourly
+                    <div>
+                    <SelectField  className="align-left" multiple={true} hintText="Hourly" name="hourly" value={this.state.createEventformData.hourlyParticipantType} onChange={(event, index, value)=> this.onHourlyDropDownChange(event, index, value)}>
+                     {hourly}
+                    </SelectField>
                     </div>
                     <div>
-                    <SelectField  className="align-left" name="participantType" value={this.state.createEventformData.participantType} onChange={(event, index, value)=> this.onParticipantDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Participant Type">
-                        {participants}
+                    <SelectField  className="align-left" multiple={true} hintText="Non-Hourly" name="nonhourly" value={this.state.createEventformData.nonHourlyParticipantType} onChange={(event, index, value)=> this.onNonHourlyDropDownChange(event, index, value)}>
+                     {nonhourly}
                     </SelectField>
                     </div>
                     <div className="button-line">
