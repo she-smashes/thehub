@@ -48,7 +48,6 @@ class CreateInitiative extends React.Component {
         let fields = this.state.createInitiativeformData;
         let errors = {};
         let formIsValid = true;
-        console.log(this.state.createInitiativeformData.intiativeEndDate);
 
         if (!fields["initiativeName"]) {
             formIsValid = false;

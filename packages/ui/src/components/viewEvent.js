@@ -63,9 +63,7 @@ class ViewEvent extends Component {
     }
 
     render = () => {
-        console.log('this.props.viewEvents = ', this.props.viewEvents);
-        return (
-         
+        return (       
             <div>
                 <h3>List of Events </h3>
                 <div id="ViewEvent">

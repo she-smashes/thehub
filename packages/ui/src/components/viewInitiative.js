@@ -10,7 +10,6 @@ import {List, ListItem} from 'material-ui/List';
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
-        console.log(this.props.userInfo.id);
         this.props.getInitiativeList(this.props.userInfo.id);
     }
 
@@ -47,7 +46,6 @@ class ViewInitiative extends Component {
     }
 
     render = () => {
-      console.log(this.props)
         return (
             <div>
                 <h3>List of Initiatives </h3>

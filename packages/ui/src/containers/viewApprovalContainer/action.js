@@ -32,7 +32,6 @@ export const approveTask = (accessToken, taskId) => {
     {
       "status": "approved"
     });
-  console.log(request)
   return {
     type: APPROVE_TASK,
     payload: request
