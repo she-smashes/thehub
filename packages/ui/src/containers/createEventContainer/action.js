@@ -37,8 +37,8 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
     payload: request
   };
 }
-export const getApprovedInitiatives = (payload) => {
-  const request = axios.get(CREATE_NEW_INITIATIVE+'?filter='+payload.filterParam+'&access_token='+payload.accessToken);  
+export const getApprovedInitiatives = (accessToken) => {
+  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);
   return {
     type: GET_INITIATIVES,
     payload: request
@@ -52,7 +52,7 @@ export const getCategories = (accessToken) => {
     payload: request
   };
 }
-export const verifyUser = (eventObj,accessToken) => {  
+export const verifyUser = (eventObj,accessToken) => {
   const url = decodeURIComponent(VERIFY_USER+'{"where":{"username":"'+eventObj.lead+'"}}&access_token='+accessToken.id);
   const request = axios.get(url);
   return {
