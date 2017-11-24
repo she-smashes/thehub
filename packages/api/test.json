@@ -1,0 +1,101 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 2,
+    "ACL": 1,
+    "RoleMapping": 13,
+    "Role": 4,
+    "userBadge": 1,
+    "badge": 1,
+    "category": 10,
+    "config": 5,
+    "event": 1,
+    "initiative": 6,
+    "level": 1,
+    "enrollment": 1,
+    "score": 1,
+    "task": 6,
+    "user": 13,
+    "eventUserVO": 1,
+    "eventInitiativeVO": 1
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {
+      "JasnrgXu5yllJ1FRSf69v0MIl9HMk550q0AgDvEAUWuJ6goDmWaEX7SCfCWn2Jof": "{\"id\":\"JasnrgXu5yllJ1FRSf69v0MIl9HMk550q0AgDvEAUWuJ6goDmWaEX7SCfCWn2Jof\",\"ttl\":3600,\"created\":\"2017-11-24T08:20:52.258Z\",\"userId\":1}"
+    },
+    "ACL": {},
+    "RoleMapping": {
+      "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",
+      "2": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":1,\"id\":2}",
+      "3": "{\"principalType\":\"USER\",\"principalId\":\"3\",\"roleId\":1,\"id\":3}",
+      "4": "{\"principalType\":\"USER\",\"principalId\":\"4\",\"roleId\":1,\"id\":4}",
+      "5": "{\"principalType\":\"USER\",\"principalId\":\"5\",\"roleId\":1,\"id\":5}",
+      "6": "{\"principalType\":\"USER\",\"principalId\":\"6\",\"roleId\":1,\"id\":6}",
+      "7": "{\"principalType\":\"USER\",\"principalId\":\"7\",\"roleId\":2,\"id\":7}",
+      "8": "{\"principalType\":\"USER\",\"principalId\":\"8\",\"roleId\":2,\"id\":8}",
+      "9": "{\"principalType\":\"USER\",\"principalId\":\"9\",\"roleId\":2,\"id\":9}",
+      "10": "{\"principalType\":\"USER\",\"principalId\":\"10\",\"roleId\":3,\"id\":10}",
+      "11": "{\"principalType\":\"USER\",\"principalId\":\"11\",\"roleId\":3,\"id\":11}",
+      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}"
+    },
+    "Role": {
+      "1": "{\"name\":\"employee\",\"description\":\"employee\",\"id\":1}",
+      "2": "{\"name\":\"approver\",\"description\":\"approver\",\"id\":2}",
+      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}"
+    },
+    "userBadge": {},
+    "badge": {},
+    "category": {
+      "1": "{\"name\":\"Cricket\",\"type\":\"Sports\",\"id\":1}",
+      "2": "{\"name\":\"FootBall\",\"type\":\"Sports\",\"id\":2}",
+      "3": "{\"name\":\"Zumba\",\"type\":\"Sports\",\"id\":3}",
+      "4": "{\"name\":\"Marathon\",\"type\":\"Sports\",\"id\":4}",
+      "5": "{\"name\":\"Carnatic\",\"type\":\"Music\",\"id\":5}",
+      "6": "{\"name\":\"Western\",\"type\":\"Music\",\"id\":6}",
+      "7": "{\"name\":\"Classical\",\"type\":\"Dance\",\"id\":7}",
+      "8": "{\"name\":\"Western\",\"type\":\"Dance\",\"id\":8}",
+      "9": "{\"name\":\"CSR\",\"type\":\"CSR\",\"id\":9}"
+    },
+    "config": {
+      "1": "{\"name\":\"refreshToken_onceIn\",\"value\":\"1800\",\"id\":1}",
+      "2": "{\"name\":\"refreshToken_ttl\",\"value\":\"3600\",\"id\":2}",
+      "3": "{\"name\":\"no_of_past_events\",\"value\":\"5\",\"id\":3}",
+      "4": "{\"name\":\"no_of_future_events\",\"value\":\"5\",\"id\":4}"
+    },
+    "event": {},
+    "initiative": {
+      "1": "{\"title\":\"Prayaas\",\"description\":\"Helping people\",\"status\":\"approved\",\"createdOn\":\"2017-05-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":7,\"id\":1}",
+      "2": "{\"title\":\"Fitness\",\"description\":\"Keeping people fit\",\"status\":\"approved\",\"createdOn\":\"2017-06-01T11:49:20.305Z\",\"lead\":2,\"createdBy\":7,\"id\":2}",
+      "3": "{\"title\":\"Run for fun\",\"description\":\"Marathon for Sapient Nitro\",\"status\":\"approved\",\"createdOn\":\"2017-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":3}",
+      "4": "{\"title\":\"Silent Auction\",\"description\":\"Silent Auction is a Sapient India corporate social responsibility initiative run once every two years. The two-fold objectives are:To bring the Sapient India community together and, To highlight our Corporate Social Responsibility effort and people contribution.\",\"status\":\"approved\",\"createdOn\":\"2015-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":4}",
+      "5": "{\"title\":\"Annual Sports Tournament\",\"description\":\"Annual Sports Tournament\",\"status\":\"approved\",\"createdOn\":\"2015-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":5}"
+    },
+    "level": {},
+    "enrollment": {},
+    "score": {},
+    "task": {
+      "1": "{\"status\":\"Pending\",\"created\":\"2017-11-24T06:45:56.628Z\",\"type\":\"initiative\",\"approvableId\":\"1\",\"id\":1}",
+      "2": "{\"status\":\"Pending\",\"created\":\"2017-11-24T06:45:56.628Z\",\"type\":\"initiative\",\"approvableId\":\"2\",\"id\":2}",
+      "3": "{\"status\":\"Pending\",\"created\":\"2017-11-24T06:45:56.628Z\",\"type\":\"initiative\",\"approvableId\":\"3\",\"id\":3}",
+      "4": "{\"status\":\"Pending\",\"created\":\"2017-11-24T06:45:56.644Z\",\"type\":\"initiative\",\"approvableId\":\"4\",\"id\":4}",
+      "5": "{\"status\":\"Pending\",\"created\":\"2017-11-24T06:45:56.644Z\",\"type\":\"initiative\",\"approvableId\":\"5\",\"id\":5}"
+    },
+    "user": {
+      "1": "{\"password\":\"$2a$10$4FXwvovd71Dvavs3Zs6VCu7YGeAUg7pVuYQbEtFL82TzviJylr52G\",\"firstname\":\"customer1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer1\",\"email\":\"customer1@example.com\",\"id\":1}",
+      "2": "{\"password\":\"$2a$10$cKGg9Ce4J456DxLEle0dv.lzH/QLEP4tLCDNXAgv9/5GiUdCDDuTe\",\"firstname\":\"customer2\",\"lastname\":\"customer2\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer2\",\"email\":\"customer2@example.com\",\"id\":2}",
+      "3": "{\"password\":\"$2a$10$0TojHZ/saBtc1z3kbJH20.TEqdfIVQDvB7Hg30WaacDFR5DrfiSb2\",\"firstname\":\"customer3\",\"lastname\":\"customer3\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer3\",\"email\":\"customer3@example.com\",\"id\":3}",
+      "4": "{\"password\":\"$2a$10$Tah0Oy3fN1Ug2EUJoC99S.BIi2d6nHBo1FemnRqpftUR.KxpFOs.u\",\"firstname\":\"customer4\",\"lastname\":\"customer4\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer4\",\"email\":\"customer4@example.com\",\"id\":4}",
+      "5": "{\"password\":\"$2a$10$k4.nyNbG4VSHb5ALzos6TeMLdKUaQfssklU5Bc/JjBK4hOcYznja.\",\"firstname\":\"customer5\",\"lastname\":\"customer5\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer5\",\"email\":\"customer5@example.com\",\"id\":5}",
+      "6": "{\"password\":\"$2a$10$FcGDg.clEZoBfEPLOmCqBuN0CxHSO77Olhg20CR9zf3ibZ7HVi35O\",\"firstname\":\"customer6\",\"lastname\":\"customer6\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer6\",\"email\":\"customer6@example.com\",\"id\":6}",
+      "7": "{\"password\":\"$2a$10$9SpuHvqKlSMga4IB0UpJXuHZnOv5ZQHvBrwm1gPrtU82pXZmUkKSW\",\"firstname\":\"approver1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver1\",\"email\":\"approver1@example.com\",\"id\":7}",
+      "8": "{\"password\":\"$2a$10$9FRwbMze8SMtXSECYQqnLu9.k6L2plb4V93tFHeOQvvrMt4o06sLy\",\"firstname\":\"approver2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver2\",\"email\":\"approver2@example.com\",\"id\":8}",
+      "9": "{\"password\":\"$2a$10$OT9QEnkDF.XcEJ..mR6Oguo.5lsVpBI2z1/31ZNyl6NXAgEnD1TfO\",\"firstname\":\"approver3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver3\",\"email\":\"approver3@example.com\",\"id\":9}",
+      "10": "{\"password\":\"$2a$10$RZPp4RXrSuCr8SvuV17LGOkdG7.1A4LfTkueFelfmeG7KyJU2faPy\",\"firstname\":\"sysadmin1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin1\",\"email\":\"sysadmin1@example.com\",\"id\":10}",
+      "11": "{\"password\":\"$2a$10$UkhA81v6oFOGId4IjCzUVebLquj17HGSQK9BBxsFskELB1KXQYFTe\",\"firstname\":\"sysadmin2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin2\",\"email\":\"sysadmin2@example.com\",\"id\":11}",
+      "12": "{\"password\":\"$2a$10$FcDJVGdv4vtWfFx6Ss2/C.oghcoVRLY9F44LBpYD1jo5snBh9yiJ.\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}"
+    },
+    "eventUserVO": {},
+    "eventInitiativeVO": {}
+  }
+}

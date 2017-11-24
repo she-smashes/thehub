@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-import { CREATE_AN_EVENT } from "../../constants/actions";
-import { GET_INITIATIVES } from "../../constants/actions";
+import { CREATE_AN_EVENT, GET_INITIATIVES, CONFIRM_USER } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
-import { CREATE_NEW_EVENT, CREATE_NEW_INITIATIVE } from "../../constants/apiList";
-import { APPROVED_INITIATIVES } from "../../constants/apiList";
-
+import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER} from "../../constants/apiList";
 
 export const sendEventDetails = (eventObj,userInfoObj) => {
 
@@ -40,9 +37,20 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
   };
 }
 export const getApprovedInitiatives = (accessToken) => {
-  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);  
+  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);
   return {
     type: GET_INITIATIVES,
+    payload: request
+  };
+}
+
+export const verifyUser = (eventObj,accessToken) => {
+  console.log(eventObj.lead, accessToken.id);
+  const url = decodeURIComponent(VERIFY_USER+'{"where":{"username":"'+eventObj.lead+'"}}&access_token='+accessToken.id);
+  const request = axios.get(url);
+  console.log(request+"VerifyUserreq");
+  return {
+    type: CONFIRM_USER,
     payload: request
   };
 }

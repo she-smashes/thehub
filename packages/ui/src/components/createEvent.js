@@ -46,7 +46,7 @@ class CreateEvent extends Component {
                 title: '',
                 description: '',
                 initiativeName: '',
-                eventOwner: '',
+                lead: '',
                 eventStartDate:'',
                 eventEndDate:'',
                 location: '',
@@ -78,7 +78,10 @@ class CreateEvent extends Component {
             formIsValid = false;
             errors["title"] = "Enter title";
         }
-
+        if (!fields["lead"]) {
+            formIsValid = false;
+            errors["lead"] = "Enter Lead name";
+        }
         this.setState({
             errors: errors
         });
@@ -112,9 +115,21 @@ class CreateEvent extends Component {
         const field = event.target.name;
         const user = this.state.createEventformData;
         user[field] = event.target.value;
-
         this.setState({
             user
+        });
+    };
+    /**
+     * verify the lead user object.
+     *
+     * @param {object} event - the JavaScript event object
+     */
+    verifyLeadUser=(event)=> {
+        this.props.verifyUser(this.state.createEventformData,this.props.userInfo)
+        .then((response,error) =>{
+            alert(JSON.stringify(response));
+        },(error)=>{
+            alert('Error'+error);
         });
     };
     /**
@@ -201,6 +216,9 @@ class CreateEvent extends Component {
            <div className="container  App">
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Event</h2>
+                    <div className="field-line">
+                        <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
+                    </div>
                     <div className="field-line">
                         <TextField floatingLabelText="Title" className="align-left" name="title" onChange={this.changeUser} value={this.state.createEventformData.title} errorText={this.state.errors.title} />
                     </div>

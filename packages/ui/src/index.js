@@ -21,6 +21,7 @@ import newInitiative from './containers/createInitiativeContainer/reducer';
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
 import approvedInitiatives from './containers/createEventContainer/reducer';
+import verifyUser from './containers/createEventContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const config = {
@@ -36,7 +37,8 @@ const rootReducer = persistCombineReducers(config, {
     viewInitiatives,
     newInitiative,
     viewTasks,
-    approvedInitiatives
+    approvedInitiatives,
+    verifyUser
 });
 
 

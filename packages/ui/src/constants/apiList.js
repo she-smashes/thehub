@@ -7,3 +7,4 @@ export const GET_TASKS = "https://develop-shesmashes-thehub.herokuapp.com/api/ta
 export const UPDATE_TASK = "https://develop-shesmashes-thehub.herokuapp.com/api/tasks";
 export const CREATE_NEW_EVENT = "http://localhost:4000/api/events";
 export const APPROVED_INITIATIVES = 'http://localhost:4000/api/initiatives?filter={"where":{"status" : "approved"}}';
+export const VERIFY_USER = 'http://localhost:4000/api/users?filter=';

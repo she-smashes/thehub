@@ -6,7 +6,7 @@
  * @param {Object} action
  */
 
-import { CREATE_AN_EVENT , GET_INITIATIVES} from "../../constants/actions";
+import { CREATE_AN_EVENT , GET_INITIATIVES, CONFIRM_USER} from "../../constants/actions";
 
 export default function (state = [], action) {
     switch (action.type) {
@@ -14,6 +14,8 @@ export default function (state = [], action) {
             return action.payload.data;
         case GET_INITIATIVES:
             return action.payload.data;
+        case CONFIRM_USER:
+            return action.payload;
         default:
             return state;
 
