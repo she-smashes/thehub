@@ -7,23 +7,31 @@ import React, { Component} from 'react';
 import { Card } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { Route } from 'react-router-dom';
 import History from '../history';
+import { INVALID_USER } from "../constants/actions";
 
-const items = [
-  <MenuItem key={1} value={1} primaryText="Prayaas" />,
-  <MenuItem key={2} value={2} primaryText="Silent Auction" />,
-  <MenuItem key={3} value={3} primaryText="Run for Fun" />,
-  <MenuItem key={4} value={4} primaryText="Annual Tournament" />,
-  <MenuItem key={5} value={5} primaryText="Fitness" />
-];
 const participants = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
   <MenuItem key={2} value={2} primaryText="Volunteer" />
+];
+const hourly = [
+  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
+  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
+  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
+  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
+];
+const nonhourly = [
+  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
+  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
+  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
+  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
 ];
 
 class CreateEvent extends Component {
@@ -37,24 +45,27 @@ class CreateEvent extends Component {
 
         this.state = {
             errors: {},
+            disabled: true,
+            open: false,
             createEventformData: {
                 title: '',
                 description: '',
                 initiativeName: '',
-                eventOwner: '',
+                lead: '',
                 eventStartDate:'',
                 eventEndDate:'',
                 location: '',
                 category: '',
-                timeSpan: '',
-                participantType: ''
+                hourlyParticipantType: '',
+                nonHourlyParticipantType: ''
             },
 
         };
 
     }
     componentDidMount =  () => {
-        this.props.getApprovedInitiatives({accessToken:this.props.userInfo.id, filterParam: JSON.stringify({"where":{"status":"approved"}})})
+        this.props.getApprovedInitiatives(this.props.userInfo.id);
+        this.props.getCategories(this.props.userInfo.id);
     }
     /**
      * Function to validate the form
@@ -64,7 +75,6 @@ class CreateEvent extends Component {
         let fields = this.state.createEventformData;
         let errors = {};
         let formIsValid = true;
-        console.log(this.state.createEventformData.intiativeEndDate);
 
         if (!fields["initiativeName"]) {
             formIsValid = false;
@@ -74,12 +84,22 @@ class CreateEvent extends Component {
             formIsValid = false;
             errors["title"] = "Enter title";
         }
-
+        if (!fields["lead"]) {
+            formIsValid = false;
+            errors["lead"] = "Enter Lead name";
+        }
         this.setState({
             errors: errors
         });
         return formIsValid;
     }
+    handleOpen = () => {
+      this.setState({open: true});
+    };
+
+    handleClose = () => {
+      this.setState({open: false});
+    };
 
     /**
      * Process the form.
@@ -108,9 +128,33 @@ class CreateEvent extends Component {
         const field = event.target.name;
         const user = this.state.createEventformData;
         user[field] = event.target.value;
-
         this.setState({
             user
+        });
+    };
+    /**
+     * verify the lead user object.
+     *
+     * @param {object} event - the JavaScript event object
+     */
+    verifyLeadUser=(event)=> {
+        this.props.verifyUser(this.state.createEventformData,this.props.userInfo)
+        .then((response,error) =>{
+            if(response.payload.data.length > 0){
+              this.setState({
+                  disabled: false,
+                  open: false
+              });
+            }
+            else{
+              this.handleOpen();
+              this.setState({
+                  disabled: true,
+                  open: true
+              });
+            }
+        },(error)=>{
+            alert('Error'+error);
         });
     };
     /**
@@ -142,6 +186,34 @@ class CreateEvent extends Component {
         });
     };
     /**
+     * Function to set the value into the state for hourly drop down
+     *
+    */
+    onHourlyDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, hourlyParticipantType: value}
+        });
+    };
+    /**
+     * Function to set the value into the state for category drop down
+     *
+    */
+    onCategoryDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, category: value}
+        });
+    };
+    onCategoryDropDownChange
+    /**
+     * Function to set the value into the state for hourly drop down
+     *
+    */
+    onNonHourlyDropDownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, nonHourlyParticipantType: value}
+        });
+    };
+    /**
      * Function to set the value into the state for initiative start date
      *
     */
@@ -167,18 +239,38 @@ class CreateEvent extends Component {
     renderInitiatives = () => {
         return this.props.approvedInitiatives.map((event, index) => {
             return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
-        })
+        });
     }
-
+    /**
+     * @name renderCategories
+     * @desc Iterates through the list of the categories and renders the list of initiatives
+     * @return Rendered events list {HTML}
+     */
+    renderCategories = () => {
+        return this.props.categories.map((event, index) => {
+            return <MenuItem key={event.id} value={event.id} primaryText={event.name} />
+        });
+    }
     /**
      * Render the component.
      */
     render=()=> {
-        alert(JSON.stringify(this.props.approvedInitiatives)+"Initiative");
+      const actions = [
+        <FlatButton
+          label="OK"
+          primary={true}
+          keyboardFocused={true}
+          onClick={this.handleClose}
+        />,
+      ];
+      console.log(JSON.stringify(this.props.categories)+"Sudha");
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Event</h2>
+                    <div className="field-line">
+                        <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
+                    </div>
                     <div className="field-line">
                         <TextField floatingLabelText="Title" className="align-left" name="title" onChange={this.changeUser} value={this.state.createEventformData.title} errorText={this.state.errors.title} />
                     </div>
@@ -186,8 +278,7 @@ class CreateEvent extends Component {
                         <TextField floatingLabelText="Description" className="align-left" name="description" onChange={this.changeUser} value={this.state.createEventformData.description} errorText={this.state.errors.description} />
                     </div>
                     <div>
-                    <SelectField  className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
-
+                    <SelectField className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative">
                      {this.props.approvedInitiatives.length>0?this.renderInitiatives():<div></div>}
                     </SelectField>
                     </div>
@@ -200,19 +291,33 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    <div className="align-left">
-                      <input type="radio" name="duration" value="hourly" checked /> Hourly
-                      <input type="radio" name="duration" value="nonhourly" />Non-Hourly
+                    <SelectField  className="align-left" name="category" value={this.state.createEventformData.category} onChange={(event, index, value)=> this.onCategoryDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Category">
+                     {this.props.categories.length>0?this.renderCategories():<div></div>}
+                    </SelectField>
+                    <div>
+                    <SelectField className="align-left" multiple={true} hintText="Hourly" name="hourly" value={this.state.createEventformData.hourlyParticipantType} onChange={(event, index, value)=> this.onHourlyDropDownChange(event, index, value)}>
+                     {hourly}
+                    </SelectField>
                     </div>
                     <div>
-                    <SelectField  className="align-left" name="participantType" value={this.state.createEventformData.participantType} onChange={(event, index, value)=> this.onParticipantDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Participant Type">
-                        {participants}
+                    <SelectField className="align-left" multiple={true} hintText="Non-Hourly" name="nonhourly" value={this.state.createEventformData.nonHourlyParticipantType} onChange={(event, index, value)=> this.onNonHourlyDropDownChange(event, index, value)}>
+                     {nonhourly}
                     </SelectField>
                     </div>
                     <div className="button-line">
-                        <RaisedButton type="submit" label="Submit" primary />
+                        <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />
                     </div>
                 </form>
+                <Dialog
+                  title="Message"
+                  className="dialog-ui"
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose}
+                >
+                  { INVALID_USER }
+                </Dialog>
             </div>
         );
     }

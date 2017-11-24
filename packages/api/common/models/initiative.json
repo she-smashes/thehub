@@ -79,13 +79,13 @@
     {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$everyone",
+      "principalId": "$authenticated",
       "permission": "ALLOW"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "sysadmin",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "create"
     },
@@ -95,13 +95,6 @@
       "principalId": "sysadmin",
       "permission": "ALLOW",
       "property": "updateAttributes"
-    },
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "approver",
-      "permission": "ALLOW",
-      "property": "create"
     },
     {
       "accessType": "WRITE",

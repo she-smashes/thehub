@@ -11,11 +11,11 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 const items = [
-  <MenuItem key={1} value={1} primaryText="1-5" />,
-  <MenuItem key={2} value={2} primaryText="6-10" />,
-  <MenuItem key={3} value={3} primaryText="11-15" />,
-  <MenuItem key={4} value={4} primaryText="16-25" />,
-  <MenuItem key={5} value={5} primaryText="26-35" />,
+  <MenuItem key={1} value={1} primaryText="1" />,
+  <MenuItem key={2} value={2} primaryText="2" />,
+  <MenuItem key={3} value={3} primaryText="3" />,
+  <MenuItem key={4} value={4} primaryText="4" />,
+  <MenuItem key={5} value={5} primaryText="5" />,
 ];
 
 class CreateInitiative extends React.Component {
@@ -30,16 +30,21 @@ class CreateInitiative extends React.Component {
         this.state = {
             errors: {},
             createInitiativeformData: {
-                initiativeName: '',
-                approverName: '',
-                intiativeStartDate:'',
-                intiativeEndDate:'',
-                totalParticipants: ''
+                title: '',
+                description: '',
+                lead:'',
+                categoryId:'',
+                id: ''
             },
+            newInitiative: {
+                id:''
+            }
             
         };
 
     }
+
+
     /**
      * Function to validate the form
      *
@@ -48,15 +53,14 @@ class CreateInitiative extends React.Component {
         let fields = this.state.createInitiativeformData;
         let errors = {};
         let formIsValid = true;
-        console.log(this.state.createInitiativeformData.intiativeEndDate);
 
-        if (!fields["initiativeName"]) {
+        if (!fields["title"]) {
             formIsValid = false;
-            errors["initiativeName"] = "Enter Initiative Name";
+            errors["title"] = "Enter Initiative Title";
         }
-        if (!fields["approverName"]) {
+        if (!fields["description"]) {
             formIsValid = false;
-            errors["approverName"] = "Enter Approver name";
+            errors["description"] = "Enter Initiative Description";
         }
        
         this.setState({
@@ -74,21 +78,30 @@ class CreateInitiative extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo)
-            .then((response,error) =>{
-                alert('Initiative Created!!!')
-            },(error)=>{
-                alert('Error'+error);
-            });
+            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.id);
         }
     }
 
+
+    showMessage=()=> {
+        if(this.newInitiative != undefined) {       
+            if(this.newInitiative.id != "") {
+                alert('Initiative Created!!!')
+            } else if(this.newInitiative.errors != "") {
+                alert('Initiative not Created!!!')
+            }
+        }
+    }
+
+    componentDidUpdate( prevProps, prevState ){
+        this.showMessage();
+    }
     /**
      * Change the user object.
      *
      * @param {object} event - the JavaScript event object
      */
-    changeUser=(event)=> {
+    changeStateData=(event)=> {
         const field = event.target.name;
         const user = this.state.createInitiativeformData;
         user[field] = event.target.value;
@@ -111,9 +124,9 @@ class CreateInitiative extends React.Component {
      * Function to set the value into the state for participant drop down
      *
     */
-    onParticipantDropDownChange=(event,index,value)=>{  
+    onCategoryChange=(event,index,value)=>{  
         this.setState({
-            createInitiativeformData : {...this.state.createInitiativeformData, totalParticipants: value}
+            createInitiativeformData : {...this.state.createInitiativeformData, categoryId: value}
         });
     };
     /**
@@ -144,27 +157,25 @@ class CreateInitiative extends React.Component {
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Initiative Form</h2>
                     <div className="field-line">
-                        <TextField floatingLabelText="Initiative Name" className="align-left" name="initiativeName" onChange={this.changeUser} value={this.state.createInitiativeformData.initiativeName} errorText={this.state.errors.initiativeName} />
-                    </div>
-                    <div>
-                        <DatePicker hintText="Initiative start date" name="initiativeStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
-                    </div>
-                    <div>
-                        <DatePicker hintText="Initiative end date" name="initiativeEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
-                    </div>
-                    <div>
-                    <SelectField  className="align-left" name="totalParticipants" value={this.state.createInitiativeformData.totalParticipants} onChange={(event, index, value)=> this.onParticipantDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Participants">
-                        {items}
-                    </SelectField>
-                        
+                        <TextField className="align-left" floatingLabelText="Title" name="title" onChange={this.changeStateData} value={this.state.createInitiativeformData.title} errorText={this.state.errors.title} />
                     </div>
                     <div className="field-line">
-                        <TextField className="align-left" floatingLabelText="Approver Name" name="approverName" onChange={this.changeUser} value={this.state.createInitiativeformData.approverName} errorText={this.state.errors.approverName} />
+                        <TextField className="align-left" floatingLabelText="Description" name="description" onChange={this.changeStateData} value={this.state.createInitiativeformData.description} errorText={this.state.errors.description} />
                     </div>
-
+                    <div>
+                        <SelectField className="align-left" floatingLabelText="Category" name="categoryId" value={this.state.createInitiativeformData.categoryId} onChange={(event, index, value) => this.onCategoryChange(event, index, value)} autoWidth={true} >
+                            {items}
+                        </SelectField>
+                    </div>
+                    <div className="field-line">
+                        <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} errorText={this.state.errors.lead} />
+                    </div>
                     <div className="button-line">
-                        <RaisedButton type="submit" label="Log in" primary />
+                        <RaisedButton type="submit" label="Create" primary />
                     </div>
+                    
+                    <input type="hidden" value={this.state.newInitiative.id}/>
+                    
                 </form>
             </div>
         );

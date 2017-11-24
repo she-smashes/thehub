@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-import { CREATE_AN_EVENT } from "../../constants/actions";
-import { GET_INITIATIVES } from "../../constants/actions";
+import { CREATE_AN_EVENT, GET_INITIATIVES, CONFIRM_USER, GET_CATEGORIES } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
-import { CREATE_NEW_EVENT, CREATE_NEW_INITIATIVE } from "../../constants/apiList";
-import { APPROVED_INITIATIVES } from "../../constants/apiList";
-
-
+import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER, ALL_CATEGORIES} from "../../constants/apiList";
+import Swagger from 'swagger-client';
+import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const sendEventDetails = (eventObj,userInfoObj) => {
 
   const request = axios.post(CREATE_NEW_EVENT+'?access_token='+userInfoObj.id,
@@ -39,10 +37,58 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
     payload: request
   };
 }
+<<<<<<< HEAD
 export const getApprovedInitiatives = (payload) => {
   const request = axios.get(CREATE_NEW_INITIATIVE+'?filter='+payload.filterParam+'&access_token='+payload.accessToken);  
+=======
+export const getApprovedInitiatives = (accessToken) => {
+  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);
+>>>>>>> f6b2ebb44c6d02ab5715bd27819943d1d0728a01
   return {
     type: GET_INITIATIVES,
     payload: request
   };
 }
+export const getCategories = (accessToken) => {
+  const request = axios.get(ALL_CATEGORIES +"?access_token="+accessToken);
+  console.log(request);
+  return {
+    type: GET_CATEGORIES,
+    payload: request
+  };
+}
+export const verifyUser = (eventObj,accessToken) => {  
+  const url = decodeURIComponent(VERIFY_USER+'{"where":{"username":"'+eventObj.lead+'"}}&access_token='+accessToken.id);
+  const request = axios.get(url);
+  return {
+    type: CONFIRM_USER,
+    payload: request
+  };
+
+/*  return function (dispatch) {
+    Swagger(SWAGGER_SPEC_URL,
+      {
+        requestInterceptor: (req) => {
+          req.headers['Authorization'] = accessToken;
+          return req;
+        },
+      })
+      .then((client) => {
+        let filterQuery = {"where":{"username":eventObj.lead}};
+        filterQuery = JSON.stringify(filterQuery)
+
+        client
+          .apis
+          .event
+          .event_create({filter: filterQuery})
+          .then(resp => dispatch(getResponse(resp)),
+        )
+      });
+  }*/
+}
+/*function getResponse(resp) {
+  return {
+    type: CONFIRM_USER,
+    payload: resp
+  };
+}*/

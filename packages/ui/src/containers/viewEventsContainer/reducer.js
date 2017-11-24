@@ -1,20 +1,19 @@
 /**
- * @author Kriti Aggarwal
- * @description A reducer function that returns the initiative list
- * based on the action type passed to it
+ * @author Uma Govindaraj
+ * @description A reducer function that returns the event list and approves the specified event.
  * @param {Object} state
  * @param {Object} action
  */
 
-import { DEFAULT_INITIATIVES } from "../../constants/actions";
+import { VIEW_EVENTS } from "../../constants/actions";
+
 
 export default function (state = [], action) {
-   
+
     switch (action.type) {
-        case DEFAULT_INITIATIVES:
+        case VIEW_EVENTS: 
             return JSON.parse(action.payload.data);
         default:
             return state;
-
     }
 }

@@ -1,13 +1,14 @@
 import {connect} from 'react-redux';
 import CreateEvent from '../../components/createEvent';
-import {sendEventDetails} from './action';
-import {getApprovedInitiatives} from './action';
+import {sendEventDetails, getApprovedInitiatives, verifyUser, getCategories} from './action';
 
 const mapStateToProps = (state) => {
   return {
     createEventformData: state.createEvent, //reducer name
     userInfo:state.userInfo,
-    approvedInitiatives: state.approvedInitiatives
+    verifyUser: state.verifyUser,
+    approvedInitiatives: state.approvedInitiatives,
+    categories: state.categories
   }
 }
 
@@ -18,6 +19,12 @@ const mapDisptchToProps = (dispatch, ownProps) => {
     },
     getApprovedInitiatives : (accessToken) => {
       dispatch(getApprovedInitiatives(accessToken, dispatch))
+    },
+    getCategories : (accessToken) => {
+      dispatch(getCategories(accessToken, dispatch))
+    },
+    verifyUser : (eventObj, accessToken) => {
+      return dispatch(verifyUser(eventObj, accessToken, dispatch))
     }
   }
 }

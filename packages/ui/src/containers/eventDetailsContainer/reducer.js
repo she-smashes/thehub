@@ -9,8 +9,9 @@
 import { GET_EVENTDETAILS } from "../../constants/actions";
 export default function (state = [], action) {
     switch (action.type) {
-        case GET_EVENTDETAILS:
-            return action.payload.data;
+        case GET_EVENTDETAILS: {
+           return JSON.parse(action.payload.data);
+        }
         default:
             return state;
     }
