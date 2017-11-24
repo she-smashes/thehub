@@ -21,7 +21,7 @@ export const getUserInfo = (userInfo) => {
 export const getUserInfo = (userInfo) => {
 
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(SWAGGER_SPEC_URL,
       {
         requestInterceptor: (req) => {
           
@@ -36,26 +36,23 @@ export const getUserInfo = (userInfo) => {
       };
       loginBody = JSON.stringify(loginBody);
         
-        client
+        return client
           .apis
           .user
           .user_login({credentials: loginBody, include: "user"})
-          .then(resp => dispatch(getResponse(AUTHORIZED_USER, resp)),
-        )
-
       });
   }
 
 }
-
-
-
-
-
-
-function getResponse(type, resp) {
+/**
+ * @name updateUserInfo
+ * @desc Updates the user info to reducer
+ * @param {*} type 
+ * @param {*} resp 
+ */
+export const updateUserInfo = (userInfo) => {
   return {
-    type: type,
-    payload: resp
+    type: AUTHORIZED_USER,
+    payload: userInfo
   };
 }
