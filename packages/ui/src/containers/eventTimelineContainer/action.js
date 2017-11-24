@@ -1,20 +1,47 @@
+
+/**
+ * @author Uma Govindaraj
+ * @description Action file to make the API call
+ */
+
+
 import axios from 'axios';
+import Swagger from 'swagger-client';
 
-import { DEFAULT_EVENTS, UPDATE_EVENT_LIST } from "../../constants/actions";
-import { GET_EVENTS } from "../../constants/apiList";
-import {eventList} from './data';
+import { DEFAULT_EVENTS } from "../../constants/actions";
 
-export const getEventList = (accessToken) => {
-  const request = axios.get(GET_EVENTS+'?access_token='+accessToken);
-  return {
-    type: DEFAULT_EVENTS,
-    payload: request
-  };
-}
+import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
-export const updateEventList = (data) => {
-  return {
-    type: UPDATE_EVENT_LIST,
-    payload: data
+
+export const getEventList = (access_token) => {
+  
+    return function (dispatch) {
+      Swagger(SWAGGER_SPEC_URL,
+        {
+          requestInterceptor: (req) => {
+            req.headers['Authorization'] = access_token;
+            return req;
+          },
+        })
+        .then((client) => {
+
+          client
+            .apis
+            .event
+            .event_listEvents()
+            .then(resp => dispatch(getResponse(resp)),
+          )
+        });
+    }
   }
-}
+    function getResponse(resp) {
+      return {
+        type: DEFAULT_EVENTS,
+        payload: resp
+      };
+    }
+    
+  
+
+
+

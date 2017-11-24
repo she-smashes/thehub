@@ -5,17 +5,15 @@
  * @param {Object} action
  */
 
-import { DEFAULT_EVENTS } from "../../constants/actions";
+import { VIEW_EVENTS } from "../../constants/actions";
 
 
 export default function (state = [], action) {
-console.log('In = ', action.type);
+
     switch (action.type) {
-        case DEFAULT_EVENTS: {
-            return action.payload.data.events;
-        }
+        case VIEW_EVENTS: 
+            return JSON.parse(action.payload.data);
         default:
             return state;
-
     }
 }

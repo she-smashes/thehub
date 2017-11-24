@@ -31,7 +31,7 @@ class ViewEvent extends Component {
     }
 
     /**
-     * This method renders the list of events in an accordion format.
+     * This method renders the list of events.
      */
     renderEvents = () => {   
        
@@ -45,21 +45,6 @@ class ViewEvent extends Component {
             }
             className = "event-timeline"/>
         });
-   
-/* 
-
-        return (
-            <div>
-                {this.props.viewEvents.map((event, index) => {
-                        return (
-                            <b>
-                            {event.id}   
-                            </b>                                                       
-                        );
-                    
-                })}
-            </div>
-        ); */
     }
 
     render = () => {

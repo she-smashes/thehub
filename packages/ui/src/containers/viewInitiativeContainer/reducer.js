@@ -7,17 +7,12 @@
  */
 
 import { DEFAULT_INITIATIVES } from "../../constants/actions";
-import { DEFAULT_EVENTS } from "../../constants/actions";
 
 export default function (state = [], action) {
-
-    console.log('In', action.type);
-    
+   
     switch (action.type) {
         case DEFAULT_INITIATIVES:
-            return action.payload.data;
-        case DEFAULT_EVENTS:
-            return action.payload.data.events;
+            return JSON.parse(action.payload.data);
         default:
             return state;
 

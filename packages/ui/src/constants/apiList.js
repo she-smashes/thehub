@@ -5,3 +5,4 @@ export const GET_INITIATIVES = "http://localhost:4000/api/initiatives";
 export const CREATE_NEW_INITIATIVE = "http://localhost:4000/api/initiatives";
 export const GET_TASKS = "http://localhost:4000/api/tasks/list-pending-tasks";
 export const UPDATE_TASK = "http://localhost:4000/api/tasks";
+export const SWAGGER_SPEC_URL = "http://localhost:4000/explorer/swagger.json";

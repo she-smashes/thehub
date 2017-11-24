@@ -23,8 +23,9 @@ import viewInitiatives from './containers/viewInitiativeContainer/reducer';
 import newInitiative from './containers/createInitiativeContainer/reducer';
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
-import viewEvents from './containers/eventDetailsContainer/reducer';
+import viewEvents from './containers/viewEventsContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
+
 
 // Persist only userInfo to the localstorage
 const config = {

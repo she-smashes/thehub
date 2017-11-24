@@ -3,21 +3,38 @@
  * @description Action file to make the API call
  */
 
-import axios from 'axios';
+import { VIEW_EVENTS } from "../../constants/actions";
+import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
-import { DEFAULT_EVENTS } from "../../constants/actions";
-import { GET_EVENTS } from "../../constants/apiList";
+import Swagger from 'swagger-client';
 
+export const getEventList = (access_token) => {
 
-/**
- * Invoke the getEventList API
- * @param {*the access token for the user who is logged in} accessToken 
- */
-export const getEventList = (accessToken) => {
-  const request = axios.get(GET_EVENTS + '?access_token=' + accessToken);
-  return {
-    type: DEFAULT_EVENTS,
-    payload: request
-  };
-
+  return function (dispatch) {
+    Swagger(SWAGGER_SPEC_URL,
+      {
+        requestInterceptor: (req) => {
+          req.headers['Authorization'] = access_token;
+          return req;
+        },
+      })
+      .then((client) => {
+        let filterQuery = {"where":{"status":"approved"}};
+        filterQuery = JSON.stringify(filterQuery)
+        
+        client
+          .apis
+          .event
+          .event_find({filter: filterQuery})
+          .then(resp => dispatch(getResponse(resp)),
+        )
+      });
+  }
 }
+  function getResponse(resp) {
+    return {
+      type: VIEW_EVENTS,
+      payload: resp
+    };
+  }
+  

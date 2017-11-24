@@ -1,15 +1,16 @@
 import { GET_EVENTDETAILS } from "../../constants/actions";
 import { GET_EVENTDETAILURL } from "../../constants/apiList";
+import { SWAGGER_SPEC_URL } from "../../constants/apiList";
+
 import Swagger from 'swagger-client';
 
 export const getEventDetails = (eventId, access_token) => {
 
   return function (dispatch) {
-    Swagger('http://localhost:4000/explorer/swagger.json',
+    Swagger(SWAGGER_SPEC_URL,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
-          // req.url = req.url + '?access_token=' + access_token;
           return req;
         },
       })

@@ -1,37 +1,39 @@
-import axios from 'axios';
-
 import { CREATE_AN_INITIATIVE } from "../../constants/actions";
-import { CREATE_NEW_INITIATIVE } from "../../constants/apiList"
+import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
-export const sendInitiativeDetails = (initiativeDetails,userInfoObj) => {
+import Swagger from 'swagger-client';
 
-  const request = axios.post(CREATE_NEW_INITIATIVE+'?access_token='+userInfoObj.id,
-  /*{
-      "title": initiativeDetails.initiativeName,
-  		"description": "This is sample description",
-      "status": "open",
-      "createdOn": initiativeDetails.intiativeStartDate,
-      "active": true,
-      "lead": initiativeDetails.approverName,
-      "createdBy": userInfoObj.userId,
-      "categoryId": 1,
-  		"created": userInfoObj.created
-  }*/
-  {
-    "title": initiativeDetails.initiativeName,
-    "description": "prayaas2 desc",
-    "status": "Open",
-    "createdOn": "2017-11-12",
-    "active": true,
-    "lead": "2",
-    "createdBy": "7",
-    "categoryId":"2",
-    "created": "2017-11-12"
+export const sendInitiativeDetails = (initiativeDetails, access_token) => {
+  return function (dispatch) {
+    Swagger(SWAGGER_SPEC_URL,
+      {
+        requestInterceptor: (req) => {
+          req.headers['Authorization'] = access_token;
+          return req;
+        },
+      })
+      .then((client) => {
 
-  });
-
-  return {
-    type: CREATE_AN_INITIATIVE,
-    payload: request
-  };
+        let postBody = {
+          "title": initiativeDetails.title,
+          "description": initiativeDetails.description,
+          "lead": initiativeDetails.lead
+        };
+        postBody = JSON.stringify(postBody)
+        
+        client
+          .apis
+          .initiative
+          .initiative_create({ data: postBody })
+          .then(resp => dispatch(getResponse(resp)),
+        )
+      });
+  }
 }
+  function getResponse(resp) {
+    return {
+      type: CREATE_AN_INITIATIVE,
+      payload: resp
+    };
+  }
+  

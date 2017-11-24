@@ -16,6 +16,7 @@ class EventDetails extends Component {
     }
   }
 
+
   componentDidMount = () => {
     this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id);
   }
@@ -37,7 +38,7 @@ class EventDetails extends Component {
             {this.props.eventDetails.description}
           </p>
           <div className="button-line">
-            <RaisedButton type="submit" label="APPROVE" primary key={this.props.eventDetails.id} onClick={() => { this.processForm(this.state.eventDetails.id) }} />
+            <RaisedButton type="button" label="REGISTER" />
           </div>
 
         </div>
