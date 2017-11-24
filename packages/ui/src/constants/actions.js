@@ -1,8 +1,10 @@
 export const DEFAULT_EVENTS = 'DEFAULT_EVENTS';
+export const VIEW_EVENTS = 'VIEW_EVENTS';
 export const UPDATE_EVENT_LIST = 'UPDATE_EVENT_LIST';
 export const GET_EVENTDETAILS = 'GET_EVENTDETAILS';
 export const AUTHORIZED_USER = 'AUTHORIZED_USER';
 export const RESET_TO_DEFAULT = "RESET_TO_DEFAULT";
+export const INVALID_USER = "Please enter correct username";
 export const INVALID_LOGIN = "Please enter correct email/password";
 export const DEFAULT_EVENT = 'DEFAULT_EVENT';
 export const DEFAULT_INITIATIVES = 'DEFAULT_INITIATIVES';
@@ -12,3 +14,4 @@ export const APPROVE_TASK = 'APPROVE_TASK';
 export const CREATE_AN_EVENT = "CREATE_AN_EVENT";
 export const GET_INITIATIVES ="APPROVED_INITIATIVES";
 export const CONFIRM_USER = "VERIFY_USER";
+export const GET_CATEGORIES ="ALL_CATEGORIES";

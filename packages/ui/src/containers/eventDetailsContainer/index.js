@@ -4,14 +4,15 @@ import {getEventDetails} from './action';
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    eventDetails: state.eventDetails
   }
 }
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     getEventDetails : (id, access_token) => {
-      return dispatch(getEventDetails(id, access_token, dispatch))
+      return dispatch(getEventDetails(id, access_token, dispatch));
     }
   }
 }

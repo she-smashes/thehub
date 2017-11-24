@@ -1,9 +1,15 @@
-import { CREATE_AN_INITIATIVE } from "../../constants/actions";
+/**
+ * @author Uma Govindaraj
+ * @description Action file to make the API call
+ */
+
+import { VIEW_EVENTS } from "../../constants/actions";
 import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
-export const sendInitiativeDetails = (initiativeDetails, access_token) => {
+export const getEventList = (access_token) => {
+
   return function (dispatch) {
     Swagger(SWAGGER_SPEC_URL,
       {
@@ -13,18 +19,13 @@ export const sendInitiativeDetails = (initiativeDetails, access_token) => {
         },
       })
       .then((client) => {
-
-        let postBody = {
-          "title": initiativeDetails.title,
-          "description": initiativeDetails.description,
-          "lead": initiativeDetails.lead
-        };
-        postBody = JSON.stringify(postBody)
+        let filterQuery = {"where":{"status":"approved"}};
+        filterQuery = JSON.stringify(filterQuery)
         
         client
           .apis
-          .initiative
-          .initiative_create({ data: postBody })
+          .event
+          .event_find({filter: filterQuery})
           .then(resp => dispatch(getResponse(resp)),
         )
       });
@@ -32,7 +33,7 @@ export const sendInitiativeDetails = (initiativeDetails, access_token) => {
 }
   function getResponse(resp) {
     return {
-      type: CREATE_AN_INITIATIVE,
+      type: VIEW_EVENTS,
       payload: resp
     };
   }
