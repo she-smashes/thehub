@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { CREATE_AN_EVENT, GET_INITIATIVES, CONFIRM_USER, GET_CATEGORIES } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
-import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER, ALL_CATEGORIES} from "../../constants/apiList";
+import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER, ALL_CATEGORIES, CREATE_NEW_INITIATIVE} from "../../constants/apiList";
 import Swagger from 'swagger-client';
 import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const sendEventDetails = (eventObj,userInfoObj) => {
@@ -37,8 +37,8 @@ export const sendEventDetails = (eventObj,userInfoObj) => {
     payload: request
   };
 }
-export const getApprovedInitiatives = (accessToken) => {
-  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);
+export const getApprovedInitiatives = (payload) => {
+  const request = axios.get(CREATE_NEW_INITIATIVE+'?filter='+payload.filterParam+'&access_token='+payload.accessToken);  
   return {
     type: GET_INITIATIVES,
     payload: request

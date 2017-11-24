@@ -80,11 +80,12 @@
       .then((response, error) => {
         // You get the logged in response here
         this.setState({isLoading: false});
-        console.log(error);
+        this.props.updateUserInfo(JSON.parse(response.data));
         History.push("/dashboard")
 
       }, (error) => {
         this.setState({isLoading: false});
+        console.log('error', error);
         this.handleOpen();
         this.resetForm();
       });
