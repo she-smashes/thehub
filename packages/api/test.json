@@ -1,10 +1,10 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 1,
+    "AccessToken": 12,
     "ACL": 1,
-    "RoleMapping": 13,
-    "Role": 4,
+    "RoleMapping": 16,
+    "Role": 5,
     "userBadge": 1,
     "badge": 1,
     "category": 10,
@@ -15,13 +15,25 @@
     "enrollment": 1,
     "score": 1,
     "task": 1,
-    "user": 13,
+    "user": 16,
     "eventUserVO": 1,
     "eventInitiativeVO": 1
   },
   "models": {
     "User": {},
-    "AccessToken": {},
+    "AccessToken": {
+      "VJBJCKAimwxXT8qFOB7kRPJbNzduZRSitpWkHtsPLywNzPszarmnXOKSiZIX0O2M": "{\"id\":\"VJBJCKAimwxXT8qFOB7kRPJbNzduZRSitpWkHtsPLywNzPszarmnXOKSiZIX0O2M\",\"ttl\":3600,\"created\":\"2017-11-24T17:38:53.169Z\",\"userId\":1}",
+      "N0D7v5H1CO9oRP5XPa2efnxmSxrcBBqLKIhCUtGPNEIWgeoJHCdtNFc3BC552ozH": "{\"id\":\"N0D7v5H1CO9oRP5XPa2efnxmSxrcBBqLKIhCUtGPNEIWgeoJHCdtNFc3BC552ozH\",\"ttl\":3600,\"created\":\"2017-11-24T18:00:26.440Z\",\"userId\":1}",
+      "m8hzDQfwXAvYvnGJJ383hZn9Ax17WRz5bn2hRuPxvxynb1gbeqsXIeb1LVY7mqno": "{\"id\":\"m8hzDQfwXAvYvnGJJ383hZn9Ax17WRz5bn2hRuPxvxynb1gbeqsXIeb1LVY7mqno\",\"ttl\":3600,\"created\":\"2017-11-24T18:01:02.805Z\",\"userId\":1}",
+      "SY10E6wjDPU38yuPXGx3lqnRBPqHZbV361wS0mWxJZiJsAUR7bWSyyoEOpR6krdF": "{\"id\":\"SY10E6wjDPU38yuPXGx3lqnRBPqHZbV361wS0mWxJZiJsAUR7bWSyyoEOpR6krdF\",\"ttl\":3600,\"created\":\"2017-11-24T18:10:45.564Z\",\"userId\":1}",
+      "LAxN0rAjvvzAqbM4REDVXfMtSavcrZnfj7D4zfULXFXHlAGQbxW2XN7H2FSCm7j9": "{\"id\":\"LAxN0rAjvvzAqbM4REDVXfMtSavcrZnfj7D4zfULXFXHlAGQbxW2XN7H2FSCm7j9\",\"ttl\":3600,\"created\":\"2017-11-24T18:31:26.200Z\",\"userId\":1}",
+      "vbGZeuB1KpyIDpzAwTuqHhyvaThvWIDbzL9eMk7awhFxFHCXvtpGcswEkFBCpPBw": "{\"id\":\"vbGZeuB1KpyIDpzAwTuqHhyvaThvWIDbzL9eMk7awhFxFHCXvtpGcswEkFBCpPBw\",\"ttl\":3600,\"created\":\"2017-11-24T18:33:01.277Z\",\"userId\":1}",
+      "ycNy6Df9ElRYR8Wgt9NujrRGFaZbMLcZ0WPkYW5jiFnj3Ms8ex84M2j4Fsi7oplk": "{\"id\":\"ycNy6Df9ElRYR8Wgt9NujrRGFaZbMLcZ0WPkYW5jiFnj3Ms8ex84M2j4Fsi7oplk\",\"ttl\":3600,\"created\":\"2017-11-24T18:33:56.706Z\",\"userId\":1}",
+      "x7FNEDzTHzHvimQ2eDShEsYYXoum12fQg8VhqzYXZndqaJHNBd8EMWpaBGInLCO0": "{\"id\":\"x7FNEDzTHzHvimQ2eDShEsYYXoum12fQg8VhqzYXZndqaJHNBd8EMWpaBGInLCO0\",\"ttl\":3600,\"created\":\"2017-11-24T18:35:17.451Z\",\"userId\":1}",
+      "mSY2A0n8fkcSB3k1fAhMsAptbP3AVNKGIU7ShjtroGwSXMS1ZvCJTKqCDT9zJbjy": "{\"id\":\"mSY2A0n8fkcSB3k1fAhMsAptbP3AVNKGIU7ShjtroGwSXMS1ZvCJTKqCDT9zJbjy\",\"ttl\":3600,\"created\":\"2017-11-24T18:42:22.524Z\",\"userId\":1}",
+      "vxT19HqEkcZrqiTeceAJfmSH5sftntu4hd3vrGSBazIDyprWVb9r45AeUYO9rqjd": "{\"id\":\"vxT19HqEkcZrqiTeceAJfmSH5sftntu4hd3vrGSBazIDyprWVb9r45AeUYO9rqjd\",\"ttl\":3600,\"created\":\"2017-11-24T18:44:57.157Z\",\"userId\":1}",
+      "TTdJR7qxH1Zbh7p1tHNykYoA6bBO9bXLpTa0YQClKdnjekEqWP2Ust3gO5SJY5T9": "{\"id\":\"TTdJR7qxH1Zbh7p1tHNykYoA6bBO9bXLpTa0YQClKdnjekEqWP2Ust3gO5SJY5T9\",\"ttl\":3600,\"created\":\"2017-11-24T18:45:01.459Z\",\"userId\":1}"
+    },
     "ACL": {},
     "RoleMapping": {
       "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",
@@ -35,12 +47,16 @@
       "9": "{\"principalType\":\"USER\",\"principalId\":\"9\",\"roleId\":2,\"id\":9}",
       "10": "{\"principalType\":\"USER\",\"principalId\":\"10\",\"roleId\":3,\"id\":10}",
       "11": "{\"principalType\":\"USER\",\"principalId\":\"11\",\"roleId\":3,\"id\":11}",
-      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}"
+      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}",
+      "13": "{\"principalType\":\"USER\",\"principalId\":\"13\",\"roleId\":4,\"id\":13}",
+      "14": "{\"principalType\":\"USER\",\"principalId\":\"14\",\"roleId\":4,\"id\":14}",
+      "15": "{\"principalType\":\"USER\",\"principalId\":\"15\",\"roleId\":4,\"id\":15}"
     },
     "Role": {
       "1": "{\"name\":\"employee\",\"description\":\"employee\",\"id\":1}",
       "2": "{\"name\":\"appadmin\",\"description\":\"appadmin\",\"id\":2}",
-      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}"
+      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}",
+      "4": "{\"name\":\"approver\",\"description\":\"approver\",\"id\":4}"
     },
     "userBadge": {},
     "badge": {},
@@ -92,7 +108,10 @@
       "9": "{\"password\":\"$2a$10$cTb/S.Iy4kV01.e73vYRSO1rldiRLeagiY1FK7STmDAbLm8ZvxbhK\",\"firstname\":\"appadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"appadmin3\",\"email\":\"appadmin3@example.com\",\"id\":9}",
       "10": "{\"password\":\"$2a$10$PidH1AOCYKEKFf4zx75fV.hNBNTt5Fyl2f8phGPdREMGyvXlK1KTG\",\"firstname\":\"sysadmin1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin1\",\"email\":\"sysadmin1@example.com\",\"id\":10}",
       "11": "{\"password\":\"$2a$10$B.ucIOhZHPsx98htf1r5tOab.ZBnx639wgpNxsGEQXFg5.VQGmWUa\",\"firstname\":\"sysadmin2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin2\",\"email\":\"sysadmin2@example.com\",\"id\":11}",
-      "12": "{\"password\":\"$2a$10$2bwzlRvDpeVWJ0ndwc5Q2eNqVJak9iKxiUB1tBj3MH9y97Sd78aL2\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}"
+      "12": "{\"password\":\"$2a$10$2bwzlRvDpeVWJ0ndwc5Q2eNqVJak9iKxiUB1tBj3MH9y97Sd78aL2\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}",
+      "13": "{\"password\":\"$2a$10$nP/PjR.vHbqSmO3MCcpjHuVvCJAyVULvI55bEBWSRhkvnxI2RzXGO\",\"firstname\":\"approver1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver1\",\"email\":\"approver1@example.com\",\"id\":13}",
+      "14": "{\"password\":\"$2a$10$pYbQGmT9U3E1AhwVUJSB0u2XADPr5n1BSErk33cnJSTGVFDELM.Ii\",\"firstname\":\"approver2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver2\",\"email\":\"approver2@example.com\",\"id\":14}",
+      "15": "{\"password\":\"$2a$10$eDz2JMhKYbt2ZWLG2YRS1OvF0BwgsIviGhI3TChY5q3jmVK2XGFbC\",\"firstname\":\"approver3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver3\",\"email\":\"approver3@example.com\",\"id\":15}"
     },
     "eventUserVO": {},
     "eventInitiativeVO": {}

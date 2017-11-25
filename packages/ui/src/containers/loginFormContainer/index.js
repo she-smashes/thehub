@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import LoginWidget from '../../components/login';
-import {getUserInfo} from './action';
+import {getUserInfo, updateUserInfo} from './action';
 
 const mapStateToProps = (state) => {  
   return {
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getUserInfo : (userInfo) => {
       return dispatch(getUserInfo(userInfo, dispatch))
+    },
+    updateUserInfo : (userInfo) => {
+      return dispatch(updateUserInfo(userInfo))
     }
   }
 }
