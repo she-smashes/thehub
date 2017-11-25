@@ -8,9 +8,6 @@ import promise from "redux-promise";
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-
 
 import './index.css';
 // Components
@@ -55,9 +52,7 @@ function configureStore() {
     let store = createStore(rootReducer,
         {}, // initial state
         compose(
-            applyMiddleware(promise, thunk, createLogger({
-                predicate: (getState, action) => false
-            })),
+            applyMiddleware(promise),
             //            applyMiddleware(promise(),  thunk, createLogger()),
             // added for redux dev tools extension
             (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
