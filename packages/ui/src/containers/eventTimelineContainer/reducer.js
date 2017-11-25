@@ -10,7 +10,7 @@ import { DEFAULT_EVENTS, UPDATE_EVENT_LIST } from "../../constants/actions";
 export default function (state = [], action) {
     switch (action.type) {
         case DEFAULT_EVENTS:
-            return JSON.parse(action.payload.data).events;
+            return action.payload;
         default:
             return state;
 

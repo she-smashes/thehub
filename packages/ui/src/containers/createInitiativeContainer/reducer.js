@@ -10,8 +10,8 @@ import { CREATE_AN_INITIATIVE } from "../../constants/actions";
 export default function (state = [], action) {
     
     switch (action.type) {
-        case CREATE_AN_INITIATIVE:{
-            return JSON.parse(action.payload.data);}
+        case CREATE_AN_INITIATIVE: 
+            return action.payload;
         default:
             return state;
         

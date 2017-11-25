@@ -9,6 +9,7 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import History from '../history';
 
 const items = [
   <MenuItem key={1} value={1} primaryText="1" />,
@@ -78,24 +79,14 @@ class CreateInitiative extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.id);
+            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.id).then((response, error) => {
+                History.push("/viewinitiative");
+              }, (error) => {
+                console.log(error);
+              });
         }
     }
 
-
-    showMessage=()=> {
-        if(this.newInitiative != undefined) {       
-            if(this.newInitiative.id != "") {
-                alert('Initiative Created!!!')
-            } else if(this.newInitiative.errors != "") {
-                alert('Initiative not Created!!!')
-            }
-        }
-    }
-
-    componentDidUpdate( prevProps, prevState ){
-        this.showMessage();
-    }
     /**
      * Change the user object.
      *
@@ -173,8 +164,6 @@ class CreateInitiative extends React.Component {
                     <div className="button-line">
                         <RaisedButton type="submit" label="Create" primary />
                     </div>
-                    
-                    <input type="hidden" value={this.state.newInitiative.id}/>
                     
                 </form>
             </div>

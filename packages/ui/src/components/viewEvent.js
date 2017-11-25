@@ -22,12 +22,24 @@ import {Link} from 'react-router-dom';
 
 class ViewEvent extends Component {
 
+    constructor(props) {
+        super(props);
+        // set the initial component state
+        this.state = {
+          viewEvents: {},
+        };
+      }
+
     /**
      * This method invokes the gets the list of events when the component is mounted.
      */
 
     componentDidMount = () => {
-        this.props.getEventList(this.props.userInfo.id);
+        this.props.getEventList(this.props.userInfo.id).then((response, error) => {
+            this.props.updateViewEventsInfo(JSON.parse(response.data));    
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     /**

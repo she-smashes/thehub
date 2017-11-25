@@ -7,10 +7,6 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
     "eventId": {
       "type": "string",
       "required": true
@@ -20,16 +16,13 @@
       "required": true
     },
     "points": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "attendanceHours": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "attendanceFlag": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "registeredOn": {
       "type": "date",

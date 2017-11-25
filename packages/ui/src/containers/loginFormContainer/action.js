@@ -1,18 +1,7 @@
 import Swagger from 'swagger-client';
 import { AUTHORIZED_USER } from "../../constants/actions";
 import { SWAGGER_SPEC_URL } from "../../constants/apiList";
-/*
-export const getUserInfo = (userInfo) => {
-  const request = axios.post(LOGGIN_USER,
-  {
-      "email": userInfo.email,
-      "password": userInfo.password
-  });
-  return {
-    type: AUTHORIZED_USER,
-    payload:request
-  };
-}*/
+
 
 /**
 * Logs in the user
@@ -39,7 +28,7 @@ export const getUserInfo = (userInfo) => {
         return client
           .apis
           .user
-          .user_login({credentials: loginBody, include: "user"})
+          .user_login({credentials: loginBody, include: "user"});
       });
   }
 

@@ -10,7 +10,11 @@ import {List, ListItem} from 'material-ui/List';
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
-        this.props.getInitiativeList(this.props.userInfo.id);
+        this.props.getInitiativeList(this.props.userInfo.id).then((response, error) => {
+            this.props.updateViewInitiativeInfo(JSON.parse(response.data));    
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     showDetails = (initiativeId) => {

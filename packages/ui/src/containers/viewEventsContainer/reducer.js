@@ -12,7 +12,7 @@ export default function (state = [], action) {
 
     switch (action.type) {
         case VIEW_EVENTS: 
-            return JSON.parse(action.payload.data);
+            return action.payload;
         default:
             return state;
     }

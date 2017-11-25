@@ -74,7 +74,7 @@
       .then((response, error) => {
         // You get the logged in response here
         this.props.updateUserInfo(JSON.parse(response.data));
-        History.push("/dashboard")
+        History.push("/dashboard");
 
       }, (error) => {
         console.log('error', error);
