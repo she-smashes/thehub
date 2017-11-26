@@ -4,8 +4,6 @@
  */
 import Swagger from 'swagger-client';
 
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
-
 /**
  * Invoke the getTaskList API
  * @param {*the access token for the user who is logged in} accessToken 
@@ -13,7 +11,7 @@ import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const getTaskList = (access_token) => {
 
   return function (dispatch) {
-    return Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -44,7 +42,7 @@ export const updateTaskInfo = (type, taskInfo) => {
 export const approveTask = (access_token, taskId) => {
 
   return function (dispatch) {
-    return Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;

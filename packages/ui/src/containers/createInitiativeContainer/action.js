@@ -1,11 +1,10 @@
 import { CREATE_AN_INITIATIVE } from "../../constants/actions";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
 export const sendInitiativeDetails = (initiativeDetails, access_token) => {
   return function (dispatch) {
-    return Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;

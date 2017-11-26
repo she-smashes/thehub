@@ -1,30 +1,43 @@
-var assert = require('chai').assert,
-  superagent = require('superagent'),
-  app = require('../server/server'),
-  tests = require('./apiTestConfig.json'),
-  async = require('async');
-
-/* var dataSource = app.dataSource('testdb', {
+'use strict';
+var assert = require('chai').assert;
+var loopback = require('loopback');
+var supertest = require('supertest');
+var app = require('../server/server');
+var tests = require('./apiTestConfig.json');
+var async = require('async');
+var superagent;
+ var dataSource = app.dataSource('testdb', {
   "name": "db",
   "connector": "memory",
-  "file": "test.json"
+  "file": "testdb.json"
 });
- */
-var baseURL = "http://localhost:4000/api";
+ 
+
+var models = require('../server/model-config.json');
+for (var key in models) {
+  console.log('key = ' + key);
+  if(key !== '_meta') {
+  var model = loopback.getModel(key);
+  loopback.configureModel(model, {dataSource: dataSource});
+}
+}
+
+
+var url = "http://localhost:4000/api";
+var baseURL = "/";
 
 async.each(tests, function (data, asyncCallback) {
 
-  var model = data.model,
-    method = data.method,
-    withData = data.withData,
-    expectStatus = data.expectStatus,
-    expectVar = data.expectVar,
-    expectValue = data.expectValue,
-    expectDescription = data.expectDescription,
-    username = "",
-    password = "",
-    count = data.count;
-
+  var model = data.model;
+  var method = data.method;
+  var withData = data.withData;
+  var expectStatus = data.expectStatus;
+  var expectVar = data.expectVar;
+  var expectValue = data.expectValue;
+  var expectDescription = data.expectDescription;
+  var username = "";
+  var password = "";
+  var count = data.count;
 
   var isWithAuthentication = (data.hasOwnProperty('username') && data.hasOwnProperty('password'));
   if (isWithAuthentication) {
@@ -42,20 +55,19 @@ async.each(tests, function (data, asyncCallback) {
     afterEach(function (done) {
       server.close(done);
     });
-
+    var loginBlock;
     it(expectDescription, function (done) {
 
       let access_token = "";
-      var supragent = superagent;
-      var authURLToHit = baseURL + '/' + 'users';
+
       if (isWithAuthentication) {
         loginBlock = function (loginCallback) {
-          authURLToHit = authURLToHit + '/' + 'login';
           var loginData = {};
           loginData.username = data.username;
           loginData.password = data.password;
+          var supragent = supertest.agent(url);
           supragent
-            .post(authURLToHit)
+            .post(baseURL + 'users/login')
             .send(loginData)
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
@@ -71,12 +83,10 @@ async.each(tests, function (data, asyncCallback) {
         };
       }
 
-      var agent = superagent;
-      urlToHit = baseURL + '/' + model;
+      var agent = supertest.agent(url);
       if (method.toUpperCase() === 'LOGIN') {
-        urlToHit = urlToHit + '/' + method;
         agent
-          .post(urlToHit)
+          .post(baseURL + model + '/login')
           .send(withData)
           .set('Accept', 'application/json')
           .set('Content-Type', 'application/json')
@@ -87,13 +97,13 @@ async.each(tests, function (data, asyncCallback) {
             done();
           });
       } else {
-       
+
         loginBlock(function (loginError, loginToken) {
           if (loginError) {
             done(loginError);
             return asyncCallback();
           }
-
+          var urlToHit = baseURL + model;
           if (method.toUpperCase() === 'GET') {
             if (count === "true") {
               urlToHit = urlToHit + "/count"
@@ -119,7 +129,7 @@ async.each(tests, function (data, asyncCallback) {
               assert.equal(res.status, expectStatus);
               if (count === 'true') {
                 assert.isAbove(res.body[expectVar], expectValue);
-              } else if(method.toUpperCase() === 'POST'){
+              } else if (method.toUpperCase() === 'POST') {
                 assert.isNotEmpty(res.body[expectVar] + "", expectValue);
               } else {
                 assert.equal(res.body[expectVar] + "", expectValue);

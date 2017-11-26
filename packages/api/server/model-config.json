@@ -45,7 +45,7 @@
   },
   "userBadge": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "badge": {
     "dataSource": "db",

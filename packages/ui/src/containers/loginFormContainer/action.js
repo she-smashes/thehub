@@ -1,7 +1,5 @@
 import Swagger from 'swagger-client';
 import { AUTHORIZED_USER } from "../../constants/actions";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
-
 
 /**
 * Logs in the user
@@ -10,7 +8,7 @@ import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const getUserInfo = (userInfo) => {
 
   return function (dispatch) {
-    return Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           

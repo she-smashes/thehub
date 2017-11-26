@@ -22,7 +22,8 @@ import viewTasks from './containers/viewApprovalContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
 import viewEvents from './containers/viewEventsContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
-
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
 // Persist only userInfo to the localstorage
 const config = {
@@ -52,7 +53,9 @@ function configureStore() {
     let store = createStore(rootReducer,
         {}, // initial state
         compose(
-            applyMiddleware(promise),
+            applyMiddleware(promise, thunk, createLogger({
+                predicate: (getState, action) => false
+            })),
             //            applyMiddleware(promise(),  thunk, createLogger()),
             // added for redux dev tools extension
             (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
