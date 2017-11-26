@@ -6,31 +6,26 @@ import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER, ALL_CATEGORIES, CR
 import Swagger from 'swagger-client';
 import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const sendEventDetails = (eventObj,userInfoObj) => {
-
+  const hourly = eventObj.hourlyParticipant;
+  const nonhourly = eventObj.nonHourlyParticipant;
+  const participant = hourly.concat(nonhourly);
   const request = axios.post(CREATE_NEW_EVENT+'?access_token='+userInfoObj.id,
-  /*{
-      "title": initiativeDetails.initiativeName,
-  		"description": "This is sample description",
-      "status": "open",
-      "createdOn": initiativeDetails.intiativeStartDate,
-      "active": true,
-      "lead": initiativeDetails.approverName,
-      "createdBy": userInfoObj.userId,
-      "categoryId": 1,
-  		"created": userInfoObj.created
-  }*/
-  {
+    {
+    "initiativeId": eventObj.initiativeName,
     "title": eventObj.title,
-    "description": "prayaas2 desc",
-    "status": "Open",
-    "createdOn": "2017-11-12",
-    "active": true,
-    "lead": "2",
-    "createdBy": "7",
-    "categoryId":"2",
-    "created": "2017-11-12"
-
-  });
+    "startDate": "2017-11-27T09:49:12.481Z",
+    "endDate": "2017-11-28T09:49:12.481Z",
+    "location": eventObj.location,
+    "description": eventObj.description,
+    "lead": eventObj.lead,
+    "createdBy": userInfoObj.userId,
+    "eventHourFlag": 0,
+    "participantType": [
+       participant
+    ],
+    "categoryId": eventObj.category
+  }
+);
 
   return {
     type: CREATE_AN_EVENT,

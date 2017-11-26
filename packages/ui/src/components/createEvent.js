@@ -28,12 +28,11 @@ const hourly = [
   <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
 ];
 const nonhourly = [
-  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
-  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
-  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
-  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
+  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver" />,
+  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van" />,
+  <MenuItem key={3} value={3} insetChildren={true} primaryText="April" />,
+  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph" />
 ];
-
 class CreateEvent extends Component {
     /**
      * Class constructor.
@@ -56,8 +55,8 @@ class CreateEvent extends Component {
                 eventEndDate:'',
                 location: '',
                 category: '',
-                hourlyParticipantType: '',
-                nonHourlyParticipantType: ''
+                hourlyParticipant: '',
+                nonHourlyParticipant: ''
             },
 
         };
@@ -138,12 +137,20 @@ class CreateEvent extends Component {
      * @param {object} event - the JavaScript event object
      */
     verifyLeadUser=(event)=> {
+        console.log(this.props.userInfo);
         this.props.verifyUser(this.state.createEventformData,this.props.userInfo)
         .then((response,error) =>{
+            this.setState(prevState => ({
+                createEventformData: {
+                    ...prevState.createEventformData,
+                    lead: JSON.stringify(response.payload.data[0].id)
+                }
+            }));
             if(response.payload.data.length > 0){
               this.setState({
                   disabled: false,
-                  open: false
+                  open: false,
+                  lead: 1
               });
             }
             else{
@@ -180,18 +187,18 @@ class CreateEvent extends Component {
      * Function to set the value into the state for participant drop down
      *
     */
-    onParticipantDropDownChange=(event,index,value)=>{
+    onHourlyDropdownChange=(event,index,value)=>{
         this.setState({
-            createEventformData : {...this.state.createEventformData, participantType: value}
+            createEventformData : {...this.state.createEventformData, hourlyParticipant: value}
         });
     };
     /**
-     * Function to set the value into the state for hourly drop down
+     * Function to set the value into the state for participant drop down
      *
     */
-    onHourlyDropDownChange=(event,index,value)=>{
+    onNonHourlyDropdownChange=(event,index,value)=>{
         this.setState({
-            createEventformData : {...this.state.createEventformData, hourlyParticipantType: value}
+            createEventformData : {...this.state.createEventformData, nonHourlyParticipant: value}
         });
     };
     /**
@@ -201,16 +208,6 @@ class CreateEvent extends Component {
     onCategoryDropDownChange=(event,index,value)=>{
         this.setState({
             createEventformData : {...this.state.createEventformData, category: value}
-        });
-    };
-    onCategoryDropDownChange
-    /**
-     * Function to set the value into the state for hourly drop down
-     *
-    */
-    onNonHourlyDropDownChange=(event,index,value)=>{
-        this.setState({
-            createEventformData : {...this.state.createEventformData, nonHourlyParticipantType: value}
         });
     };
     /**
@@ -263,7 +260,7 @@ class CreateEvent extends Component {
           onClick={this.handleClose}
         />,
       ];
-      console.log(JSON.stringify(this.props.categories)+"Sudha");
+      console.log(JSON.stringify(this.state.createEventformData)+"Sudha");
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -295,12 +292,12 @@ class CreateEvent extends Component {
                      {this.props.categories.length>0?this.renderCategories():<div></div>}
                     </SelectField>
                     <div>
-                    <SelectField className="align-left" multiple={true} hintText="Hourly" name="hourly" value={this.state.createEventformData.hourlyParticipantType} onChange={(event, index, value)=> this.onHourlyDropDownChange(event, index, value)}>
+                    <SelectField className="align-left" multiple={true} hintText="Hourly" name="hourly" value={this.state.createEventformData.hourlyParticipant} onChange={(event, index, value)=> this.onHourlyDropdownChange(event, index, value)}>
                      {hourly}
                     </SelectField>
                     </div>
                     <div>
-                    <SelectField className="align-left" multiple={true} hintText="Non-Hourly" name="nonhourly" value={this.state.createEventformData.nonHourlyParticipantType} onChange={(event, index, value)=> this.onNonHourlyDropDownChange(event, index, value)}>
+                    <SelectField className="align-left" multiple={true} hintText="Non-Hourly" name="nonhourly" value={this.state.createEventformData.nonHourlyParticipant} onChange={(event, index, value)=> this.onNonHourlyDropdownChange(event, index, value)}>
                      {nonhourly}
                     </SelectField>
                     </div>

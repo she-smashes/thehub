@@ -4,7 +4,7 @@ import {sendEventDetails, getApprovedInitiatives, verifyUser, getCategories} fro
 
 const mapStateToProps = (state) => {
   return {
-    createEventformData: state.createEvent, //reducer name
+    createEvent: state.createEvent, //reducer name
     userInfo:state.userInfo,
     verifyUser: state.verifyUser,
     approvedInitiatives: state.approvedInitiatives,
@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
-    sendEventDetails : (initiativeDetails,userInfoObj) => {
-       dispatch(sendEventDetails(initiativeDetails, userInfoObj, dispatch))
+    sendEventDetails : (eventObj,userInfoObj) => {
+       return dispatch(sendEventDetails(eventObj,userInfoObj, dispatch))
     },
     getApprovedInitiatives : (accessToken) => {
       dispatch(getApprovedInitiatives(accessToken, dispatch))
