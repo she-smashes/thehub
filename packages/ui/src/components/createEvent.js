@@ -46,11 +46,13 @@ class CreateEvent extends Component {
             errors: {},
             disabled: true,
             open: false,
+            message: '',
             createEventformData: {
                 title: '',
                 description: '',
                 initiativeName: '',
                 lead: '',
+                leadId: '',
                 eventStartDate:'',
                 eventEndDate:'',
                 location: '',
@@ -111,9 +113,13 @@ class CreateEvent extends Component {
         if (this.handleValidation()) {
             this.props.sendEventDetails(this.state.createEventformData,this.props.userInfo)
             .then((response,error) =>{
-                alert('Event Created!!!')
+                History.push("/dashboard");
             },(error)=>{
-                alert('Error'+error);
+              this.handleOpen();
+              this.setState({
+                  open: true,
+                  message:"Event not created!!"
+              });
             });
         }
     }
@@ -137,27 +143,27 @@ class CreateEvent extends Component {
      * @param {object} event - the JavaScript event object
      */
     verifyLeadUser=(event)=> {
-        console.log(this.props.userInfo);
         this.props.verifyUser(this.state.createEventformData,this.props.userInfo)
         .then((response,error) =>{
-            this.setState(prevState => ({
-                createEventformData: {
-                    ...prevState.createEventformData,
-                    lead: JSON.stringify(response.payload.data[0].id)
-                }
-            }));
             if(response.payload.data.length > 0){
+              this.setState(prevState => ({
+                  createEventformData: {
+                      ...prevState.createEventformData,
+                      leadId: JSON.stringify(response.payload.data[0].id)
+                  }
+              }));
               this.setState({
                   disabled: false,
                   open: false,
-                  lead: 1
+                  message: ''
               });
             }
             else{
               this.handleOpen();
               this.setState({
                   disabled: true,
-                  open: true
+                  open: true,
+                  message:"Please enter correct Username"
               });
             }
         },(error)=>{
@@ -259,8 +265,7 @@ class CreateEvent extends Component {
           keyboardFocused={true}
           onClick={this.handleClose}
         />,
-      ];
-      console.log(JSON.stringify(this.state.createEventformData)+"Sudha");
+      ];      
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -313,7 +318,7 @@ class CreateEvent extends Component {
                   open={this.state.open}
                   onRequestClose={this.handleClose}
                 >
-                  { INVALID_USER }
+                  { this.state.message }
                 </Dialog>
             </div>
         );
