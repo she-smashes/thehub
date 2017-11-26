@@ -9,7 +9,7 @@
         "expectStatus": "200",
         "expectVar": "userId",
         "expectValue": "7",
-        "expectDescription":"sssssssshould log in and log out with live server"
+        "expectDescription":"should log in live server"
     },
     {
         "method": "login",

@@ -1,5 +1,5 @@
 {
-	"test": {
+	"db": {
 		"name": "test",
 		"host": "ds243325.mlab.com",
 		"database": "shesmashes-dev",
