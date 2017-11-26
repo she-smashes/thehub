@@ -11,8 +11,9 @@ import { DEFAULT_INITIATIVES } from "../../constants/actions";
 export default function (state = [], action) {
    
     switch (action.type) {
-        case DEFAULT_INITIATIVES:
-            return JSON.parse(action.payload.data);
+        case DEFAULT_INITIATIVES: {
+            return action.payload;
+        }
         default:
             return state;
 

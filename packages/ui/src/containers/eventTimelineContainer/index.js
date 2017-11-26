@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import EventTimelineWidget from '../../components/eventTimelineWidget';
-import { getEventList } from './action';
+import { getEventList,updateEventTimelineInfo } from './action';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getEventList: (accessToken) => {
-      dispatch(getEventList(accessToken, dispatch))
+      return dispatch(getEventList(accessToken, dispatch))
+    },
+    updateEventTimelineInfo : (eventTimeLineDetails) => {
+      return dispatch(updateEventTimelineInfo(eventTimeLineDetails));
     }
   }
 }

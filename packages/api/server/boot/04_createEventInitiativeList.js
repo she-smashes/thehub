@@ -51,7 +51,7 @@ module.exports = function (app, cb) {
 																					eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
 																					eventmodelItem.startDate = new Date(eventmodelItem.startDate);
 																					eventmodelItem.endDate = new Date(eventmodelItem.endDate);
-																					
+																					eventmodelItem.participantId = [1, 2];
 
 																					delete eventmodelItem.category;
 																					delete eventmodelItem.initiative;

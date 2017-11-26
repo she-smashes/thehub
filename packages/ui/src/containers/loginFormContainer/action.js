@@ -1,19 +1,5 @@
 import Swagger from 'swagger-client';
-import axios from 'axios';
-
 import { AUTHORIZED_USER } from "../../constants/actions";
-import { SWAGGER_SPEC_URL, LOGGIN_USER } from "../../constants/apiList";
-// export const getUserInfo = (userInfo) => {
-//   const request = axios.post(LOGGIN_USER,
-//   {
-//       "email": userInfo.email,
-//       "password": userInfo.password
-//   });
-//   return {
-//     type: AUTHORIZED_USER,
-//     payload:request
-//   };
-// }
 
 /**
 * Logs in the user
@@ -22,10 +8,10 @@ import { SWAGGER_SPEC_URL, LOGGIN_USER } from "../../constants/apiList";
 export const getUserInfo = (userInfo) => {
 
   return function (dispatch) {
-    return Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-
+          
           return req;
         },
       })
@@ -40,7 +26,7 @@ export const getUserInfo = (userInfo) => {
         return client
           .apis
           .user
-          .user_login({credentials: loginBody, include: "user"})
+          .user_login({credentials: loginBody, include: "user"});
       });
   }
 

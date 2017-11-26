@@ -1,13 +1,11 @@
 import { GET_EVENTDETAILS } from "../../constants/actions";
-import { GET_EVENTDETAILURL } from "../../constants/apiList";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
 export const getEventDetails = (eventId, access_token) => {
 
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -15,19 +13,45 @@ export const getEventDetails = (eventId, access_token) => {
         },
       })
       .then((client) => {
-        client
+        return client
           .apis
           .event
-          .event_findById({ id: eventId })
-          .then(resp => dispatch(getEventDet(resp)),
-        )
+          .event_findById({ id: eventId });
       });
   }
 }
-  function getEventDet(resp) {
-    return {
-      type: 'GET_EVENTDETAILS',
-      payload: resp
-    };
+export const registerUserForEvent = (eventId, userId, access_token) => {
+
+  return function (dispatch) {
+    return Swagger(process.env.REACT_APP_API_URI,
+      {
+        requestInterceptor: (req) => {
+          req.headers['Authorization'] = access_token;
+          return req;
+        },
+      })
+      .then((client) => {
+
+        let postBody = {
+          "eventId": eventId,
+          "userId": userId,
+          "registeredOn": new Date(),
+          "enrollmentType": "1"
+        };
+        postBody = JSON.stringify(postBody);
+
+        return client
+          .apis
+          .event
+          .event_prototype___create__enrollments({ id: eventId, data: postBody });
+
+      });
   }
-  
+}
+
+export const updateEventDetails = (eventDetailsInfo) => {
+  return {
+    type: 'GET_EVENTDETAILS',
+    payload: eventDetailsInfo
+  };
+}

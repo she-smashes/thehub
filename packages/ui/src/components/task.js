@@ -12,6 +12,8 @@ import { Accordion, AccordionItem } from 'react-sanfona';
 import './accordian.css';
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
+import { DEFAULT_TASKS } from "../constants/actions";
+import { APPROVE_TASK } from "../constants/actions";
 
 /**
  * 
@@ -25,7 +27,11 @@ class Task extends Component {
      * This method invokes the approveTask action.
      */
     processForm = (taskId) => {
-        this.props.approveTask(this.props.userInfo.id, taskId);
+        this.props.approveTask(this.props.userInfo.id, taskId).then((response, error) => {
+            this.props.updateTaskInfo(APPROVE_TASK, JSON.parse(response.data));    
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     /**
@@ -33,7 +39,11 @@ class Task extends Component {
      */
 
     componentDidMount = () => {
-        this.props.getTaskList(this.props.userInfo.id);
+        this.props.getTaskList(this.props.userInfo.id).then((response, error) => {
+            this.props.updateTaskInfo(DEFAULT_TASKS, JSON.parse(response.data).pendingTasks);    
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     /**

@@ -8,9 +8,6 @@ import promise from "redux-promise";
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-
 
 import './index.css';
 // Components
@@ -29,7 +26,8 @@ import approvedInitiatives from './containers/createEventContainer/getInitReduce
 import categories from './containers/createEventContainer/categoriesReducer';
 import verifyUser from './containers/createEventContainer/verifyUserReducer';
 import registerServiceWorker from './registerServiceWorker';
-
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
 // Persist only userInfo to the localstorage
 const config = {

@@ -18,7 +18,21 @@ class EventDetails extends Component {
 
 
   componentDidMount = () => {
-    this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id);
+    this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id).then((response, error) => {
+      this.props.updateEventDetails(JSON.parse(response.data));    
+    }, (error) => {
+      console.log(error);
+    });
+  }
+    /**
+     * This method invokes the approveTask action.
+     */
+    processForm = () => {
+      this.props.registerUserForEvent(this.props.match.params.id, this.props.userInfo.userId, this.props.userInfo.id).then((response, error) => {
+        this.props.updateEventDetails(JSON.parse(response.data));    
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -38,7 +52,7 @@ class EventDetails extends Component {
             {this.props.eventDetails.description}
           </p>
           <div className="button-line">
-            <RaisedButton type="button" label="REGISTER" />
+          <RaisedButton type="submit" label="REGISTER" primary  onClick={()=>{this.processForm()}}/>
           </div>
 
         </div>

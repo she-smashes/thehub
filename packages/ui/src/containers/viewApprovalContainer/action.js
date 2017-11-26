@@ -4,10 +4,6 @@
  */
 import Swagger from 'swagger-client';
 
-import { DEFAULT_TASKS } from "../../constants/actions";
-import { APPROVE_TASK } from "../../constants/actions";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
-
 /**
  * Invoke the getTaskList API
  * @param {*the access token for the user who is logged in} accessToken 
@@ -15,7 +11,7 @@ import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 export const getTaskList = (access_token) => {
 
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -24,20 +20,18 @@ export const getTaskList = (access_token) => {
       })
       .then((client) => {
 
-        client
+        return client
           .apis
           .task
-          .task_listPendingTasks()
-          .then(resp => dispatch(getResponse(DEFAULT_TASKS, resp)),
-        )
+          .task_listPendingTasks();
       });
   }
 }
-function getResponse(type, resp) {
+export const updateTaskInfo = (type, taskInfo) => {
   return {
     type: type,
-    payload: resp
-  };
+    payload: taskInfo
+  }
 }
 
 /**
@@ -48,7 +42,7 @@ function getResponse(type, resp) {
 export const approveTask = (access_token, taskId) => {
 
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -57,17 +51,14 @@ export const approveTask = (access_token, taskId) => {
       })
       .then((client) => {
 
-        let putBody = {"status":"approved"};
+        let putBody = { "status": "approved" };
         putBody = JSON.stringify(putBody);
-        let filterQuery = {"id": taskId};
+        let filterQuery = { "id": taskId };
         filterQuery = JSON.stringify(filterQuery)
-        client
+        return client
           .apis
           .task
-          .task_prototype_patchAttributes({id: taskId, data: putBody})
-          .then(resp => dispatch(getResponse(APPROVE_TASK, resp)),
-        )
-
+          .task_prototype_patchAttributes({ id: taskId, data: putBody });
       });
   }
 

@@ -1,11 +1,10 @@
 import { CREATE_AN_INITIATIVE } from "../../constants/actions";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
 export const sendInitiativeDetails = (initiativeDetails, access_token) => {
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -20,20 +19,18 @@ export const sendInitiativeDetails = (initiativeDetails, access_token) => {
           "lead": initiativeDetails.lead
         };
         postBody = JSON.stringify(postBody)
-        
-        client
+
+        return client
           .apis
           .initiative
-          .initiative_create({ data: postBody })
-          .then(resp => dispatch(getResponse(resp)),
-        )
+          .initiative_create({ data: postBody });
+
       });
   }
 }
-  function getResponse(resp) {
-    return {
-      type: CREATE_AN_INITIATIVE,
-      payload: resp
-    };
-  }
-  
+export const updateInitiativeInfo = (initiativeInfo) => {
+  return {
+    type: CREATE_AN_INITIATIVE,
+    payload: initiativeInfo
+  };
+}

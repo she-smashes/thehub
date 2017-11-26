@@ -6,14 +6,13 @@
 
 
 import { DEFAULT_INITIATIVES } from "../../constants/actions";
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
 export const getInitiativeList = (access_token) => {
 
   return function (dispatch) {
-    Swagger(SWAGGER_SPEC_URL,
+    return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
           req.headers['Authorization'] = access_token;
@@ -24,19 +23,17 @@ export const getInitiativeList = (access_token) => {
         let filterQuery = {"where":{"status":"approved"}};
         filterQuery = JSON.stringify(filterQuery)
 
-        client
+        return client
           .apis
           .initiative
-          .initiative_find({filter: filterQuery})
-          .then(resp => dispatch(getResponse(resp)),
-        )
+          .initiative_find({filter: filterQuery});
       });
   }
 }
-  function getResponse(resp) {
+export const updateViewInitiativeInfo = (viewInitiativeInfo) => {
     return {
       type: DEFAULT_INITIATIVES,
-      payload: resp
+      payload: viewInitiativeInfo
     };
   }
   

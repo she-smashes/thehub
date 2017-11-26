@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import ViewInitiative from '../../components/viewInitiative';
-import {getInitiativeList} from './action';
+import {getInitiativeList, updateViewInitiativeInfo} from './action';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +12,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getInitiativeList : ( accessToken ) => {
-      dispatch(getInitiativeList(accessToken, dispatch))
+      return dispatch(getInitiativeList(accessToken, dispatch))
+    },
+    updateViewInitiativeInfo : (initiativeDetails) => {
+      return dispatch(updateViewInitiativeInfo(initiativeDetails));
     }
   }
 }
