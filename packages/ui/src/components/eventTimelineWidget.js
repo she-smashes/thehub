@@ -57,7 +57,6 @@ class EventTimelineWidget extends Component {
 
 
     render = () => {
-        console.log(this.props)
         return (
             <div>
                 <h3>This is event timeline!</h3>

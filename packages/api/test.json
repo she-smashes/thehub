@@ -1,10 +1,10 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 1,
+    "AccessToken": 2,
     "ACL": 1,
-    "RoleMapping": 13,
-    "Role": 4,
+    "RoleMapping": 16,
+    "Role": 5,
     "userBadge": 1,
     "badge": 1,
     "category": 10,
@@ -15,13 +15,15 @@
     "enrollment": 1,
     "score": 1,
     "task": 1,
-    "user": 13,
+    "user": 16,
     "eventUserVO": 1,
     "eventInitiativeVO": 1
   },
   "models": {
     "User": {},
-    "AccessToken": {},
+    "AccessToken": {
+      "rxIpNI7pNR7WjeoJhy90oSqeX8AiBi5goxUqql11K4CpMwdAuZUSxuAovKxOiJB6": "{\"id\":\"rxIpNI7pNR7WjeoJhy90oSqeX8AiBi5goxUqql11K4CpMwdAuZUSxuAovKxOiJB6\",\"ttl\":3600,\"created\":\"2017-11-26T08:36:44.592Z\",\"userId\":1}"
+    },
     "ACL": {},
     "RoleMapping": {
       "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",
@@ -35,12 +37,16 @@
       "9": "{\"principalType\":\"USER\",\"principalId\":\"9\",\"roleId\":2,\"id\":9}",
       "10": "{\"principalType\":\"USER\",\"principalId\":\"10\",\"roleId\":3,\"id\":10}",
       "11": "{\"principalType\":\"USER\",\"principalId\":\"11\",\"roleId\":3,\"id\":11}",
-      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}"
+      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}",
+      "13": "{\"principalType\":\"USER\",\"principalId\":\"13\",\"roleId\":4,\"id\":13}",
+      "14": "{\"principalType\":\"USER\",\"principalId\":\"14\",\"roleId\":4,\"id\":14}",
+      "15": "{\"principalType\":\"USER\",\"principalId\":\"15\",\"roleId\":4,\"id\":15}"
     },
     "Role": {
       "1": "{\"name\":\"employee\",\"description\":\"employee\",\"id\":1}",
       "2": "{\"name\":\"appadmin\",\"description\":\"appadmin\",\"id\":2}",
-      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}"
+      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}",
+      "4": "{\"name\":\"approver\",\"description\":\"approver\",\"id\":4}"
     },
     "userBadge": {},
     "badge": {},
@@ -92,7 +98,10 @@
       "9": "{\"password\":\"$2a$10$cTb/S.Iy4kV01.e73vYRSO1rldiRLeagiY1FK7STmDAbLm8ZvxbhK\",\"firstname\":\"appadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"appadmin3\",\"email\":\"appadmin3@example.com\",\"id\":9}",
       "10": "{\"password\":\"$2a$10$PidH1AOCYKEKFf4zx75fV.hNBNTt5Fyl2f8phGPdREMGyvXlK1KTG\",\"firstname\":\"sysadmin1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin1\",\"email\":\"sysadmin1@example.com\",\"id\":10}",
       "11": "{\"password\":\"$2a$10$B.ucIOhZHPsx98htf1r5tOab.ZBnx639wgpNxsGEQXFg5.VQGmWUa\",\"firstname\":\"sysadmin2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin2\",\"email\":\"sysadmin2@example.com\",\"id\":11}",
-      "12": "{\"password\":\"$2a$10$2bwzlRvDpeVWJ0ndwc5Q2eNqVJak9iKxiUB1tBj3MH9y97Sd78aL2\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}"
+      "12": "{\"password\":\"$2a$10$2bwzlRvDpeVWJ0ndwc5Q2eNqVJak9iKxiUB1tBj3MH9y97Sd78aL2\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}",
+      "13": "{\"password\":\"$2a$10$DQ1TLGTkWG.4/IJcyLxE2O2qtHv4qTuk7O37NkfaHSEYeOAA.m6FS\",\"firstname\":\"approver1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver1\",\"email\":\"approver1@example.com\",\"id\":13}",
+      "14": "{\"password\":\"$2a$10$2fpYRXivNM3yv86Fdw0iC.jmUz6RAMzyPR.EVfULB..Aw7uoml9vi\",\"firstname\":\"approver2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver2\",\"email\":\"approver2@example.com\",\"id\":14}",
+      "15": "{\"password\":\"$2a$10$q0Vj6NOuD/aF/mrn2UjL5u4QjLqadRiC478VMxJ1nEsei8SXR2ipe\",\"firstname\":\"approver3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver3\",\"email\":\"approver3@example.com\",\"id\":15}"
     },
     "eventUserVO": {},
     "eventInitiativeVO": {}

@@ -7,9 +7,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-
-const mapDisptchToProps = (dispatch, ownProps) => {
-  return {getDetails : () => {return 'hello'; }}
-}
-
-export default connect(mapStateToProps,mapDisptchToProps)(Header);
+export default connect(mapStateToProps)(Header);

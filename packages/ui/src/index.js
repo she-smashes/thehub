@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import ReduxPromise from 'redux-promise';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage'; 

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/header.css'
 import logo from '../images/logo.png'
 import avathar from '../images/avathar.jpg'
-import Avatar from 'material-ui/Avatar';
+// import Avatar from 'material-ui/Avatar';
 import Badge from 'material-ui/Badge';
 /*import '../containers/headerContainer/index';*/
 
@@ -13,7 +13,6 @@ import Badge from 'material-ui/Badge';
 class Header extends Component {
   constructor(props) {
     super(props);
-      console.log('header log -' + this.state)
       this.state = {
       userInfo: {
         userName: "Thenmozhi",
@@ -21,13 +20,8 @@ class Header extends Component {
         count: 10
       }
     }    
-    console.log('header log -' + this.state)
   }
-
-  componentDidMount =  () => {
-    console.log("Header Information " + JSON.stringify(this.props) )
-  }
-
+  
   toggleNav = (event) => {
     var nav = document.querySelector('.navbar-ex1-collapse');
     nav.classList.toggle('in');
@@ -53,6 +47,7 @@ class Header extends Component {
   };
 
   render() {
+    console.log('props from header', this.props)
     return (
       <nav className="navbar navbar-fixed-top ">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}

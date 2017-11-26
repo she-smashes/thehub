@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
 
 import History from '../history';
-import PageNotFound from './404';
+// import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
-import Header from './header';
+import Header from '../containers/headerContainer/index';
 import Footer from './footer'
 import '../css/app.css';
 
@@ -14,14 +14,13 @@ const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContai
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
 const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
-const AsyncHeader = asyncComponent(() => import('../containers/headerContainer/index'));
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Header component={AsyncHeader} />
+        <Header/>
         <Router history={History}>
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />
