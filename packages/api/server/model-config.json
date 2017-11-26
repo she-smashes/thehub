@@ -34,7 +34,7 @@
   },
   "RoleMapping": {
     "dataSource": "db",
-    "public": false,
+    "public": true,
     "options": {
       "strictObjectIDCoercion": true
     }
@@ -45,7 +45,7 @@
   },
   "userBadge": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "badge": {
     "dataSource": "db",
@@ -94,5 +94,9 @@
   "eventInitiativeVO": {
     "dataSource": "db",
     "public": false
+  },
+  "participant": {
+    "dataSource": "db",
+    "public": true
   }
 }

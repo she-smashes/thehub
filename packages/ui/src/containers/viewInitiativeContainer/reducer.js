@@ -7,11 +7,13 @@
  */
 
 import { DEFAULT_INITIATIVES } from "../../constants/actions";
+
 export default function (state = [], action) {
-    console.log('In', action.type)
+   
     switch (action.type) {
-        case DEFAULT_INITIATIVES:
-            return action.payload.data;
+        case DEFAULT_INITIATIVES: {
+            return action.payload;
+        }
         default:
             return state;
 

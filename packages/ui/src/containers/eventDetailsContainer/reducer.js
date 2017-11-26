@@ -7,10 +7,16 @@
  */
 
 import { GET_EVENTDETAILS } from "../../constants/actions";
+import { REGISTER_USER_FOR_EVENT } from "../../constants/actions";
+
 export default function (state = [], action) {
     switch (action.type) {
-        case GET_EVENTDETAILS:
-            return action.payload.data;
+        case GET_EVENTDETAILS: {
+           return action.payload;
+        }
+        case REGISTER_USER_FOR_EVENT: {
+            return action.payload;
+         }
         default:
             return state;
     }

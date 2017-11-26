@@ -14,6 +14,7 @@ const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContai
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
 const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
+const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsContainer/index'));
 
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
       			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
             <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
             <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
+            <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
             <Route component={AsyncLogin}/>
 		</Switch>
         </Router>

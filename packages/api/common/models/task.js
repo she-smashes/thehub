@@ -1,6 +1,15 @@
 'use strict';
 
 module.exports = function (Task) {
+
+  Task.disableRemoteMethodByName('upsert');
+  Task.disableRemoteMethodByName('upsertWithWhere');
+  Task.disableRemoteMethodByName('exists');
+  Task.disableRemoteMethodByName('updateAll');
+  Task.disableRemoteMethodByName('createChangeStream');
+  Task.disableRemoteMethodByName('replaceById');
+  Task.disableRemoteMethodByName('replaceOrCreate');
+
   Task.listPendingTasks = function (ctx, cb) {
 
     Task.find({

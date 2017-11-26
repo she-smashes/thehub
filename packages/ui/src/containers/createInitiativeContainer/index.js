@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import CreateInitiative from '../../components/createInitiative';
-import {sendInitiativeDetails} from './action';
+import {sendInitiativeDetails, updateInitiativeInfo} from './action';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +13,8 @@ const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     sendInitiativeDetails : (initiativeDetails,userInfoObj) => {
       return dispatch(sendInitiativeDetails(initiativeDetails, userInfoObj,dispatch))
+    }, updateInitiativeInfo : (initiativeInfo) => {
+      return dispatch(updateInitiativeInfo(initiativeInfo))
     }
   }
 }

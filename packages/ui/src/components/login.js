@@ -73,10 +73,11 @@
       this.props.getUserInfo(this.state.user)
       .then((response, error) => {
         // You get the logged in response here
-        console.log(error);
-        History.push("/dashboard")
+        this.props.updateUserInfo(JSON.parse(response.data));
+        History.push("/dashboard");
 
       }, (error) => {
+        console.log('error', error);
         this.handleOpen();
         //alert(INVALID_LOGIN);
         this.resetForm();
