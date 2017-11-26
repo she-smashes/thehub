@@ -14,13 +14,14 @@ const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContai
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
 const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
+const AsyncHeader = asyncComponent(() => import('../containers/headerContainer/index'));
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header component={AsyncHeader} />
         <Router history={History}>
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />

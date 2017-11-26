@@ -5,6 +5,7 @@ import logo from '../images/logo.png'
 import avathar from '../images/avathar.jpg'
 import Avatar from 'material-ui/Avatar';
 import Badge from 'material-ui/Badge';
+/*import '../containers/headerContainer/index';*/
 
 /**
   Defined header
@@ -12,13 +13,19 @@ import Badge from 'material-ui/Badge';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+      console.log('header log -' + this.state)
+      this.state = {
       userInfo: {
         userName: "Thenmozhi",
         userId: 17,
         count: 10
       }
-    }
+    }    
+    console.log('header log -' + this.state)
+  }
+
+  componentDidMount =  () => {
+    console.log("Header Information " + JSON.stringify(this.props) )
   }
 
   toggleNav = (event) => {
