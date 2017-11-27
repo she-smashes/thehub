@@ -4,25 +4,35 @@
  * @desc renders event details component
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Moment from 'moment';
+import RaisedButton from 'material-ui/RaisedButton';
 
-class EventDetails extends Component
-{
-  constructor(props){
+class EventDetails extends Component {
+  constructor(props) {
     super(props);
     this.state = {
-      eventDetails:{}
+      eventDetails: {}
     }
   }
 
-  componentDidMount =  () => {
-    this.props.getEventDetails(this.props.match.params.id,this.props.userInfo.id)
-    .then((resp) => {
-      this.setState({eventDetails: resp.payload.data})
-      this.setState({eventDate: Moment(resp.payload.data.startDate).format('LL') + " - " +
-      Moment(resp.payload.data.endDate).format('LL')})
-    })
+
+  componentDidMount = () => {
+    this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id).then((response, error) => {
+      this.props.updateEventDetails(JSON.parse(response.data));    
+    }, (error) => {
+      console.log(error);
+    });
+  }
+    /**
+     * This method invokes the approveTask action.
+     */
+    processForm = () => {
+      this.props.registerUserForEvent(this.props.match.params.id, this.props.userInfo.userId, this.props.userInfo.id).then((response, error) => {
+        this.props.updateEventDetails(JSON.parse(response.data));    
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -30,18 +40,23 @@ class EventDetails extends Component
    * @desc render the event details in the page
    * @return event details
    */
-  render()
-  {
+  render() {
+
     return (
-        <div className="">
-          <div className="event-details">
-            <h1 className=""> {this.state.eventDetails.title} </h1>
-            <span className="date"> {this.state.eventDate}</span>
-            <p className="">
-              {this.state.eventDetails.description}
-            </p>
+      <div className="">
+        <div className="event-details">
+          <h1 className=""> {this.props.eventDetails.title} </h1>
+          <span className="date"> {Moment(this.props.eventDetails.startDate).format('LL') + " - " +
+            Moment(this.props.eventDetails.endDate).format('LL')}</span>
+          <p className="">
+            {this.props.eventDetails.description}
+          </p>
+          <div className="button-line">
+          <RaisedButton type="submit" label="REGISTER" primary  onClick={()=>{this.processForm()}}/>
           </div>
+
         </div>
+      </div>
     );
   }
 }

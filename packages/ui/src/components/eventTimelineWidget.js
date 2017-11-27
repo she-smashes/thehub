@@ -11,7 +11,11 @@ class EventTimelineWidget extends Component {
 
     
     componentDidMount =  () => {
-        this.props.getEventList(this.props.userInfo.id)
+        this.props.getEventList(this.props.userInfo.id).then((response, error) => {
+            this.props.updateEventTimelineInfo(JSON.parse(response.data));    
+          }, (error) => {
+            console.log(error);
+          });
     }
 
     /**

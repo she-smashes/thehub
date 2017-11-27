@@ -1,14 +1,11 @@
-
 /**
  * @author Uma Govindaraj
  * @description Action file to make the API call
  */
 
+import { VIEW_EVENTS } from "../../constants/actions";
 
-import axios from 'axios';
 import Swagger from 'swagger-client';
-
-import { DEFAULT_EVENTS } from "../../constants/actions";
 
 export const getEventList = (access_token) => {
 
@@ -21,22 +18,20 @@ export const getEventList = (access_token) => {
         },
       })
       .then((client) => {
-
+        let filterQuery = {"where":{"status":"approved"}};
+        filterQuery = JSON.stringify(filterQuery)
+        
         return client
           .apis
           .event
-          .event_listEvents();
+          .event_find({filter: filterQuery});
       });
   }
 }
-export const updateEventTimelineInfo = (eventDetailsInfo) => {
-  return {
-    type: DEFAULT_EVENTS,
-    payload: eventDetailsInfo.events
-  };
-}
-
-
-
-
-
+export const updateViewEventsInfo = (vewEventsInfo) => {
+    return {
+      type: VIEW_EVENTS,
+      payload: vewEventsInfo
+    };
+  }
+  

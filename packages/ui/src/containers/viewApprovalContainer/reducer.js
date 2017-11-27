@@ -12,15 +12,17 @@ export default function (state = [], action) {
 
     switch (action.type) {
         case DEFAULT_TASKS: {
-            return action.payload.data.pendingTasks;
+            return action.payload;
         }
         case APPROVE_TASK: {
             const finalState = [];
             state.map(item => {
-                if (item.id !== action.payload.data.id) {                 
+                let responseItem =  action.payload;
+                if (item.id !== responseItem.id) {                 
                     finalState.push(item);
                 }
             });
+            
             return finalState;
         }
         default:

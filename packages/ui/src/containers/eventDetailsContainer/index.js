@@ -1,17 +1,25 @@
 import {connect} from 'react-redux';
 import EventDetails from '../../components/eventDetails';
-import {getEventDetails} from './action';
+import {getEventDetails, registerUserForEvent, updateEventDetails} from './action';
+
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    eventDetails: state.eventDetails
   }
 }
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     getEventDetails : (id, access_token) => {
-      return dispatch(getEventDetails(id, access_token, dispatch))
+      return dispatch(getEventDetails(id, access_token, dispatch));
+    },
+    registerUserForEvent : (eventId, userId, access_token) => {
+      return dispatch(registerUserForEvent(eventId, userId, access_token, dispatch));
+    },
+    updateEventDetails : (eventDetails) => {
+      return dispatch(updateEventDetails(eventDetails));
     }
   }
 }

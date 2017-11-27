@@ -51,21 +51,25 @@
       "type" : "number",
       "required" : true
     },
-    "eventHourFlag":{
-      "type" : "number",
-      "required" : "true"
-    },
-    "participantType":{
-      "type" : "array",
-      "required" : "true"
-    },
      "categoryId":{
       "type" : "number",
       "required" : true
+    },
+    "participantId":{
+      "type" : "array"
     }
   },
   "validations": [],
+  
   "relations": {
+    "participants": {
+      "type": "hasMany",
+      "model": "participant",
+      "foreignKey": "id",
+      "options": {
+        "disableInclude": false
+      }
+    },
     "enrollments": {
       "type": "hasMany",
       "model": "enrollment",
