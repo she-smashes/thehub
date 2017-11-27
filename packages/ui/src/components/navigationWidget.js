@@ -9,7 +9,7 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
-import '../css/header.css'
+import '../css/header.css';
 
 /**
   Defined header
@@ -44,7 +44,9 @@ class NavigationWidget extends Component {
           <MenuItem primaryText={
             <Link to={`/createevent`}> Create Event</Link>
           } />
-          <MenuItem primaryText="View Events" />
+          <MenuItem primaryText={
+            <Link to={`/viewevents`}> View Events</Link>
+          } />
           </IconMenu>
           <ToolbarSeparator className="margin-30" />
           <ToolbarTitle text="Initiatives" />
@@ -58,7 +60,10 @@ class NavigationWidget extends Component {
             <MenuItem primaryText={
               <Link to={`/createinitiative`}> Create Initiative</Link>
             } />
-            <MenuItem primaryText="View Initiative" />
+            <MenuItem primaryText={
+              <Link to={`/viewinitiative`}> View Initiatives</Link>
+            } />
+
           </IconMenu>
           <ToolbarSeparator  className="margin-30"/>
           <ToolbarTitle text="Gallery" />

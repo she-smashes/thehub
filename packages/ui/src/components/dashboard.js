@@ -20,42 +20,28 @@ class Dashboard extends Component {
         const styles ={
             card: {margin: 10}
           }
-        return (
+        return (            
             <div>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<ClaimYourBadgeWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<EventTimelineWidget />}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<ProgressWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<BadgeWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<AttendanceWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-            </div>
+            <main className="hub-main-grid">
+              <div className="claim-badge event-timeline well">
+                    {<ClaimYourBadgeWidget />}
+              </div>
+
+              <div>
+                <div className="widget-container row">
+                  <div className="col-md-4 col-xs-12">
+                    <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
+                    <div className="widget well">{<BadgeWidget />}</div>
+                    <div className="widget well">{<AttendanceWidget />}</div>
+                  </div>
+                  <div className="col-md-8 col-xs-12">
+                    <div className="event-timeline-widget well hub-home-event-timeline">{<EventTimelineWidget />}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="event-timeline well hub-home-event-gallery">Gallery</div>
+              </main>
+              </div>
         )
     }
 }

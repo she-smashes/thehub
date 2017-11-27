@@ -6,8 +6,13 @@ import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
 import Header from './header';
 import NavigationWidget from './navigationWidget'
-import Footer from './footer'
+import Footer from './footer';
+import '../css/bootstrap/dist/css/bootstrap.min.css';
 import '../css/app.css';
+import '../css/global.css';
+import '../css/singles.css';
+import '../css/layout.css';
+import '../css/login.css';
 
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
