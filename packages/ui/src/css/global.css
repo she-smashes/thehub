@@ -1,0 +1,150 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  /* Add a gray background color and some padding to the footer */
+  footer {
+    background-color: #f2f2f2;
+  }
+
+  .carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+    min-height:200px;
+  }
+
+  .event-timeline-widget{
+    min-height: 490px;
+    border-radius:10px;
+    margin-bottom: 30px;
+  }
+
+  .claim-badge{
+    min-height: 200px;
+    margin: 30px 0;
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .widget-container{
+    margin: 0px;
+  }
+  .widget{
+    min-height: 150px;
+    border-radius:10px;
+    text-align: center;
+
+  }
+
+
+
+  .navbar-hub{
+  	min-height: 30px;
+  }
+
+  .project-hub-header{
+    height:60px;
+    background:#63c2de;
+  }
+  .header-project-title-container{
+    float:left;
+    margin:10px 0 0 20px;
+    padding:0 0 0 10px;
+  }
+  .header-project-title-container::after{
+    clear:both;
+  }
+  .header-project-image{
+    height:inherit;
+    display: inline-block;
+    width:50px;
+  }
+  .header-project-title{
+    padding:0 0 0 2px;
+    display: inline-block;
+    font-size: 28px;
+    color:#fff;
+    text-transform: capitalize;
+    vertical-align: middle;
+  }
+  .header-project-userinfo-container{
+    float:right;
+    margin:10px 50px 0 0;
+    padding:0 15px 0 0;
+  }
+  .header-project-userinfo-container::after{
+    clear:both;
+  }
+  .header-project-user-info-text{
+    padding:0 0 0 2px;
+    display: inline-block;
+    font-size: 22px;
+    color:#fff;
+    text-transform: capitalize;
+    vertical-align: middle;
+  }
+  .navbar-menu-list{
+    list-style: none;
+    margin:0;
+  }
+  .navbar-menu-listitem{
+    display:inline-block;
+    font-size:16px;
+    vertical-align: middle;
+    padding:0% 5.5% 0% 7.5%;
+    margin:0 0 0 0.75%;
+    color:#fff;
+    cursor:pointer;
+  }
+
+  .hub-home-event-gallery{
+    min-height:200px;
+    margin-bottom: 20px;
+  }
+  .widget-container.row .col-md-4.col-xs-12{
+    padding: 0;
+  }
+  .widget-container.row .col-md-8.col-xs-12{
+    padding: 0 0 0 30px;
+  }
+/*
+@media (max-width:992px){
+  .hub-main-grid .claim-badge{
+      width:91.666666%;
+  }
+}*/
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 768px) {
+    .carousel-caption {
+      display: none;
+    }
+
+    .event-timeline{
+      width: 100%;
+      border-radius: 0px;
+      margin: 0px;
+    }
+
+    .hub-home-event-timeline{
+      min-height: 400px;
+    }
+    .widget-container{
+      margin: 0 -15px;
+    }
+    .widget{
+      border-radius: 0px;
+      margin: 0px;
+    }
+    .navbar{
+      display: none;
+    }
+  }

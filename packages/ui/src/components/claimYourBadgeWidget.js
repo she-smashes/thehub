@@ -7,11 +7,11 @@
 import React, {Component} from 'react';
 
 class ClaimYourBadgeWidget extends Component {
-    
+
     render = () => {
         return (
             <div>
-                This is ClaimYourBadgeWidget component!
+                This is Claim Your Badge Widget component!!
             </div>
         )
     }
