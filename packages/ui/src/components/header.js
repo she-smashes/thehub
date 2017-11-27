@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
+import {Link} from 'react-router-dom';
 import '../css/header.css'
 import logo from '../images/logo.png'
 import avathar from '../images/avathar.jpg'
-// import Avatar from 'material-ui/Avatar';
 import Badge from 'material-ui/Badge';
-/*import '../containers/headerContainer/index';*/
+
 
 /**
   Defined header
@@ -18,19 +18,31 @@ class Header extends Component {
   };
 
   /**
+  * Badge message count function displays, the pending events / initiatives
+  * approvals count on top the user avatar.
+  */
+  badgemessagecount = () => {
+    return <Badge
+      badgeContent={<Link to="/viewapprovals">{this.props.userInfo.notificationCount}</Link>}
+      secondary={true}
+      badgeStyle={{top: 12, right: 10, background:'blue',shape:'rectangle'}}>
+       Hello, {this.props.userInfo.user.firstname}
+      <img className="avathar" src={avathar} alt="avathar" />
+    </Badge>
+  }
+
+  /**
    * function which render the user name, greetings and message count of pending approvals
    * in header menu if the user is logged in.
    */
   user = () => {
     if (this.props && this.props.userInfo) {
       return <div className="user-name">
-        <Badge
-          badgeContent={this.props.userInfo.notificationCount}
-          secondary={true}
-          badgeStyle={{top: 12, right: 10, background:'blue',shape:'rectangle'}}>
-          Hello, {this.props.userInfo.user.firstname}
-          <img className="avathar" src={avathar} alt="avathar" />
-        </Badge>
+       {this.props.userInfo.notificationCount >=1 ?
+         this.badgemessagecount()
+       :
+         <div> Hello, {this.props.userInfo.user.firstname}
+         <img className="avathar" src={avathar} alt="avathar" /> </div>}
       </div>
     }
   };

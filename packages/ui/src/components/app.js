@@ -20,9 +20,9 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header/>
         <Router history={History}>
+        <div>
+        <Header/>
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />
@@ -32,11 +32,10 @@ class App extends Component {
             <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
             <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
             <Route component={AsyncLogin}/>
-		</Switch>
-        </Router>
+    		</Switch>
         <Footer />
-      </div>
-
+        </div>
+      </Router>
     );
   }
 }

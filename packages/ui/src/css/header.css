@@ -38,8 +38,10 @@
   .avathar1{
     float: right;
    }
-.user-name{  
+.user-name{
   font-weight: bold;
   float: right;
 }
-
+.user-name a{
+  text-decoration: none;
+}
