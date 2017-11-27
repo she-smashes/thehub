@@ -10,6 +10,9 @@
   width: 100%;
   margin: 0 auto;
 }
+label{
+  font-weight: normal;
+}
 .margin-30{
   margin: 0 30px;
 }

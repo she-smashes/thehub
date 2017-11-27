@@ -16,3 +16,4 @@ export const CREATE_AN_EVENT = "CREATE_AN_EVENT";
 export const GET_INITIATIVES ="APPROVED_INITIATIVES";
 export const CONFIRM_USER = "VERIFY_USER";
 export const GET_CATEGORIES ="ALL_CATEGORIES";
+export const EVENT_FAILURE = "Event creation not successfull!!"

@@ -15,7 +15,7 @@ import MenuItem from 'material-ui/MenuItem';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { Route } from 'react-router-dom';
 import History from '../history';
-import { INVALID_USER } from "../constants/actions";
+import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
 
 const participants = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
@@ -118,7 +118,7 @@ class CreateEvent extends Component {
               this.handleOpen();
               this.setState({
                   open: true,
-                  message:"Event not created!!"
+                  message: EVENT_FAILURE
               });
             });
         }
@@ -163,7 +163,7 @@ class CreateEvent extends Component {
               this.setState({
                   disabled: true,
                   open: true,
-                  message:"Please enter correct Username"
+                  message:INVALID_USER
               });
             }
         },(error)=>{
@@ -265,7 +265,7 @@ class CreateEvent extends Component {
           keyboardFocused={true}
           onClick={this.handleClose}
         />,
-      ];      
+      ];
         return (
            <div className="container  App">
                 <form onSubmit={this.processForm}>
