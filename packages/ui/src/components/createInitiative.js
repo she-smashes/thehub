@@ -202,11 +202,6 @@ class CreateInitiative extends React.Component {
                     <div className="field-line">
                         <TextField className="align-left" floatingLabelText="Description" name="description" onChange={this.changeStateData} value={this.state.createInitiativeformData.description} errorText={this.state.errors.description} />
                     </div>
-                    <div>
-                        <SelectField className="align-left" floatingLabelText="Category" name="categoryId" value={this.state.createInitiativeformData.categoryId} onChange={(event, index, value) => this.onCategoryChange(event, index, value)} autoWidth={true} >
-                            {items}
-                        </SelectField>
-                    </div>
                     <div className="field-line">
                         <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} onBlur={this.verifyLeadUser} errorText={this.state.errors.lead} />
                     </div>
