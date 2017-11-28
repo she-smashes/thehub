@@ -24,12 +24,22 @@ module.exports = function (User) {
 			})
 			.then(() => {
 
-				User.app.models.Task.count({ status: 'Pending' }, function (err, count) {
-					if (count > 0) {
-						context.result.notificationCount = new String(count);
+				let countReq = false;
+				context.result.allowedActionList.map(allowedAction => {
+					if (allowedAction.indexOf('task_find') >= 0) {
+						countReq = true;
 					}
-					next();
 				});
+				if (countReq) {
+					User.app.models.Task.count({ status: 'Pending' }, function (err, count) {
+						if (count > 0) {
+							context.result.notificationCount = new String(count);
+						}
+						next();
+					});
+				} else {
+					next();
+				}
 			});
 	});
 };
