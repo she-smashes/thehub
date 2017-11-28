@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import '../css/header.css'
 import logo from '../images/logo.png'
-import avathar from '../images/avathar.jpg'
+import avatar from '../images/avatar.jpg'
 import Badge from 'material-ui/Badge';
 
 
@@ -27,7 +27,7 @@ class Header extends Component {
       secondary={true}
       badgeStyle={{top: 12, right: 10, background:'Red'}}>
        Hello, {this.props.userInfo.user.firstname}
-      <img className="avathar" src={avathar} alt="avathar" />
+      <img className="avatar" src={avatar} alt="avatar" />
     </Badge>
   }
 
@@ -42,7 +42,7 @@ class Header extends Component {
          this.badgemessagecount()
        :
          <div> Hello, {this.props.userInfo.user.firstname}
-           <img className="avathar" src={avathar} alt="avathar" /> </div>}
+           <img className="avatar" src={avatar} alt="avatar" /> </div>}
          </div>
     }
   };

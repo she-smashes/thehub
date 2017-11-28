@@ -6,7 +6,7 @@
  * @param {Object} action
  */
 
-import { DEFAULT_INITIATIVES } from "../../constants/actions";
+import { DEFAULT_INITIATIVES, RESET_STORE } from "../../constants/actions";
 
 export default function (state = [], action) {
    
@@ -14,6 +14,8 @@ export default function (state = [], action) {
         case DEFAULT_INITIATIVES: {
             return action.payload;
         }
+        case RESET_STORE:
+            return [];
         default:
             return state;
 

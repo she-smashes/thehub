@@ -5,7 +5,7 @@
  * @param {Object} action
  */
 
-import { DEFAULT_TASKS } from "../../constants/actions";
+import { DEFAULT_TASKS, RESET_STORE } from "../../constants/actions";
 import { APPROVE_TASK } from "../../constants/actions";
 
 export default function (state = [], action) {
@@ -25,6 +25,8 @@ export default function (state = [], action) {
             
             return finalState;
         }
+        case RESET_STORE:
+            return [];
         default:
             return state;
 

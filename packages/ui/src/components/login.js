@@ -32,7 +32,10 @@
        open: false,
        isLoading: false
      };
-
+     if(this.props.user != null)
+     {
+       // add the comment to redirect to dashboard page
+     }
    }
    handleOpen = () => {
      this.setState({open: true});
@@ -81,7 +84,7 @@
         // You get the logged in response here
         this.setState({isLoading: false});
         this.props.updateUserInfo(JSON.parse(response.data));
-        History.push("/dashboard");
+        History.push("/");
 
       }, (error) => {
         this.setState({isLoading: false});

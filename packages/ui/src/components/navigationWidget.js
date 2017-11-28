@@ -23,14 +23,23 @@ class NavigationWidget extends Component {
    };
  }
 
+  /**
+   * @name logout
+   * @desc clear local storage and redirects to login page
+   */
+  logout = () => {
+    this.props.resetStore();
+  }
+
  handleChange = (event, index, value) => this.setState({value});
   render = () => {
+    console.log('Navigatio', this.props)
     return (
       <div className="menu-bar">
       <Toolbar>
         <ToolbarGroup>
           <ToolbarTitle text={
-            <Link to={`/dashboard`}> Dashboard</Link>
+            <Link to={`/`}> Dashboard</Link>
           } />
           <ToolbarSeparator className="margin-30" />
           <ToolbarTitle text="Events" />
@@ -68,7 +77,7 @@ class NavigationWidget extends Component {
           <ToolbarSeparator  className="margin-30"/>
           <ToolbarTitle text="Gallery" />
           <ToolbarSeparator className="margin-30" />
-          <RaisedButton className="logout" label="Logout" primary={true} />
+          <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
         </ToolbarGroup>
       </Toolbar>
       </div>
