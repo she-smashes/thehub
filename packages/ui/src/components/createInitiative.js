@@ -89,7 +89,6 @@ class CreateInitiative extends React.Component {
     verifyLeadUser=(event)=> {
         this.props.verifyUser(this.state.createInitiativeformData,this.props.userInfo)
         .then((response,error) =>{
-            console.log('aaaaaaaaaaaaaaa' + response);
             if(response.payload.data.length > 0){
               this.setState(prevState => ({
                 createInitiativeformData: {
@@ -124,7 +123,7 @@ class CreateInitiative extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.id).then((response, error) => {
+            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.userId,this.props.userInfo.id).then((response, error) => {
                 History.push("/viewinitiative");
               }, (error) => {
                 console.log(error);

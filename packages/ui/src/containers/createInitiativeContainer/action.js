@@ -5,7 +5,7 @@ import {  VERIFY_USER} from "../../constants/apiList";
 
 import Swagger from 'swagger-client';
 
-export const sendInitiativeDetails = (initiativeDetails, access_token) => {
+export const sendInitiativeDetails = (initiativeDetails, userId, access_token) => {
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {
@@ -19,6 +19,7 @@ export const sendInitiativeDetails = (initiativeDetails, access_token) => {
         let postBody = {
           "title": initiativeDetails.title,
           "description": initiativeDetails.description,
+          "createdBy": userId,
           "lead": initiativeDetails.leadId
         };
         postBody = JSON.stringify(postBody)

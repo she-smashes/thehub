@@ -27,7 +27,7 @@ export const getEventDetails = (eventId, access_token) => {
       });
   }
 }
-export const registerUserForEvent = (eventId, userId, registerFlag,  enrollmentId, access_token) => {
+export const registerUserForEvent = (eventId, userId, registerFlag,  participantId, enrollmentId, access_token) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
@@ -38,14 +38,14 @@ export const registerUserForEvent = (eventId, userId, registerFlag,  enrollmentI
         },
       })
       .then((client) => {
-
+console.log(participantId);
 
         if (registerFlag) {
           let postBody = {
             "eventId": eventId,
             "userId": userId,
             "registeredOn": new Date(),
-            "enrollmentType": "1"
+            "enrollmentType": participantId
           };
           postBody = JSON.stringify(postBody);
           console.log(postBody);
@@ -98,6 +98,7 @@ export const updateEventDetails = (userId, eventDetailsInfo) => {
       if (enrollmentDetail.userId === userId) {
         eventDetailsInfo.registered = true;
         eventDetailsInfo.enrollmentId = enrollmentDetail.id;
+        eventDetailsInfo.enrollmentParticipantId = enrollmentDetail.participantId;
       }
     });
   }
