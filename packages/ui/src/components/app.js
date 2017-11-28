@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {Router, Route, Switch} from 'react-router-dom';
-
+import Login from '../containers/loginFormContainer/index'
 import History from '../history';
-// import PageNotFound from './404';
+import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
 import Header from '../containers/headerContainer/index';
-import NavigationWidget from './navigationWidget'
+import NavigationContainer from '../containers/navigationContainer/'
 import Footer from './footer';
 import '../css/bootstrap/dist/css/bootstrap.min.css';
 import '../css/app.css';
@@ -26,22 +26,29 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 
 class App extends Component {
   render() {
+    const loggedIn = (this.props.userInfo && this.props.userInfo.user) ? true : false;
     return (
       <div className="container">
         <Router history={History}>
         <div>
-        <Header/>
-          <NavigationWidget />
-          <Switch>            
-            <Route path='/dashboard' exact={true} component={AsyncDashboard} />
-      			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
-      			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
-            <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
-            <Route path='/createevent' exact={true} component={AsyncCreateEvent} />
-            <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
-            <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
-            <Route component={AsyncLogin}/>
-    		</Switch>
+        {
+          !loggedIn? <Login />:
+          <div>
+            <Header/>
+            <NavigationContainer />
+            <Switch>            
+              <Route path='/' exact={true} component={AsyncDashboard} />
+              <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
+              <Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
+              <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
+              <Route path='/createevent' exact={true} component={AsyncCreateEvent} />
+              <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
+              <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
+              <Route component={PageNotFound}/>
+            </Switch>
+          </div>
+        }
+          
         <Footer />
         </div>
       </Router>

@@ -19,3 +19,4 @@ export const GET_CATEGORIES ="ALL_CATEGORIES";
 export const EVENT_FAILURE = "Event creation not successfull!!"
 export const GET_ENROLLMENTDETAILS = 'GET_ENROLLMENTDETAILS';
 export const UPDATE_ENROLLMENTDETAILS = 'UPDATE_ENROLLMENTDETAILS';
+export const RESET_STORE = 'REDUX_STORE';

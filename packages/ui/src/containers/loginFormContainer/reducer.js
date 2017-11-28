@@ -5,11 +5,13 @@
  * @param {Object} state
  * @param {Object} action
  */
-import { AUTHORIZED_USER } from "../../constants/actions";
+import { AUTHORIZED_USER, RESET_STORE } from "../../constants/actions";
 export default function (state = [], action) {
     switch (action.type) {
         case AUTHORIZED_USER:
             return action.payload;
+        case RESET_STORE:
+            return [];
         default:
             return state;
 

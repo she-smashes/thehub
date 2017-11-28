@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 
 import './index.css';
 // Components
-import App from './components/app';
+import App from './containers/appContainer/';
 
 // Reducers
 import userInfo from './containers/loginFormContainer/reducer';
