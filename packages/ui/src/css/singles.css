@@ -1,0 +1,180 @@
+/* PLEASE READ!!!
+ * Simple Modules
+ * Only a single class
+ * re-useable styles. 
+ * If the module requires more than 1 class, put in modules.css.
+ * Organize by category to the best of your ability.
+ * Name singles with that describe a single property in the same order as that property is read:
+ * 		i.e. .textAlignRight { text-align:right; }
+ * Shorthand names can be used if the property value is unique to that property
+ *		i.e. .block {display:block;}
+ * DO NOT create duplicates with the same or a different name! Check the file FIRST!
+ */
+ 
+ 
+/* Alignment and Centering */
+.floatLeft {float:left;}
+.floatRight {float:right;}
+
+.textAlignLeft {
+	text-align:left;
+}
+.textAlignRight {
+	text-align:right;
+}
+.justify {
+	text-align:justify;
+}
+.textAlignCenter,
+.textAlignResponsive{
+	text-align:center;
+}
+
+/* CSS to set text align left in mobile view*/
+@media (max-width: 599px) {
+	.textAlignResponsive{
+		text-align: left
+	}
+}
+
+
+/****************************************
+			Font Styles                   
+****************************************/
+
+.bold, .fontWeightBold {}
+.bolder, .fontWeightBolder {}
+.italic, .fontStyleItalic  {}
+
+.nowrap { 
+	white-space: nowrap;
+}
+.strikethrough, .line-through{
+	text-decoration:line-through;
+}
+.underline{
+	text-decoration:underline;
+}
+
+.pointer, .cursorPointer {
+	cursor:pointer;
+}
+.noPointer {
+	pointer-events: none;
+}
+.cursorDefault {
+	cursor: default;
+}
+.noSelect{
+	cursor:default;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+
+/****************************************
+			Font Families                   
+****************************************/
+.arial {
+	font-family:Arial, Helvetica, San-Serif;
+}
+
+.listStyleDisc > li{
+	list-style:disc;
+}
+.listStyleDecimal > li{
+	list-style:decimal;
+}
+
+/* classes to change display type. */
+.inline{
+	display:inline;
+}
+.block{
+	display:block;
+}
+.inlineBlock{
+	display:inline-block;
+}
+.displayNone, .hidden, .is-hidden{
+	display: none;
+}
+.is-invisible, visibilityHidden{
+	visibility: hidden;
+}
+
+/* classes to change font capitalization. */
+.capitalize {
+	text-transform:capitalize;
+}
+.uppercase {
+	text-transform:uppercase; 
+}
+.lowercase {
+	text-transform:lowercase;
+}
+
+/*Toggle position as required*/
+.relative{
+	position: relative;
+}
+.absolute{
+	position: absolute;
+}
+
+/*Percentage width*/
+.width5 {width: 5%;}
+.width10 {width: 10%;}
+.width15 {width: 15%;}
+.width20 {width: 20%;}
+.width25 {width: 25%;}
+.width30 {width: 30%;}
+.widthThird {width: 33.33333%;}
+.width35 {width: 35%;}
+.width40 {width: 40%;}
+.width45 {width: 45%;}
+.width50 {width: 50%;}
+.width55 {width: 55%;}
+.width60 {width: 60%;}
+.width65 {width: 65%;}
+.width70 {width: 70%;}
+.width75 {width: 75%;}
+.width80 {width: 80%;}
+.width85 {width: 85%;}
+.width90 {width: 90%;}
+.width95 {width: 95%;}
+.width100{width:100%;}
+.widthAuto{width:auto;}
+
+.height100{height:100%}
+
+/* Clearing */ 
+.clearBoth{
+	clear:both;
+}
+.clearLeft{
+	clear:left;
+}
+.clearRight{
+	clear:right;
+}
+
+
+.ellipsis{
+	white-space: nowrap;
+  	overflow: hidden;
+ 	text-overflow: ellipsis;
+  	padding-right: 10px;
+}
+
+/* auto scale images */
+.img > img {
+    width: 100%;
+}
+
+.displayNewLine{
+	white-space:pre-line;
+}

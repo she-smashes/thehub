@@ -8,9 +8,12 @@
  import RaisedButton from 'material-ui/RaisedButton';
  import Dialog from 'material-ui/Dialog';
  import FlatButton from 'material-ui/FlatButton';
- import TextField from 'material-ui/TextField'; 
+ import TextField from 'material-ui/TextField';
  import History from '../history';
+ import CircularProgress from 'material-ui/CircularProgress';
  import { INVALID_LOGIN } from "../constants/actions";
+ import '../css/login.css';
+
  class LoginWidget extends Component {
 
    /**
@@ -26,8 +29,10 @@
          password: ''
        },
        response: '',
-       open: false
+       open: false,
+       isLoading: false
      };
+
    }
    handleOpen = () => {
      this.setState({open: true});
@@ -69,17 +74,19 @@
    processForm = (event) => {
      // prevent default action. in this case, action is the form submission event
     event.preventDefault();
+    this.setState({isLoading: true});
     if(this.handleValidation()){
       this.props.getUserInfo(this.state.user)
       .then((response, error) => {
         // You get the logged in response here
+        this.setState({isLoading: false});
         this.props.updateUserInfo(JSON.parse(response.data));
         History.push("/dashboard");
 
       }, (error) => {
+        this.setState({isLoading: false});
         console.log('error', error);
         this.handleOpen();
-        //alert(INVALID_LOGIN);
         this.resetForm();
       });
     }
@@ -114,9 +121,11 @@
      return (
        <Card className="container login-page">
        <form onSubmit={this.processForm}>
-           <h2 className="card-heading">Login</h2>
+          <CircularProgress className={
+             this.state.isLoading ? 'show' : 'load-notify'
+           } />
 
-           {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
+           <h2 className="card-heading">Login</h2>
 
            <div className="field-line">
              <TextField
@@ -147,6 +156,7 @@
          </form>
          <Dialog
            title="Message"
+           className="dialog-ui"
            actions={actions}
            modal={false}
            open={this.state.open}
@@ -154,6 +164,7 @@
          >
            { INVALID_LOGIN }
          </Dialog>
+
        </Card>
      );
    }
