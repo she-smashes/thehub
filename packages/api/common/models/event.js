@@ -3,16 +3,14 @@
 module.exports = function (Event) {
 
 
+
   Event.disableRemoteMethodByName('upsert');
-  Event.disableRemoteMethodByName('upsertWithWhere');
-  Event.disableRemoteMethodByName('exists');
+  Event.disableRemoteMethodByName('upsertWithWhere');  Event.disableRemoteMethodByName('exists');
   Event.disableRemoteMethodByName('updateAll');
   Event.disableRemoteMethodByName('count');
   Event.disableRemoteMethodByName('createChangeStream');
   Event.disableRemoteMethodByName('replaceById');
   Event.disableRemoteMethodByName('replaceOrCreate');
-
-
 
   Event.listEvents = function (ctx, cb) {
     let configs = ctx.req.configs;

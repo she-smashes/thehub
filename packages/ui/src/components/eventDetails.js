@@ -12,27 +12,37 @@ class EventDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventDetails: {}
+      eventDetails: {
+        events: {
+          
+        }
+      }
     }
   }
 
-
   componentDidMount = () => {
-    this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id).then((response, error) => {
-      this.props.updateEventDetails(JSON.parse(response.data));    
-    }, (error) => {
-      console.log(error);
-    });
-  }
-    /**
-     * This method invokes the approveTask action.
-     */
-    processForm = () => {
-      this.props.registerUserForEvent(this.props.match.params.id, this.props.userInfo.userId, this.props.userInfo.id).then((response, error) => {
-        this.props.updateEventDetails(JSON.parse(response.data));    
+    this.updateEventData();
+  };
+  updateEventData = () => {
+      this.props.getEventDetails(this.props.match.params.id, this.props.userInfo.id).then((response1, error) => {
+        this.props.updateEventDetails(this.props.userInfo.userId, JSON.parse(response1.data));
       }, (error) => {
         console.log(error);
       });
+  }
+  /**
+   * This method invokes the approveTask action.
+   */
+  processForm = () => {
+let enrollmentId = "";
+    if(this.props.eventDetails.registered) {
+      enrollmentId = this.props.eventDetails.enrollmentId;
+    }
+    this.props.registerUserForEvent(this.props.match.params.id, this.props.userInfo.userId, !this.props.eventDetails.registered, enrollmentId, this.props.userInfo.id).then((response, error) => {
+      this.updateEventData();
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   /**
@@ -41,7 +51,7 @@ class EventDetails extends Component {
    * @return event details
    */
   render() {
-
+    console.log('this.props.eventDetails' + this.props.eventDetails);
     return (
       <div className="">
         <div className="event-details">
@@ -52,7 +62,7 @@ class EventDetails extends Component {
             {this.props.eventDetails.description}
           </p>
           <div className="button-line">
-          <RaisedButton type="submit" label="REGISTER" primary  onClick={()=>{this.processForm()}}/>
+            <RaisedButton type="button" label={(this.props.eventDetails.registered === undefined || this.props.eventDetails.registered === false) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
           </div>
 
         </div>
