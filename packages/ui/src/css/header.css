@@ -1,6 +1,6 @@
 
 .navbar-fixed {
-    background-color: red;
+    background-color: #63c2de;
     border: none;
 
 }
@@ -17,8 +17,34 @@
     line-height: 64px;
     flex: 1 1 0%;
     padding: 0 20px;
+    display: inline;
 }
 
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
     background-color: rgb(0, 188, 212);
+}
+.logo{
+  width:75px;
+  height:75px;
+  display:inline;
+  float: left;
+}
+.avathar{
+    width:50px;
+    height:30px;
+    display:inline;
+    float: right;
+    padding-left:20px;
+  }
+  .avathar1{
+    float: right;
+   }
+.user-name{
+  font-weight: bold;
+  float: right;
+  color: white;
+}
+.user-name a{
+  text-decoration: none;
+  color:white;
 }
