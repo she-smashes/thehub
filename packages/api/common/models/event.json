@@ -75,7 +75,7 @@
       "model": "enrollment",
       "foreignKey": "eventId",
       "options": {
-        "disableInclude": true
+        "disableInclude": false
       }
     },
     "usersLead": {

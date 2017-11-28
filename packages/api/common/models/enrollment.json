@@ -50,6 +50,14 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "events": {
+      "type": "belongsTo",
+      "model": "event",
+      "foreignKey": "eventId",
+      "options": {
+        "disableInclude": false
+      }
     }
   },
   "acls": [
