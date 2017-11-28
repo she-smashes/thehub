@@ -32,12 +32,12 @@ class App extends Component {
         <div>
         <Header/>
           <NavigationWidget />
-          <Switch>
-            <Route path='/login' exact={true} component={AsyncLogin} />
+          <Switch>            
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />
       			<Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
       			<Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
             <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
+            <Route path='/createevent' exact={true} component={AsyncCreateEvent} />
             <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
             <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
             <Route component={AsyncLogin}/>
