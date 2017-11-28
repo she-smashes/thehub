@@ -11,7 +11,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import History from '../history';
 import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
-
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 const items = [
   <MenuItem key={1} value={1} primaryText="1" />,
@@ -74,6 +75,10 @@ class CreateInitiative extends React.Component {
         if (!fields["description"]) {
             formIsValid = false;
             errors["description"] = "Enter Initiative Description";
+        }
+        if (!fields["lead"]) {
+            formIsValid = false;
+            errors["lead"] = "Enter Lead name";
         }
        
         this.setState({
@@ -192,6 +197,14 @@ class CreateInitiative extends React.Component {
      * Render the component.
      */
     render=()=> {
+        const actions = [
+            <FlatButton
+              label="OK"
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.handleClose}
+            />,
+          ];
         return ( 
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -210,6 +223,16 @@ class CreateInitiative extends React.Component {
                     </div>
                     
                 </form>
+                <Dialog
+                  title="Message"
+                  className="dialog-ui"
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose}
+                >
+                  { this.state.message }
+                </Dialog>
             </div>
         );
     }
