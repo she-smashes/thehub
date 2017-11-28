@@ -75,6 +75,71 @@ module.exports = function (Event) {
   }
   );
 
+   Event.listEventsForUser = function (ctx, userId, cb) {
+    console.log("userid from request" + userId);
+    Event.find({
+      where: {
+        endDate: { gte: Date.now() },
+        status: 'approved'
+      },
+      order: 'startDate DESC'
+    }, function (err, pastInstances) {
+      // this logic is to determin the list of non-approved events that are returned 
+      // by this query. userId = 0 for an admin user and all non-approved events are returned
+      if(userId == 0){
+        Event.find({
+        where: {
+          endDate: { gte: Date.now() },
+          status: 'not approved'          
+        },
+        order: 'startDate DESC'
+      }, function (err, futureInstances) {
+
+        let instances = [];
+        instances = pastInstances.concat(futureInstances);
+
+        cb(null, instances);
+      });
+      }else{
+        Event.find({
+        where: {
+          endDate: { gte: Date.now() },
+          status: 'not approved',
+          createdBy: userId
+        },
+        order: 'startDate DESC'
+      }, function (err, futureInstances) {
+
+        let instances = [];
+        instances = pastInstances.concat(futureInstances);
+
+        cb(null, instances);
+      });
+      }
+
+      
+
+    });
+  };
+  
+  Event.remoteMethod('listEventsForUser',{
+    accepts: [
+      { arg: 'ctx', type: 'object', http: { source: 'context' } },
+      { arg: 'userId', type: 'number' }
+    ],
+    http: {
+      path: '/list-events-for-user',
+      verb: 'get'
+    },
+    returns: {
+      arg: 'events',
+      type: 'array'
+    }
+  });
+
+
+
+
   Event.observe('before save', function (ctx, next) {
     if (ctx.instance) {
       console.log('updating Event status');
