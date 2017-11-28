@@ -25,7 +25,7 @@ class Header extends Component {
     return <Badge
       badgeContent={<Link to="/viewapprovals">{this.props.userInfo.notificationCount}</Link>}
       secondary={true}
-      badgeStyle={{top: 12, right: 10, background:'blue',shape:'rectangle'}}>
+      badgeStyle={{top: 12, right: 10, background:'Red'}}>
        Hello, {this.props.userInfo.user.firstname}
       <img className="avathar" src={avathar} alt="avathar" />
     </Badge>
@@ -49,13 +49,11 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-fixed-top ">
+      <nav className="navbar navbar-fixed">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
-        <div className="navbar-header">
           <img className="logo" src={logo} alt="Logo" />
           <h1 className="brand-title">The Hub</h1>
           {this.user()}
-        </div>
       </nav>
     );
   }

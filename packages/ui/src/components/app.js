@@ -27,6 +27,7 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 class App extends Component {
   render() {
     return (
+      <div className="container">
         <Router history={History}>
         <div>
         <Header/>
@@ -44,6 +45,7 @@ class App extends Component {
         <Footer />
         </div>
       </Router>
+      </div>
     );
   }
 }

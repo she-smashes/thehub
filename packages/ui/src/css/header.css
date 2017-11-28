@@ -1,6 +1,6 @@
 
 .navbar-fixed {
-    background-color: red;
+    background-color: #63c2de;
     border: none;
 
 }
@@ -42,7 +42,9 @@
 .user-name{
   font-weight: bold;
   float: right;
+  color: white;
 }
 .user-name a{
   text-decoration: none;
+  color:white;
 }
