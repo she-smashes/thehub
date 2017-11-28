@@ -10,6 +10,8 @@ import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import History from '../history';
+import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
+
 
 const items = [
   <MenuItem key={1} value={1} primaryText="1" />,
@@ -30,10 +32,14 @@ class CreateInitiative extends React.Component {
 
         this.state = {
             errors: {},
+            disabled: true,
+            open: false,
+            message: '',
             createInitiativeformData: {
                 title: '',
                 description: '',
                 lead:'',
+                leadId: '',
                 categoryId:'',
                 id: ''
             },
@@ -44,7 +50,13 @@ class CreateInitiative extends React.Component {
         };
 
     }
-
+    handleOpen = () => {
+        this.setState({open: true});
+      };
+  
+      handleClose = () => {
+        this.setState({open: false});
+      };
 
     /**
      * Function to validate the form
@@ -69,7 +81,40 @@ class CreateInitiative extends React.Component {
         });
         return formIsValid;
     }
-
+/**
+     * verify the lead user object.
+     *
+     * @param {object} event - the JavaScript event object
+     */
+    verifyLeadUser=(event)=> {
+        this.props.verifyUser(this.state.createInitiativeformData,this.props.userInfo)
+        .then((response,error) =>{
+            console.log('aaaaaaaaaaaaaaa' + response);
+            if(response.payload.data.length > 0){
+              this.setState(prevState => ({
+                createInitiativeformData: {
+                      ...prevState.createInitiativeformData,
+                      leadId: JSON.stringify(response.payload.data[0].id)
+                  }
+              }));
+              this.setState({
+                  disabled: false,
+                  open: false,
+                  message: ''
+              });
+            }
+            else{
+              this.handleOpen();
+              this.setState({
+                  disabled: true,
+                  open: true,
+                  message:INVALID_USER
+              });
+            }
+        },(error)=>{
+            alert('Error'+error);
+        });
+    };
     /**
      * Process the form.
      *
@@ -83,6 +128,11 @@ class CreateInitiative extends React.Component {
                 History.push("/viewinitiative");
               }, (error) => {
                 console.log(error);
+                this.handleOpen();
+                this.setState({
+                    open: true,
+                    message: EVENT_FAILURE
+                });
               });
         }
     }
@@ -159,7 +209,7 @@ class CreateInitiative extends React.Component {
                         </SelectField>
                     </div>
                     <div className="field-line">
-                        <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} errorText={this.state.errors.lead} />
+                        <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} onBlur={this.verifyLeadUser} errorText={this.state.errors.lead} />
                     </div>
                     <div className="button-line">
                         <RaisedButton type="submit" label="Create" primary />

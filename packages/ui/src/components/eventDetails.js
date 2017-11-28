@@ -62,7 +62,7 @@ let enrollmentId = "";
             {this.props.eventDetails.description}
           </p>
           <div className="button-line">
-            <RaisedButton type="button" label={(this.props.eventDetails.registered === undefined || this.props.eventDetails.registered === false) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
+            <RaisedButton type="button" label={(this.props.eventDetails.status === 'approved' && (this.props.eventDetails.registered === undefined || this.props.eventDetails.registered === false)) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
           </div>
 
         </div>
