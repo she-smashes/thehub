@@ -5,14 +5,21 @@ import History from '../history';
 // import PageNotFound from './404';
 import asyncComponent from './asyncComponent';
 import Header from '../containers/headerContainer/index';
-import Footer from './footer'
+import NavigationWidget from './navigationWidget'
+import Footer from './footer';
+import '../css/bootstrap/dist/css/bootstrap.min.css';
 import '../css/app.css';
+import '../css/global.css';
+import '../css/singles.css';
+import '../css/layout.css';
+import '../css/login.css';
 
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
 const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
+const AsyncCreateEvent = asyncComponent(() => import('../containers/createEventContainer/index'));
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
 const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsContainer/index'));
 
@@ -23,6 +30,7 @@ class App extends Component {
         <Router history={History}>
         <div>
         <Header/>
+          <NavigationWidget />
           <Switch>
             <Route path='/login' exact={true} component={AsyncLogin} />
             <Route path='/dashboard' exact={true} component={AsyncDashboard} />

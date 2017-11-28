@@ -6,15 +6,39 @@
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
-
+.container{
+  width: 100%;
+  margin: 0 auto;
+}
+label{
+  font-weight: normal;
+}
+.margin-30{
+  margin: 0 30px;
+}
+.menu-bar{
+  display: block;
+}
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
+.dialog-ui > div > div{
+  max-width: 450px !important;
+}
+.load-notify{
+  display: none !important;
+}
+.select-radio div{
+  display: table-cell !important;
+}
+.show{
+  display: block !important;
+  margin: 0 auto;
+}
+.align-left label{ left: 0;}
 .App-title {
   font-size: 1.5em;
 }
@@ -52,4 +76,11 @@
 .event-timeline a{
   text-decoration: none;
   color: inherit;
+}
+a {
+  color: rgba(0, 0, 0, 0.4);
+}
+a:focus,
+a:hover {
+    text-decoration: none;
 }

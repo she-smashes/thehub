@@ -42,8 +42,8 @@ class Header extends Component {
          this.badgemessagecount()
        :
          <div> Hello, {this.props.userInfo.user.firstname}
-         <img className="avathar" src={avathar} alt="avathar" /> </div>}
-      </div>
+           <img className="avathar" src={avathar} alt="avathar" /> </div>}
+         </div>
     }
   };
 
