@@ -5,9 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+// import ReactDOM from 'react-dom';
+// import { List, ListItem } from 'material-ui/List';
+// import Divider from 'material-ui/Divider';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import './accordian.css';
 import RaisedButton from 'material-ui/RaisedButton';
