@@ -72,13 +72,6 @@
     {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "listInitiatives"
-    },
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
     },
