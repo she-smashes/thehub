@@ -11,7 +11,7 @@ import {getEventList, updateViewEventsInfo} from './action';
 
 const mapStateToProps = (state) => {
   return {
-    viewEvents: state.viewEvents,
+    viewEvents: state.viewEvents.events,
     userInfo: state.userInfo
   }
 }

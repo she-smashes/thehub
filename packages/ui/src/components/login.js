@@ -25,7 +25,7 @@
      this.state = {
        errors: {},
        user: {
-         email: '',
+         username: '',
          password: ''
        },
        response: '',
@@ -43,7 +43,7 @@
    resetForm = () => {
      this.setState({
        user: {
-         email: '',
+         username: '',
          password: ''
        }
    });
@@ -53,9 +53,9 @@
        let errors = {};
        let formIsValid = true;
 
-       if(!fields["email"]){
+       if(!fields["username"]){
           formIsValid = false;
-          errors["email"] = "Enter email address";
+          errors["username"] = "Enter username";
        }
        if(!fields["password"]){
           formIsValid = false;
@@ -128,12 +128,12 @@
 
            <div className="field-line">
              <TextField
-               floatingLabelText="Email"
-               name="email"
+               floatingLabelText="Username"
+               name="username"
                onChange={this.changeUser}
-               value={this.state.user.email}
+               value={this.state.user.username}
                className="align-left"
-               errorText={this.state.errors.email}
+               errorText={this.state.errors.username}
              />
            </div>
 

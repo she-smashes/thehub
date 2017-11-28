@@ -61,7 +61,7 @@ class Task extends Component {
                                 <b>Location: </b> {item.approvable.location} 
                                 <br /> <br />
                                     <div>
-                                    {item.approvable.description} 
+                                    <b>Description: </b> {item.approvable.description} 
                                     </div>
 
                                     <br /> <br />
