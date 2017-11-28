@@ -22,16 +22,16 @@ const participants = [
   <MenuItem key={2} value={2} primaryText="Volunteer" />
 ];
 const hourly = [
-  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver Hansen" />,
-  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van Henry" />,
-  <MenuItem key={3} value={3} insetChildren={true} primaryText="April Tucker" />,
-  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph Hubbard" />
+  <MenuItem key={1} value={1} primaryText="Organizer" />,
+  <MenuItem key={2} value={2} primaryText="Volunteer" />,
+  <MenuItem key={3} value={3} primaryText="Admin" />,
+  <MenuItem key={4} value={4} primaryText="participant" />
 ];
 const nonhourly = [
-  <MenuItem key={1} value={1} insetChildren={true} primaryText="Oliver" />,
-  <MenuItem key={2} value={2} insetChildren={true} primaryText="Van" />,
-  <MenuItem key={3} value={3} insetChildren={true} primaryText="April" />,
-  <MenuItem key={4} value={4} insetChildren={true} primaryText="Ralph" />
+  <MenuItem key={1} value={1} primaryText="Organizer" />,
+  <MenuItem key={2} value={2} primaryText="Volunteer" />,
+  <MenuItem key={3} value={3} primaryText="Admin" />,
+  <MenuItem key={4} value={4} primaryText="participant" />
 ];
 class CreateEvent extends Component {
     /**
