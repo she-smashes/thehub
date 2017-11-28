@@ -11,18 +11,18 @@ export const getUserInfo = (userInfo) => {
     return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-          
+
           return req;
         },
       })
       .then((client) => {
 
         let loginBody = {
-          "email": userInfo.email,
+          "username": userInfo.username,
           "password": userInfo.password
       };
       loginBody = JSON.stringify(loginBody);
-        
+
         return client
           .apis
           .user
@@ -34,8 +34,8 @@ export const getUserInfo = (userInfo) => {
 /**
  * @name updateUserInfo
  * @desc Updates the user info to reducer
- * @param {*} type 
- * @param {*} resp 
+ * @param {*} type
+ * @param {*} resp
  */
 export const updateUserInfo = (userInfo) => {
   return {
