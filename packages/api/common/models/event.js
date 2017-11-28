@@ -2,10 +2,8 @@
 
 module.exports = function (Event) {
 
-
-
   Event.disableRemoteMethodByName('upsert');
-  Event.disableRemoteMethodByName('upsertWithWhere');  Event.disableRemoteMethodByName('exists');
+  Event.disableRemoteMethodByName('upsertWithWhere'); Event.disableRemoteMethodByName('exists');
   Event.disableRemoteMethodByName('updateAll');
   Event.disableRemoteMethodByName('count');
   Event.disableRemoteMethodByName('createChangeStream');
@@ -73,8 +71,11 @@ module.exports = function (Event) {
   }
   );
 
-   Event.listEventsForUser = function (ctx, userId, cb) {
-    console.log("userid from request" + userId);
+  Event.listEventsForUser = function (ctx, userId, cb) {
+    
+
+var userId = ctx.req.accessToken.userId;
+
     Event.find({
       where: {
         endDate: { gte: Date.now() },
@@ -84,43 +85,40 @@ module.exports = function (Event) {
     }, function (err, pastInstances) {
       // this logic is to determin the list of non-approved events that are returned 
       // by this query. userId = 0 for an admin user and all non-approved events are returned
-      if(userId == 0){
+      if (userId == 0) {
         Event.find({
-        where: {
-          endDate: { gte: Date.now() },
-          status: 'not approved'          
-        },
-        order: 'startDate DESC'
-      }, function (err, futureInstances) {
+          where: {
+            endDate: { gte: Date.now() },
+            status: 'not approved'
+          },
+          order: 'startDate DESC'
+        }, function (err, futureInstances) {
 
-        let instances = [];
-        instances = pastInstances.concat(futureInstances);
+          let instances = [];
+          instances = pastInstances.concat(futureInstances);
 
-        cb(null, instances);
-      });
-      }else{
+          cb(null, instances);
+        });
+      } else {
         Event.find({
-        where: {
-          endDate: { gte: Date.now() },
-          status: 'not approved',
-          createdBy: userId
-        },
-        order: 'startDate DESC'
-      }, function (err, futureInstances) {
+          where: {
+            endDate: { gte: Date.now() },
+            status: 'not approved',
+            createdBy: userId
+          },
+          order: 'startDate DESC'
+        }, function (err, futureInstances) {
 
-        let instances = [];
-        instances = pastInstances.concat(futureInstances);
+          let instances = [];
+          instances = pastInstances.concat(futureInstances);
 
-        cb(null, instances);
-      });
+          cb(null, instances);
+        });
       }
-
-      
-
     });
   };
-  
-  Event.remoteMethod('listEventsForUser',{
+
+  Event.remoteMethod('listEventsForUser', {
     accepts: [
       { arg: 'ctx', type: 'object', http: { source: 'context' } },
       { arg: 'userId', type: 'number' }
@@ -134,9 +132,6 @@ module.exports = function (Event) {
       type: 'array'
     }
   });
-
-
-
 
   Event.observe('before save', function (ctx, next) {
     if (ctx.instance) {
