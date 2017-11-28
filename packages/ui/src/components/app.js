@@ -31,12 +31,12 @@ class App extends Component {
       <div className="container">
         <Router history={History}>
         <div>
+          <Header/>
         {
           !loggedIn? <Login />:
-          <div>
-            <Header/>
+          <div>            
             <NavigationContainer />
-            <Switch>            
+            <Switch>
               <Route path='/' exact={true} component={AsyncDashboard} />
               <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
               <Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
@@ -48,7 +48,7 @@ class App extends Component {
             </Switch>
           </div>
         }
-          
+
         <Footer />
         </div>
       </Router>
