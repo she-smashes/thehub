@@ -17,8 +17,6 @@ module.exports = function (Task) {
         status: 'Pending'
       }
     }, function (err, taskInstanses) {
-
-      console.log(taskInstanses);
       cb(null, taskInstanses);
     });
   };
@@ -50,7 +48,7 @@ module.exports = function (Task) {
         where: {
           id: task.approvableId
         }
-      }, function (err,approvable) {
+      }, function (err, approvable) {
         task.approvable = approvable[0];
       })));
     });

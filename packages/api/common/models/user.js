@@ -2,55 +2,6 @@
 
 module.exports = function (User) {
 
-
-	User.listTasks = function (userId, cb) {
-
-		User.find({
-			"filter": {
-				"where": {
-					"id": userId
-				},
-				"include": {
-					"relation": "tasks"
-				}
-			}
-		});
-
-	};
-	User.remoteMethod('listTasks', {
-
-		accepts: [
-			{ arg: 'userId', type: 'string' }
-		],
-		returns: { arg: 'tasks', type: 'array' },
-		http: { path: '/list-tasks', verb: 'get' }
-
-	});
-
-	User.listEnrollments = function (userId, cb) {
-
-		User.find({
-			"filter": {
-				"where": {
-					"id": userId
-				},
-				"include": {
-					"relation": "enrollments"
-				}
-			}
-		});
-
-	};
-	User.remoteMethod('listEnrollments', {
-
-		accepts: [
-			{ arg: 'userId', type: 'number' }
-		],
-		returns: { arg: 'enrollments', type: 'array' },
-		http: { path: '/list-enrollments', verb: 'get' }
-
-	});
-
 	User.afterRemote('login', function (context, modelInstance, next) {
 
 		let accessToken = "";
@@ -87,7 +38,8 @@ function getPermissibleActions(user, accessToken) {
 	let modelNames = [
 		'user',
 		'event',
-		'initiative'
+		'initiative',
+		'task'
 	];
 
 	let readProperties = [
@@ -116,8 +68,6 @@ function getPermissibleActions(user, accessToken) {
 	let promises = [];
 	let allProperties = [];
 	allProperties = readProperties.concat(writeProperties);
-	//allProperties = ['create'];
-	//modelNames = ['event'];
 	modelNames.forEach(function (modelName) {
 		allProperties.forEach(function (property) {
 
