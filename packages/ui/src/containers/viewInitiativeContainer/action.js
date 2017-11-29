@@ -26,7 +26,7 @@ export const getInitiativeList = (access_token) => {
         return client
           .apis
           .initiative
-          .initiative_find({filter: filterQuery});
+          .initiative_listInitiativesForUser();
       });
   }
 }

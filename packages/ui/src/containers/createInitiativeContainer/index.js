@@ -13,8 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
-    sendInitiativeDetails: (initiativeDetails, userInfoObj) => {
-      return dispatch(sendInitiativeDetails(initiativeDetails, userInfoObj, dispatch))
+    sendInitiativeDetails: (initiativeDetails, userId, access_token) => {
+      return dispatch(sendInitiativeDetails(initiativeDetails, userId, access_token, dispatch))
     }, updateInitiativeInfo: (initiativeInfo) => {
       return dispatch(updateInitiativeInfo(initiativeInfo))
     }, verifyUser: (initiativeObj, accessToken) => {

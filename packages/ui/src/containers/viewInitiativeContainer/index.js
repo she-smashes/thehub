@@ -4,7 +4,7 @@ import {getInitiativeList, updateViewInitiativeInfo} from './action';
 
 const mapStateToProps = (state) => {
   return {
-    viewInitiatives: state.viewInitiatives,
+    viewInitiatives: state.viewInitiatives.initiatives,
     userInfo: state.userInfo
   }
 }

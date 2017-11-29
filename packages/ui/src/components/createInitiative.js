@@ -11,7 +11,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import History from '../history';
 import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
-
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 const items = [
   <MenuItem key={1} value={1} primaryText="1" />,
@@ -75,6 +76,10 @@ class CreateInitiative extends React.Component {
             formIsValid = false;
             errors["description"] = "Enter Initiative Description";
         }
+        if (!fields["lead"]) {
+            formIsValid = false;
+            errors["lead"] = "Enter Lead name";
+        }
        
         this.setState({
             errors: errors
@@ -89,7 +94,6 @@ class CreateInitiative extends React.Component {
     verifyLeadUser=(event)=> {
         this.props.verifyUser(this.state.createInitiativeformData,this.props.userInfo)
         .then((response,error) =>{
-            console.log('aaaaaaaaaaaaaaa' + response);
             if(response.payload.data.length > 0){
               this.setState(prevState => ({
                 createInitiativeformData: {
@@ -124,7 +128,7 @@ class CreateInitiative extends React.Component {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.id).then((response, error) => {
+            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.userId,this.props.userInfo.id).then((response, error) => {
                 History.push("/viewinitiative");
               }, (error) => {
                 console.log(error);
@@ -193,6 +197,14 @@ class CreateInitiative extends React.Component {
      * Render the component.
      */
     render=()=> {
+        const actions = [
+            <FlatButton
+              label="OK"
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.handleClose}
+            />,
+          ];
         return ( 
            <div className="container  App">
                 <form onSubmit={this.processForm}>
@@ -203,11 +215,6 @@ class CreateInitiative extends React.Component {
                     <div className="field-line">
                         <TextField className="align-left" floatingLabelText="Description" name="description" onChange={this.changeStateData} value={this.state.createInitiativeformData.description} errorText={this.state.errors.description} />
                     </div>
-                    <div>
-                        <SelectField className="align-left" floatingLabelText="Category" name="categoryId" value={this.state.createInitiativeformData.categoryId} onChange={(event, index, value) => this.onCategoryChange(event, index, value)} autoWidth={true} >
-                            {items}
-                        </SelectField>
-                    </div>
                     <div className="field-line">
                         <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} onBlur={this.verifyLeadUser} errorText={this.state.errors.lead} />
                     </div>
@@ -216,6 +223,16 @@ class CreateInitiative extends React.Component {
                     </div>
                     
                 </form>
+                <Dialog
+                  title="Message"
+                  className="dialog-ui"
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose}
+                >
+                  { this.state.message }
+                </Dialog>
             </div>
         );
     }
