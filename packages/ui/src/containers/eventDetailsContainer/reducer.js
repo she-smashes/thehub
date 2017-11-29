@@ -6,7 +6,7 @@
  * @param {Object} action
  */
 
-import { GET_EVENTDETAILS } from "../../constants/actions";
+import { GET_EVENTDETAILS, RESET_STORE } from "../../constants/actions";
 import { REGISTER_USER_FOR_EVENT } from "../../constants/actions";
 import { GET_ENROLLMENTDETAILS, UPDATE_ENROLLMENTDETAILS } from "../../constants/actions";
 export default function (state = [], action) {
@@ -31,6 +31,8 @@ export default function (state = [], action) {
         case UPDATE_ENROLLMENTDETAILS: {
             return action.payload;
         }
+        case RESET_STORE:
+            return [];
         default:
             return state;
     }

@@ -32,7 +32,6 @@
        open: false,
        isLoading: false
      };
-
    }
    handleOpen = () => {
      this.setState({open: true});
@@ -81,7 +80,7 @@
         // You get the logged in response here
         this.setState({isLoading: false});
         this.props.updateUserInfo(JSON.parse(response.data));
-        History.push("/dashboard");
+        History.push("/");
 
       }, (error) => {
         this.setState({isLoading: false});

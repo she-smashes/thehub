@@ -113,7 +113,7 @@ class CreateEvent extends Component {
         if (this.handleValidation()) {
             this.props.sendEventDetails(this.state.createEventformData,this.props.userInfo)
             .then((response,error) =>{
-                History.push("/dashboard");
+                History.push("/");
             },(error)=>{
               this.handleOpen();
               this.setState({
