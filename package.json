@@ -3,8 +3,7 @@
 		"heroku-prebuild": "npm install -g lerna@2.2.0 mocha@latest react-scripts@1.0.14",
 		"heroku-postbuild": "lerna bootstrap && lerna run build && cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
-		"start:heroku": "cd packages/api && npm run start:heroku",
-		"test": "lerna run test"
+		"start:heroku": "cd packages/api && npm run start:heroku"
 	},
 	"devDependencies": {
 		"lerna": "2.2.0"
