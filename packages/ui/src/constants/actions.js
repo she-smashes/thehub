@@ -19,4 +19,7 @@ export const GET_CATEGORIES ="ALL_CATEGORIES";
 export const EVENT_FAILURE = "Event creation not successfull!!"
 export const GET_ENROLLMENTDETAILS = 'GET_ENROLLMENTDETAILS';
 export const UPDATE_ENROLLMENTDETAILS = 'UPDATE_ENROLLMENTDETAILS';
+export const INVALID_INITIATIVE_TITLE = 'Enter Initiative Title';
+export const INVALID_INITIATIVE_DESCRIPTION = 'Enter Initiative Description';
+export const INVALID_LEAD_NAME = 'Enter Lead name';
 export const RESET_STORE = 'REDUX_STORE';

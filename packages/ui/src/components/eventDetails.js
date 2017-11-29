@@ -38,7 +38,7 @@ class EventDetails extends Component {
       console.log(error);
     });
   }
-  
+
   /**
     * Function to set the value into the state for participant drop down
     *
@@ -67,7 +67,23 @@ class EventDetails extends Component {
       console.log(error);
     });
   }
+  showRegisterButton = () => {
+    if (Moment() < Moment(this.props.eventDetails.endDate)) {
+      return (
+        <div>
+          <div>
+            <SelectField className="align-left" floatingLabelText="Enrollment Type" name="participantId" value={this.state.eventDetails.participantId} onChange={(event, index, value) => this.onParticipantChange(event, index, value)} autoWidth={true} >
+              {items}
+            </SelectField>
+          </div>
 
+          <div className="button-line">
+            <RaisedButton type="button" label={(this.props.eventDetails.status === 'approved' && (this.props.eventDetails.registered === undefined || this.props.eventDetails.registered === false)) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
+          </div>
+        </div>
+      );
+    }
+  }
   /**
    * @name render
    * @desc render the event details in the page
@@ -84,16 +100,7 @@ class EventDetails extends Component {
           <p className="">
             {this.props.eventDetails.description}
           </p>
-          <div>
-            <SelectField className="align-left" floatingLabelText="Enrollment Type" name="participantId" value={this.state.eventDetails.participantId} onChange={(event, index, value) => this.onParticipantChange(event, index, value)} autoWidth={true} >
-              {items}
-            </SelectField>
-          </div>
-
-          <div className="button-line">
-            <RaisedButton type="button" label={(this.props.eventDetails.status === 'approved' && (this.props.eventDetails.registered === undefined || this.props.eventDetails.registered === false)) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
-          </div>
-
+          {this.showRegisterButton()}
         </div>
       </div>
     );

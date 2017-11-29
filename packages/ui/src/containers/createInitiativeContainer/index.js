@@ -5,7 +5,6 @@ import { sendInitiativeDetails, updateInitiativeInfo, verifyUser } from './actio
 
 const mapStateToProps = (state) => {
   return {
-    createInitiativeformData: state.newInitiative, //reducer name
     verifyUser: state.verifyUser,
     userInfo: state.userInfo
   }
@@ -13,12 +12,12 @@ const mapStateToProps = (state) => {
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
-    sendInitiativeDetails: (initiativeDetails, userId, access_token) => {
-      return dispatch(sendInitiativeDetails(initiativeDetails, userId, access_token, dispatch))
+    sendInitiativeDetails: (initiativeDetails, userInfo) => {
+      return dispatch(sendInitiativeDetails(initiativeDetails, userInfo, dispatch))
     }, updateInitiativeInfo: (initiativeInfo) => {
       return dispatch(updateInitiativeInfo(initiativeInfo))
-    }, verifyUser: (initiativeObj, accessToken) => {
-      return dispatch(verifyUser(initiativeObj, accessToken, dispatch))
+    }, verifyUser: (initiativeObj, userInfo) => {
+      return dispatch(verifyUser(initiativeObj, userInfo, dispatch))
     }
   }
 }

@@ -17,7 +17,7 @@ import App from './containers/appContainer/';
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
 import viewInitiatives from './containers/viewInitiativeContainer/reducer';
-import newInitiative from './containers/createInitiativeContainer/reducer';
+
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
 import viewEvents from './containers/viewEventsContainer/reducer';
@@ -41,7 +41,6 @@ const rootReducer = persistCombineReducers(config, {
     userInfo,
     eventsList,
     viewInitiatives,
-    newInitiative,
     viewTasks,
 	  eventDetails,
     viewEvents,
