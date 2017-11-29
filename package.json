@@ -7,6 +7,8 @@
 		"test" : "lerna run test"
 	},
 	"devDependencies": {
-		"lerna": "2.2.0"
+		"lerna": "2.2.0",
+    "mocha": "^4.0.1",
+    "react-scripts": "1.0.14"
 	}
 }
