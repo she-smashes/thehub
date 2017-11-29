@@ -54,7 +54,6 @@ export const getApprovedInitiatives = (accessToken) => {
 }
 export const getCategories = (accessToken) => {
   const request = axios.get(ALL_CATEGORIES +"?access_token="+accessToken);
-  console.log(request);
   return {
     type: GET_CATEGORIES,
     payload: request

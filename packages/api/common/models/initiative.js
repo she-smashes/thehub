@@ -40,9 +40,7 @@ module.exports = function (Initiative) {
             status: 'not approved',
             createdBy: userId
           }
-        }, function (err, futureInstances) {
-          console.log('aaaaaaaaaa = ' + futureInstances);
-          
+        }, function (err, futureInstances) {        
           let instances = [];
           instances = pastInstances.concat(futureInstances);
           cb(null, instances);
