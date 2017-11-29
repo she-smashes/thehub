@@ -38,7 +38,6 @@ export const registerUserForEvent = (eventId, userId, registerFlag,  participant
         },
       })
       .then((client) => {
-console.log(participantId);
 
         if (registerFlag) {
           let postBody = {
@@ -48,7 +47,6 @@ console.log(participantId);
             "enrollmentType": participantId
           };
           postBody = JSON.stringify(postBody);
-          console.log(postBody);
           return client
             .apis
             .event
@@ -75,7 +73,6 @@ export const getEnrollmentDetails = (eventId, userId, access_token) => {
         },
       })
       .then((client) => {
-        console.log('eventId = ' + eventId);
         let filterQuery = { include: "events" };
         filterQuery = JSON.stringify(filterQuery)
 
@@ -113,7 +110,6 @@ export const updateEnrollmentDetails = (userId, enrollmentDetailsInfo) => {
 
   let registered = false;
   enrollmentDetailsInfo.map(enrollDetail => {
-    console.log('enrollDetail = ' + enrollDetail);
 
     if (userId === enrollDetail.userId) {
       registered = true;
