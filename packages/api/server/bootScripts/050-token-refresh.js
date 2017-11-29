@@ -1,11 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-exports.default = function (app) {
-
+exports.default = function(app) {
   if (!BootScriptConfig.isEnabled('tokenRefresh')) {
     return;
   }
@@ -14,9 +13,9 @@ exports.default = function (app) {
   var ttl = BootScriptConfig.get(['tokenRefresh', 'ttl'], 86400 * 30);
   var loopback = require('loopback');
   app.use(loopback.token());
-  app.use(function (req, res, next) {
+  app.use(function(req, res, next) {
     var token = req.accessToken;
-	console.log('token', token);
+    console.log('token', token);
     if (!token) {
       return next();
     }
@@ -24,11 +23,11 @@ exports.default = function (app) {
     var now = new Date();
 
     if (now.getTime() - token.created.getTime() < onceIn) {
-		console.log('not reset');
+      console.log('not reset');
       return next();
     }
 
-		console.log('reset');
+    console.log('reset');
     token.created = now;
     token.ttl = ttl;
     token.save(next);

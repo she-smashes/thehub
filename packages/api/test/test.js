@@ -6,28 +6,25 @@ var app = require('../server/server');
 var tests = require('./apiTestConfig.json');
 var async = require('async');
 var superagent;
- var dataSource = app.dataSource('testdb', {
-  "name": "db",
-  "connector": "memory",
-  "file": "testdb.json"
+var dataSource = app.dataSource('testdb', {
+  'name': 'db',
+  'connector': 'memory',
+  'file': 'testdb.json',
 });
- 
 
 var models = require('../server/model-config.json');
 for (var key in models) {
   console.log('key = ' + key);
-  if(key !== '_meta') {
-  var model = loopback.getModel(key);
-  loopback.configureModel(model, {dataSource: dataSource});
+  if (key !== '_meta') {
+    var model = loopback.getModel(key);
+    loopback.configureModel(model, {dataSource: dataSource});
+  }
 }
-}
 
+var url = 'http://localhost:4000/api';
+var baseURL = '/';
 
-var url = "http://localhost:4000/api";
-var baseURL = "/";
-
-async.each(tests, function (data, asyncCallback) {
-
+async.each(tests, function(data, asyncCallback) {
   var model = data.model;
   var method = data.method;
   var withData = data.withData;
@@ -35,8 +32,8 @@ async.each(tests, function (data, asyncCallback) {
   var expectVar = data.expectVar;
   var expectValue = data.expectValue;
   var expectDescription = data.expectDescription;
-  var username = "";
-  var password = "";
+  var username = '';
+  var password = '';
   var count = data.count;
 
   var isWithAuthentication = (data.hasOwnProperty('username') && data.hasOwnProperty('password'));
@@ -45,23 +42,22 @@ async.each(tests, function (data, asyncCallback) {
     password = data.password;
   }
 
-  describe(data.model + ' model', function () {
+  describe(data.model + ' model', function() {
     var server;
 
-    beforeEach(function (done) {
+    beforeEach(function(done) {
       server = app.listen(done);
     });
 
-    afterEach(function (done) {
+    afterEach(function(done) {
       server.close(done);
     });
     var loginBlock;
-    it(expectDescription, function (done) {
-
-      let access_token = "";
+    it(expectDescription, function(done) {
+      let access_token = '';
 
       if (isWithAuthentication) {
-        loginBlock = function (loginCallback) {
+        loginBlock = function(loginCallback) {
           var loginData = {};
           loginData.username = data.username;
           loginData.password = data.password;
@@ -71,14 +67,14 @@ async.each(tests, function (data, asyncCallback) {
             .send(loginData)
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .end(function (err, res) {
+            .end(function(err, res) {
               if (err) { return done(err); }
               access_token = res.body.id;
               return loginCallback(null, access_token);
             });
-        }
+        };
       } else {
-        loginBlock = function (loginCallback) {
+        loginBlock = function(loginCallback) {
           return loginCallback(null, null);
         };
       }
@@ -90,23 +86,22 @@ async.each(tests, function (data, asyncCallback) {
           .send(withData)
           .set('Accept', 'application/json')
           .set('Content-Type', 'application/json')
-          .end(function (err, res) {
+          .end(function(err, res) {
             if (err) { return done(err); }
             assert.equal(res.status, expectStatus);
             assert.equal(res.body[expectVar], expectValue);
             done();
           });
       } else {
-
-        loginBlock(function (loginError, loginToken) {
+        loginBlock(function(loginError, loginToken) {
           if (loginError) {
             done(loginError);
             return asyncCallback();
           }
           var urlToHit = baseURL + model;
           if (method.toUpperCase() === 'GET') {
-            if (count === "true") {
-              urlToHit = urlToHit + "/count"
+            if (count === 'true') {
+              urlToHit = urlToHit + '/count';
             }
             agent = agent.get(urlToHit);
           } else if (method.toUpperCase() === 'POST') {
@@ -124,15 +119,15 @@ async.each(tests, function (data, asyncCallback) {
           agent
             .set('Accept', 'application/json')
             .set('Content-Type', 'application/json')
-            .end(function (err, res) {
+            .end(function(err, res) {
               if (err) { return done(err); }
               assert.equal(res.status, expectStatus);
               if (count === 'true') {
                 assert.isAbove(res.body[expectVar], expectValue);
               } else if (method.toUpperCase() === 'POST') {
-                assert.isNotEmpty(res.body[expectVar] + "", expectValue);
+                assert.isNotEmpty(res.body[expectVar] + '', expectValue);
               } else {
-                assert.equal(res.body[expectVar] + "", expectValue);
+                assert.equal(res.body[expectVar] + '', expectValue);
               }
               done();
             });
