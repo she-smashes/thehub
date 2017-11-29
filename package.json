@@ -4,13 +4,9 @@
 		"heroku-postbuild": "lerna bootstrap && lerna run build && cp -R packages/ui/build/* packages/api/client",
 		"start": "lerna run start",
 		"start:heroku": "cd packages/api && npm run start:heroku",
-		"test" : "lerna run test"
+		"test" : "cd packages/api && npm run test"
 	},
 	"devDependencies": {
-		"lerna": "2.2.0",
-    "mocha": "^4.0.1",
-    "chai": "^4.1.2",
-    "supertest": "^3.0.0",
-    "react-scripts": "1.0.14"
+		"lerna": "2.2.0"
 	}
 }
