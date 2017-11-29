@@ -36,7 +36,7 @@ class Header extends Component {
    * in header menu if the user is logged in.
    */
   user = () => {
-    if(this.props && this.props.userInfo && this.props.userInfo.user) {
+    if (this.props && this.props.userInfo && this.props.userInfo.user) {
       return <div className="user-name">
        {this.props.userInfo.notificationCount >=1 ?
          this.badgemessagecount()

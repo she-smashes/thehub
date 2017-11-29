@@ -18,7 +18,6 @@ export default function (state = [], action) {
             return action.payload;
         }
         case GET_ENROLLMENTDETAILS: {
-            console.log('action.payload = ' + action.payload);
             let evDet = {};
             action.payload.map(eventDetail => {
                 if (eventDetail.userId === state.userInfo.userId) {

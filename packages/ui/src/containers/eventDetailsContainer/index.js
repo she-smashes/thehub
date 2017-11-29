@@ -17,8 +17,8 @@ const mapDisptchToProps = (dispatch, ownProps) => {
     getEventDetails : (id, access_token) => {
       return dispatch(getEventDetails(id, access_token, dispatch));
     },
-    registerUserForEvent : (eventId, userId, registerFlag,  enrollmentId, access_token) => {
-      return dispatch(registerUserForEvent(eventId, userId, registerFlag,  enrollmentId, access_token, dispatch));
+    registerUserForEvent : (eventId, userId, registerFlag,  participantId, enrollmentId, access_token) => {
+      return dispatch(registerUserForEvent(eventId, userId, registerFlag,  participantId, enrollmentId, access_token, dispatch));
     },
     updateEventDetails : (userId, eventDetails) => {
       return dispatch(updateEventDetails(userId, eventDetails));

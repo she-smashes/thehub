@@ -27,7 +27,7 @@ export const getEventDetails = (eventId, access_token) => {
       });
   }
 }
-export const registerUserForEvent = (eventId, userId, registerFlag,  enrollmentId, access_token) => {
+export const registerUserForEvent = (eventId, userId, registerFlag,  participantId, enrollmentId, access_token) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
@@ -39,16 +39,14 @@ export const registerUserForEvent = (eventId, userId, registerFlag,  enrollmentI
       })
       .then((client) => {
 
-
         if (registerFlag) {
           let postBody = {
             "eventId": eventId,
             "userId": userId,
             "registeredOn": new Date(),
-            "enrollmentType": "1"
+            "enrollmentType": participantId
           };
           postBody = JSON.stringify(postBody);
-          console.log(postBody);
           return client
             .apis
             .event
@@ -75,7 +73,6 @@ export const getEnrollmentDetails = (eventId, userId, access_token) => {
         },
       })
       .then((client) => {
-        console.log('eventId = ' + eventId);
         let filterQuery = { include: "events" };
         filterQuery = JSON.stringify(filterQuery)
 
@@ -98,6 +95,7 @@ export const updateEventDetails = (userId, eventDetailsInfo) => {
       if (enrollmentDetail.userId === userId) {
         eventDetailsInfo.registered = true;
         eventDetailsInfo.enrollmentId = enrollmentDetail.id;
+        eventDetailsInfo.enrollmentParticipantId = enrollmentDetail.participantId;
       }
     });
   }
@@ -112,7 +110,6 @@ export const updateEnrollmentDetails = (userId, enrollmentDetailsInfo) => {
 
   let registered = false;
   enrollmentDetailsInfo.map(enrollDetail => {
-    console.log('enrollDetail = ' + enrollDetail);
 
     if (userId === enrollDetail.userId) {
       registered = true;

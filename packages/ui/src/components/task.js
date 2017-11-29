@@ -50,25 +50,25 @@ class Task extends Component {
      * This method renders the list of tasks in an accordion format.
      */
     renderTasks = () => {    
+        
         return (
             <Accordion class="react-sanfona">
                 {this.props.viewTasks.map(item => {
                         return (
                             <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
-                                
+                                <b>Type: </b> {item.type} 
+                                <br /> <br />
                                 <b>Date & Time: </b> {Moment(item.approvable.startDate).format('LL') + " - " + Moment(item.approvable.endDate).format('LL')}
                                 <br /> <br />
                                 <b>Location: </b> {item.approvable.location} 
                                 <br /> <br />
-                                    <div>
-                                    {item.approvable.description} 
-                                    </div>
-
-                                    <br /> <br />
-                                    <div className="button-line">
-                                        <RaisedButton type="submit" label="APPROVE" primary  key={item.id} onClick={()=>{this.processForm(item.id)}}/>
-                                    </div>
-                                
+                                <div>
+                                <b>Description: </b> {item.approvable.description} 
+                                </div>
+                                <br /> <br />
+                                <div className="button-line">
+                                    <RaisedButton type="submit" label="APPROVE" primary  key={item.id} onClick={()=>{this.processForm(item.id)}}/>
+                                </div>                              
                             </AccordionItem>
                         );
                     
@@ -80,7 +80,7 @@ class Task extends Component {
     render = () => {
         return (
             <div>
-                <h3>List of Tasks </h3>
+                <h3></h3>
                 <div id="taskAccordian">
                     {this.props.viewTasks ? this.renderTasks() : <div> </div>}
                 </div>
