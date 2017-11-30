@@ -53,8 +53,7 @@ export const approveTask = (access_token, taskId) => {
 
         let putBody = { "status": "approved" };
         putBody = JSON.stringify(putBody);
-        let filterQuery = { "id": taskId };
-        filterQuery = JSON.stringify(filterQuery)
+
         return client
           .apis
           .task

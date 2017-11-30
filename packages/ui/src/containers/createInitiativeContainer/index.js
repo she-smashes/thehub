@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import CreateInitiative from '../../components/createInitiative';
-import { sendInitiativeDetails, updateInitiativeInfo, verifyUser } from './action';
+import { sendInitiativeDetails, updateInitiativeInfo } from './action';
+import { verifyUser } from '../appContainer/action';
 
 
 const mapStateToProps = (state) => {
@@ -16,8 +17,8 @@ const mapDisptchToProps = (dispatch, ownProps) => {
       return dispatch(sendInitiativeDetails(initiativeDetails, userInfo, dispatch))
     }, updateInitiativeInfo: (initiativeInfo) => {
       return dispatch(updateInitiativeInfo(initiativeInfo))
-    }, verifyUser: (initiativeObj, userInfo) => {
-      return dispatch(verifyUser(initiativeObj, userInfo, dispatch))
+    }, verifyUser: (username, userInfo) => {
+      return dispatch(verifyUser(username, userInfo, dispatch))
     }
   }
 }

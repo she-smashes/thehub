@@ -24,7 +24,6 @@ import viewEvents from './containers/viewEventsContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
 import approvedInitiatives from './containers/createEventContainer/getInitReducer';
 import categories from './containers/createEventContainer/categoriesReducer';
-import verifyUser from './containers/createEventContainer/verifyUserReducer';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -42,11 +41,10 @@ const rootReducer = persistCombineReducers(config, {
     eventsList,
     viewInitiatives,
     viewTasks,
-	  eventDetails,
+	eventDetails,
     viewEvents,
-	  approvedInitiatives,
-    categories,
-    verifyUser
+	approvedInitiatives,
+    categories
 });
 
 

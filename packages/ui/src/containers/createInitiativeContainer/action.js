@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { CREATE_AN_INITIATIVE,  CONFIRM_USER } from "../../constants/actions";
+import { CREATE_AN_INITIATIVE } from "../../constants/actions";
 import {  VERIFY_USER} from "../../constants/apiList";
 
 
@@ -36,14 +35,5 @@ export const updateInitiativeInfo = (initiativeInfo) => {
   return {
     type: CREATE_AN_INITIATIVE,
     payload: initiativeInfo
-  };
-}
-
-export const verifyUser = (eventObj,userInfo) => {
-  const url = decodeURIComponent(VERIFY_USER+'{"where":{"username":"'+eventObj.lead+'"}}&access_token='+userInfo.id);
-  const request = axios.get(url);
-  return {
-    type: CONFIRM_USER,
-    payload: request
   };
 }

@@ -121,13 +121,13 @@ class CreateInitiative extends React.Component {
             }
         }));
 
-        this.props.verifyUser(this.state.createInitiativeformData, this.props.userInfo)
+        this.props.verifyUser(this.state.createInitiativeformData.lead, this.props.userInfo)
             .then((response, error) => {
-                if (response.payload.data.length > 0) {
+                if (response.body.length > 0) {
                     this.setState(prevState => ({
                         createInitiativeformData: {
                             ...prevState.createInitiativeformData,
-                            leadId: JSON.stringify(response.payload.data[0].id)
+                            leadId: JSON.stringify(response.body[0].id)
                         }
                     }));
                     this.handleInvalidLead();
