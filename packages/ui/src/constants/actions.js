@@ -22,4 +22,5 @@ export const UPDATE_ENROLLMENTDETAILS = 'UPDATE_ENROLLMENTDETAILS';
 export const INVALID_INITIATIVE_TITLE = 'Enter Initiative Title';
 export const INVALID_INITIATIVE_DESCRIPTION = 'Enter Initiative Description';
 export const INVALID_LEAD_NAME = 'Enter Lead name';
+export const INCORRECT_LEAD_NAME = 'Incorrect lead name';
 export const RESET_STORE = 'REDUX_STORE';

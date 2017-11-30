@@ -38,7 +38,7 @@
     "participants": {
       "type": "hasMany",
       "model": "participant",
-      "foreignKey": "participantType",
+      "foreignKey": "participantId",
       "options": {
         "disableInclude": true
       }
@@ -61,7 +61,7 @@
     }
   },
   "acls": [
-  {
+    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$everyone",
@@ -72,7 +72,7 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
-	},
+    },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
@@ -87,7 +87,7 @@
       "permission": "ALLOW",
       "property": "updateAttributes"
     },
-	{
+    {
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "approver",
@@ -107,7 +107,6 @@
       "permission": "ALLOW",
       "property": "updateAttributes"
     }
-   
   ],
   "methods": {}
 }

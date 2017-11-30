@@ -6,14 +6,11 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import History from '../history';
-import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import { INVALID_INITIATIVE_TITLE, INVALID_INITIATIVE_DESCRIPTION, INVALID_LEAD_NAME } from "../constants/actions";
+import { INVALID_INITIATIVE_TITLE, INVALID_INITIATIVE_DESCRIPTION, INVALID_LEAD_NAME, INVALID_USER, EVENT_FAILURE, INCORRECT_LEAD_NAME } from "../constants/actions";
 
 const items = [
     <MenuItem key={1} value={1} primaryText="1" />,
@@ -79,7 +76,7 @@ class CreateInitiative extends React.Component {
         }
         if (this.state.createInitiativeformData.leadId == undefined || this.state.createInitiativeformData.leadId == '') {
             formIsValid = false;
-            errors["lead"] = INVALID_LEAD_NAME;
+            errors["lead"] = INCORRECT_LEAD_NAME;
         }
 
         this.setState({
@@ -95,7 +92,7 @@ class CreateInitiative extends React.Component {
             this.setState(prevState => ({
                 errors: {
                     ...prevState.errors,
-                    lead: "Incorrect lead name"
+                    lead: INCORRECT_LEAD_NAME
                 }
             }));
         } else {

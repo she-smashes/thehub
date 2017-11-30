@@ -4,13 +4,13 @@ import { UPDATE_ENROLLMENTDETAILS } from "../../constants/actions";
 
 import Swagger from 'swagger-client';
 
-export const getEventDetails = (eventId, access_token) => {
+export const getEventDetails = (eventId, userInfo) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-          req.headers['Authorization'] = access_token;
+          req.headers['Authorization'] = userInfo.id;
           return req;
         },
       })
@@ -27,24 +27,24 @@ export const getEventDetails = (eventId, access_token) => {
       });
   }
 }
-export const registerUserForEvent = (eventId, userId, registerFlag,  participantId, enrollmentId, access_token) => {
+export const registerUserForEvent = (eventId, userInfo, enrollmentInfo) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-          req.headers['Authorization'] = access_token;
+          req.headers['Authorization'] = userInfo.id;
           return req;
         },
       })
       .then((client) => {
 
-        if (registerFlag) {
+        if (!enrollmentInfo.registered) {
           let postBody = {
             "eventId": eventId,
-            "userId": userId,
+            "userId": userInfo.userId,
             "registeredOn": new Date(),
-            "enrollmentType": participantId
+            "enrollmentType": enrollmentInfo.enrollmentParticipantId
           };
           postBody = JSON.stringify(postBody);
           return client
@@ -55,70 +55,34 @@ export const registerUserForEvent = (eventId, userId, registerFlag,  participant
           return client
             .apis
             .event
-            .event_prototype___destroyById__enrollments({ id: eventId, fk: enrollmentId });
+            .event_prototype___destroyById__enrollments({ id: eventId, fk: enrollmentInfo.enrollmentId });
         }
 
       });
   }
 }
 
-export const getEnrollmentDetails = (eventId, userId, access_token) => {
-
-  return function (dispatch) {
-    return Swagger(process.env.REACT_APP_API_URI,
-      {
-        requestInterceptor: (req) => {
-          req.headers['Authorization'] = access_token;
-          return req;
-        },
-      })
-      .then((client) => {
-        let filterQuery = { include: "events" };
-        filterQuery = JSON.stringify(filterQuery)
-
-
-        return client
-          .apis
-          .event
-          .event_prototype___get__enrollments({ id: eventId, filter: filterQuery });
-
-      });
-  }
-}
-
-export const updateEventDetails = (userId, eventDetailsInfo) => {
+export const updateEventDetails = (userInfo, eventDetailsInfo) => {
 
   let evDet = {};
   eventDetailsInfo.registered = false;
   if (eventDetailsInfo.enrollments != undefined) {
     eventDetailsInfo.enrollments.map(enrollmentDetail => {
-      if (enrollmentDetail.userId === userId) {
+      if (enrollmentDetail.userId === userInfo.userId) {
         eventDetailsInfo.registered = true;
         eventDetailsInfo.enrollmentId = enrollmentDetail.id;
-        eventDetailsInfo.enrollmentParticipantId = enrollmentDetail.participantId;
+        eventDetailsInfo.enrollmentParticipantId = enrollmentDetail.enrollmentType;
+      } else {
+        eventDetailsInfo.registered = false;
+        eventDetailsInfo.enrollmentId = '';
+        eventDetailsInfo.enrollmentParticipantId = '';
       }
     });
   }
-
   return {
     type: GET_EVENTDETAILS,
     payload: eventDetailsInfo
   };
 }
 
-export const updateEnrollmentDetails = (userId, enrollmentDetailsInfo) => {
-
-  let registered = false;
-  enrollmentDetailsInfo.map(enrollDetail => {
-
-    if (userId === enrollDetail.userId) {
-      registered = true;
-    }
-  });
-
-  return {
-    type: UPDATE_ENROLLMENTDETAILS,
-    payload: { 'registered': registered }
-  };
-}
 
