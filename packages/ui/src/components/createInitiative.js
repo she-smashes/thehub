@@ -6,20 +6,18 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import History from '../history';
-import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { INVALID_INITIATIVE_TITLE, INVALID_INITIATIVE_DESCRIPTION, INVALID_LEAD_NAME, INVALID_USER, EVENT_FAILURE, INCORRECT_LEAD_NAME } from "../constants/actions";
 
 const items = [
-  <MenuItem key={1} value={1} primaryText="1" />,
-  <MenuItem key={2} value={2} primaryText="2" />,
-  <MenuItem key={3} value={3} primaryText="3" />,
-  <MenuItem key={4} value={4} primaryText="4" />,
-  <MenuItem key={5} value={5} primaryText="5" />,
+    <MenuItem key={1} value={1} primaryText="1" />,
+    <MenuItem key={2} value={2} primaryText="2" />,
+    <MenuItem key={3} value={3} primaryText="3" />,
+    <MenuItem key={4} value={4} primaryText="4" />,
+    <MenuItem key={5} value={5} primaryText="5" />,
 ];
 
 class CreateInitiative extends React.Component {
@@ -39,105 +37,127 @@ class CreateInitiative extends React.Component {
             createInitiativeformData: {
                 title: '',
                 description: '',
-                lead:'',
+                lead: '',
                 leadId: '',
-                categoryId:'',
+                categoryId: '',
                 id: ''
-            },
-            newInitiative: {
-                id:''
             }
-            
         };
 
     }
     handleOpen = () => {
-        this.setState({open: true});
-      };
-  
-      handleClose = () => {
-        this.setState({open: false});
-      };
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
     /**
      * Function to validate the form
      *
      */
-    handleValidation=()=> {
+    handleValidation = () => {
         let fields = this.state.createInitiativeformData;
         let errors = {};
         let formIsValid = true;
 
         if (!fields["title"]) {
             formIsValid = false;
-            errors["title"] = "Enter Initiative Title";
+            errors["title"] = INVALID_INITIATIVE_TITLE;
         }
         if (!fields["description"]) {
             formIsValid = false;
-            errors["description"] = "Enter Initiative Description";
+            errors["description"] = INVALID_INITIATIVE_DESCRIPTION;
         }
         if (!fields["lead"]) {
             formIsValid = false;
-            errors["lead"] = "Enter Lead name";
+            errors["lead"] = INVALID_LEAD_NAME;
         }
-       
+        if (this.state.createInitiativeformData.leadId == undefined || this.state.createInitiativeformData.leadId == '') {
+            formIsValid = false;
+            errors["lead"] = INCORRECT_LEAD_NAME;
+        }
+
         this.setState({
             errors: errors
         });
         return formIsValid;
     }
-/**
-     * verify the lead user object.
-     *
-     * @param {object} event - the JavaScript event object
-     */
-    verifyLeadUser=(event)=> {
-        this.props.verifyUser(this.state.createInitiativeformData,this.props.userInfo)
-        .then((response,error) =>{
-            if(response.payload.data.length > 0){
-              this.setState(prevState => ({
-                createInitiativeformData: {
-                      ...prevState.createInitiativeformData,
-                      leadId: JSON.stringify(response.payload.data[0].id)
-                  }
-              }));
-              this.setState({
-                  disabled: false,
-                  open: false,
-                  message: ''
-              });
+
+    handleInvalidLead = () => {
+        let formIsValid = true;
+        if (this.state.createInitiativeformData.leadId == undefined || this.state.createInitiativeformData.leadId == '') {
+            formIsValid = false;
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    lead: INCORRECT_LEAD_NAME
+                }
+            }));
+        } else {
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    lead: ""
+                }
+            }));
+        }
+
+        return formIsValid;
+    }
+
+    /**
+         * verify the lead user object.
+         *
+         * @param {object} event - the JavaScript event object
+         */
+    verifyLeadUser = (event) => {
+
+        this.setState(prevState => ({
+            createInitiativeformData: {
+                ...prevState.createInitiativeformData,
+                leadId: ""
             }
-            else{
-              this.handleOpen();
-              this.setState({
-                  disabled: true,
-                  open: true,
-                  message:INVALID_USER
-              });
-            }
-        },(error)=>{
-            alert('Error'+error);
-        });
+        }));
+
+        this.props.verifyUser(this.state.createInitiativeformData.lead, this.props.userInfo)
+            .then((response, error) => {
+                if (response.body.length > 0) {
+                    this.setState(prevState => ({
+                        createInitiativeformData: {
+                            ...prevState.createInitiativeformData,
+                            leadId: JSON.stringify(response.body[0].id)
+                        }
+                    }));
+                    this.handleInvalidLead();
+                }
+                else {
+                    this.handleInvalidLead();
+                }
+            }, (error) => {
+                alert('Error' + error);
+            });
     };
     /**
      * Process the form.
      *
      * @param {object} event - the JavaScript event object
      */
-    processForm=(event)=> {
+    processForm = (event) => {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
         if (this.handleValidation()) {
-            this.props.sendInitiativeDetails(this.state.createInitiativeformData,this.props.userInfo.userId,this.props.userInfo.id).then((response, error) => {
+            this.props.sendInitiativeDetails(this.state.createInitiativeformData, this.props.userInfo).then((response, error) => {
                 History.push("/viewinitiative");
-              }, (error) => {
+            }, (error) => {
                 console.log(error);
                 this.handleOpen();
                 this.setState({
                     open: true,
                     message: EVENT_FAILURE
                 });
-              });
+            });
         }
     }
 
@@ -146,67 +166,28 @@ class CreateInitiative extends React.Component {
      *
      * @param {object} event - the JavaScript event object
      */
-    changeStateData=(event)=> {
+    changeStateData = (event) => {
         const field = event.target.name;
         const user = this.state.createInitiativeformData;
         user[field] = event.target.value;
-
         this.setState({
             user
         });
     };
     /**
-     * Function to validate if the user selects a past date for event dates
-     *
-     */  
-    pastDateCheck=(startDate) =>{
-        const startSeconds = Date.parse(startDate);
-        return (date) => {
-            return Date.parse(date) < startSeconds;
-        }
-    };
-    /**
-     * Function to set the value into the state for participant drop down
-     *
-    */
-    onCategoryChange=(event,index,value)=>{  
-        this.setState({
-            createInitiativeformData : {...this.state.createInitiativeformData, categoryId: value}
-        });
-    };
-    /**
-     * Function to set the value into the state for initiative start date
-     *
-    */
-    handleStartDateChange=(event,date)=>{
-        this.setState({
-            createInitiativeformData : {...this.state.createInitiativeformData, intiativeStartDate: date}
-        });
-    };
-    /**
-     * Function to set the value into the state for initiative end date
-     *
-    */
-    handleEndDateChange=(event,date)=>{
-        this.setState({
-            createInitiativeformData : {...this.state.createInitiativeformData, intiativeEndDate: date}
-        });
-    };
-
-    /**
      * Render the component.
      */
-    render=()=> {
+    render = () => {
         const actions = [
             <FlatButton
-              label="OK"
-              primary={true}
-              keyboardFocused={true}
-              onClick={this.handleClose}
+                label="OK"
+                primary={true}
+                keyboardFocused={true}
+                onClick={this.handleClose}
             />,
-          ];
-        return ( 
-           <div className="container  App">
+        ];
+        return (
+            <div className="container  App">
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Initiative Form</h2>
                     <div className="field-line">
@@ -221,17 +202,17 @@ class CreateInitiative extends React.Component {
                     <div className="button-line">
                         <RaisedButton type="submit" label="Create" primary />
                     </div>
-                    
+
                 </form>
                 <Dialog
-                  title="Message"
-                  className="dialog-ui"
-                  actions={actions}
-                  modal={false}
-                  open={this.state.open}
-                  onRequestClose={this.handleClose}
+                    title="Message"
+                    className="dialog-ui"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose}
                 >
-                  { this.state.message }
+                    {this.state.message}
                 </Dialog>
             </div>
         );

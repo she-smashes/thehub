@@ -17,14 +17,13 @@ import App from './containers/appContainer/';
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
 import viewInitiatives from './containers/viewInitiativeContainer/reducer';
-import newInitiative from './containers/createInitiativeContainer/reducer';
+
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
 import viewEvents from './containers/viewEventsContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
 import approvedInitiatives from './containers/createEventContainer/getInitReducer';
 import categories from './containers/createEventContainer/categoriesReducer';
-import verifyUser from './containers/createEventContainer/verifyUserReducer';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -41,13 +40,11 @@ const rootReducer = persistCombineReducers(config, {
     userInfo,
     eventsList,
     viewInitiatives,
-    newInitiative,
     viewTasks,
-	  eventDetails,
+	eventDetails,
     viewEvents,
-	  approvedInitiatives,
-    categories,
-    verifyUser
+	approvedInitiatives,
+    categories
 });
 
 

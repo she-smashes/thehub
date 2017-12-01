@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import EventDetails from '../../components/eventDetails';
-import {getEventDetails, registerUserForEvent, updateEventDetails, getEnrollmentDetails, updateEnrollmentDetails} from './action';
+import {getEventDetails, registerUserForEvent, updateEventDetails} from './action';
 
 
 const mapStateToProps = (state) => {
@@ -14,20 +14,14 @@ const mapStateToProps = (state) => {
 
 const mapDisptchToProps = (dispatch, ownProps) => {
   return {
-    getEventDetails : (id, access_token) => {
-      return dispatch(getEventDetails(id, access_token, dispatch));
+    getEventDetails : (id, userInfo) => {
+      return dispatch(getEventDetails(id, userInfo, dispatch));
     },
-    registerUserForEvent : (eventId, userId, registerFlag,  participantId, enrollmentId, access_token) => {
-      return dispatch(registerUserForEvent(eventId, userId, registerFlag,  participantId, enrollmentId, access_token, dispatch));
+    registerUserForEvent : (eventId, userInfo, enrollmentInfo) => {
+      return dispatch(registerUserForEvent(eventId, userInfo, enrollmentInfo, dispatch));
     },
-    updateEventDetails : (userId, eventDetails) => {
-      return dispatch(updateEventDetails(userId, eventDetails));
-    },
-    getEnrollmentDetails: (eventId, userId, access_token) => {
-      return dispatch(getEnrollmentDetails(eventId, userId, access_token));
-    },
-    updateEnrollmentDetails: (userId, enrollmentDetails) => {
-      return dispatch(updateEnrollmentDetails(userId, enrollmentDetails));
+    updateEventDetails : (userInfo, eventDetails) => {
+      return dispatch(updateEventDetails(userInfo, eventDetails));
     }
   }
 }

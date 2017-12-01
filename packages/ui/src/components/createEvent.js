@@ -143,13 +143,13 @@ class CreateEvent extends Component {
      * @param {object} event - the JavaScript event object
      */
     verifyLeadUser=(event)=> {
-        this.props.verifyUser(this.state.createEventformData,this.props.userInfo)
+        this.props.verifyUser(this.state.createEventformData.lead,this.props.userInfo)
         .then((response,error) =>{
-            if(response.payload.data.length > 0){
+            if (response.body.length > 0) {
               this.setState(prevState => ({
                   createEventformData: {
                       ...prevState.createEventformData,
-                      leadId: JSON.stringify(response.payload.data[0].id)
+                      leadId: JSON.stringify(response.body[0].id)
                   }
               }));
               this.setState({

@@ -18,8 +18,7 @@ export const getEventList = (access_token) => {
         },
       })
       .then((client) => {
-        let filterQuery = {"where":{"status":"approved"}};
-        filterQuery = JSON.stringify(filterQuery)
+     
         return client
           .apis
           .event

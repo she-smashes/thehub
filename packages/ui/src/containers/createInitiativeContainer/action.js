@@ -1,16 +1,15 @@
-import axios from 'axios';
-import { CREATE_AN_INITIATIVE,  CONFIRM_USER } from "../../constants/actions";
+import { CREATE_AN_INITIATIVE } from "../../constants/actions";
 import {  VERIFY_USER} from "../../constants/apiList";
 
 
 import Swagger from 'swagger-client';
 
-export const sendInitiativeDetails = (initiativeDetails, userId, access_token) => {
+export const sendInitiativeDetails = (initiativeDetails, userInfo) => {
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-          req.headers['Authorization'] = access_token;
+          req.headers['Authorization'] = userInfo.id;
           return req;
         },
       })
@@ -19,7 +18,7 @@ export const sendInitiativeDetails = (initiativeDetails, userId, access_token) =
         let postBody = {
           "title": initiativeDetails.title,
           "description": initiativeDetails.description,
-          "createdBy": userId,
+          "createdBy": userInfo.userId,
           "lead": initiativeDetails.leadId
         };
         postBody = JSON.stringify(postBody)
@@ -36,14 +35,5 @@ export const updateInitiativeInfo = (initiativeInfo) => {
   return {
     type: CREATE_AN_INITIATIVE,
     payload: initiativeInfo
-  };
-}
-
-export const verifyUser = (eventObj,accessToken) => {
-  const url = decodeURIComponent(VERIFY_USER+'{"where":{"username":"'+eventObj.lead+'"}}&access_token='+accessToken.id);
-  const request = axios.get(url);
-  return {
-    type: CONFIRM_USER,
-    payload: request
   };
 }

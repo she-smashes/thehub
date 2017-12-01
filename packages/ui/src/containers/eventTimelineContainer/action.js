@@ -4,8 +4,6 @@
  * @description Action file to make the API call
  */
 
-
-import axios from 'axios';
 import Swagger from 'swagger-client';
 
 import { DEFAULT_EVENTS } from "../../constants/actions";
