@@ -213,6 +213,11 @@ class CreateEvent extends Component {
         });
     };
 	
+	/**
+     * Function to set the value into the location drop down
+     *
+    */
+	
 	onLocationDropdownChange=(event,index,value)=>{
         this.setState({
             createEventformData : {...this.state.createEventformData, location: value}
@@ -305,7 +310,7 @@ class CreateEvent extends Component {
                         <DatePicker hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
                     </div>
                      <div>
-                    <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value)=> this.locationDropdownChange(event, index, value)}>
+                    <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value)=> this.onLocationDropdownChange(event, index, value)}>
                      {location}
                     </SelectField>
                     </div>
