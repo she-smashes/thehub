@@ -2,8 +2,7 @@
 
 const sampleData = require('./createConfigList.json');
 
-module.exports = function (app, cb) {
-
+module.exports = function(app, cb) {
   const promises = [];
 
   Object.keys(sampleData).forEach(modelName => {
@@ -11,8 +10,8 @@ module.exports = function (app, cb) {
     const modelItems = sampleData[modelName];
 
     modelItems.forEach(modelItem => {
-      promises.push(Model.upsertWithWhere({ 'name': modelItem.name }, modelItem));
-    })
+      promises.push(Model.upsertWithWhere({'name': modelItem.name}, modelItem));
+    });
   });
   Promise.all(promises.map(p => p.catch(() => undefined)))
     .then((res) => {

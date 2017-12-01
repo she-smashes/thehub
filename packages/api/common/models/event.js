@@ -1,7 +1,6 @@
 'use strict';
 
-module.exports = function (Event) {
-
+module.exports = function(Event) {
   Event.disableRemoteMethodByName('upsert');
   Event.disableRemoteMethodByName('upsertWithWhere'); Event.disableRemoteMethodByName('exists');
   Event.disableRemoteMethodByName('updateAll');
@@ -10,47 +9,43 @@ module.exports = function (Event) {
   Event.disableRemoteMethodByName('replaceById');
   Event.disableRemoteMethodByName('replaceOrCreate');
 
-  Event.listEvents = function (ctx, cb) {
+  Event.listEvents = function(ctx, cb) {
     let configs = ctx.req.configs;
     Event.find({
       where: {
-        startDate: { lt: Date.now() },
-        status: 'approved'
+        startDate: {lt: Date.now()},
+        status: 'approved',
       },
       order: 'startDate DESC',
-      limit: configs[0].value
-    }, function (err, pastInstances) {
-
+      limit: configs[0].value,
+    }, function(err, pastInstances) {
       Event.find({
         where: {
-          startDate: { gte: Date.now() },
-          status: 'approved'
+          startDate: {gte: Date.now()},
+          status: 'approved',
         },
         order: 'startDate DESC',
-        limit: configs[1].value
-      }, function (err, futureInstances) {
-
+        limit: configs[1].value,
+      }, function(err, futureInstances) {
         let instances = [];
         instances = pastInstances.concat(futureInstances);
 
         cb(null, instances);
       });
-
     });
   };
 
-  Event.beforeRemote('listEvents', function (context, unused, next) {
-
+  Event.beforeRemote('listEvents', function(context, unused, next) {
     Event.app.models.config.find({
       where: {
         or:
         [
-          { name: 'no_of_past_events' },
-          { name: 'no_of_future_events' }
-        ]
-      }
+          {name: 'no_of_past_events'},
+          {name: 'no_of_future_events'},
+        ],
+      },
     },
-      function (err, configs) {
+      function(err, configs) {
         context.req.configs = configs;
         next();
       });
@@ -58,42 +53,39 @@ module.exports = function (Event) {
 
   Event.remoteMethod('listEvents', {
     accepts: [
-      { arg: 'ctx', type: 'object', http: { source: 'context' } }
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
     ],
     http: {
       path: '/list-events',
-      verb: 'get'
+      verb: 'get',
     },
     returns: {
       arg: 'events',
-      type: 'array'
-    }
+      type: 'array',
+    },
   }
   );
 
-  Event.listEventsForUser = function (ctx, userId, cb) {
-    
-
-var userId = ctx.req.accessToken.userId;
+  Event.listEventsForUser = function(ctx, userId, cb) {
+    var userId = ctx.req.accessToken.userId;
 
     Event.find({
       where: {
-        endDate: { gte: Date.now() },
-        status: 'approved'
+        endDate: {gte: Date.now()},
+        status: 'approved',
       },
-      order: 'startDate DESC'
-    }, function (err, pastInstances) {
-      // this logic is to determin the list of non-approved events that are returned 
+      order: 'startDate DESC',
+    }, function(err, pastInstances) {
+      // this logic is to determin the list of non-approved events that are returned
       // by this query. userId = 0 for an admin user and all non-approved events are returned
       if (userId == 0) {
         Event.find({
           where: {
-            endDate: { gte: Date.now() },
-            status: 'not approved'
+            endDate: {gte: Date.now()},
+            status: 'not approved',
           },
-          order: 'startDate DESC'
-        }, function (err, futureInstances) {
-
+          order: 'startDate DESC',
+        }, function(err, futureInstances) {
           let instances = [];
           instances = pastInstances.concat(futureInstances);
 
@@ -102,13 +94,12 @@ var userId = ctx.req.accessToken.userId;
       } else {
         Event.find({
           where: {
-            endDate: { gte: Date.now() },
+            endDate: {gte: Date.now()},
             status: 'not approved',
-            createdBy: userId
+            createdBy: userId,
           },
-          order: 'startDate DESC'
-        }, function (err, futureInstances) {
-
+          order: 'startDate DESC',
+        }, function(err, futureInstances) {
           let instances = [];
           instances = pastInstances.concat(futureInstances);
 
@@ -120,30 +111,30 @@ var userId = ctx.req.accessToken.userId;
 
   Event.remoteMethod('listEventsForUser', {
     accepts: [
-      { arg: 'ctx', type: 'object', http: { source: 'context' } },
-      { arg: 'userId', type: 'number' }
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
+      {arg: 'userId', type: 'number'},
     ],
     http: {
       path: '/list-events-for-user',
-      verb: 'get'
+      verb: 'get',
     },
     returns: {
       arg: 'events',
-      type: 'array'
-    }
+      type: 'array',
+    },
   });
 
-  Event.observe('before save', function (ctx, next) {
+  Event.observe('before save', function(ctx, next) {
     if (ctx.instance) {
       console.log('updating Event status');
       ctx.instance.status = 'not approved';
     }
     next();
   });
-  Event.observe('after save', function (ctx, next) {
+  Event.observe('after save', function(ctx, next) {
     if (ctx.instance) {
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
-      Event.app.models.Task.create({ type: 'event', approvableId: ctx.instance.id, status: 'Pending' });
+      Event.app.models.Task.create({type: 'event', approvableId: ctx.instance.id, status: 'Pending'});
     } else {
       console.log('Updated Event %s matching %j',
         ctx.Model.pluralModelName,
@@ -151,5 +142,4 @@ var userId = ctx.req.accessToken.userId;
     }
     next();
   });
-
-}
+};

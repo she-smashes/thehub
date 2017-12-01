@@ -21,8 +21,8 @@ app.start = function() {
 let bootOptions = {
   'appRootDir': __dirname,
   'bootDirs': [
-    'bootScripts/'
-  ]
+    'bootScripts/',
+  ],
 };
 
 // Bootstrap the application, configure models, datasources and middleware.
