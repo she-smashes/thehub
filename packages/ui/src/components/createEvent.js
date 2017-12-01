@@ -21,6 +21,11 @@ const participants = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
   <MenuItem key={2} value={2} primaryText="Volunteer" />
 ];
+const location = [
+  <MenuItem key={1} value={1} primaryText="Bangalore" />,
+  <MenuItem key={2} value={2} primaryText="Noida" />,
+  <MenuItem key={3} value={3} primaryText="Gurgaon" />,
+];
 const hourly = [
   <MenuItem key={1} value={1} primaryText="Organizer" />,
   <MenuItem key={2} value={2} primaryText="Volunteer" />,
@@ -207,6 +212,13 @@ class CreateEvent extends Component {
             createEventformData : {...this.state.createEventformData, nonHourlyParticipant: value}
         });
     };
+	
+	onLocationDropdownChange=(event,index,value)=>{
+        this.setState({
+            createEventformData : {...this.state.createEventformData, location: value}
+        });
+    };
+	
     /**
      * Function to set the value into the state for category drop down
      *
@@ -244,6 +256,8 @@ class CreateEvent extends Component {
             return <MenuItem key={event.id} value={event.id} primaryText={event.title} />
         });
     }
+	
+	
     /**
      * @name renderCategories
      * @desc Iterates through the list of the categories and renders the list of initiatives
@@ -290,8 +304,10 @@ class CreateEvent extends Component {
                     <div>
                         <DatePicker hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
                     </div>
-                    <div className="field-line">
-                        <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
+                     <div>
+                    <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value)=> this.locationDropdownChange(event, index, value)}>
+                     {location}
+                    </SelectField>
                     </div>
                     <SelectField  className="align-left" name="category" value={this.state.createEventformData.category} onChange={(event, index, value)=> this.onCategoryDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Category">
                      {this.props.categories.length>0?this.renderCategories():<div></div>}
