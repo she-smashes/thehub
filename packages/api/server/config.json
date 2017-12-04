@@ -20,10 +20,10 @@
     "cors": false
   },
   "bootScripts": {
-  "tokenRefresh": {
-	"enabled": true,
-    "onceIn": 1800,
-    "ttl": 3600
+    "tokenRefresh": {
+      "enabled": true,
+      "onceIn": 1800,
+      "ttl": 3600
+    }
   }
-}
 }

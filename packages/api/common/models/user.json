@@ -2,11 +2,11 @@
   "name": "user",
   "plural": "users",
   "base": "User",
-  "ttl": 3600,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
+  "ttl": 3600,
   "mixins": {
     "Timestamp": {}
   },

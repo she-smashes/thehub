@@ -36,7 +36,8 @@ async.each(tests, function(data, asyncCallback) {
   var password = '';
   var count = data.count;
 
-  var isWithAuthentication = (data.hasOwnProperty('username') && data.hasOwnProperty('password'));
+  var isWithAuthentication =
+  (data.hasOwnProperty('username') && data.hasOwnProperty('password'));
   if (isWithAuthentication) {
     username = data.username;
     password = data.password;
@@ -52,9 +53,9 @@ async.each(tests, function(data, asyncCallback) {
     afterEach(function(done) {
       server.close(done);
     });
-    var loginBlock;
+    var loginBlock = '';
     it(expectDescription, function(done) {
-      let access_token = '';
+      let accessToken = '';
 
       if (isWithAuthentication) {
         loginBlock = function(loginCallback) {
@@ -69,8 +70,8 @@ async.each(tests, function(data, asyncCallback) {
             .set('Content-Type', 'application/json')
             .end(function(err, res) {
               if (err) { return done(err); }
-              access_token = res.body.id;
-              return loginCallback(null, access_token);
+              accessToken = res.body.id;
+              return loginCallback(null, accessToken);
             });
         };
       } else {

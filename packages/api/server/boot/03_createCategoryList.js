@@ -10,7 +10,8 @@ module.exports = function(app, cb) {
     const modelItems = sampleData[modelName];
 
     modelItems.forEach(modelItem => {
-      promises.push(Model.upsertWithWhere({'name': modelItem.name, 'type': modelItem.type}, modelItem));
+      promises.push(Model.upsertWithWhere(
+	  {'name': modelItem.name, 'type': modelItem.type}, modelItem));
     });
   });
 

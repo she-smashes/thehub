@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(app) {
   var RoleMapping = app.models.RoleMapping;
   var User = app.models.user;

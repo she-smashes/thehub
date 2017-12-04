@@ -9,8 +9,10 @@ exports.default = function(app) {
     return;
   }
 
-  var onceIn = BootScriptConfig.get(['tokenRefresh', 'onceIn'], 86400);
-  var ttl = BootScriptConfig.get(['tokenRefresh', 'ttl'], 86400 * 30);
+  var onceIn = BootScriptConfig.get(
+  ['tokenRefresh', 'onceIn'], 86400);
+  var ttl = BootScriptConfig.get(
+  ['tokenRefresh', 'ttl'], 86400 * 30);
   var loopback = require('loopback');
   app.use(loopback.token());
   app.use(function(req, res, next) {
