@@ -42,19 +42,19 @@ module.exports = function(app, cb) {
 
                   app.models.user.findOne({where: {'username': eventmodelItem.createdByUser}}, function(err, eventCreatedByUser) {
                     if (eventCreatedByUser) {
-                    eventmodelItem.createdBy = eventCreatedByUser.id;
-                    eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
-                    eventmodelItem.startDate = new Date(eventmodelItem.startDate);
-                    eventmodelItem.endDate = new Date(eventmodelItem.endDate);
-                    eventmodelItem.participantId = [1, 2];
+                      eventmodelItem.createdBy = eventCreatedByUser.id;
+                      eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
+                      eventmodelItem.startDate = new Date(eventmodelItem.startDate);
+                      eventmodelItem.endDate = new Date(eventmodelItem.endDate);
+                      eventmodelItem.participantId = [1, 2];
 
-                    delete eventmodelItem.category;
-                    delete eventmodelItem.initiative;
-                    delete eventmodelItem.createdByUser;
-                    delete eventmodelItem.leadUser;
+                      delete eventmodelItem.category;
+                      delete eventmodelItem.initiative;
+                      delete eventmodelItem.createdByUser;
+                      delete eventmodelItem.leadUser;
 
-                    eventPromises.push(eventModel.upsertWithWhere({'title': eventmodelItem.title}, eventmodelItem));
-                  }
+                      eventPromises.push(eventModel.upsertWithWhere({'title': eventmodelItem.title}, eventmodelItem));
+                    }
                   });
                 }
               });
