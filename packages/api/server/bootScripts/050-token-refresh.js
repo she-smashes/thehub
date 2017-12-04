@@ -5,12 +5,15 @@ Object.defineProperty(exports, '__esModule', {
 });
 
 exports.default = function(app) {
+// eslint-disable-next-line no-undef
   if (!BootScriptConfig.isEnabled('tokenRefresh')) {
     return;
   }
 
+// eslint-disable-next-line no-undef
   var onceIn = BootScriptConfig.get(
   ['tokenRefresh', 'onceIn'], 86400);
+  // eslint-disable-next-line no-undef
   var ttl = BootScriptConfig.get(
   ['tokenRefresh', 'ttl'], 86400 * 30);
   var loopback = require('loopback');
