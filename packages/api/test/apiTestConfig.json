@@ -69,6 +69,7 @@
             "description": "Painting the government school walls",
             "categoryId": "9",
             "lead": 1,
+            "participantId":[1,2],
             "createdBy": 7
         }
     }
