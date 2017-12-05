@@ -10,9 +10,7 @@ module.exports = function(app, cb) {
     const modelItems = sampleData[modelName];
 
     modelItems.forEach(modelItem => {
-      console.log('modelItem.name' + modelItem.name);
-      console.log('modelItem.hourly' + modelItem.hourly);
-      promises.push(Model.upsertWithWhere({'participantType': modelItem.participantType, "hourly":modelItem.hourly}, modelItem));
+      promises.push(Model.upsertWithWhere({'participantType': modelItem.participantType, 'hourly': modelItem.hourly}, modelItem));
     });
   });
 
