@@ -28,7 +28,7 @@
     },
     "active": {
       "type": "boolean"
-    }, 
+    },
     "lead": {
       "type": "string",
       "required": true

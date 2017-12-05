@@ -2,7 +2,8 @@
 
 module.exports = function(Event) {
   Event.disableRemoteMethodByName('upsert');
-  Event.disableRemoteMethodByName('upsertWithWhere'); Event.disableRemoteMethodByName('exists');
+  Event.disableRemoteMethodByName('upsertWithWhere');
+  Event.disableRemoteMethodByName('exists');
   Event.disableRemoteMethodByName('updateAll');
   Event.disableRemoteMethodByName('count');
   Event.disableRemoteMethodByName('createChangeStream');
@@ -67,7 +68,7 @@ module.exports = function(Event) {
   );
 
   Event.listEventsForUser = function(ctx, userId, cb) {
-    var userId = ctx.req.accessToken.userId;
+    var userIdValue = ctx.req.accessToken.userId;
 
     Event.find({
       where: {
@@ -77,8 +78,8 @@ module.exports = function(Event) {
       order: 'startDate DESC',
     }, function(err, pastInstances) {
       // this logic is to determin the list of non-approved events that are returned
-      // by this query. userId = 0 for an admin user and all non-approved events are returned
-      if (userId == 0) {
+      // by this query. userIdValue = 0 for an admin user and all non-approved events are returned
+      if (userIdValue == 0) {
         Event.find({
           where: {
             endDate: {gte: Date.now()},
@@ -96,7 +97,7 @@ module.exports = function(Event) {
           where: {
             endDate: {gte: Date.now()},
             status: 'not approved',
-            createdBy: userId,
+            createdBy: userIdValue,
           },
           order: 'startDate DESC',
         }, function(err, futureInstances) {
@@ -112,7 +113,7 @@ module.exports = function(Event) {
   Event.remoteMethod('listEventsForUser', {
     accepts: [
       {arg: 'ctx', type: 'object', http: {source: 'context'}},
-      {arg: 'userId', type: 'number'},
+      {arg: 'userIdValue', type: 'number'},
     ],
     http: {
       path: '/list-events-for-user',
@@ -133,13 +134,13 @@ module.exports = function(Event) {
   });
   Event.observe('after save', function(ctx, next) {
     if (ctx.instance) {
-      console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
-      
-      ctx.instance.participantId.forEach(pId => {
+	  ctx.instance.participantId.forEach(pId => {
         ctx.instance.participants.add(pId);       
-      });        
-     
-      Event.app.models.Task.create({type: 'event', approvableId: ctx.instance.id, status: 'Pending'});
+      });
+      console.log('Saved %s#%s',
+	  ctx.Model.modelName, ctx.instance.id);
+      Event.app.models.Task.create({type: 'event',
+	  approvableId: ctx.instance.id, status: 'Pending'});
     } else {
       console.log('Updated Event %s matching %j',
         ctx.Model.pluralModelName,

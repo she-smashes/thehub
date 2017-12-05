@@ -13,10 +13,12 @@ module.exports = function(app, cb) {
     modelItems.forEach(modelItem => {
       if (rolePromises[modelItem.role] === undefined) {
         const promises = [];
-        promises.push(Model.upsertWithWhere({'email': modelItem.email}, modelItem));
+        promises.push(Model.upsertWithWhere(
+		{'email': modelItem.email}, modelItem));
         rolePromises[modelItem.role] = promises;
       } else {
-        rolePromises[modelItem.role].push(Model.upsertWithWhere({'email': modelItem.email}, modelItem));
+        rolePromises[modelItem.role].push(Model.upsertWithWhere(
+		{'email': modelItem.email}, modelItem));
       }
 
       delete modelItem.role;
@@ -64,19 +66,23 @@ function handleRoleMapping(app, promises, roleName) {
   res.forEach(usr => {
     if (usr !== undefined) {
       rolemappingpromises.push(new Promise(resolve => {
-        app.models.RoleMapping.findOne({where: {principalType: 'USER', principalId: usr.id, roleId: role.id}}, function(err, oldprincipal) {
+        app.models.RoleMapping.findOne({where:
+		{principalType: 'USER', principalId: usr.id, roleId: role.id},
+        }, function(err, oldprincipal) {
           if (!oldprincipal) {
             role.principals.create({
               principalType: app.models.RoleMapping.USER,
               principalId: usr.id,
             }, function(err, principal) {
-              console.log('RoleMapping done for user id = ', usr.id + ', username = ' + usr.username + ', role id = ' + role.id);
+              console.log('RoleMapping done for user id = ', usr.id +
+			  ', username = ' + usr.username + ', role id = ' + role.id);
               if (!principal) {
                 console.log(err);
               }
             });
           } else {
-            console.log('RoleMapping exists for user id = ', usr.id + ', role id = ' + role.id);
+            console.log('RoleMapping exists for user id = ', usr.id +
+			', role id = ' + role.id);
           }
         });
       }));

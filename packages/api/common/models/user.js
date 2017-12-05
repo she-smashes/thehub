@@ -14,7 +14,8 @@ module.exports = function(User) {
   let permissionObj = [];
   results.forEach(function(result) {
     if (result.isAllowed.permission === 'ALLOW') {
-      permissionObj.push(result.isAllowed.model + '_' + result.isAllowed.property);
+      permissionObj.push(result.isAllowed.model +
+	  '_' + result.isAllowed.property);
     }
   });
   context.result.allowedActionList = permissionObj;
