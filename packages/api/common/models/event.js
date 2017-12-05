@@ -134,6 +134,11 @@ module.exports = function(Event) {
   Event.observe('after save', function(ctx, next) {
     if (ctx.instance) {
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
+      
+      ctx.instance.participantId.forEach(pId => {
+        ctx.instance.participants.add(pId);       
+      });        
+     
       Event.app.models.Task.create({type: 'event', approvableId: ctx.instance.id, status: 'Pending'});
     } else {
       console.log('Updated Event %s matching %j',
