@@ -17,6 +17,8 @@ import { Route } from 'react-router-dom';
 import History from '../history';
 import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
 import Checkbox from 'material-ui/Checkbox';
+import SimpleRichTextEditor from './SimpleRichTextEditor';
+
 
 const styles = {
     errorText: {
@@ -119,7 +121,7 @@ class CreateEvent extends Component {
         let fields = this.state.createEventformData;
         let errors = {};
         let formIsValid = true;
-
+console.log(fields);
         if (!fields["initiativeName"]) {
             formIsValid = false;
             errors["initiativeName"] = "Enter Initiative Name";
@@ -152,11 +154,11 @@ class CreateEvent extends Component {
             formIsValid = false;
             errors["categoryType"] = "Select a category or a sub-category";
         }
-        if (!fields["eventType"]) {
+        if (!fields["eventTypeSelected"]) {
             formIsValid = false;
             errors["eventType"] = "Select event type";
         }
-        if (!fields["participants"]) {
+        if (!fields["participantsSelected"]) {
             formIsValid = false;
             errors["participants"] = "Select available roles for this event";
         }
@@ -262,6 +264,15 @@ class CreateEvent extends Component {
             createEventformData : {...this.state.createEventformData, initiativeName: value}
         });
     };
+
+    onRichTextChange=(value)=>{
+        console.log('value = ' +  value);
+        this.setState({
+            createEventformData : {...this.state.createEventformData, description: value.toString()}
+        });   
+        console.log(this.state)   
+    };
+
     /**
      * Function to set the value into the state for initiative start date
      *
@@ -303,9 +314,14 @@ class CreateEvent extends Component {
         });
     }
     handleEventTypeSelection = (event) => {
-        this.setState({
-            eventTypeSelected: event.target.value
-        });
+        
+        let evType = event.target.value;
+        this.setState(prevState => ({
+            createEventformData: {
+                ...prevState.createEventformData,
+                eventTypeSelected: evType
+            }
+        }));
         this.setState(prevState => ({
             errors: {
                 ...prevState.errors,
@@ -432,8 +448,11 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <TextField floatingLabelText="Title" className="align-left" name="title" onChange={this.changeUser} value={this.state.createEventformData.title} errorText={this.state.errors.title} />
                     </div>
-                    <div className="field-line">
+                  { /* <div className="field-line">
                         <TextField floatingLabelText="Description" className="align-left" name="description" onChange={this.changeUser} value={this.state.createEventformData.description} errorText={this.state.errors.description} />
+                    </div>*/}
+                    <div className="field-line">
+                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
                     </div>
                     <div>
                     <SelectField className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative" errorText={this.state.errors.initiativeName}>
@@ -473,7 +492,7 @@ class CreateEvent extends Component {
                         </RadioButtonGroup>                  
                     </div>
                     <div className="field-line">
-                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.eventType}>
+                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
                             <RadioButton value="hourly" label ="hourly" style={{ width: 'auto' }} />
                             <RadioButton value="nonhourly" label="non-hourly" style={{ width: 'auto' }} />
                         </RadioButtonGroup>
@@ -483,10 +502,10 @@ class CreateEvent extends Component {
                     
                     </div>
                     <div>
-                        {this.state.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
+                        {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
                     </div> 
                     <div>
-                        {this.state.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
+                        {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>      
                     <div style={styles.errorText}>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}

@@ -107,9 +107,7 @@ class EventDetails extends Component {
           <h1 className=""> {this.props.eventDetails.title} </h1>
           <span className="date"> {Moment(this.props.eventDetails.startDate).format('LL') + " - " +
             Moment(this.props.eventDetails.endDate).format('LL')}</span>
-          <p className="">
-            {this.props.eventDetails.description}
-          </p>
+            <p className="" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description}}/>
           {this.showRegisterButton()}
         </div>
       </div>
