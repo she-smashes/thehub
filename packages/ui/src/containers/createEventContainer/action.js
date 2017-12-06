@@ -77,6 +77,11 @@ export const sendEventDetails = (eventObj, userInfoObj) => {
         },
       })
       .then((client) => {
+
+        let categoryId = eventObj.categoryType;
+        if(eventObj.subCategoryType !== '' && eventObj.subCategoryType !== undefined) {
+          categoryId = eventObj.subCategoryType;         
+        }
         let postBody =   {
           "initiativeId": eventObj.initiativeName,
           "title": eventObj.title,
@@ -87,7 +92,7 @@ export const sendEventDetails = (eventObj, userInfoObj) => {
           "lead": eventObj.leadId,
           "createdBy": userInfoObj.userId,
           "participantId": eventObj.participantsSelected,
-          "categoryId": eventObj.category
+          "categoryId": categoryId
         };
         postBody = JSON.stringify(postBody)
         return client
