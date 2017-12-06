@@ -1,15 +1,73 @@
 import axios from 'axios';
 
-import { CREATE_AN_EVENT, GET_INITIATIVES, GET_CATEGORIES } from "../../constants/actions";
+import { CREATE_AN_EVENT, GET_INITIATIVES, GET_CATEGORIES, GET_PARTICIPANTS } from "../../constants/actions";
 import CreateEvent from '../../components/createEvent';
-import { CREATE_NEW_EVENT, APPROVED_INITIATIVES, VERIFY_USER, ALL_CATEGORIES, CREATE_NEW_INITIATIVE} from "../../constants/apiList";
 import Swagger from 'swagger-client';
-import { SWAGGER_SPEC_URL } from "../../constants/apiList";
+export const getParticipantList = (userInfo) => {
+  
+    return function (dispatch) {
+      return Swagger(process.env.REACT_APP_API_URI,
+        {
+          requestInterceptor: (req) => {
+            req.headers['Authorization'] = userInfo.id;
+            return req;
+          },
+        })
+        .then((client) => {
+          return client
+            .apis
+            .participant
+            .participant_find();
+        });
+    }
+  }
+
+  export const getCategories = (userInfo) => {
+    
+      return function (dispatch) {
+        return Swagger(process.env.REACT_APP_API_URI,
+          {
+            requestInterceptor: (req) => {
+              req.headers['Authorization'] = userInfo.id;
+              return req;
+            },
+          })
+          .then((client) => {
+            return client
+              .apis
+              .category
+              .category_find();
+          });
+      }
+    }
+
+    
+    export const getApprovedInitiatives = (userInfo) => {
+      
+        return function (dispatch) {
+          return Swagger(process.env.REACT_APP_API_URI,
+            {
+              requestInterceptor: (req) => {
+                req.headers['Authorization'] = userInfo.id;
+                return req;
+              },
+            })
+            .then((client) => {
+
+              let filterQuery = {"where":{"status":"approved"}};
+              filterQuery = JSON.stringify(filterQuery)
+
+              return client
+                .apis
+                .initiative
+                .initiative_find({ filter: filterQuery });
+            });
+        }
+      }
+    
 
 export const sendEventDetails = (eventObj, userInfoObj) => {
-  const hourly = eventObj.hourlyParticipant;
-  const nonhourly = eventObj.nonHourlyParticipant;
-  const participant = hourly.concat(nonhourly);
+  
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {
@@ -19,7 +77,6 @@ export const sendEventDetails = (eventObj, userInfoObj) => {
         },
       })
       .then((client) => {
-
         let postBody =   {
           "initiativeId": eventObj.initiativeName,
           "title": eventObj.title,
@@ -29,33 +86,33 @@ export const sendEventDetails = (eventObj, userInfoObj) => {
           "description": eventObj.description,
           "lead": eventObj.leadId,
           "createdBy": userInfoObj.userId,
-          "eventHourFlag": 0,
-          "participantType": [
-             participant
-          ],
+          "participantId": eventObj.participantsSelected,
           "categoryId": eventObj.category
         };
         postBody = JSON.stringify(postBody)
-
         return client
           .apis
           .event
           .event_create({ data: postBody });
-
       });
   }
 }
-export const getApprovedInitiatives = (accessToken) => {
-  const request = axios.get(APPROVED_INITIATIVES +"&access_token="+accessToken);
-  return {
-    type: GET_INITIATIVES,
-    payload: request
-  };
-}
-export const getCategories = (accessToken) => {
-  const request = axios.get(ALL_CATEGORIES +"?access_token="+accessToken);
+export const updateParticipantsList = (participantInfo) => {
+    return {
+      type: GET_PARTICIPANTS,
+      payload: participantInfo
+    };
+  }
+  
+export const updateCategoriesList = (categoriesInfo) => {
   return {
     type: GET_CATEGORIES,
-    payload: request
+    payload: categoriesInfo
+  };
+}
+export const updateApprovedInitiativesList = (initiativesInfo) => {
+  return {
+    type: GET_INITIATIVES,
+    payload: initiativesInfo
   };
 }

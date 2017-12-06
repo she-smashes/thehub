@@ -1,7 +1,4 @@
 import { CREATE_AN_INITIATIVE } from "../../constants/actions";
-import {  VERIFY_USER} from "../../constants/apiList";
-
-
 import Swagger from 'swagger-client';
 
 export const sendInitiativeDetails = (initiativeDetails, userInfo) => {

@@ -135,8 +135,8 @@ module.exports = function(Event) {
   Event.observe('after save', function(ctx, next) {
     if (ctx.instance) {
 	  ctx.instance.participantId.forEach(pId => {
-        ctx.instance.participants.add(pId);       
-      });
+    ctx.instance.participants.add(pId);
+  });
       console.log('Saved %s#%s',
 	  ctx.Model.modelName, ctx.instance.id);
       Event.app.models.Task.create({type: 'event',

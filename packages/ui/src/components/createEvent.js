@@ -16,23 +16,16 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import { Route } from 'react-router-dom';
 import History from '../history';
 import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
+import Checkbox from 'material-ui/Checkbox';
+const styles = {
+    block: {
+      maxWidth: 250,
+    },
+    checkbox: {
+      marginBottom: 16,
+    },
+  };
 
-const participants = [
-  <MenuItem key={1} value={1} primaryText="Organizer" />,
-  <MenuItem key={2} value={2} primaryText="Volunteer" />
-];
-const hourly = [
-  <MenuItem key={1} value={1} primaryText="Organizer" />,
-  <MenuItem key={2} value={2} primaryText="Volunteer" />,
-  <MenuItem key={3} value={3} primaryText="Admin" />,
-  <MenuItem key={4} value={4} primaryText="participant" />
-];
-const nonhourly = [
-  <MenuItem key={1} value={1} primaryText="Organizer" />,
-  <MenuItem key={2} value={2} primaryText="Volunteer" />,
-  <MenuItem key={3} value={3} primaryText="Admin" />,
-  <MenuItem key={4} value={4} primaryText="participant" />
-];
 class CreateEvent extends Component {
     /**
      * Class constructor.
@@ -47,6 +40,8 @@ class CreateEvent extends Component {
             disabled: true,
             open: false,
             message: '',
+            hourlyList:[],
+            nonhourlyList:[],
             createEventformData: {
                 title: '',
                 description: '',
@@ -57,16 +52,38 @@ class CreateEvent extends Component {
                 eventEndDate:'',
                 location: '',
                 category: '',
-                hourlyParticipant: '',
-                nonHourlyParticipant: ''
+                eventTypeSelected: '',
+                participantsSelected: []
             },
 
         };
 
     }
     componentDidMount =  () => {
-        this.props.getApprovedInitiatives(this.props.userInfo.id);
-        this.props.getCategories(this.props.userInfo.id);
+        this.props.getApprovedInitiatives(this.props.userInfo).then((response, error) => {
+            this.props.updateApprovedInitiativesList(JSON.parse(response.data));          
+        });
+        this.props.getCategories(this.props.userInfo).then((response, error) => {
+            this.props.updateCategoriesList(JSON.parse(response.data));            
+        });
+        this.props.getParticipantList(this.props.userInfo).then((response, error) => {
+             this.props.updateParticipantsList(JSON.parse(response.data));
+             let hList = [];
+             let nhList = [];
+             this.props.participants.map((event, index) => {
+                 if(event.hourly) {
+                     hList.push(this.props.participants[index]);
+                 } else {
+                     nhList.push(this.props.participants[index]);
+                 }
+             });
+             this.setState({
+                 nonhourlyList: hList
+             });
+             this.setState({
+                 nonhourlyList: nhList
+             });
+        });
     }
     /**
      * Function to validate the form
@@ -190,24 +207,6 @@ class CreateEvent extends Component {
         });
     };
     /**
-     * Function to set the value into the state for participant drop down
-     *
-    */
-    onHourlyDropdownChange=(event,index,value)=>{
-        this.setState({
-            createEventformData : {...this.state.createEventformData, hourlyParticipant: value}
-        });
-    };
-    /**
-     * Function to set the value into the state for participant drop down
-     *
-    */
-    onNonHourlyDropdownChange=(event,index,value)=>{
-        this.setState({
-            createEventformData : {...this.state.createEventformData, nonHourlyParticipant: value}
-        });
-    };
-    /**
      * Function to set the value into the state for category drop down
      *
     */
@@ -254,6 +253,44 @@ class CreateEvent extends Component {
             return <MenuItem key={event.id} value={event.id} primaryText={event.name} />
         });
     }
+    handleEventTypeSelection = (event) => {
+        this.setState({
+            eventTypeSelected: event.target.value
+        });
+        this.setState(prevState => ({
+            createEventformData: {
+                ...prevState.createEventformData,
+                participantsSelected: []
+            }
+        }));
+    }
+    saveParticipantSelection = (event, checked) => {
+        let participantSelections = [];
+        if(this.state.createEventformData.participantsSelected != undefined) {
+            participantSelections = participantSelections.concat(this.state.createEventformData.participantsSelected);
+        }
+        if(checked) {
+            participantSelections.push(event.target.value);
+        } else {
+            participantSelections = participantSelections.splice(participantSelections.indexOf(event.target.value), 1);
+        }
+        this.setState(prevState => ({
+            createEventformData: {
+                ...prevState.createEventformData,
+                participantsSelected: participantSelections
+            }
+        }));
+    }
+    handleHourlyParticipantsDisplay = () => {
+        return this.state.hourlyList.map((event, index) => {
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} />
+        });
+    }
+    handleNonHourlyParticipantsDisplay = () => {
+        return this.state.nonhourlyList.map((event, index) => {
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection}/>
+        });
+    }
     /**
      * Render the component.
      */
@@ -293,19 +330,22 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    <SelectField  className="align-left" name="category" value={this.state.createEventformData.category} onChange={(event, index, value)=> this.onCategoryDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Category">
-                     {this.props.categories.length>0?this.renderCategories():<div></div>}
-                    </SelectField>
                     <div>
-                    <SelectField className="align-left" multiple={true} hintText="Hourly" name="hourly" value={this.state.createEventformData.hourlyParticipant} onChange={(event, index, value)=> this.onHourlyDropdownChange(event, index, value)}>
-                     {hourly}
-                    </SelectField>
+                        <SelectField  className="align-left" name="category" value={this.state.createEventformData.category} onChange={(event, index, value)=> this.onCategoryDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Category">
+                        {this.props.categories.length>0?this.renderCategories():<div></div>}
+                        </SelectField>
                     </div>
+                    <RadioButtonGroup name="eventType" onChange={this.handleEventTypeSelection}>
+                        <RadioButton value="hourly" label ="hourly" />
+                        <RadioButton value="nonhourly" label="non-hourly" />
+                    </RadioButtonGroup>
+
                     <div>
-                    <SelectField className="align-left" multiple={true} hintText="Non-Hourly" name="nonhourly" value={this.state.createEventformData.nonHourlyParticipant} onChange={(event, index, value)=> this.onNonHourlyDropdownChange(event, index, value)}>
-                     {nonhourly}
-                    </SelectField>
-                    </div>
+                        {this.state.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
+                    </div> 
+                    <div>
+                        {this.state.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
+                    </div>        
                     <div className="button-line">
                         <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />
                     </div>
