@@ -1,7 +1,7 @@
 /* PLEASE READ!!!
  * Simple Modules
  * Only a single class
- * re-useable styles. 
+ * re-useable styles.
  * If the module requires more than 1 class, put in modules.css.
  * Organize by category to the best of your ability.
  * Name singles with that describe a single property in the same order as that property is read:
@@ -10,8 +10,8 @@
  *		i.e. .block {display:block;}
  * DO NOT create duplicates with the same or a different name! Check the file FIRST!
  */
- 
- 
+
+
 /* Alignment and Centering */
 .floatLeft {float:left;}
 .floatRight {float:right;}
@@ -39,14 +39,14 @@
 
 
 /****************************************
-			Font Styles                   
+			Font Styles
 ****************************************/
 
-.bold, .fontWeightBold {}
+.bold, .fontWeightBold { font-weight: bold}
 .bolder, .fontWeightBolder {}
 .italic, .fontStyleItalic  {}
 
-.nowrap { 
+.nowrap {
 	white-space: nowrap;
 }
 .strikethrough, .line-through{
@@ -76,7 +76,7 @@
 
 
 /****************************************
-			Font Families                   
+			Font Families
 ****************************************/
 .arial {
 	font-family:Arial, Helvetica, San-Serif;
@@ -111,7 +111,7 @@
 	text-transform:capitalize;
 }
 .uppercase {
-	text-transform:uppercase; 
+	text-transform:uppercase;
 }
 .lowercase {
 	text-transform:lowercase;
@@ -151,7 +151,7 @@
 
 .height100{height:100%}
 
-/* Clearing */ 
+/* Clearing */
 .clearBoth{
 	clear:both;
 }
