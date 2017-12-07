@@ -506,7 +506,7 @@ console.log(fields);
                     <div>
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
                     </div>
-                    <div>
+                    <div class="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>
                     <div style={styles.errorText}>

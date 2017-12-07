@@ -1,7 +1,7 @@
 .App, .login-page {
   text-align: center;
 }
-.field-line{ width: 500px!important; margin: 0 auto;}
+.checklist, .field-line{ width: 500px!important; margin: 0 auto;}
 .field-line > div, .align-left{ width: 500px !important;}
 .DraftEditor-root{ min-height: 300px; }
 .field-line .align-left div{ margin-right: 15px !important;}
