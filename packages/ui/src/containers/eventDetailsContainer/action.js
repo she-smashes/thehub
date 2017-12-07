@@ -17,7 +17,7 @@ export const getEventDetails = (eventId, userInfo) => {
       .then((client) => {
 
 
-        let filterQuery = { include: "enrollments" };
+        let filterQuery = { include: ["participants", "enrollments"] };
         filterQuery = JSON.stringify(filterQuery)
 
         return client

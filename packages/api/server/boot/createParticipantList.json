@@ -1,0 +1,8 @@
+{
+  "participant": [
+    {"participantType": "volunteer", "hourly":false},
+    {"participantType": "speaker", "hourly":false},
+    {"participantType": "organiser", "hourly":false},
+    {"participantType": "participant", "hourly":false}
+  ]
+}

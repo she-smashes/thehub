@@ -12,6 +12,8 @@
     "react-native": "^0.50.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-rte": "^0.15.0",
+    "react-rte-material": "^0.12.5",
     "react-sanfona": "^1.0.5",
     "react-scripts": "1.0.14",
     "react-tap-event-plugin": "^3.0.2",

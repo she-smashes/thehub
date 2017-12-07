@@ -54,4 +54,15 @@ module.exports = function(Task) {
         next();
       });
   });
+  Task.observe('after save', function(ctx, next) {
+    if (ctx.instance) {
+      let Model = Task.app.models[ctx.instance.type];
+      if (ctx.instance.status === 'approved') {
+        Model.updateAll({id: ctx.instance.approvableId},
+          {status: ctx.instance.status}, function(err, results) {
+            next();
+          });
+      }
+    }
+  });
 };

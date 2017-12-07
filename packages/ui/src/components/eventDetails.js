@@ -30,11 +30,11 @@ class EventDetails extends Component {
   updateEnrollmentTypeList = (participants, enrollmentParticipantId) => {
     const items = [];
     participants.map(item => {
-      item = item + "";
-      if(item === enrollmentParticipantId) {
-        items.push(<MenuItem key={item} value={item} primaryText={item}  checked={true} />);
+      let itemId = item.id + "";
+      if(itemId === enrollmentParticipantId) {
+        items.push(<MenuItem key={itemId} value={itemId} label={item.participantType} primaryText={item.participantType}  checked={true} />);
       } else {
-        items.push(<MenuItem key={item} value={item} primaryText={item} />);
+        items.push(<MenuItem key={itemId} value={itemId} label={item.participantType} primaryText={item.participantType} />);
       }
     });
     return items;
@@ -83,7 +83,7 @@ class EventDetails extends Component {
         <div>
           <div>
             <SelectField className="align-left" floatingLabelText="Enrollment Type" name="enrollmentParticipantId" value={this.state.enrollmentDetails.enrollmentParticipantId} onChange={(event, index, value) => this.onParticipantChange(event, index, value)} autoWidth={true} disabled={this.state.enrollmentDetails.registered === true ? true : false}>
-              {this.updateEnrollmentTypeList(this.props.eventDetails.participantId, this.state.enrollmentDetails.enrollmentParticipantId)}
+              {this.updateEnrollmentTypeList(this.props.eventDetails.participants, this.state.enrollmentDetails.enrollmentParticipantId)}
             </SelectField>
           </div>
 
@@ -107,9 +107,7 @@ class EventDetails extends Component {
           <h1 className=""> {this.props.eventDetails.title} </h1>
           <span className="date"> {Moment(this.props.eventDetails.startDate).format('LL') + " - " +
             Moment(this.props.eventDetails.endDate).format('LL')}</span>
-          <p className="">
-            {this.props.eventDetails.description}
-          </p>
+            <p className="" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description}}/>
           {this.showRegisterButton()}
         </div>
       </div>
