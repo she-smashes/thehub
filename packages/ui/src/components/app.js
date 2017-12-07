@@ -13,6 +13,7 @@ import '../css/global.css';
 import '../css/singles.css';
 import '../css/layout.css';
 import '../css/login.css';
+import '../css/events.css'
 
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
@@ -28,13 +29,13 @@ class App extends Component {
   render() {
     const loggedIn = (this.props.userInfo && this.props.userInfo.user) ? true : false;
     return (
-      <div className="container">
+      <div class="layout-class">
         <Router history={History}>
-        <div>
+        <div >
           <Header/>
         {
           !loggedIn? <Login />:
-          <div>            
+          <div>
             <NavigationContainer />
             <Switch>
               <Route path='/' exact={true} component={AsyncDashboard} />

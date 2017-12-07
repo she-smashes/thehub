@@ -10,9 +10,14 @@ class AttendanceWidget extends Component {
 
     render = () => {
         return (
-            <div>
-                This is attendance widget component!
+          <div class="hub-attendance-widget widget well">
+            <div class="hub-attendance">
+              Attendance
             </div>
+            <div class="attendance-widget">
+
+            </div>
+          </div>  
         )
     }
 }

@@ -9,10 +9,10 @@ import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router-dom';
 class EventTimelineWidget extends Component {
 
-    
+
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateEventTimelineInfo(JSON.parse(response.data));    
+            this.props.updateEventTimelineInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -51,7 +51,11 @@ class EventTimelineWidget extends Component {
             key={index}
             primaryText={
                 <div>
-                    <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+                    <Link to={`/eventDetails/${event.id}`}>
+                        <td><span class="icon past-event-icon"></span></td>
+                        <td><span class="event-name">{event.title} </span></td>
+                        <td><span class="event-date">{event.startDate}</span></td>
+                    </Link>
                 </div>
             }
             style={this.resolveBackgroundColor(event.startDate, event.endDate)}
@@ -62,11 +66,14 @@ class EventTimelineWidget extends Component {
 
     render = () => {
         return (
-            <div>
-                <h3>This is event timeline!</h3>
-                <List>
+            <div class="hub-event-timeline well hub-home-event-timeline">
+                <div class="event-timeline">Event Timeline</div>
+                <List className="col-md-10 col-sm-10 col-xs-12 events-table">
                     {this.props.events.length>0?this.renderEvents():<div></div>}
                 </List>
+                <div class="event-timeline-widget">
+
+                </div>
             </div>
 
         )
