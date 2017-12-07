@@ -98,9 +98,5 @@
   "participant": {
     "dataSource": "db",
     "public": true
-  },
-  "Goutham": {
-    "dataSource": "db",
-    "public": true
   }
 }

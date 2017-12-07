@@ -63,12 +63,9 @@
   
   "relations": {
     "participants": {
-      "type": "hasMany",
+      "type": "hasAndBelongsToMany",
       "model": "participant",
-      "foreignKey": "id",
-      "options": {
-        "disableInclude": false
-      }
+      "foreignKey": "participantId"
     },
     "enrollments": {
       "type": "hasMany",

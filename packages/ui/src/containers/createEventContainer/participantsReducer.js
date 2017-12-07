@@ -6,12 +6,13 @@
  * @param {Object} action
  */
 
-import { GET_INITIATIVES } from "../../constants/actions";
+import { GET_PARTICIPANTS} from "../../constants/actions";
 
 export default function (state = [], action) {
+
     switch (action.type) {
-        case GET_INITIATIVES:
-            return action.payload;
+        case GET_PARTICIPANTS: 
+            return action.payload;        
         default:
             return state;
 
