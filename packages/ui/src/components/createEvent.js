@@ -99,6 +99,7 @@ class CreateEvent extends Component {
              let hList = [];
              let nhList = [];
              this.props.participants.map((event, index) => {
+
                  if(event.hourly) {
                      hList.push(this.props.participants[index]);
                  } else {
@@ -106,10 +107,10 @@ class CreateEvent extends Component {
                  }
              });
              this.setState({
-                 nonhourlyList: hList
+                 nonhourlyList: nhList
              });
              this.setState({
-                 nonhourlyList: nhList
+                 hourlyList: hList
              });
         });
     }
@@ -121,7 +122,7 @@ class CreateEvent extends Component {
         let fields = this.state.createEventformData;
         let errors = {};
         let formIsValid = true;
-console.log(fields);
+
         if (!fields["initiativeName"]) {
             formIsValid = false;
             errors["initiativeName"] = "Enter Initiative Name";
@@ -136,11 +137,11 @@ console.log(fields);
         }
         if (!fields["description"]) {
             formIsValid = false;
-            errors["description"] = "Enter Initiative description";
+            errors["description"] = "Enter Event description";
         }
         if (!fields["location"]) {
             formIsValid = false;
-            errors["location"] = "Enter Initiative location";
+            errors["location"] = "Enter Event location";
         }
         if (!fields["title"]) {
             formIsValid = false;
@@ -266,11 +267,18 @@ console.log(fields);
     };
 
     onRichTextChange=(value)=>{
-        console.log('value = ' +  value);
+
         this.setState({
             createEventformData : {...this.state.createEventformData, description: value.toString()}
         });
-        console.log(this.state)
+
+        this.setState(prevState => ({
+            errors: {
+                ...prevState.errors,
+                startDate: ''
+            }
+        }));
+
     };
 
     /**
@@ -315,6 +323,7 @@ console.log(fields);
     }
     handleEventTypeSelection = (event) => {
 
+
         let evType = event.target.value;
         this.setState(prevState => ({
             createEventformData: {
@@ -337,6 +346,7 @@ console.log(fields);
     }
 
     handleHourlyParticipantsDisplay = () => {
+
         return this.state.hourlyList.map((event, index) => {
             return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
@@ -448,12 +458,7 @@ console.log(fields);
                     <div className="field-line">
                         <TextField floatingLabelText="Title" className="align-left" name="title" onChange={this.changeUser} value={this.state.createEventformData.title} errorText={this.state.errors.title} />
                     </div>
-                  { /* <div className="field-line">
-                        <TextField floatingLabelText="Description" className="align-left" name="description" onChange={this.changeUser} value={this.state.createEventformData.description} errorText={this.state.errors.description} />
-                    </div>*/}
-                    <div className="field-line">
-                    <SimpleRichTextEditor hintText="Enter Description" name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
-                    </div>
+
                     <div>
                     <SelectField className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative" errorText={this.state.errors.initiativeName}>
                      {this.props.approvedInitiatives.length>0?this.renderInitiatives():<div></div>}
@@ -461,55 +466,79 @@ console.log(fields);
                     </div>
                     <div>
                         <DatePicker className="field-line" hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
-
-                    </div>
-                    <div style={styles.errorText}>
+                        <div style={styles.errorText} className="field-line align-left">
+                            <br/>
                             {(this.state.errors.startDate != undefined && this.state.errors.startDate != '') ? this.state.errors.startDate : <div></div>}
                         </div>
+                    </div>
                     <div>
                         <DatePicker  className="field-line" hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
-
-                    </div>
-                    <div style={styles.errorText}>
+                        <div style={styles.errorText} className="field-line align-left">
+                        <br/>
                             {(this.state.errors.endDate != undefined && this.state.errors.endDate != '') ? this.state.errors.endDate : <div></div>}
                         </div>
+                    </div>
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
 
                     <div className="field-line">
+                    <br/>
+                    <label className="align-left bold">Enter Event description</label>
+                    <br/>
+
+                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
+                    <div style={styles.errorText} className="field-line align-left">
+                            <br/>
+                            <br/>
+                            {(this.state.errors.description != undefined && this.state.errors.description != '') ? this.state.errors.description : <div></div>}
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div className="field-line">
                         <label className="align-left bold">Select Category</label>
+                        <br/>
                         <RadioButtonGroup className="align-left" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
                             {this.state.categoryMap != undefined ? this.displayCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
 
-                        <div style={styles.errorText}>
-                        {(this.state.errors.categoryType != undefined && this.state.errors.categoryType != '') ? this.state.errors.categoryType : <div></div>}
+                        <div style={styles.errorText} className="align-left">
+                            <br/>
+                            {(this.state.errors.categoryType != undefined && this.state.errors.categoryType != '') ? this.state.errors.categoryType : <div></div>}
+                        </div>
                     </div>
-                    </div>
+                    <br/>
                     <div className="field-line">
+                    {this.displaySubCategoryRadioButtons()?<label className="align-left bold">Select Sub Category</label>:<div></div>}
                         <RadioButtonGroup className="align-left" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
                             {this.state.createEventformData.categoryType != undefined ? this.displaySubCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
                     </div>
+                    <div className="field-line border-line"></div>
                     <div className="field-line">
-                        <label className="align-left bold">Select Participant Type</label>
+                        <label className="align-left bold">Select Event Type</label>
                         <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
                             <RadioButton value="hourly" label ="hourly" style={{ width: '100%' }} />
                             <RadioButton value="nonhourly" label="non-hourly" style={{ width: '100%' }} />
                         </RadioButtonGroup>
-                        <div style={styles.errorText}>
+                        <div style={styles.errorText} className="align-left">
+                            <br/>
                             {(this.state.errors.eventType != undefined && this.state.errors.eventType != '') ? this.state.errors.eventType : <div></div>}
                         </div>
 
                     </div>
-                    <div>
+
+                    <div class="checklist">
+                        {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
                     </div>
                     <div class="checklist">
+                        {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>
-                    <div style={styles.errorText}>
+                    <div style={styles.errorText} className="align-left">
+                    <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
                     </div>
 
