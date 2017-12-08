@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "start": "node .",
     "start:heroku": "NODE_ENV=dev && node .",
-    "posttest": "npm run lint && nsp check --filter 4",
+    "posttest": "npm run lint",
     "test": "mocha"
   },
   "dependencies": {
