@@ -37,22 +37,30 @@ module.exports = function(Task) {
     let approvables = [];
     const promises = [];
     let taskMap = {};
+    console.log('context.result.pendingTasks');
+    console.log(context.result.pendingTasks);
+    context.result.pTasks = [];
     context.result.pendingTasks.forEach(function(task) {
       taskMap[task.id] = task;
       let Model = Task.app.models[task.type];
-      promises.push(Promise.resolve(Model.find({
+      promises.push(Model.find({
         where: {
           id: task.approvableId,
         },
       }, function(err, approvable) {
         task.approvable = approvable[0];
-      })));
+        context.result.pTasks.push(task);
+      }));
     });
 
     Promise.all(promises.map(p => p.catch(() => undefined)))
       .then((response) => {
-        next();
+        console.log(context.result.pTasks);
+        context.result.pendingTasks = context.result.pTasks;
+        context.result.pTasks = [];
+        return next();
       });
+    console.log('done');
   });
   Task.observe('after save', function(ctx, next) {
     if (ctx.instance) {
