@@ -1,39 +1,5 @@
 [
-    {
-        "method": "login",
-        "model": "users",
-        "withData": {
-            "email": "approver1@example.com",
-            "password":"approver1"
-        },
-        "expectStatus": "200",
-        "expectVar": "userId",
-        "expectValue": "7",
-        "expectDescription":"should log in live server"
-    },
-    {
-        "method": "login",
-        "model": "users",
-        "withData": {
-            "email": "approver2@example.com",
-            "password":"approver2"
-        },
-        "expectStatus": "200",
-        "expectVar": "userId",
-        "expectValue": "8",
-        "expectDescription":"sssssssshould log in and log out with live server"
-    },
-    {
-        "method": "GET",
-        "count": "true",
-        "model": "users",
-        "username":"approver1",
-        "password":"approver1",
-        "expectStatus": "200",
-        "expectVar": "count",
-        "expectValue": 0,
-        "expectDescription":"Get users count"
-    },
+    
     {
         "method": "POST",
         "model": "initiatives",
