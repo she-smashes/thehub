@@ -7,6 +7,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {List, ListItem} from 'material-ui/List';
+import {Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator} from 'material-ui/Toolbar';
+import Sort from './sort';
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
@@ -52,12 +54,31 @@ class ViewInitiative extends Component {
     render = () => {
         return (
             <div>
-                <h3>List of Initiatives </h3>
+                <h3 >List of Initiatives </h3>
+                <Toolbar>
+                    <ToolbarGroup >
+                    <ToolbarTitle text="Sort" />
+                        <Sort 
+                                sortList = {[ {'name':'Title', 'value':'title'} ,
+                                            {'name':'Start Date', 'value': 'startDate'}, 
+                                            { 'name':'End Date', 'value': 'endDate' }]} 
+                                sortType = {[ {'name':'Ascending', 'value': 'ascending' },
+                                            {'name':'Descending', 'value': 'descending' }]}
+                                data = {this.props.viewInitiatives } >
+                        </Sort>
+                    </ToolbarGroup>
+                    <ToolbarSeparator />
+                    <ToolbarGroup >
+                        <ToolbarTitle text="Filter" />
+                    </ToolbarGroup>
+                </Toolbar>
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }
                 </List>
+                
                 {/* { this.showDetails(1) } */}
                 <div id="initiativeDetails"></div>
+                
             </div>
 
         )
