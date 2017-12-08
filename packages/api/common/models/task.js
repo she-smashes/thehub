@@ -43,14 +43,14 @@ module.exports = function(Task) {
     context.result.pendingTasks.forEach(function(task) {
       taskMap[task.id] = task;
       let Model = Task.app.models[task.type];
-      promises.push(Promise.resolve(Model.find({
+      promises.push(Model.find({
         where: {
           id: task.approvableId,
         },
       }, function(err, approvable) {
         task.approvable = approvable[0];
         context.result.pTasks.push(task);
-      })));
+      }));
     });
 
     Promise.all(promises.map(p => p.catch(() => undefined)))
