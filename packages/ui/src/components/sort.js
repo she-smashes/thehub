@@ -1,7 +1,7 @@
 /**
  * @author Kriti Aggarwal
- * @name View Initiative
- * @desc renders view initiative page
+ * @name Sort Component
+ * @desc renders sort Component
  */
 
 import React, {Component} from 'react';

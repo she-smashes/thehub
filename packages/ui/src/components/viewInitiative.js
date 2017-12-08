@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import {List, ListItem} from 'material-ui/List';
 import {Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator} from 'material-ui/Toolbar';
 import Sort from './sort';
+import Filter from './filter';
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
@@ -70,6 +71,7 @@ class ViewInitiative extends Component {
                     <ToolbarSeparator />
                     <ToolbarGroup >
                         <ToolbarTitle text="Filter" />
+                        <Filter> </Filter>
                     </ToolbarGroup>
                 </Toolbar>
                 <List>
