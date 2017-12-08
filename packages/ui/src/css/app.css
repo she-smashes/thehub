@@ -1,7 +1,10 @@
 .App, .login-page {
   text-align: center;
 }
-
+.checklist, .field-line{ width: 500px!important; margin: 0 auto;}
+.field-line > div, .align-left{ width: 500px !important;}
+.DraftEditor-root{ min-height: 300px; }
+.field-line .align-left div{ margin-right: 15px !important;}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -10,6 +13,7 @@
   width: 100%;
   margin: 0 auto;
 }
+.border-line{ border:1px solid #dadada; margin-bottom: 20px;}
 label{
   font-weight: normal;
 }
@@ -55,7 +59,7 @@ label{
 .login-page .button-line{
   margin-top: 20px;
 }
-.login-page .align-left{
+.align-left{
   text-align: left;
 }
 @keyframes App-logo-spin {

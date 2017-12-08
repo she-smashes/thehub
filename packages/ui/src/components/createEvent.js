@@ -58,7 +58,7 @@ class CreateEvent extends Component {
                 eventEndDate:'',
                 location: '',
                 categoryType: '',
-                subCategoryType: '',              
+                subCategoryType: '',
                 eventTypeSelected: '',
                 participantsSelected: []
             },
@@ -68,11 +68,11 @@ class CreateEvent extends Component {
     }
     componentDidMount =  () => {
         this.props.getApprovedInitiatives(this.props.userInfo).then((response, error) => {
-            this.props.updateApprovedInitiativesList(JSON.parse(response.data));          
+            this.props.updateApprovedInitiativesList(JSON.parse(response.data));
         });
         this.props.getCategories(this.props.userInfo).then((response, error) => {
-            this.props.updateCategoriesList(JSON.parse(response.data));      
-            
+            this.props.updateCategoriesList(JSON.parse(response.data));
+
             let catMap = {};
             this.props.categories.map((event, index) => {
                 let key = event.type;
@@ -88,17 +88,18 @@ class CreateEvent extends Component {
                         catMap[key] = catArr;
                     }
                 }
-            });   
+            });
 
             this.setState({
                 categoryMap: catMap
-            });           
+            });
         });
         this.props.getParticipantList(this.props.userInfo).then((response, error) => {
              this.props.updateParticipantsList(JSON.parse(response.data));
              let hList = [];
              let nhList = [];
              this.props.participants.map((event, index) => {
+
                  if(event.hourly) {
                      hList.push(this.props.participants[index]);
                  } else {
@@ -106,10 +107,10 @@ class CreateEvent extends Component {
                  }
              });
              this.setState({
-                 nonhourlyList: hList
+                 nonhourlyList: nhList
              });
              this.setState({
-                 nonhourlyList: nhList
+                 hourlyList: hList
              });
         });
     }
@@ -121,7 +122,7 @@ class CreateEvent extends Component {
         let fields = this.state.createEventformData;
         let errors = {};
         let formIsValid = true;
-console.log(fields);
+
         if (!fields["initiativeName"]) {
             formIsValid = false;
             errors["initiativeName"] = "Enter Initiative Name";
@@ -136,11 +137,11 @@ console.log(fields);
         }
         if (!fields["description"]) {
             formIsValid = false;
-            errors["description"] = "Enter Initiative description";
+            errors["description"] = "Enter Event description";
         }
         if (!fields["location"]) {
             formIsValid = false;
-            errors["location"] = "Enter Initiative location";
+            errors["location"] = "Enter Event location";
         }
         if (!fields["title"]) {
             formIsValid = false;
@@ -183,7 +184,7 @@ console.log(fields);
     processForm=(event)=> {
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
-        
+
 
         if (this.handleValidation()) {
             this.props.sendEventDetails(this.state.createEventformData,this.props.userInfo)
@@ -266,11 +267,18 @@ console.log(fields);
     };
 
     onRichTextChange=(value)=>{
-        console.log('value = ' +  value);
+
         this.setState({
             createEventformData : {...this.state.createEventformData, description: value.toString()}
-        });   
-        console.log(this.state)   
+        });
+
+        this.setState(prevState => ({
+            errors: {
+                ...prevState.errors,
+                startDate: ''
+            }
+        }));
+
     };
 
     /**
@@ -314,7 +322,8 @@ console.log(fields);
         });
     }
     handleEventTypeSelection = (event) => {
-        
+
+
         let evType = event.target.value;
         this.setState(prevState => ({
             createEventformData: {
@@ -337,13 +346,14 @@ console.log(fields);
     }
 
     handleHourlyParticipantsDisplay = () => {
+
         return this.state.hourlyList.map((event, index) => {
             return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
     }
     displayCategoryRadioButtons = () => {
-        let catArr =  Object.keys(this.state.categoryMap);      
-        return catArr.map((event, index) => { 
+        let catArr =  Object.keys(this.state.categoryMap);
+        return catArr.map((event, index) => {
 
             let catId = '';
             this.props.categories.map((event1, index1) => {
@@ -353,8 +363,8 @@ console.log(fields);
             });
 
             return <RadioButton key={catId} value={catId} label ={event} style={{ width: 'auto' }}/>
-        }); 
-              
+        });
+
     }
     displaySubCategoryRadioButtons = () => {
         if(this.state.createEventformData.categoryType !== undefined && this.state.createEventformData.categoryType !== '') {
@@ -367,11 +377,11 @@ console.log(fields);
             });
 
             let subCatArr = this.state.categoryMap[catGroup];
-            return subCatArr.map((event, index) => {         
+            return subCatArr.map((event, index) => {
                 return <RadioButton key={event.id} value={event.id} label ={event.name} style={{ width: 'auto' }}/>
-            });  
+            });
         }
-        return;   
+        return;
     }
     handleCategoryTypeSelection = (event) => {
         let catValue = event.target.value;
@@ -389,7 +399,7 @@ console.log(fields);
         }));
     }
     handleSubCategoryTypeSelection = (event) => {
-        let catValue = event.target.value;       
+        let catValue = event.target.value;
         this.setState(prevState => ({
             createEventformData: {
                 ...prevState.createEventformData,
@@ -420,7 +430,7 @@ console.log(fields);
             }
         }));
     }
-    
+
     handleNonHourlyParticipantsDisplay = () => {
         return this.state.nonhourlyList.map((event, index) => {
             return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
@@ -448,70 +458,91 @@ console.log(fields);
                     <div className="field-line">
                         <TextField floatingLabelText="Title" className="align-left" name="title" onChange={this.changeUser} value={this.state.createEventformData.title} errorText={this.state.errors.title} />
                     </div>
-                  { /* <div className="field-line">
-                        <TextField floatingLabelText="Description" className="align-left" name="description" onChange={this.changeUser} value={this.state.createEventformData.description} errorText={this.state.errors.description} />
-                    </div>*/}
-                    <div className="field-line">
-                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
-                    </div>
+
                     <div>
                     <SelectField className="align-left" name="initiativeName" value={this.state.createEventformData.initiativeName} onChange={(event, index, value)=> this.onInitiativeDropDownChange(event, index, value)} autoWidth={true} floatingLabelText="Select Initiative" errorText={this.state.errors.initiativeName}>
                      {this.props.approvedInitiatives.length>0?this.renderInitiatives():<div></div>}
                     </SelectField>
                     </div>
                     <div>
-                        <DatePicker hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
-                        
-                    </div>
-                    <div style={styles.errorText}>
+                        <DatePicker className="field-line" hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
+                        <div style={styles.errorText} className="field-line align-left">
+                            <br/>
                             {(this.state.errors.startDate != undefined && this.state.errors.startDate != '') ? this.state.errors.startDate : <div></div>}
                         </div>
-                    <div>
-                        <DatePicker hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
-                        
                     </div>
-                    <div style={styles.errorText}>
+                    <div>
+                        <DatePicker  className="field-line" hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
+                        <div style={styles.errorText} className="field-line align-left">
+                        <br/>
                             {(this.state.errors.endDate != undefined && this.state.errors.endDate != '') ? this.state.errors.endDate : <div></div>}
                         </div>
+                    </div>
                     <div className="field-line">
                         <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
                     </div>
-                    
+
                     <div className="field-line">
+                    <br/>
+                    <label className="align-left bold">Enter Event description</label>
+                    <br/>
+
+                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
+                    <div style={styles.errorText} className="field-line align-left">
+                            <br/>
+                            <br/>
+                            {(this.state.errors.description != undefined && this.state.errors.description != '') ? this.state.errors.description : <div></div>}
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div className="field-line">
+                        <label className="align-left bold">Select Category</label>
+                        <br/>
                         <RadioButtonGroup className="align-left" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
-                            {this.state.categoryMap != undefined ? this.displayCategoryRadioButtons() : <div> </div>}                      
+                            {this.state.categoryMap != undefined ? this.displayCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
-                        
-                        <div style={styles.errorText}>
-                        {(this.state.errors.categoryType != undefined && this.state.errors.categoryType != '') ? this.state.errors.categoryType : <div></div>}
+
+                        <div style={styles.errorText} className="align-left">
+                            <br/>
+                            {(this.state.errors.categoryType != undefined && this.state.errors.categoryType != '') ? this.state.errors.categoryType : <div></div>}
+                        </div>
                     </div>
-                    </div>
+                    <br/>
                     <div className="field-line">
+                    {this.displaySubCategoryRadioButtons()?<label className="align-left bold">Select Sub Category</label>:<div></div>}
                         <RadioButtonGroup className="align-left" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
-                            {this.state.createEventformData.categoryType != undefined ? this.displaySubCategoryRadioButtons() : <div> </div>}                      
-                        </RadioButtonGroup>                  
-                    </div>
-                    <div className="field-line">
-                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
-                            <RadioButton value="hourly" label ="hourly" style={{ width: 'auto' }} />
-                            <RadioButton value="nonhourly" label="non-hourly" style={{ width: 'auto' }} />
+                            {this.state.createEventformData.categoryType != undefined ? this.displaySubCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
-                        <div style={styles.errorText}>
+                    </div>
+                    <div className="field-line border-line"></div>
+                    <div className="field-line">
+                        <label className="align-left bold">Select Event Type</label>
+                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
+                            <RadioButton value="hourly" label ="hourly" style={{ width: '100%' }} />
+                            <RadioButton value="nonhourly" label="non-hourly" style={{ width: '100%' }} />
+                        </RadioButtonGroup>
+                        <div style={styles.errorText} className="align-left">
+                            <br/>
                             {(this.state.errors.eventType != undefined && this.state.errors.eventType != '') ? this.state.errors.eventType : <div></div>}
                         </div>
-                    
+
                     </div>
-                    <div>
+
+                    <div class="checklist">
+                        {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
-                    </div> 
-                    <div>
+                    </div>
+                    <div class="checklist">
+                        {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
-                    </div>      
-                    <div style={styles.errorText}>
+                    </div>
+                    <div style={styles.errorText} className="align-left">
+                    <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
                     </div>
-                      
-                    <div className="button-line">
+
+                    <div className="button-line margin35">
                         <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />
                     </div>
                 </form>
