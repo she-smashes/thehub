@@ -11,11 +11,10 @@ class ProgressWidget extends Component {
     render = () => {
         return (
           <div className="hub-progress-widget widget well">
-            <div class="hub-progress">
+            <div className="hub-progress">
               Progress
             </div>
-            <div class="progress-widget">
-
+            <div className="progress-widget">
             </div>
           </div>
         )

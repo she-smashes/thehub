@@ -34,7 +34,7 @@ class Dashboard extends Component {
                     <BadgeWidget />
                     <AttendanceWidget />
                   </div>
-                  <div class="col-md-8 col-sm-8 col-xs-12">
+                  <div className="col-md-8 col-sm-8 col-xs-12">
                     <EventTimelineWidget />
                   </div>
                 </div>

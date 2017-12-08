@@ -36,13 +36,13 @@ class NavigationWidget extends Component {
     console.log('Navigatio', this.props)
     return (
       <div className="navbar navbar-inverse navbar-hub">
-      <Toolbar style={{background:"#222d33", "font-size":"14px", "padding-left":"200px"}}>
+      <Toolbar style={{background:"#222d33", "fontSize":"14px", "paddingLeft":"200px"}}>
         <ToolbarGroup>
           <ToolbarTitle  text={
             <Link className="navbar-menu-listitem" to={`/`}> Dashboard</Link>
           } />
           <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle style={{color:"#fff", "font-size":"14px"}} text="Events" />
+          <ToolbarTitle style={{color:"#fff", "fontSize":"14px"}} text="Events" />
           <IconMenu style={{background:"#222d33"}}
             iconButtonElement={
               <IconButton touch={true}>
@@ -51,14 +51,14 @@ class NavigationWidget extends Component {
             }
           >
           <MenuItem primaryText={
-            <Link  style={{color:"#000", "font-size":"14px"}} className="navbar-menu-listitem"  to={`/createevent`}> Create Event</Link>
+            <Link  style={{color:"#000", "fontSize":"14px"}} className="navbar-menu-listitem"  to={`/createevent`}> Create Event</Link>
           } />
           <MenuItem primaryText={
-            <Link  style={{color:"#000", "font-size":"14px"}} to={`/viewevents`}> View Events</Link>
+            <Link  style={{color:"#000", "fontSize":"14px"}} to={`/viewevents`}> View Events</Link>
           } />
           </IconMenu>
           <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle  style={{color:"#fff", "font-size":"14px"}} text="Initiatives" />
+          <ToolbarTitle  style={{color:"#fff", "fontSize":"14px"}} text="Initiatives" />
           <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
@@ -67,15 +67,15 @@ class NavigationWidget extends Component {
 
           >
             <MenuItem primaryText={
-              <Link  style={{color:"#000" , "font-size":"14px"}} to={`/createinitiative`}> Create Initiative</Link>
+              <Link  style={{color:"#000" , "fontSize":"14px"}} to={`/createinitiative`}> Create Initiative</Link>
             } />
             <MenuItem primaryText={
-              <Link  style={{color:"#000", "font-size":"14px"}} to={`/viewinitiative`}> View Initiatives</Link>
+              <Link  style={{color:"#000", "fontSize":"14px"}} to={`/viewinitiative`}> View Initiatives</Link>
             } />
 
           </IconMenu>
           <ToolbarSeparator  className="margin-30"/>
-          <ToolbarTitle  style={{color:"#fff", "font-size":"14px"}} text="Gallery" />
+          <ToolbarTitle  style={{color:"#fff", "fontSize":"14px"}} text="Gallery" />
           <ToolbarSeparator className="margin-30" />
           <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
         </ToolbarGroup>

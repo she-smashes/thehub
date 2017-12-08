@@ -15,10 +15,10 @@ class BadgeWidget extends Component {
     render = () => {
         return (
           <div className="hub-badges-widget widget well">
-           <div class="hub-badges">
+           <div className="hub-badges">
              Badges
            </div>
-           <div class="badges-widget">
+           <div className="badges-widget">
 
            </div>
           </div>

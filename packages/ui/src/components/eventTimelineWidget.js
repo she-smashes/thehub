@@ -7,6 +7,7 @@
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router-dom';
+import Moment from 'moment';
 class EventTimelineWidget extends Component {
 
 
@@ -28,15 +29,15 @@ class EventTimelineWidget extends Component {
     resolveBackgroundColor = (startDate, endDate) => {
         // End date < current date => past event
         if(new Date(endDate).getTime() < Date.now()) {
-            return {margin:10, backgroundColor:"#e5e5e5", color:"silver"};
+            return "past-event-icon";
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return {margin:10, backgroundColor:"green"};
+            return "future-event-icon";
         }
         // Present events
         else {
-            return {margin:10, backgroundColor:"yellow"};
+            return "present-event-icon";
         }
     }
 
@@ -52,9 +53,9 @@ class EventTimelineWidget extends Component {
             primaryText={
                 <div>
                     <Link to={`/eventDetails/${event.id}`}>
-                        <td><span class="icon past-event-icon"></span></td>
-                        <td><span class="event-name">{event.title} </span></td>
-                        <td><span class="event-date">{event.startDate}</span></td>
+                        <td><span className={"icon " + this.resolveBackgroundColor(event.startDate, event.endDate)}></span></td>
+                        <td><span className="event-name">{event.title} </span></td>
+                        <td><span className="event-date">{Moment(this.props.eventDetails.startDate).format('LL')}</span></td>
                     </Link>
                 </div>
             }
@@ -66,13 +67,12 @@ class EventTimelineWidget extends Component {
 
     render = () => {
         return (
-            <div class="hub-event-timeline well hub-home-event-timeline">
-                <div class="event-timeline">Event Timeline</div>
+            <div className="hub-event-timeline well hub-home-event-timeline">
+                <div className="event-timeline">Event Timeline</div>
                 <List className="col-md-10 col-sm-10 col-xs-12 events-table">
                     {this.props.events.length>0?this.renderEvents():<div></div>}
                 </List>
-                <div class="event-timeline-widget">
-
+                <div className="event-timeline-widget">
                 </div>
             </div>
 
