@@ -51,19 +51,15 @@ class EventTimelineWidget extends Component {
             return <ListItem
             key={index}
             primaryText={
-                <div>
                     <Link to={`/eventDetails/${event.id}`}>
-                        <td><span className={"icon " + this.resolveBackgroundColor(event.startDate, event.endDate)}></span></td>
-                        <td><span className="event-name">{event.title} </span></td>
-                        <td><span className="event-date">{Moment(this.props.eventDetails.startDate).format('LL')}</span></td>
+                        <span style={{width:"20%"}} className={"icon " + this.resolveBackgroundColor(event.startDate, event.endDate)}></span>
+                        <span style={{width:"60%", "textAlign":"left"}}  className="event-name">{event.title} </span>
+                        <span style={{width:"20%"}} className="event-date">{Moment(event.startDate).format('DD/MM/YYYY')}</span>
                     </Link>
-                </div>
             }
-            style={this.resolveBackgroundColor(event.startDate, event.endDate)}
             className = "event-timeline"/>
         })
     }
-
 
     render = () => {
         return (

@@ -15,9 +15,9 @@ import Moment from 'moment';
 import {Link} from 'react-router-dom';
 
 /**
- * 
+ *
  * This class the component for rendering the events in the approval page.
- * 
+ *
  */
 
 class ViewEvent extends Component {
@@ -36,7 +36,7 @@ class ViewEvent extends Component {
 
     componentDidMount = () => {
         this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateViewEventsInfo(JSON.parse(response.data));    
+            this.props.updateViewEventsInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -45,8 +45,8 @@ class ViewEvent extends Component {
     /**
      * This method renders the list of events.
      */
-    renderEvents = () => {   
-       
+    renderEvents = () => {
+
         return this.props.viewEvents.map((event, index) => {
             return <ListItem
             key={index}
@@ -60,12 +60,12 @@ class ViewEvent extends Component {
     }
 
     render = () => {
-        return (       
-            <div>
+        return (
+            <div style={{color:"#000"}}>
                 <h3>List of Events </h3>
                 <div id="ViewEvent">
                     {
-                       
+
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
                         }
                 </div>
