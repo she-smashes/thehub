@@ -53,7 +53,7 @@ module.exports = function(Task) {
       })));
     });
 
-    Promise.all(promises)
+    Promise.all(promises.map(p => p.catch(() => undefined)))
       .then((response) => {
         console.log(context.result.pTasks);
         context.result.pendingTasks = context.result.pTasks;
