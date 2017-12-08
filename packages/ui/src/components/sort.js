@@ -53,8 +53,8 @@ class Sort extends Component {
         console.log(this.props.data)
         if ( this.state.sortType === 'ascending') {
             this.props.data.sort(function(a, b) {
-                var nameA = a.sortListValue.toUpperCase(); 
-                var nameB = b.sortListValue.toUpperCase(); 
+                var nameA = a.title.toUpperCase(); 
+                var nameB = b.title.toUpperCase(); 
                 if (nameA < nameB) {
                     return -1;
                 }
