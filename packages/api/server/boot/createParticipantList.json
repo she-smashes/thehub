@@ -3,6 +3,10 @@
     {"participantType": "volunteer", "hourly":false},
     {"participantType": "speaker", "hourly":false},
     {"participantType": "organiser", "hourly":false},
-    {"participantType": "participant", "hourly":false}
+    {"participantType": "participant", "hourly":false},
+    {"participantType": "volunteer", "hourly":true},
+    {"participantType": "speaker", "hourly":true},
+    {"participantType": "organiser", "hourly":true},
+    {"participantType": "participant", "hourly":true}
   ]
 }

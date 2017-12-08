@@ -13,6 +13,7 @@
   width: 100%;
   margin: 0 auto;
 }
+.border-line{ border:1px solid #dadada; margin-bottom: 20px;}
 label{
   font-weight: normal;
 }

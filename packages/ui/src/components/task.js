@@ -16,9 +16,9 @@ import { DEFAULT_TASKS } from "../constants/actions";
 import { APPROVE_TASK } from "../constants/actions";
 
 /**
- * 
+ *
  * This class the component for rendering the task in the approval page.
- * 
+ *
  */
 
 class Task extends Component {
@@ -28,7 +28,7 @@ class Task extends Component {
      */
     processForm = (taskId) => {
         this.props.approveTask(this.props.userInfo.id, taskId).then((response, error) => {
-            this.props.updateTaskInfo(APPROVE_TASK, JSON.parse(response.data));    
+            this.props.updateTaskInfo(APPROVE_TASK, JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -40,7 +40,7 @@ class Task extends Component {
 
     componentDidMount = () => {
         this.props.getTaskList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateTaskInfo(DEFAULT_TASKS, JSON.parse(response.data).pendingTasks);    
+            this.props.updateTaskInfo(DEFAULT_TASKS, JSON.parse(response.data).pendingTasks);
           }, (error) => {
             console.log(error);
           });
@@ -49,29 +49,30 @@ class Task extends Component {
     /**
      * This method renders the list of tasks in an accordion format.
      */
-    renderTasks = () => {    
-        
+    renderTasks = () => {
+
         return (
             <Accordion class="react-sanfona">
                 {this.props.viewTasks.map(item => {
                         return (
                             <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
-                                <b>Type: </b> {item.type} 
+                                <b>Type: </b> {item.type}
                                 <br /> <br />
                                 <b>Date & Time: </b> {Moment(item.approvable.startDate).format('LL') + " - " + Moment(item.approvable.endDate).format('LL')}
                                 <br /> <br />
-                                <b>Location: </b> {item.approvable.location} 
+                                <b>Location: </b> {item.approvable.location}
                                 <br /> <br />
                                 <div>
-                                <b>Description: </b> {item.approvable.description} 
+                                <b>Description: </b>
+                                <p className="" dangerouslySetInnerHTML={{ __html: item.approvable.description}}/>
                                 </div>
                                 <br /> <br />
                                 <div className="button-line">
                                     <RaisedButton type="submit" label="APPROVE" primary  key={item.id} onClick={()=>{this.processForm(item.id)}}/>
-                                </div>                              
+                                </div>
                             </AccordionItem>
                         );
-                    
+
                 })}
             </Accordion>
         );
