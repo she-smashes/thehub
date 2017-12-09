@@ -32,7 +32,6 @@ module.exports = function(Task) {
       type: 'array',
     },
   });
-
   var getApprovableForTask = function(task, resolve) {
     let Model = Task.app.models[task.type];
     Model.find({
@@ -41,31 +40,23 @@ module.exports = function(Task) {
       },
     }, function(err, approvable) {
       task.approvable = approvable[0];
-      var newObj = {};
-      newObj.approvable = approvable[0];
-      newObj.status = task.status;
-      newObj.id = task.id;
-      newObj.created = task.created;
-      newObj.type = task.type;
-      newObj.approvableId = task.approvableId;
-      resolve(newObj);
+      resolve();
     });
   };
 
   Task.afterRemote('listPendingTasks', function(context, modelInstance, next) {
     let approvables = [];
     const promises = [];
-    let taskMap = modelInstance.pendingTasks;
-
-    let requests = taskMap.map((task) => {
-      return new Promise(function(resolve) {
+    context.result.pendingTasks.forEach(function(task) {
+      promises.push(new Promise(function(resolve) {
         getApprovableForTask(task, resolve);
+      })
+      );
+    });
+    Promise.all(promises)
+      .then((response) => {
+        next();
       });
-    });
-    Promise.all(requests).then(function(results) {
-      context.result.pendingTasks =  results;
-      next();
-    });
   });
   Task.observe('after save', function(ctx, next) {
     if (ctx.instance) {
@@ -79,3 +70,4 @@ module.exports = function(Task) {
     }
   });
 };
+
