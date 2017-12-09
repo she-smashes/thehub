@@ -1,3 +1,64 @@
 [
-
+    {
+        "method": "login",
+        "model": "users",
+        "withData": {
+            "username": "approver1",
+            "password":"approver1"
+        },
+        "expectStatus": "200",
+        "expectVar": "userId",
+        "expectValue": "7",
+        "expectDescription":"should log in live server"
+    },
+    {
+        "method": "GET",
+        "count": "true",
+        "model": "users",
+        "username":"approver1",
+        "password":"approver1",
+        "expectStatus": "401",
+        "expectVar": "count",
+        "expectValue": 0,
+        "expectDescription":"Should not get users count"
+    },
+    {
+        "method": "POST",
+        "model": "initiatives",
+        "username":"approver1",
+        "password":"approver1",
+        "expectStatus": "200",
+        "expectVar": "id",
+        "expectValue": "not null",
+        "expectDescription":"Create Initiative",
+        "withData": {
+            "title": "Prayaas",
+            "description": "Helping people",
+            "lead": 1,
+            "createdBy": 7,
+            "created": "2017-11-20T17:25:19.224Z"
+        }
+    },
+    {
+        "method": "POST",
+        "model": "events",
+        "username":"approver1",
+        "password":"approver1",
+        "expectStatus": "200",
+        "expectVar": "id",
+        "expectValue": "not null",
+        "expectDescription":"Create Events",
+        "withData": {
+            "initiativeId": 1,
+            "title": "School Painting",
+            "startDate": "2017-09-02T11:49:20.305Z",
+            "endDate": "2017-09-08T11:49:20.305Z",
+            "location": "Bangalore",
+            "description": "Painting the government school walls",
+            "categoryId": "9",
+            "lead": 1,
+            "participantId":[1,2],
+            "createdBy": 7
+        }
+    }
 ]
