@@ -62,7 +62,7 @@ module.exports = function(Task) {
         getApprovableForTask(task, resolve);
       });
     });
-    Promise.all(requests).then(function(results){
+    Promise.all(requests).then(function(results) {
       context.result.pendingTasks =  results;
       next();
     });
