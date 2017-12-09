@@ -55,7 +55,6 @@ module.exports = function(Task) {
     });
     Promise.all(promises)
       .then((response) => {
-        //console.log(response);
         next();
       });
   });
