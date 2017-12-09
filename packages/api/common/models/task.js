@@ -33,28 +33,48 @@ module.exports = function(Task) {
     },
   });
 
-  Task.afterRemote('listPendingTasks', function(context, modelInstance, next) {
-    let approvables = [];
-    const promises = [];
-    let taskMap = {};
-    context.result.pendingTasks.forEach(function(task) {
-      taskMap[task.id] = task;
+  var getApprovableForTask = function (task, resolve) {
       let Model = Task.app.models[task.type];
-      promises.push(Promise.resolve(Model.find({
+      Model.find({
         where: {
           id: task.approvableId,
-        },
+        }
       }, function(err, approvable) {
         task.approvable = approvable[0];
-      })));
+        console.log(task,"--",approvable[0],"--", task);
+        var newObj = {};
+        newObj.approvable = approvable[0];
+        newObj.status = task.status;
+        newObj.id = task.id;
+        newObj.created = task.created;
+        newObj.type = task.type;
+        newObj.approvableId = task.approvableId;
+        resolve(newObj);
+      });
+  };
+
+  Task.afterRemote('listPendingTasks', function(context, modelInstance, next) {
+    console.log('start', modelInstance);
+    let approvables = [];
+    const promises = [];
+    let taskMap = modelInstance.pendingTasks;
+
+    let requests = taskMap.map((task) => {
+        return new Promise(function (resolve) {
+          getApprovableForTask(task, resolve);
+        });
+    })
+
+    Promise.all(requests).then(function(results){
+        console.log("done", results);
+        context.result.pendingTasks =  results;
+        next();
     });
 
-    Promise.all(promises)
-      .then((response) => {
-        return next();
-      });
-    console.log('done');
   });
+
+
+
   Task.observe('after save', function(ctx, next) {
     if (ctx.instance) {
       let Model = Task.app.models[ctx.instance.type];
@@ -66,4 +86,5 @@ module.exports = function(Task) {
       }
     }
   });
+
 };
