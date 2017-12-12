@@ -35,47 +35,47 @@ class NavigationWidget extends Component {
   render = () => {
     console.log('Navigatio', this.props)
     return (
-      <div className="menu-bar">
-      <Toolbar>
+      <div className="navbar navbar-inverse navbar-hub">
+      <Toolbar style={{background:"#222d33", "fontSize":"14px", "paddingLeft":"200px"}}>
         <ToolbarGroup>
-          <ToolbarTitle text={
-            <Link to={`/`}> Dashboard</Link>
+          <ToolbarTitle  text={
+            <Link className="navbar-menu-listitem" to={`/`}> Dashboard</Link>
           } />
           <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle text="Events" />
-          <IconMenu
+          <ToolbarTitle style={{color:"#fff", "fontSize":"14px"}} text="Events" />
+          <IconMenu style={{background:"#222d33"}}
             iconButtonElement={
               <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
+                <NavigationExpandMoreIcon  />
               </IconButton>
             }
           >
           <MenuItem primaryText={
-            <Link to={`/createevent`}> Create Event</Link>
+            <Link  style={{color:"#000", "fontSize":"14px"}} className="navbar-menu-listitem"  to={`/createevent`}> Create Event</Link>
           } />
           <MenuItem primaryText={
-            <Link to={`/viewevents`}> View Events</Link>
+            <Link  style={{color:"#000", "fontSize":"14px"}} to={`/viewevents`}> View Events</Link>
           } />
           </IconMenu>
           <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle text="Initiatives" />
+          <ToolbarTitle  style={{color:"#fff", "fontSize":"14px"}} text="Initiatives" />
           <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-              </IconButton>
-            }
+                <NavigationExpandMoreIcon style={{background:"#222d33"}} />
+              </IconButton>}
+
           >
             <MenuItem primaryText={
-              <Link to={`/createinitiative`}> Create Initiative</Link>
+              <Link  style={{color:"#000" , "fontSize":"14px"}} to={`/createinitiative`}> Create Initiative</Link>
             } />
             <MenuItem primaryText={
-              <Link to={`/viewinitiative`}> View Initiatives</Link>
+              <Link  style={{color:"#000", "fontSize":"14px"}} to={`/viewinitiative`}> View Initiatives</Link>
             } />
 
           </IconMenu>
           <ToolbarSeparator  className="margin-30"/>
-          <ToolbarTitle text="Gallery" />
+          <ToolbarTitle  style={{color:"#fff", "fontSize":"14px"}} text="Gallery" />
           <ToolbarSeparator className="margin-30" />
           <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
         </ToolbarGroup>

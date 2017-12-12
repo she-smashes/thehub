@@ -1,50 +1,90 @@
-
-.navbar-fixed {
-    background-color: #63c2de;
-    border: none;
-
-}
-.brand-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0px;
-    letter-spacing: 0px;
-    font-size: 24px;
-    font-weight: 400;
-    color: white;
-    height: 64px;
-    line-height: 64px;
-    flex: 1 1 0%;
-    padding: 0 20px;
-    display: inline;
+.header-project-image{
+  height:inherit;
+  display: inline-block;
+  width:30px;
 }
 
-.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-    background-color: rgb(0, 188, 212);
-}
-.logo{
-  width:75px;
-  height:75px;
-  display:inline;
-  float: left;
-}
-.avatar{
-    width:50px;
-    height:30px;
-    display:inline;
-    float: right;
-    padding-left:20px;
+.project-hub-header{
+    min-height: 40px;
+    background:#3c8dbc;
   }
-  .avatar1{
-    float: right;
-   }
-.user-name{
-  font-weight: bold;
-  float: right;
-  color: white;
+  .header-project-title-container{
+    float:left;
+    margin:10px 0 0 20px;
+    padding:0 0 0 10px;
+  }
+  .header-project-title-container::after{
+    clear:both;
+  }
+  .header-project-title{
+    padding:0 0 0 2px;
+    display: inline-block;
+    font-size: 20px;
+    color:#fff;
+    text-transform: capitalize;
+    vertical-align: middle;
+  }
+  .header-project-userinfo-container{
+    float:right;
+    margin:10px 50px 0 0;
+    padding:0 15px 0 0;
+  }
+  .header-project-userinfo-container::after{
+    clear:both;
+  }
+  .header-project-user-info-text{
+    padding:0 0 0 2px;
+    display: inline-block;
+    font-size: 18px;
+    color:#fff;
+    text-transform: capitalize;
+    vertical-align: middle;     
+  }
+
+
+@media (max-width:991px){  
+  .navbar-menu-list{
+    padding:0%;
+  }
 }
-.user-name a{
-  text-decoration: none;
-  color:white;
+@media (max-width:767px){
+  .navbar-hub{
+    display:none;
+  }
+  .navbar-menu-list{
+    padding:0%;
+  }
+  .header-project-title-container{
+    margin: 10px 0 0 0px;
+  }
+  .header-project-title{
+      font-size: 14px;
+    }
+  .header-project-userinfo-container{
+    margin: 10px 0px 0 0;
+  }
+  .header-project-user-info-text {
+    font-size: 12px;
+  } 
+  .claim-badge{
+    min-height: 75px;
+    font-size: 20px;
+  }
+
+  .header-project-image {
+    width: 20px;
+  }
+
+}
+@media (max-width:320px){
+    .header-project-user-info-text{
+      font-size: 18px;
+  }
+  .header-project-userinfo-container{
+    padding-top: 10px;
+    margin:0;
+  }
+  .header-project-userinfo-container{
+    padding: 10px 0 0 0;
+  }
 }

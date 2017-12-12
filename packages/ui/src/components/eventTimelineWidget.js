@@ -7,12 +7,13 @@
 import React, {Component} from 'react';
 import {List, ListItem} from 'material-ui/List';
 import {Link} from 'react-router-dom';
+import Moment from 'moment';
 class EventTimelineWidget extends Component {
 
-    
+
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateEventTimelineInfo(JSON.parse(response.data));    
+            this.props.updateEventTimelineInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -28,15 +29,15 @@ class EventTimelineWidget extends Component {
     resolveBackgroundColor = (startDate, endDate) => {
         // End date < current date => past event
         if(new Date(endDate).getTime() < Date.now()) {
-            return {margin:10, backgroundColor:"#e5e5e5", color:"silver"};
+            return "past-event-icon";
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return {margin:10, backgroundColor:"green"};
+            return "future-event-icon";
         }
         // Present events
         else {
-            return {margin:10, backgroundColor:"yellow"};
+            return "present-event-icon";
         }
     }
 
@@ -50,23 +51,25 @@ class EventTimelineWidget extends Component {
             return <ListItem
             key={index}
             primaryText={
-                <div>
-                    <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
-                </div>
+                    <Link to={`/eventDetails/${event.id}`}>
+                        <span style={{width:"20%"}} className={"icon " + this.resolveBackgroundColor(event.startDate, event.endDate)}></span>
+                        <span style={{width:"60%", "textAlign":"left"}}  className="event-name">{event.title} </span>
+                        <span style={{width:"20%"}} className="event-date">{Moment(event.startDate).format('DD/MM/YYYY')}</span>
+                    </Link>
             }
-            style={this.resolveBackgroundColor(event.startDate, event.endDate)}
             className = "event-timeline"/>
         })
     }
 
-
     render = () => {
         return (
-            <div>
-                <h3>This is event timeline!</h3>
-                <List>
+            <div className="hub-event-timeline well hub-home-event-timeline">
+                <div className="event-timeline">Event Timeline</div>
+                <List className="col-md-10 col-sm-10 col-xs-12 events-table">
                     {this.props.events.length>0?this.renderEvents():<div></div>}
                 </List>
+                <div className="event-timeline-widget">
+                </div>
             </div>
 
         )

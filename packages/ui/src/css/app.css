@@ -69,6 +69,8 @@ label{
 
 .event-details{
   padding:20px;
+  color:#000;
+  text-align:left;
 }
 .event-details > .date
 {
@@ -87,4 +89,5 @@ a {
 a:focus,
 a:hover {
     text-decoration: none;
+    color:'#fff';
 }

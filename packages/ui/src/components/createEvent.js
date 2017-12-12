@@ -449,7 +449,7 @@ class CreateEvent extends Component {
         />,
       ];
         return (
-           <div className="container  App">
+           <div className="container  App" style={{color:'#000'}}>
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Event</h2>
                     <div className="field-line">

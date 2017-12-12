@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 import {Link} from 'react-router-dom';
 import '../css/header.css'
-import logo from '../images/logo.png'
-import avatar from '../images/avatar.jpg'
+import {LogoUrl, AvatarUrl} from '../constants/links.js'
 import Badge from 'material-ui/Badge';
 
 
@@ -23,11 +22,10 @@ class Header extends Component {
   */
   badgemessagecount = () => {
     return <Badge
-      badgeContent={<Link to="/viewapprovals">{this.props.userInfo.notificationCount}</Link>}
+      badgeContent={<Link style={{color:'white'}} to="/viewapprovals">{this.props.userInfo.notificationCount}</Link>}
       secondary={true}
       badgeStyle={{top: 12, right: 10, background:'Red'}}>
-       Hello, {this.props.userInfo.user.firstname}
-      <img className="avatar" src={avatar} alt="avatar" />
+        <img className="header-user-profile-pic header-project-image" src={AvatarUrl}/>
     </Badge>
   }
 
@@ -37,24 +35,25 @@ class Header extends Component {
    */
   user = () => {
     if (this.props && this.props.userInfo && this.props.userInfo.user) {
-      return <div className="user-name">
+      return <div className="header-project-userinfo-container" style = {this.props.userInfo.notificationCount >=1 ? {"marginTop":"-12px"} : {"marginTop":"10px"}}>
+      <span className="header-project-hello header-project-user-info-text">Hello,</span>
+      <span className="header-project-user-name header-project-user-info-text">{this.props.userInfo.user.firstname}</span>
        {this.props.userInfo.notificationCount >=1 ?
          this.badgemessagecount()
-       :
-         <div> Hello, {this.props.userInfo.user.firstname}
-           <img className="avatar" src={avatar} alt="avatar" /> </div>}
+       : <img className="header-user-profile-pic header-project-image" src={AvatarUrl}/>}
          </div>
     }
   };
 
   render() {
-    return (
-      <nav className="navbar navbar-fixed">
+    return (<header className="project-hub-header">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
-          <img className="logo" src={logo} alt="Logo" />
-          <h1 className="brand-title">The Hub</h1>
-          {this.user()}
-      </nav>
+        <div className="header-project-title-container">
+          <img className="project-hub-logo header-project-image" src={LogoUrl} alt="Logo" />
+          <span className="header-project-title">THE HUB</span>
+        </div>
+        {this.user()}
+      </header>
     );
   }
 }

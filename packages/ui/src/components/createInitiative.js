@@ -187,7 +187,7 @@ class CreateInitiative extends React.Component {
             />,
         ];
         return (
-            <div className="container  App">
+            <div className="container  App" style={{color:"#000"}}>
                 <form onSubmit={this.processForm}>
                     <h2 className="card-heading">Create Initiative Form</h2>
                     <div className="field-line">
