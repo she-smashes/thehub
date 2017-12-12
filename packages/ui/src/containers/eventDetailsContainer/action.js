@@ -40,11 +40,18 @@ export const registerUserForEvent = (eventId, userInfo, enrollmentInfo) => {
       .then((client) => {
 
         if (!enrollmentInfo.registered) {
-          let postBody = {
+
+          // commenting since enrollment type is not required while registering for an event
+         /*  let postBody = {
             "eventId": eventId,
             "userId": userInfo.userId,
             "registeredOn": new Date(),
             "enrollmentType": enrollmentInfo.enrollmentParticipantId
+          }; */
+          let postBody = {
+            "eventId": eventId,
+            "userId": userInfo.userId,
+            "registeredOn": new Date()
           };
           postBody = JSON.stringify(postBody);
           return client

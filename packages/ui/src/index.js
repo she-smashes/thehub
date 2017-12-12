@@ -20,6 +20,7 @@ import viewInitiatives from './containers/viewInitiativeContainer/reducer';
 
 import viewTasks from './containers/viewApprovalContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
+import initiativeDetails from './containers/initiativeDetailsContainer/reducer';
 import viewEvents from './containers/viewEventsContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
 import approvedInitiatives from './containers/createEventContainer/getInitReducer';
@@ -46,7 +47,8 @@ const rootReducer = persistCombineReducers(config, {
     viewEvents,
 	approvedInitiatives,
     categories,
-    participants
+    participants,
+    initiativeDetails
 });
 
 

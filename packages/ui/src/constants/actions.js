@@ -3,6 +3,7 @@ export const VIEW_EVENTS = 'VIEW_EVENTS';
 export const UPDATE_EVENT_LIST = 'UPDATE_EVENT_LIST';
 export const GET_EVENTDETAILS = 'GET_EVENTDETAILS';
 export const AUTHORIZED_USER = 'AUTHORIZED_USER';
+export const GET_INITIATIVEDETAILS = 'GET_INITIATIVEDETAILS';
 export const RESET_TO_DEFAULT = "RESET_TO_DEFAULT";
 export const INVALID_USER = "Please enter correct username";
 export const INVALID_LOGIN = "Please enter correct username/password";
