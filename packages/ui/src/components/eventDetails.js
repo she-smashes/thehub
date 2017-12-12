@@ -81,11 +81,11 @@ class EventDetails extends Component {
     if (this.props.eventDetails.status === 'approved' && Moment() < Moment(this.props.eventDetails.endDate)) {
       return (
         <div>
-          <div>
+{/*    commenting since enrollment type is not required in eventdetails page       <div>
             <SelectField className="align-left" floatingLabelText="Enrollment Type" name="enrollmentParticipantId" value={this.state.enrollmentDetails.enrollmentParticipantId} onChange={(event, index, value) => this.onParticipantChange(event, index, value)} autoWidth={true} disabled={this.state.enrollmentDetails.registered === true ? true : false}>
               {this.updateEnrollmentTypeList(this.props.eventDetails.participants, this.state.enrollmentDetails.enrollmentParticipantId)}
             </SelectField>
-          </div>
+          </div> */}
 
           <div className="button-line">
             <RaisedButton type="button" label={((this.state.enrollmentDetails.registered === undefined || this.state.enrollmentDetails.registered === false)) ? 'REGISTER' : 'UNREGISTER'} primary onClick={() => { this.processForm() }} />
