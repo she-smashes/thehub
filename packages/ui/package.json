@@ -11,7 +11,6 @@
     "react-dom": "^16.0.0",
     "react-event-timeline": "^1.4.1",
     "react-native": "^0.50.3",
-    "react-progress-label": "https://github.com/UmaGovindaraj/react-progress-label/tarball/master",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-rte": "^0.15.0",
@@ -25,7 +24,8 @@
     "redux-persist": "^5.3.5",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "swagger-client": "^3.3.4"
+    "swagger-client": "^3.3.4",
+    "react-progress-label": "https://github.com/UmaGovindaraj/react-progress-label/tarball/master"
   },
   "scripts": {
     "start": "react-scripts start",
