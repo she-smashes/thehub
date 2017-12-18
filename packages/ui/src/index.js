@@ -17,9 +17,11 @@ import App from './containers/appContainer/';
 import userInfo from './containers/loginFormContainer/reducer';
 import eventsList from './containers/eventTimelineContainer/reducer';
 import viewInitiatives from './containers/viewInitiativeContainer/reducer';
-
+import badgesList from './containers/badgesContainer/reducer';
 import viewTasks from './containers/viewApprovalContainer/reducer';
+import allBadgesList from './containers/viewAllBadgesContainer/reducer';
 import eventDetails from './containers/eventDetailsContainer/reducer';
+import progressCategoriesList from './containers/progressCategoriesContainer/reducer';
 import initiativeDetails from './containers/initiativeDetailsContainer/reducer';
 import viewEvents from './containers/viewEventsContainer/reducer';
 import createEvent from './containers/createEventContainer/reducer';
@@ -48,7 +50,10 @@ const rootReducer = persistCombineReducers(config, {
 	approvedInitiatives,
     categories,
     participants,
-    initiativeDetails
+    initiativeDetails,
+    badgesList,
+    allBadgesList,
+    progressCategoriesList
 });
 
 

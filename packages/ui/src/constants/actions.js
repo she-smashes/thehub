@@ -25,3 +25,6 @@ export const INVALID_INITIATIVE_DESCRIPTION = 'Enter Initiative Description';
 export const INVALID_LEAD_NAME = 'Enter Lead name';
 export const INCORRECT_LEAD_NAME = 'Incorrect lead name';
 export const RESET_STORE = 'REDUX_STORE';
+export const DEFAULT_BADGES = 'DEFAULT_BADGES';
+export const ALL_BADGES = 'ALL_BADGES';
+export const DEFAULT_PROGRESS_CATEGORIES = 'DEFAULT_PROGRESS_CATEGORIES';

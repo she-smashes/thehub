@@ -7,25 +7,35 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true
     },
-    "pointsLowerRange": {
+    "sequence": {
       "type": "string",
       "required": true
     },
-    "pointsUpperRange": {
+    "categoryId": {
+      "type": "string",
+      "required": true
+    },
+    "pointsStartRange": {
+      "type": "string",
+      "required": true
+    },
+    "pointsEndRange": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "categoryId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

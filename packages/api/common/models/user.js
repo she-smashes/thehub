@@ -39,6 +39,15 @@ module.exports = function(User) {
   }
 });
   });
+
+  User.observe('after save', function (ctx, next) {
+    if (ctx.instance) {
+        ctx.instance.scoreId.forEach(sId => {
+        ctx.instance.scores.add(sId);
+      });
+    }
+    next();
+  });
 };
 
 function getPermissibleActions(user, accessToken) {

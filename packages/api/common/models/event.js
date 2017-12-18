@@ -17,7 +17,7 @@ module.exports = function(Event) {
         startDate: {lt: Date.now()},
         status: 'approved',
       },
-      order: 'startDate DESC',
+      order: 'startDate ASC',
       limit: configs[0].value,
     }, function(err, pastInstances) {
       Event.find({
@@ -25,7 +25,7 @@ module.exports = function(Event) {
           startDate: {gte: Date.now()},
           status: 'approved',
         },
-        order: 'startDate DESC',
+        order: 'startDate ASC',
         limit: configs[1].value,
       }, function(err, futureInstances) {
         let instances = [];
@@ -75,7 +75,7 @@ module.exports = function(Event) {
         endDate: {gte: Date.now()},
         status: 'approved',
       },
-      order: 'startDate DESC',
+      order: 'startDate ASC',
     }, function(err, pastInstances) {
       // this logic is to determin the list of non-approved events that are returned
       // by this query. userIdValue = 0 for an admin user and all non-approved events are returned
@@ -85,7 +85,7 @@ module.exports = function(Event) {
             endDate: {gte: Date.now()},
             status: 'not approved',
           },
-          order: 'startDate DESC',
+          order: 'startDate ASC',
         }, function(err, futureInstances) {
           let instances = [];
           instances = pastInstances.concat(futureInstances);
@@ -99,7 +99,7 @@ module.exports = function(Event) {
             status: 'not approved',
             createdBy: userIdValue,
           },
-          order: 'startDate DESC',
+          order: 'startDate ASC',
         }, function(err, futureInstances) {
           let instances = [];
           instances = pastInstances.concat(futureInstances);
