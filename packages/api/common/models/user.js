@@ -42,9 +42,11 @@ module.exports = function(User) {
 
   User.observe('after save', function (ctx, next) {
     if (ctx.instance) {
+      if (ctx.instance.scoreId != undefined) {
         ctx.instance.scoreId.forEach(sId => {
-        ctx.instance.scores.add(sId);
-      });
+          ctx.instance.scores.add(sId);
+        });
+      }
     }
     next();
   });

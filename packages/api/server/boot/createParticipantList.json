@@ -1,12 +1,12 @@
 {
   "participant": [
-    {"participantType": "volunteer", "hourly":false},
-    {"participantType": "speaker", "hourly":false},
-    {"participantType": "organiser", "hourly":false},
-    {"participantType": "participant", "hourly":false},
-    {"participantType": "volunteer", "hourly":true},
-    {"participantType": "speaker", "hourly":true},
-    {"participantType": "organiser", "hourly":true},
-    {"participantType": "participant", "hourly":true}
+    {"participantType": "volunteer", "hourly":false, "noOfPoints": 15},
+    {"participantType": "speaker", "hourly":false, "noOfPoints": 10},
+    {"participantType": "organiser", "hourly":false, "noOfPoints": 30},
+    {"participantType": "participant", "hourly":false, "noOfPoints": 5},
+    {"participantType": "volunteer", "hourly":true, "noOfPoints": 25},
+    {"participantType": "speaker", "hourly":true, "noOfPoints": 15},
+    {"participantType": "organiser", "hourly":true, "noOfPoints": 60},
+    {"participantType": "participant", "hourly":true, "noOfPoints": 15}
   ]
 }

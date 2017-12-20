@@ -18,18 +18,18 @@
     "points": {
       "type": "number"
     },
-    "attendanceHours": {
-      "type": "string"
-    },
     "attendanceFlag": {
       "type": "string"
     },
     "registeredOn": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "enrollmentType": {
       "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

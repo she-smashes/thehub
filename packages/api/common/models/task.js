@@ -44,29 +44,86 @@ module.exports = function(Task) {
     });
   };
 
+  var getApprovableForGroupTask = function(task, resolve) {
+    let Model = Task.app.models[task.parentType];
+    Model.find({
+      where: {
+        id: task.parentTypeId,
+      },
+    }, function(err, approvable) {
+      task.approvable = approvable[0];
+      resolve();
+    });
+  };
+
   Task.afterRemote('listPendingTasks', function(context, modelInstance, next) {
     let approvables = [];
     const promises = [];
     context.result.pendingTasks.forEach(function(task) {
-      promises.push(new Promise(function(resolve) {
-        getApprovableForTask(task, resolve);
-      })
-      );
+      if (task.parentType !== '' && task.parentType !== undefined) {
+        promises.push(new Promise(function(resolve) {
+          getApprovableForGroupTask(task, resolve);
+        })
+        );
+      } else {
+        promises.push(new Promise(function(resolve) {
+          getApprovableForTask(task, resolve);
+        })
+        );
+      }
     });
     Promise.all(promises)
       .then((response) => {
         next();
       });
   });
+
   Task.observe('after save', function(ctx, next) {
-    if (ctx.instance) {
+    if (ctx.instance && !ctx.isNewInstance) {
       let Model = Task.app.models[ctx.instance.type];
       if (ctx.instance.status === 'approved') {
-        Model.updateAll({id: ctx.instance.approvableId},
-          {status: ctx.instance.status}, function(err, results) {
-            next();
+        if (ctx.instance.parentType !== undefined) {
+          const promises = [];
+          ctx.instance.approvableIds.forEach(function(approvableId) {
+            promises.push(new Promise(function(resolve) {
+              Model.find({
+                where: {
+                  id: approvableId,
+                },
+              }, function(err, approvable) {
+                resolve(approvable);
+              });
+            }));
           });
+          Promise.all(promises)
+          .then((response) => {
+            const updatePromises = [];
+            console.log(response);
+            response.forEach(function(resp) {
+              updatePromises.push(new Promise(function(resolve2) {
+                resp[0].updateAttributes({
+                  status: ctx.instance.status,
+                }, function(err, approvble) {
+                  resolve2(approvble);
+                });
+              }));
+            });
+            Promise.all(updatePromises)
+            .then((updateResponse) => {
+              next();
+            });
+          });
+        } else {
+          Model.updateAll({id: ctx.instance.approvableId},
+            {status: ctx.instance.status}, function(err, results) {
+              next();
+            });
+        }
+      } else {
+        next();
       }
+    } else {
+      next();
     }
   });
 };
