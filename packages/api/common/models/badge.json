@@ -7,11 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
+    "title": {
       "type": "string",
       "required": true
     },
@@ -22,10 +18,23 @@
     "description": {
       "type": "string",
       "required": true
+    },
+    "imageFileName": {
+      "type": "string",
+      "required": true
+    },
+    "default": {
+      "type": "boolean"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "level": {
+      "type": "belongsTo",
+      "model": "level",
+      "foreignKey": "levelId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

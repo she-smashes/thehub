@@ -45,11 +45,11 @@
   },
   "userBadge": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "badge": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "category": {
     "dataSource": "db",
@@ -73,11 +73,11 @@
   },
   "enrollment": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "score": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "task": {
     "dataSource": "db",

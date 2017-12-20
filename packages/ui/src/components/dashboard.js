@@ -8,10 +8,10 @@ import React, {Component} from 'react';
 import {Card, CardHeader} from 'material-ui/Card';
 
 import AttendanceWidget from './attendanceWidget';
-import ProgressWidget from './progressWidget';
+import ProgressWidget from '../containers/progressCategoriesContainer/index';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
-import BadgeWidget from './badgeWidget';
+import BadgeWidget from '../containers/badgesContainer/index';
 
 
 class Dashboard extends Component {

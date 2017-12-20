@@ -3,7 +3,7 @@ module.exports = function(app) {
   var RoleMapping = app.models.RoleMapping;
   var User = app.models.user;
 
-  User.disableRemoteMethodByName('replaceOrCreate');
+/*   User.disableRemoteMethodByName('replaceOrCreate');
   User.disableRemoteMethodByName('patchOrCreate');
   User.disableRemoteMethodByName('destroyById');
   User.disableRemoteMethodByName('count');
@@ -16,7 +16,7 @@ module.exports = function(app) {
   User.disableRemoteMethodByName('upsertWithWhere');
   User.disableRemoteMethodByName('resetPassword');
   User.disableRemoteMethodByName('reset');
-  User.disableRemoteMethodByName('changePassword');
+  User.disableRemoteMethodByName('changePassword'); */
 
   User.disableRemoteMethodByName('prototype.__count__accessTokens');
   User.disableRemoteMethodByName('prototype.__create__accessTokens');

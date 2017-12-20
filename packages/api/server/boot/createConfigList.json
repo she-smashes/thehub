@@ -15,6 +15,14 @@
     {
       "name": "no_of_future_events",
       "value": "5"
+    },
+    {
+      "name": "no_of_badges_in_widget",
+      "value": "4"
+    },
+    {
+      "name": "no_of_categories_in_widget",
+      "value": "4"
     }
   ]
 }

@@ -6,12 +6,13 @@
 
 import {connect} from 'react-redux';
 import ViewEvent from '../../components/viewEvent';
-import {getEventList, updateViewEventsInfo} from './action';
+import {getEventList, updateViewEventsInfo, updateCategoryEventsInfo} from './action';
 
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    viewEvents: state.viewEvents.events,
+    viewEvents: state.viewEvents,
     userInfo: state.userInfo
   }
 }
@@ -21,11 +22,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     /**
      * This method gets the events list.
      */
-    getEventList : ( accessToken ) => {
-      return dispatch(getEventList(accessToken, dispatch))
+    getEventList : ( accessToken, categoryId ) => {
+      return dispatch(getEventList(accessToken, categoryId, dispatch))
     },
     updateViewEventsInfo : (eventDetails) => {
       return dispatch(updateViewEventsInfo(eventDetails));
+    },
+    updateCategoryEventsInfo : (eventDetails) => {
+      return dispatch(updateCategoryEventsInfo(eventDetails));
     }
   }
 }

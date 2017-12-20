@@ -13,6 +13,7 @@ import './accordian.css';
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 import {Link} from 'react-router-dom';
+import * as qs from 'querystring';
 
 /**
  * 
@@ -35,8 +36,21 @@ class ViewEvent extends Component {
      */
 
     componentDidMount = () => {
-        this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateViewEventsInfo(JSON.parse(response.data));    
+
+        let categoryId = '';
+        if(this.props.location.search != undefined && this.props.location.search.length > 1) {
+            let queryParams = qs.parse(this.props.location.search.substring(1));
+            if(queryParams.categoryId !== undefined && queryParams.categoryId !== '') {
+                categoryId = queryParams.categoryId;
+            }
+        }
+        
+        this.props.getEventList(this.props.userInfo.id, categoryId).then((response, error) => {
+            if(categoryId !== '' && categoryId !== undefined) {
+                this.props.updateCategoryEventsInfo(JSON.parse(response.data));    
+            } else {
+                this.props.updateViewEventsInfo(JSON.parse(response.data));    
+            }
           }, (error) => {
             console.log(error);
           });
@@ -65,7 +79,7 @@ class ViewEvent extends Component {
                 <h3>List of Events </h3>
                 <div id="ViewEvent">
                     {
-                       
+                        
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
                         }
                 </div>
