@@ -9,6 +9,9 @@ module.exports = function(Task) {
   Task.disableRemoteMethodByName('replaceById');
   Task.disableRemoteMethodByName('replaceOrCreate');
 
+  /**
+  * This remote method is to list all the pending tasks for the user.
+  */
   Task.listPendingTasks = function(ctx, cb) {
     Task.find({
       where: {
@@ -19,6 +22,9 @@ module.exports = function(Task) {
     });
   };
 
+  /**
+  * This remote method is to list all the pending tasks for the user.
+  */
   Task.remoteMethod('listPendingTasks', {
     accepts: [
       {arg: 'ctx', type: 'object', http: {source: 'context'}},
@@ -32,6 +38,10 @@ module.exports = function(Task) {
       type: 'array',
     },
   });
+
+  /**
+  * This method returns the approvable associated with the task.
+  */
   var getApprovableForTask = function(task, resolve) {
     let Model = Task.app.models[task.type];
     Model.find({
@@ -44,6 +54,9 @@ module.exports = function(Task) {
     });
   };
 
+  /**
+  * This method returns the list of approvables associated with the parent entity of the task.
+  */
   var getApprovableForGroupTask = function(task, resolve) {
     let Model = Task.app.models[task.parentType];
     Model.find({
@@ -56,10 +69,18 @@ module.exports = function(Task) {
     });
   };
 
+  /**
+  * This method is used to append the approvable data to the task info.
+  * This is before returning the result.
+  * This happens after the remote method executes.
+  */
   Task.afterRemote('listPendingTasks', function(context, modelInstance, next) {
     let approvables = [];
     const promises = [];
     context.result.pendingTasks.forEach(function(task) {
+      // Check if the task is a single approvable
+      // or
+      // if it has a list of approvables under it.
       if (task.parentType !== '' && task.parentType !== undefined) {
         promises.push(new Promise(function(resolve) {
           getApprovableForGroupTask(task, resolve);
@@ -78,6 +99,10 @@ module.exports = function(Task) {
       });
   });
 
+  /**
+  * This hook method is used to change the status of the approvables.
+  * This happens after the task status is changed.
+  */
   Task.observe('after save', function(ctx, next) {
     if (ctx.instance && !ctx.isNewInstance) {
       let Model = Task.app.models[ctx.instance.type];
@@ -85,6 +110,7 @@ module.exports = function(Task) {
         if (ctx.instance.parentType !== undefined) {
           const promises = [];
           ctx.instance.approvableIds.forEach(function(approvableId) {
+            // Find the approvables based on the ids in the task
             promises.push(new Promise(function(resolve) {
               Model.find({
                 where: {
@@ -96,24 +122,26 @@ module.exports = function(Task) {
             }));
           });
           Promise.all(promises)
-          .then((response) => {
-            const updatePromises = [];
-            console.log(response);
-            response.forEach(function(resp) {
-              updatePromises.push(new Promise(function(resolve2) {
-                resp[0].updateAttributes({
-                  status: ctx.instance.status,
-                }, function(err, approvble) {
-                  resolve2(approvble);
+            .then((response) => {
+              const updatePromises = [];
+              console.log(response);
+              response.forEach(function(resp) {
+                updatePromises.push(new Promise(function(resolve2) {
+                  // Update the status of the group of approvables in the task
+                  resp[0].updateAttributes({
+                    status: ctx.instance.status,
+                  }, function(err, approvble) {
+                    resolve2(approvble);
+                  });
+                }));
+              });
+              Promise.all(updatePromises)
+                .then((updateResponse) => {
+                  next();
                 });
-              }));
             });
-            Promise.all(updatePromises)
-            .then((updateResponse) => {
-              next();
-            });
-          });
         } else {
+          // Update the status of the single approvable in the task
           Model.updateAll({id: ctx.instance.approvableId},
             {status: ctx.instance.status}, function(err, results) {
               next();
