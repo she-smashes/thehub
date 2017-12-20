@@ -89,5 +89,10 @@ a {
 a:focus,
 a:hover {
     text-decoration: none;
-    color:'#fff';
+    color:#fff;
 }
+
+.navbar.navbar-inverse.navbar-hub
+ button svg{
+   color: #fff !important;
+ }

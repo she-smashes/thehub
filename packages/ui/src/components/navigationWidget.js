@@ -36,7 +36,7 @@ class NavigationWidget extends Component {
     console.log('Navigatio', this.props)
     return (
       <div className="navbar navbar-inverse navbar-hub">
-      <Toolbar style={{background:"#222d33", "fontSize":"14px", "paddingLeft":"200px"}}>
+      <Toolbar style={{background:"#222d33", height:"45px", "fontSize":"14px", "paddingLeft":"200px"}}>
         <ToolbarGroup>
           <ToolbarTitle  text={
             <Link className="navbar-menu-listitem" to={`/`}> Dashboard</Link>
