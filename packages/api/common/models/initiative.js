@@ -10,9 +10,9 @@ module.exports = function(Initiative) {
   Initiative.disableRemoteMethodByName('replaceById');
   Initiative.disableRemoteMethodByName('replaceOrCreate');
   Initiative.disableRemoteMethodByName(
-  'prototype.__findByById__events_deleteById');
+    'prototype.__findByById__events_deleteById');
   Initiative.disableRemoteMethodByName(
-  'prototype.__findById__events_updateById');
+    'prototype.__findById__events_updateById');
   Initiative.disableRemoteMethodByName('prototype.__findById__events_count');
 
   Initiative.listInitiativesForUser = function(ctx, userId, cb) {
@@ -76,7 +76,7 @@ module.exports = function(Initiative) {
     if (ctx.instance) {
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
       Initiative.app.models.Task.create(
-	  {type: 'initiative', approvableId: ctx.instance.id, status: 'Pending'});
+        {type: 'initiative', approvableId: ctx.instance.id, status: 'Pending'});
     } else {
       console.log('Updated Initiative %s matching %j',
         ctx.Model.pluralModelName,

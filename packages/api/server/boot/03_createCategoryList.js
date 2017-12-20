@@ -11,13 +11,13 @@ module.exports = function(app, cb) {
 
     modelItems.forEach(modelItem => {
       promises.push(Model.upsertWithWhere(
-	  {'name': modelItem.name, 'type': modelItem.type}, modelItem));
+        {'name': modelItem.name, 'type': modelItem.type}, modelItem));
     });
   });
 
-	 Promise.all(promises.map(p => p.catch(() => undefined)))
-			.then((res) => {
-  console.log('Categories set up', res.length);
-  return cb();
-});
+  Promise.all(promises.map(p => p.catch(() => undefined)))
+    .then((res) => {
+      console.log('Categories set up', res.length);
+      return cb();
+    });
 };

@@ -134,13 +134,15 @@ module.exports = function(Event) {
   });
   Event.observe('after save', function(ctx, next) {
     if (ctx.instance) {
-	  ctx.instance.participantId.forEach(pId => {
-    ctx.instance.participants.add(pId);
-  });
+      ctx.instance.participantId.forEach(pId => {
+        ctx.instance.participants.add(pId);
+      });
       console.log('Saved %s#%s',
-	  ctx.Model.modelName, ctx.instance.id);
-      Event.app.models.Task.create({type: 'event',
-	  approvableId: ctx.instance.id, status: 'Pending'});
+        ctx.Model.modelName, ctx.instance.id);
+      Event.app.models.Task.create({
+        type: 'event',
+        approvableId: ctx.instance.id, status: 'Pending',
+      });
     } else {
       console.log('Updated Event %s matching %j',
         ctx.Model.pluralModelName,
@@ -153,9 +155,9 @@ module.exports = function(Event) {
     let totalPoints = 0;
     if (enrollment.participantsList[0].hourly) {
       totalPoints = eventHours * 10 *
-        enrollment.participantsList[0]. noOfPoints;
+        enrollment.participantsList[0].noOfPoints;
     } else {
-      totalPoints = 10 * enrollment.participantsList[0]. noOfPoints;
+      totalPoints = 10 * enrollment.participantsList[0].noOfPoints;
     }
     return totalPoints;
   };
@@ -188,6 +190,7 @@ module.exports = function(Event) {
             enrollment = [];
             enrollment.push(enroll);
           }
+
           enrollment[0].enrollmentType = roleId;
           enrollment[0].participantsList = response[0];
           resolve(enrollment);
@@ -195,7 +198,7 @@ module.exports = function(Event) {
       });
   };
   Event.updateAttendance = function(ctx, userRoles,
-      eventId, attendanceFlag, cb) {
+    eventId, attendanceFlag, cb) {
     const promises = [];
 
     Event.find({
@@ -212,41 +215,41 @@ module.exports = function(Event) {
         });
       });
       Promise.all(promises)
-      .then((response) => {
-        const updatePromises = [];
-        response.forEach(function(enrollmnt) {
-          let enrollment = enrollmnt[0];
-          let totalPoints = getPointsForEnrollment(enrollment, eventHours);
-          console.log(totalPoints);
-          if (enrollment.id != undefined) {
-            updatePromises.push(new Promise(function(resolve) {
-              enrollment.updateAttributes({
-                'enrollmentType': enrollment.enrollmentType,
-                'attendanceFlag': attendanceFlag,
-                'points': totalPoints,
-              }, function(err, result) {
-                resolve(result);
-              });
-            }));
-          } else {
-            updatePromises.push(new Promise(function(resolve) {
-              Event.app.models.enrollment.create({
-                'eventId': enrollment.eventId,
-                'userId': enrollment.userId,
-                'enrollmentType': enrollment.enrollmentType,
-                'attendanceFlag': attendanceFlag,
-                'points': totalPoints,
-              }, function(err, result) {
-                resolve(result);
-              });
-            }));
-          }
-        });
-        Promise.all(updatePromises)
-          .then((response) => {
-            cb();
+        .then((response) => {
+          const updatePromises = [];
+          response.forEach(function(enrollmnt) {
+            let enrollment = enrollmnt[0];
+            let totalPoints = getPointsForEnrollment(enrollment, eventHours);
+            console.log(totalPoints);
+            if (enrollment.id != undefined) {
+              updatePromises.push(new Promise(function(resolve) {
+                enrollment.updateAttributes({
+                  'enrollmentType': enrollment.enrollmentType,
+                  'attendanceFlag': attendanceFlag,
+                  'points': totalPoints,
+                }, function(err, result) {
+                  resolve(result);
+                });
+              }));
+            } else {
+              updatePromises.push(new Promise(function(resolve) {
+                Event.app.models.enrollment.create({
+                  'eventId': enrollment.eventId,
+                  'userId': enrollment.userId,
+                  'enrollmentType': enrollment.enrollmentType,
+                  'attendanceFlag': attendanceFlag,
+                  'points': totalPoints,
+                }, function(err, result) {
+                  resolve(result);
+                });
+              }));
+            }
           });
-      });
+          Promise.all(updatePromises)
+            .then((response) => {
+              cb();
+            });
+        });
     });
   };
 

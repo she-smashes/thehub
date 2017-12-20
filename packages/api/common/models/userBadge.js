@@ -36,60 +36,60 @@ module.exports = function(UserBadge) {
               getNextLevelBadges(parseInt(uBadge.badge.level.sequence) + 1,
                 uBadge.badge.level.categoryId, configs, resolve);
             })
-                        );
+            );
             ++index;
           }
         });
 
         Promise.all(promises)
-                    .then((response) => {
-                      response.forEach(function(resp) {
-                        resp = resp.toJSON();
+          .then((response) => {
+            response.forEach(function(resp) {
+              resp = resp.toJSON();
+              let tempBadges = {
+                'badge': resp,
+              };
+              tempBadges.pointsForNextLevel = tempBadges
+                .badge.level.pointsEndRange;
+              usBadges = usBadges.concat(tempBadges);
+            });
+            let defaultPromises = [];
+            if (usBadges.length < configs[0].value) {
+              defaultPromises.push(new Promise(function(resolve) {
+                getDefaultBadges(resolve);
+              })
+              );
+              Promise.all(defaultPromises)
+                .then((defaultResponse) => {
+                  index = 0;
+                  noOfDefaultBadges = configs[0].value -
+                    usBadges.length;
+                  defaultResponse[0].forEach(function(resp) {
+                    resp = resp.toJSON();
+                    if (index < noOfDefaultBadges) {
+                      let foundCat = false;
+                      uBadges.forEach(function(uBadge) {
+                        uBadge = uBadge.toJSON();
+
+                        if (uBadge.badge.level.categoryId ==
+                          resp.categoryId) {
+                          foundCat = true;
+                        }
+                      });
+                      if (!foundCat) {
                         let tempBadges = {
                           'badge': resp,
                         };
-                        tempBadges.pointsForNextLevel = tempBadges
-                          .badge.level.pointsEndRange;
                         usBadges = usBadges.concat(tempBadges);
-                      });
-                      let defaultPromises = [];
-                      if (usBadges.length < configs[0].value) {
-                        defaultPromises.push(new Promise(function(resolve) {
-                          getDefaultBadges(resolve);
-                        })
-                            );
-                        Promise.all(defaultPromises)
-                                .then((defaultResponse) => {
-                                  index = 0;
-                                  noOfDefaultBadges = configs[0].value -
-                                    usBadges.length;
-                                  defaultResponse[0].forEach(function(resp) {
-                                    resp = resp.toJSON();
-                                    if (index < noOfDefaultBadges) {
-                                      let foundCat = false;
-                                      uBadges.forEach(function(uBadge) {
-                                        uBadge = uBadge.toJSON();
-
-                                        if (uBadge.badge.level.categoryId ==
-                                            resp.categoryId) {
-                                          foundCat = true;
-                                        }
-                                      });
-                                      if (!foundCat) {
-                                        let tempBadges = {
-                                          'badge': resp,
-                                        };
-                                        usBadges = usBadges.concat(tempBadges);
-                                        ++index;
-                                      }
-                                    }
-                                  });
-                                  cb(null, usBadges);
-                                });
-                      } else {
-                        cb(null, usBadges);
+                        ++index;
                       }
-                    });
+                    }
+                  });
+                  cb(null, usBadges);
+                });
+            } else {
+              cb(null, usBadges);
+            }
+          });
       } else {
         cb(null, uBadges);
       }
@@ -121,15 +121,15 @@ module.exports = function(UserBadge) {
     UserBadge.app.models.config.find({
       where: {name: 'no_of_badges_in_widget'},
     },
-            function(err, configs) {
-              context.req.configs = configs;
-              next();
-            });
+      function(err, configs) {
+        context.req.configs = configs;
+        next();
+      });
   });
 
   UserBadge.remoteMethod('listUserBadges', {
     accepts: [
-           {arg: 'ctx', type: 'object', http: {source: 'context'}},
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
     ],
     http: {
       path: '/list-user-badges',
@@ -164,37 +164,37 @@ module.exports = function(UserBadge) {
       defaultPromises.push(new Promise(function(resolve) {
         getAllBadges(resolve);
       })
-            );
+      );
       Promise.all(defaultPromises)
-                .then((defaultResponse) => {
-                  defaultResponse[0].forEach(function(resp) {
-                    resp = resp.toJSON();
-                    userBadges.forEach(function(uBadge) {
-                      uBadge = uBadge.toJSON();
-                      if (uBadge.badge.id == resp.id) {
-                        resp.userId = uBadge.userId;
-                        resp.user = uBadge.user;
-                      }
-                    });
-                    let tempBadges = {
-                      'badge': resp,
-                    };
+        .then((defaultResponse) => {
+          defaultResponse[0].forEach(function(resp) {
+            resp = resp.toJSON();
+            userBadges.forEach(function(uBadge) {
+              uBadge = uBadge.toJSON();
+              if (uBadge.badge.id == resp.id) {
+                resp.userId = uBadge.userId;
+                resp.user = uBadge.user;
+              }
+            });
+            let tempBadges = {
+              'badge': resp,
+            };
 
-                    if (resp.userId !== undefined && resp.userId !== '') {
-                      tempBadges.userId = resp.userId;
-                      tempBadges.user = resp.user;
-                      delete resp.userId;
-                      delete resp.user;
-                    } else {
-                      tempBadges.pointsForNextLevel =
-                        tempBadges.badge.level.pointsEndRange;
-                    }
-                    usBadges = usBadges.concat(tempBadges);
-                  });
+            if (resp.userId !== undefined && resp.userId !== '') {
+              tempBadges.userId = resp.userId;
+              tempBadges.user = resp.user;
+              delete resp.userId;
+              delete resp.user;
+            } else {
+              tempBadges.pointsForNextLevel =
+                tempBadges.badge.level.pointsEndRange;
+            }
+            usBadges = usBadges.concat(tempBadges);
+          });
 
-                  let categoryGroup = groupByCategory(usBadges);
-                  cb(null, categoryGroup);
-                });
+          let categoryGroup = groupByCategory(usBadges);
+          cb(null, categoryGroup);
+        });
     });
   };
 
@@ -238,7 +238,7 @@ module.exports = function(UserBadge) {
   };
   UserBadge.remoteMethod('listSystemBadges', {
     accepts: [
-            {arg: 'ctx', type: 'object', http: {source: 'context'}},
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
     ],
     http: {
       path: '/list-system-badges',
@@ -294,38 +294,38 @@ module.exports = function(UserBadge) {
               resolve(categories);
             });
           })
-                    );
+          );
           Promise.all(catPromises)
-                        .then((response) => {
-                          let index = 0;
+            .then((response) => {
+              let index = 0;
 
-                          response[0].forEach(function(category) {
-                            if (index < noOfDefaultCategories) {
-                              if (categoryIdArr.indexOf(category.id) == -1) {
-                                let score = {};
-                                score.category = category;
-                                score.categoryId = category.id;
-                                index++;
-                                promises.push(new Promise(function(resolve) {
-                                  getNextLevelsInCategories(score,
-                                      category.id, resolve);
-                                }));
-                              }
-                            }
-                          });
+              response[0].forEach(function(category) {
+                if (index < noOfDefaultCategories) {
+                  if (categoryIdArr.indexOf(category.id) == -1) {
+                    let score = {};
+                    score.category = category;
+                    score.categoryId = category.id;
+                    index++;
+                    promises.push(new Promise(function(resolve) {
+                      getNextLevelsInCategories(score,
+                        category.id, resolve);
+                    }));
+                  }
+                }
+              });
 
-                          Promise.all(promises)
-                                .then((response) => {
-                                  console.log(response);
-                                  cb(null, response);
-                                });
-                        });
+              Promise.all(promises)
+                .then((response) => {
+                  console.log(response);
+                  cb(null, response);
+                });
+            });
         } else {
           Promise.all(promises)
-                        .then((response) => {
-                          console.log(response);
-                          cb(null, response);
-                        });
+            .then((response) => {
+              console.log(response);
+              cb(null, response);
+            });
         }
       } else {
         cb(null);
@@ -337,15 +337,15 @@ module.exports = function(UserBadge) {
     UserBadge.app.models.config.find({
       where: {name: 'no_of_categories_in_widget'},
     },
-            function(err, configs) {
-              context.req.configs = configs;
-              next();
-            });
+      function(err, configs) {
+        context.req.configs = configs;
+        next();
+      });
   });
 
   UserBadge.remoteMethod('listUserCategories', {
     accepts: [
-           {arg: 'ctx', type: 'object', http: {source: 'context'}},
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
     ],
     http: {
       path: '/list-user-categories',

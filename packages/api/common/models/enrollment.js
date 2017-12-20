@@ -10,8 +10,8 @@ module.exports = function(Enrollment) {
   Enrollment.observe('after save', function(ctx, next) {
     if (ctx.instance && ctx.instance.status === 'approved') {
       console.log('Approved Enrollment %s matching %j',
-      ctx.Model.pluralModelName,
-      ctx.where);
+        ctx.Model.pluralModelName,
+        ctx.where);
       Promise.resolve(new Promise(function(resolve) {
         Enrollment.app.models.Event.find({
           where: {
@@ -31,8 +31,10 @@ module.exports = function(Enrollment) {
                   points: score.points + ctx.instance.points,
                 });
               } else {
-                Enrollment.app.models.Score.create({userId: ctx.instance.userId,
-                  categoryId: event.categoryId, points: ctx.instance.points});
+                Enrollment.app.models.Score.create({
+                  userId: ctx.instance.userId,
+                  categoryId: event.categoryId, points: ctx.instance.points,
+                });
               }
               resolve1(score);
             });
