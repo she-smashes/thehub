@@ -17,7 +17,12 @@ module.exports = function(app, cb) {
             app.models.user.findOne({where: {'username': modelItem.leadUser}},
               function(err, initiativeLeadUser) {
                 if (initiativeLeadUser) {
-                  app.models.user.findOne({where: {'username': modelItem.createdByUser}},
+                  app.models.user.findOne(
+                    {
+                      where: {
+                        'username': modelItem.createdByUser,
+                      },
+                    },
                     function(err, initiativeCreatedUser) {
                       if (initiativeCreatedUser) {
                         modelItem.lead = initiativeLeadUser.id;
@@ -32,43 +37,44 @@ module.exports = function(app, cb) {
                             const eventModelItems = sampleEventData['event'];
                             const eventModel = app.models['event'];
                             eventModelItems.forEach(eventmodelItem => {
-                              if (eventmodelItem.initiative === eventInitiative.title) {
-                                app.models.event.findOne({where: {'title': eventmodelItem.title}},
+                              if (eventmodelItem.initiative ===
+                                eventInitiative.title) {
+                                app.models.event.findOne(
+                                  {
+                                    where: {
+                                      'title': eventmodelItem.title,
+                                    },
+                                  },
                                   function(err, oldEvent) {
                                     if (!oldEvent) {
-                                      eventmodelItem.initiativeId = eventInitiative.id;
-
-                                      app.models.category.findOne({where: {'name': eventmodelItem.category}},
+                                      eventmodelItem.initiativeId =
+                                        eventInitiative.id;
+                                      app.models.category.findOne(
+                                        {
+                                          where:
+                                          {
+                                            'name': eventmodelItem.category,
+                                          },
+                                        },
                                         function(err, eventCategory) {
                                           if (eventCategory) {
-                                            eventmodelItem.categoryId = eventCategory.id;
-                                            app.models.user.findOne({where: {'username': eventmodelItem.leadUser}},
+                                            eventmodelItem.categoryId =
+                                              eventCategory.id;
+                                            app.models.user.findOne(
+                                              {
+                                                where:
+                                                {
+                                                  'username':
+                                                  eventmodelItem.leadUser,
+                                                },
+                                              },
                                               function(err, eventLeadUser) {
-                                                if (eventLeadUser) {
-                                                  eventmodelItem.lead = eventLeadUser.id;
-
-                                                  app.models.user.findOne({
-                                                    where:
-                                                    {'username': eventmodelItem.createdByUser},
-                                                  },
-                                                    function(err, eventCreatedByUser) {
-                                                      if (eventCreatedByUser) {
-                                                        eventmodelItem.createdBy = eventCreatedByUser.id;
-                                                        eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
-                                                        eventmodelItem.startDate = new Date(eventmodelItem.startDate);
-                                                        eventmodelItem.endDate = new Date(eventmodelItem.endDate);
-                                                        eventmodelItem.participantId = [1, 2];
-
-                                                        delete eventmodelItem.category;
-                                                        delete eventmodelItem.initiative;
-                                                        delete eventmodelItem.createdByUser;
-                                                        delete eventmodelItem.leadUser;
-
-                                                        eventPromises.push(eventModel.upsertWithWhere(
-                                                          {'title': eventmodelItem.title}, eventmodelItem));
-                                                      }
-                                                    });
-                                                }
+                                                createEventPromises(
+                                                  eventLeadUser,
+                                                  eventmodelItem,
+                                                  eventPromises,
+                                                  eventModel,
+                                                  app);
                                               });
                                           }
                                         });
@@ -92,3 +98,36 @@ module.exports = function(app, cb) {
       return cb();
     });
 };
+
+function updateEventModelItemDetails(eventmodelItem, userId) {
+  eventmodelItem.createdBy = userId;
+  eventmodelItem.createdOn = new Date(eventmodelItem.createdOn);
+  eventmodelItem.startDate = new Date(eventmodelItem.startDate);
+  eventmodelItem.endDate = new Date(eventmodelItem.endDate);
+  eventmodelItem.participantId = [1, 2];
+
+  delete eventmodelItem.category;
+  delete eventmodelItem.initiative;
+  delete eventmodelItem.createdByUser;
+  delete eventmodelItem.leadUser;
+};
+function createEventPromises(eventLeadUser, eventmodelItem,
+  eventPromises, eventModel, app) {
+  if (eventLeadUser) {
+    eventmodelItem.lead = eventLeadUser.id;
+    app.models.user.findOne({
+      where:
+      {
+        'username': eventmodelItem.createdByUser,
+      },
+    },
+      function(err, eventCreatedByUser) {
+        if (eventCreatedByUser) {
+          updateEventModelItemDetails(eventmodelItem, eventCreatedByUser.id);
+          eventPromises.push(eventModel.upsertWithWhere(
+            {'title': eventmodelItem.title}, eventmodelItem));
+        }
+      });
+  }
+};
+
