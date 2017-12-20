@@ -16,7 +16,7 @@ import goldLocked from '../images/gold-lock.png';
 import silverLocked from '../images/silver-lock.png';
 import platinumLocked from '../images/platinum-lock.png';
 import bronzeLocked from '../images/bronze-lock.png';
-import ReactTooltip from 'react-tooltip'
+/* import ReactTooltip from 'react-tooltip' */
 
 const styles = {
     image1:{
@@ -78,7 +78,7 @@ class BadgeWidget extends Component {
             <div>  
             
             <img data-tip="React-tooltip" src={src} style={style}/>
-            <ReactTooltip place="top" type="success" effect="float"/>            
+{/*             <ReactTooltip place="top" type="success" effect="float"/>          */}   
                 
                 </div>
         );

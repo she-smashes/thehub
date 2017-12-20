@@ -41,33 +41,33 @@ module.exports = function(Enrollment) {
         });
       }));
     } else if (ctx.instance && ctx.instance.attendanceFlag === 'submit') {
-        Enrollment.app.models.Task.find({
-            where: {
-                parentType: 'event',
-                parentTypeId: ctx.instance.eventId,
-                type: 'enrollment'
-            },
-        }, function (err, task) {
-            let approvableIds = [];
-            if(task != undefined && task.length > 0) {
-                if(task[0].approvableIds != undefined) {
-                    approvableIds = approvableIds.concat(task[0].approvableIds);
-                } 
-                approvableIds.push(ctx.instance.id);
-                task[0].updateAttributes({
-                    "approvableIds": approvableIds,
-                });
-            } else {
-                approvableIds.push(ctx.instance.id);
-                Enrollment.app.models.Task.create({
-                    type: 'enrollment',
-                    status: 'Pending',
-                    approvableIds: approvableIds,
-                    parentType: 'event',
-                    parentTypeId: ctx.instance.eventId,
-                });
-            }
-        });
+      Enrollment.app.models.Task.find({
+        where: {
+          parentType: 'event',
+          parentTypeId: ctx.instance.eventId,
+          type: 'enrollment',
+        },
+      }, function(err, task) {
+        let approvableIds = [];
+        if (task != undefined && task.length > 0) {
+          if (task[0].approvableIds != undefined) {
+            approvableIds = approvableIds.concat(task[0].approvableIds);
+          }
+          approvableIds.push(ctx.instance.id);
+          task[0].updateAttributes({
+            'approvableIds': approvableIds,
+          });
+        } else {
+          approvableIds.push(ctx.instance.id);
+          Enrollment.app.models.Task.create({
+            type: 'enrollment',
+            status: 'Pending',
+            approvableIds: approvableIds,
+            parentType: 'event',
+            parentTypeId: ctx.instance.eventId,
+          });
+        }
+      });
     } else {
       console.log('Updated Enrollment %s matching %j',
         ctx.Model.pluralModelName,

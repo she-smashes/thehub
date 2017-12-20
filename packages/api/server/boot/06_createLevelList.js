@@ -2,7 +2,7 @@
 
 const sampleLevelData = require('./createLevelList.json');
 
-module.exports = function (app, cb) {
+module.exports = function(app, cb) {
   const promises = [];
 
   Object.keys(sampleLevelData).forEach(modelName => {
@@ -10,12 +10,13 @@ module.exports = function (app, cb) {
     const modelItems = sampleLevelData[modelName];
 
     modelItems.forEach(modelItem => {
-      app.models.category.findOne({ where: { 'name': modelItem.category } },
-        function (err, levelCategory) {
+      app.models.category.findOne({where: {'name': modelItem.category}},
+        function(err, levelCategory) {
           if (levelCategory) {
             modelItem.categoryId = levelCategory.id;
-            delete modelItem.category;      
-            promises.push(Model.upsertWithWhere({ 'name': modelItem.name, 'categoryId': modelItem.categoryId }, modelItem));
+            delete modelItem.category;
+            promises.push(Model.upsertWithWhere({'name': modelItem.name,
+              'categoryId': modelItem.categoryId}, modelItem));
           }
         });
     });

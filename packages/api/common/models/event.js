@@ -152,7 +152,8 @@ module.exports = function(Event) {
   let getPointsForEnrollment = function(enrollment, eventHours) {
     let totalPoints = 0;
     if (enrollment.participantsList[0].hourly) {
-      totalPoints = eventHours * 10 * enrollment.participantsList[0]. noOfPoints;
+      totalPoints = eventHours * 10 *
+        enrollment.participantsList[0]. noOfPoints;
     } else {
       totalPoints = 10 * enrollment.participantsList[0]. noOfPoints;
     }
@@ -160,7 +161,6 @@ module.exports = function(Event) {
   };
 
   let getEnrollmentForUser = function(eventId, userId, roleId, resolve) {
-
     const promises = [];
 
     promises.push(new Promise(function(resolve) {
@@ -194,7 +194,8 @@ module.exports = function(Event) {
         });
       });
   };
-  Event.updateAttendance = function(ctx, userRoles, eventId, attendanceFlag, cb) {
+  Event.updateAttendance = function(ctx, userRoles,
+      eventId, attendanceFlag, cb) {
     const promises = [];
 
     Event.find({

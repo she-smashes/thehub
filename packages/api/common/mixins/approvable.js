@@ -10,6 +10,6 @@ module.exports = function(Model, options) {
     },
   });
   Model.defineProperty('parentType', {type: String});
-  Model.defineProperty('parentTypeId', {type: String});  
+  Model.defineProperty('parentTypeId', {type: String});
 };
 

@@ -73,7 +73,7 @@
   },
   "enrollment": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "score": {
     "dataSource": "db",

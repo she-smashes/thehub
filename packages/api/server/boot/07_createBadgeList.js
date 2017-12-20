@@ -2,7 +2,7 @@
 
 const sampleBadgeData = require('./createBadgeList.json');
 
-module.exports = function (app, cb) {
+module.exports = function(app, cb) {
   const promises = [];
 
   Object.keys(sampleBadgeData).forEach(modelName => {
@@ -10,18 +10,23 @@ module.exports = function (app, cb) {
     const modelItems = sampleBadgeData[modelName];
 
     modelItems.forEach(modelItem => {
-      app.models.category.findOne({ where: { 'name': modelItem.category } },
-        function (err, badgeCategory) {
+      app.models.category.findOne({where: {'name': modelItem.category}},
+        function(err, badgeCategory) {
           if (badgeCategory) {
-            app.models.level.findOne({ where: { 'name': modelItem.level, 'categoryId': badgeCategory.id } },
-            function (err, badgeLevel) {
+            app.models.level.findOne({where: {'name': modelItem.level,
+              'categoryId': badgeCategory.id}},
+            function(err, badgeLevel) {
               if (badgeLevel) {
                 modelItem.levelId = badgeLevel.id;
-                delete modelItem.category;               
-                promises.push(Model.upsertWithWhere({ 'levelId': modelItem.levelId, 'title': modelItem.title }, modelItem));
+                delete modelItem.category;
+                promises.push(Model.upsertWithWhere(
+                  {
+                    'levelId': modelItem.levelId,
+                    'title': modelItem.title,
+                  }, modelItem));
               }
             }
-          );         
+          );
           }
         });
     });
