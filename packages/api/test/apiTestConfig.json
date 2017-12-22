@@ -1,16 +1,5 @@
 [
-    {
-        "method": "login",
-        "model": "users",
-        "withData": {
-            "username": "approver1",
-            "password":"approver1"
-        },
-        "expectStatus": "200",
-        "expectVar": "userId",
-        "expectValue": "7",
-        "expectDescription":"should log in live server"
-    },
+   
     {
         "method": "GET",
         "count": "true",
