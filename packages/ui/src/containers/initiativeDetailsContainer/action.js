@@ -3,7 +3,6 @@ import { GET_INITIATIVEDETAILS } from "../../constants/actions";
 import Swagger from 'swagger-client';
 
 export const getInitiativeDetails = (initiativeId, userInfo) => {
-console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
       {

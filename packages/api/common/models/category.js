@@ -14,7 +14,7 @@ module.exports = function(Category) {
   Category.disableRemoteMethodByName('upsertWithWhere');
   Category.disableRemoteMethodByName('updateAll');
   Category.disableRemoteMethodByName('create');
-   	Category.disableRemoteMethodByName('prototype.__count__initiatives');
+  Category.disableRemoteMethodByName('prototype.__count__initiatives');
   Category.disableRemoteMethodByName('prototype.__create__initiatives');
   Category.disableRemoteMethodByName('prototype.__delete__initiatives');
   Category.disableRemoteMethodByName('prototype.__destroyById__initiatives');

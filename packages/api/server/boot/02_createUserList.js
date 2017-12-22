@@ -14,11 +14,11 @@ module.exports = function(app, cb) {
       if (rolePromises[modelItem.role] === undefined) {
         const promises = [];
         promises.push(Model.upsertWithWhere(
-		{'email': modelItem.email}, modelItem));
+          {'email': modelItem.email}, modelItem));
         rolePromises[modelItem.role] = promises;
       } else {
         rolePromises[modelItem.role].push(Model.upsertWithWhere(
-		{'email': modelItem.email}, modelItem));
+          {'email': modelItem.email}, modelItem));
       }
 
       delete modelItem.role;
@@ -34,17 +34,17 @@ module.exports = function(app, cb) {
   }
 
   Promise.all(allPromises.map(p => p.catch(() => undefined)))
-		.then((res) => {
-  console.log('Sample Users set up', res.length);
-  for (let key in rolePromises) {
-    if (rolePromises.hasOwnProperty(key)) {
-      handleRoleMapping(app, rolePromises[key], key);
-    }
-  }
+    .then((res) => {
+      console.log('Sample Users set up', res.length);
+      for (let key in rolePromises) {
+        if (rolePromises.hasOwnProperty(key)) {
+          handleRoleMapping(app, rolePromises[key], key);
+        }
+      }
 
-  console.log('Sample users, roles and their mapping set up successfully');
-  cb();
-});
+      console.log('Sample users, roles and their mapping set up successfully');
+      cb();
+    });
 };
 
 function handleRoleMapping(app, promises, roleName) {
@@ -58,35 +58,36 @@ function handleRoleMapping(app, promises, roleName) {
   });
 
   Promise.all(promises.map(p => p.catch(() => undefined)))
-		.then((res) => {
-  var i = 0;
-  const rolemappingpromises = [];
-  var roleId = role.id;
+    .then((res) => {
+      var i = 0;
+      const rolemappingpromises = [];
+      var roleId = role.id;
 
-  res.forEach(usr => {
-    if (usr !== undefined) {
-      rolemappingpromises.push(new Promise(resolve => {
-        app.models.RoleMapping.findOne({where:
-		{principalType: 'USER', principalId: usr.id, roleId: role.id},
-        }, function(err, oldprincipal) {
-          if (!oldprincipal) {
-            role.principals.create({
-              principalType: app.models.RoleMapping.USER,
-              principalId: usr.id,
-            }, function(err, principal) {
-              console.log('RoleMapping done for user id = ', usr.id +
-			  ', username = ' + usr.username + ', role id = ' + role.id);
-              if (!principal) {
-                console.log(err);
+      res.forEach(usr => {
+        if (usr !== undefined) {
+          rolemappingpromises.push(new Promise(resolve => {
+            app.models.RoleMapping.findOne({
+              where:
+              {principalType: 'USER', principalId: usr.id, roleId: role.id},
+            }, function(err, oldprincipal) {
+              if (!oldprincipal) {
+                role.principals.create({
+                  principalType: app.models.RoleMapping.USER,
+                  principalId: usr.id,
+                }, function(err, principal) {
+                  console.log('RoleMapping done for user id = ', usr.id +
+                    ', username = ' + usr.username + ', role id = ' + role.id);
+                  if (!principal) {
+                    console.log(err);
+                  }
+                });
+              } else {
+                console.log('RoleMapping exists for user id = ', usr.id +
+                  ', role id = ' + role.id);
               }
             });
-          } else {
-            console.log('RoleMapping exists for user id = ', usr.id +
-			', role id = ' + role.id);
-          }
-        });
-      }));
-    }
-  });
-});
+          }));
+        }
+      });
+    });
 }

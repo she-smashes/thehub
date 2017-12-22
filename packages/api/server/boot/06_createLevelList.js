@@ -15,8 +15,10 @@ module.exports = function(app, cb) {
           if (levelCategory) {
             modelItem.categoryId = levelCategory.id;
             delete modelItem.category;
-            promises.push(Model.upsertWithWhere({'name': modelItem.name,
-              'categoryId': modelItem.categoryId}, modelItem));
+            promises.push(Model.upsertWithWhere({
+              'name': modelItem.name,
+              'categoryId': modelItem.categoryId,
+            }, modelItem));
           }
         });
     });
