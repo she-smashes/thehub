@@ -131,7 +131,6 @@ class ViewAllBadges extends Component {
     }
 
     render = () => {
-        console.log(this.props.badges.length)
         return (
             <div style={styles.border}>
                 <h3>List of Badges</h3>

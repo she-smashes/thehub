@@ -18,7 +18,6 @@ class InitiativeDetails extends Component {
   updateInitiativeData = () => {
     this.props.getInitiativeDetails(this.props.match.params.id, this.props.userInfo).then((response, error) => {
       this.props.updateInitiativeDetails(this.props.userInfo, JSON.parse(response.data));
-      console.log(this.state);
     }, (error) => {
       console.log(error);
     });
@@ -30,7 +29,6 @@ class InitiativeDetails extends Component {
    * @return event details
    */
   render() {
-    console.log(this.props);
     return (
       <div className="">
         <div className="event-details">

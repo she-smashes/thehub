@@ -33,7 +33,6 @@ class NavigationWidget extends Component {
 
  handleChange = (event, index, value) => this.setState({value});
   render = () => {
-    console.log('Navigatio', this.props)
     return (
       <div className="menu-bar">
       <Toolbar>

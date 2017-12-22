@@ -52,7 +52,6 @@ class EventDetails extends Component {
           registered: this.props.eventDetails.registered
         }
       });
-      console.log(this.state);
     }, (error) => {
       console.log(error);
     });
@@ -100,7 +99,6 @@ class EventDetails extends Component {
    * @return event details
    */
   render() {
-    console.log('this.props.eventDetails' + this.props.eventDetails);
     return (
       <div className="">
         <div className="event-details">

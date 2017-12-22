@@ -112,19 +112,15 @@ module.exports = function(Task) {
           ctx.instance.approvableIds.forEach(function(approvableId) {
             // Find the approvables based on the ids in the task
             promises.push(new Promise(function(resolve) {
-              Model.find({
-                where: {
-                  id: approvableId,
-                },
-              }, function(err, approvable) {
-                resolve(approvable);
-              });
+              Model.find(
+                {where: {id: approvableId}}, function(err, approvable) {
+                  resolve(approvable);
+                });
             }));
           });
           Promise.all(promises)
             .then((response) => {
               const updatePromises = [];
-              console.log(response);
               response.forEach(function(resp) {
                 updatePromises.push(new Promise(function(resolve2) {
                   // Update the status of the group of approvables in the task
@@ -135,10 +131,9 @@ module.exports = function(Task) {
                   });
                 }));
               });
-              Promise.all(updatePromises)
-                .then((updateResponse) => {
-                  next();
-                });
+              Promise.all(updatePromises).then((updateResponse) => {
+                next();
+              });
             });
         } else {
           // Update the status of the single approvable in the task

@@ -70,9 +70,7 @@ class EventTimelineWidget extends Component {
      * @return Rendered events list {HTML}
      */
     renderEvents = () => {
-        console.log(this.props);
         return this.props.events.map((event, index) => {
-            console.log('event.title = ' + event.title);
             return <TimelineEvent key={index}
                 createdAt={Moment(event.startDate).format('LL')}
                 icon={<i class="material-icons md-18">event</i>}

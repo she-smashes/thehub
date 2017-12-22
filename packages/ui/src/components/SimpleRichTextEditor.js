@@ -48,7 +48,6 @@ class SimpleRichTextEditor extends Component {
   }
 
   _onChange(editorValue) {
-      //console.log('hhhhhhhhhhhhhh');
     let {format, onChange} = this.props;
     let oldEditorValue = this.state.editorValue;
     this.setState({editorValue});

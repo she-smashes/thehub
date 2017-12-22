@@ -12,11 +12,9 @@ module.exports = function(app, cb) {
     },
   },
     function(err, configs) {
-      console.log(configs);
       app.use(loopback.token());
       app.use(function(req, res, next) {
         var token = req.accessToken;
-        console.log('token', token);
         if (!token) {
           return next();
         }

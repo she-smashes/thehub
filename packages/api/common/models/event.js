@@ -161,7 +161,6 @@ module.exports = function(Event) {
   */
   Event.observe('before save', function(ctx, next) {
     if (ctx.instance) {
-      console.log('updating Event status');
       ctx.instance.status = 'not approved';
     }
     next();
@@ -179,18 +178,13 @@ module.exports = function(Event) {
       ctx.instance.participantId.forEach(pId => {
         ctx.instance.participants.add(pId);
       });
-      console.log('Saved %s#%s',
-        ctx.Model.modelName, ctx.instance.id);
-
       // Create a task for approval
       Event.app.models.Task.create({
         type: 'event',
         approvableId: ctx.instance.id, status: 'Pending',
       });
     } else {
-      console.log('Updated Event %s matching %j',
-        ctx.Model.pluralModelName,
-        ctx.where);
+      // do nothing
     }
     next();
   });

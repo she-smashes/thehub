@@ -19,7 +19,6 @@ export const getAllBadgesList = (access_token) => {
         },
       })
       .then((client) => {
-console.log('aaaaaaaaaaaa');
         return client
           .apis
           .userBadge
