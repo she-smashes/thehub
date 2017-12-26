@@ -57,8 +57,13 @@ module.exports = function(UserBadge) {
     Promise.resolve(new Promise(function(resolve) {
       getBadgesForUser(ctx, resolve, true);
     })).then((userBadges) => {
-      // Process the user badges returned
-      processUserBadges(userBadges, ctx.req.configs[0].value, cb);
+      Promise.resolve(new Promise(function(resolve1) {
+        getUserScore(ctx, resolve1);
+      })).then((catScoreMap) => {
+        // Process the user badges returned
+        let badgeLimit = ctx.req.configs[0].value;
+        processUserBadges(userBadges, catScoreMap, badgeLimit, cb);
+      });
     });
   };
 
@@ -69,39 +74,66 @@ module.exports = function(UserBadge) {
    * @param {*} totalNoOfBadges
    * @param {*} cb
    */
-  function processUserBadges(userBadges, totalNoOfBadges, cb) {
+  function processUserBadges(userBadges, catScoreMap, totalNoOfBadges, cb) {
     let uBadges = [];
     let usBadges = [];
+    let usBadgeArr = [];
+
     uBadges = uBadges.concat(userBadges);
     usBadges = usBadges.concat(userBadges);
     if (uBadges.length < totalNoOfBadges) {
       // Find the no of default badges required = Total number of badges (x) - user badges
       // Limit the result set to the configured x
       let noOfDefaultBadges = totalNoOfBadges - uBadges.length;
-      let index = 0;
-      const promises = [];
-      // Iterate over the userbadges
+
+      let catBadgeMap = {};
+
       uBadges.forEach(function(uBadge) {
-        if (index < noOfDefaultBadges) {
-          // This is a limitation in loopback where relation properties.
-          // They have to be converted using .toJSON() method
-          uBadge = uBadge.toJSON();
-          promises.push(new Promise(function(resolve) {
-            // Get the badges for the next level in the same badge category
-            getNextLevelBadges(parseInt(uBadge.badge.level.sequence) + 1,
-              uBadge.badge.level.categoryId, resolve);
-          }));
-          ++index;
+        uBadge = uBadge.toJSON();
+        if (catBadgeMap[uBadge.badge.level.categoryId] === undefined) {
+          catBadgeMap[uBadge.badge.level.categoryId] = uBadge;
+        } else {
+          if (catBadgeMap[uBadge.badge.level.categoryId].badge.level.sequence <
+             uBadge.badge.level.sequence) {
+            catBadgeMap[uBadge.badge.level.categoryId] = uBadge;
+          }
         }
       });
+
+      const promises = [];
+      // Iterate over the userbadges
+      Object.keys(catBadgeMap).forEach(function(catId) {
+        let uBadge = catBadgeMap[catId];
+          // This is a limitation in loopback where relation properties.
+          // They have to be converted using .toJSON() method
+        // uBadge = uBadge.toJSON();
+        promises.push(new Promise(function(resolve) {
+            // Get the badges for the next level in the same badge category
+          getNextLevelBadges(parseInt(uBadge.badge.level.sequence) + 1,
+              uBadge.badge.level.categoryId, resolve);
+        }));
+      });
+
       Promise.all(promises).then((response) => {
+        let index = 0;
         response.forEach(function(resp) {
           let tempBadges = {
-            'badge': resp.toJSON(),
+            'badge': resp,
           };
+          let tBadge = tempBadges.badge.toJSON();
+          let nextPoints = tBadge.level.pointsEndRange;
+          if (catScoreMap[tBadge.level.categoryId] !== undefined) {
+            nextPoints = tBadge.level.pointsEndRange -
+            catScoreMap[tBadge.level.categoryId];
+          }
           // Get the points for the next level
-          tempBadges.pointsForNextLevel = tempBadges.badge.level.pointsEndRange;
-          usBadges = usBadges.concat(tempBadges);
+          tempBadges.pointsForNextLevel = nextPoints;
+
+          if (index < noOfDefaultBadges) {
+            // usBadges = usBadges.concat(tempBadges);
+            usBadges = usBadges.concat(tempBadges);
+            ++index;
+          }
         });
         let defaultPromises = [];
         // Check if the
@@ -113,8 +145,8 @@ module.exports = function(UserBadge) {
           }));
           Promise.all(defaultPromises).then((defResponse) => {
             let noOfDefBadges = totalNoOfBadges - usBadges.length;
-            let defBadges = processDefaultBadges(defResponse[0],
-              uBadges, noOfDefBadges);
+            let defBadges = processDefBadges(defResponse[0],
+              uBadges, noOfDefBadges, catScoreMap);
             usBadges = usBadges.concat(defBadges);
             cb(null, usBadges);
           });
@@ -132,17 +164,16 @@ module.exports = function(UserBadge) {
    * It checks if the user list already contains this badge.
    * Returns the default badge only if not already present.
    *
-   * @param {*} defaultResponse
-   * @param {*} usBadges
+   * @param {*} defBadges
    * @param {*} uBadges
    * @param {*} noOfDefaultBadges
    */
-  function processDefaultBadges(defaultResponse, uBadges, noOfDefaultBadges) {
+  function processDefBadges(defBadges, uBadges, noOfDefBadges, catScoreMap) {
     let index = 0;
     let defaultBadges = [];
-    defaultResponse.forEach(function(resp) {
+    defBadges.forEach(function(resp) {
       resp = resp.toJSON();
-      if (index < noOfDefaultBadges) {
+      if (index < noOfDefBadges) {
         let foundCat = false;
         uBadges.forEach(function(uBadge) {
           uBadge = uBadge.toJSON();
@@ -156,6 +187,16 @@ module.exports = function(UserBadge) {
           let tempBadges = {
             'badge': resp,
           };
+          let tBadge = tempBadges.badge.toJSON();
+
+          let nextPoints = tBadge.level.pointsEndRange;
+          if (catScoreMap[tBadge.level.categoryId] !== undefined) {
+            nextPoints = tBadge.level.pointsEndRange -
+            catScoreMap[tBadge.level.categoryId];
+          }
+          // Get the points for the next level
+          tempBadges.pointsForNextLevel = nextPoints;
+
           defaultBadges = defaultBadges.concat(tempBadges);
           ++index;
         }
@@ -263,15 +304,15 @@ module.exports = function(UserBadge) {
               'badge': resp,
             };
 
-            // Push the user details into the system badge is user has obtained it.
+            // Push the user details into the system badge if user has obtained it.
             if (resp.userId !== undefined && resp.userId !== '') {
               tempBadges.userId = resp.userId;
               tempBadges.user = resp.user;
               delete resp.userId;
               delete resp.user;
             } else {
-              tempBadges.pointsForNextLevel =
-                tempBadges.badge.level.pointsEndRange;
+              /* tempBadges.pointsForNextLevel =
+                tempBadges.badge.level.pointsEndRange; */
             }
             usBadges = usBadges.concat(tempBadges);
           });
@@ -466,6 +507,118 @@ module.exports = function(UserBadge) {
     },
     returns: {
       arg: 'categories',
+      type: 'array',
+    },
+  });
+/**
+ * This method get the scores for all categories for the user in a map
+ * @param {*} ctx
+ * @param {*} resolve
+ */
+  function getUserScore(ctx, resolve) {
+    let catScoreMap = {};
+
+    UserBadge.app.models.Score.find({
+      where: {
+        userId: ctx.req.accessToken.userId,
+      },
+    }, function(err, scores) {
+      if (scores.length > 0) {
+        scores.forEach(function(score) {
+          // Add points to a map with category as the key
+          catScoreMap[score.categoryId] = score.points;
+        });
+      }
+      resolve(catScoreMap);
+    });
+  }
+
+  /**
+  * This method is used find the badges that match with the score.
+  */
+  var badgesMatchingScore = function(userScores, allBadges) {
+    let claimBadges = [];
+    userScores.forEach(function(score) {
+      allBadges.forEach(function(badge) {
+        badge = badge.toJSON();
+        // Check if the score and the badge is of the same category
+        if (score.categoryId === badge.level.categoryId) {
+          // Check if the score falls in the badge point range
+          if (score.points > badge.level.pointsStartRange &&
+            score.points <= badge.level.pointsEndRange) {
+            claimBadges.push(badge);
+          }
+        }
+      });
+    });
+    return claimBadges;
+  };
+
+    /**
+  * This method is used check if the badges that match with the score already claimed by the user.
+  */
+  var badgesToBeClaimed = function(badgesMatchingScore, userBadges) {
+    let claimBadges = [];
+    badgesMatchingScore.forEach(function(matchBadge) {
+      let foundUserbadge = false;
+      userBadges.forEach(function(userBadge) {
+        userBadge = userBadge.toJSON();
+        if (userBadge.badge.id === matchBadge.id) {
+          foundUserbadge = true;
+        }
+      });
+      // Return the badge only if not already claimed by the user
+      if (!foundUserbadge) {
+        claimBadges.push(matchBadge);
+      }
+    });
+    return claimBadges;
+  };
+
+/**
+  * This remote method returns the list of all badges that can be claimed by the user.
+  */
+  UserBadge.listBadgesToBeClaimed = function(ctx, cb) {
+    let userIdValue = ctx.req.accessToken.userId;
+    // Get the list of all score objects for the user in each category
+    UserBadge.app.models.score.find({
+      where: {
+        userId: userIdValue,
+      },
+      include: ['category'],
+    }, function(err, userScores) {
+      // Get the list of all system badges for all categories and levels
+      Promise.resolve(new Promise(function(resolve) {
+        getAllBadges(resolve);
+      })).then((allBadges) => {
+        // Get all the badges claimed by the user
+        Promise.resolve(new Promise(function(resolve1) {
+          getBadgesForUser(ctx, resolve1, false);
+        })).then((userBadges) => {
+          // Check if the score and the badge is of the same category
+          let badgesMatchingScore = badgesMatchingScore(userScores, allBadges);
+          // Check if the user has already claimed the badge
+          let claimBadges = badgesToBeClaimed(badgesMatchingScore, userBadges);
+          cb(null, claimBadges);
+        });
+      });
+    });
+  };
+
+  /**
+  * This remote method is used to get the list of all categories for the user.
+  * This list includes the sum of user scored categories + default categories.
+  */
+  UserBadge.remoteMethod('listBadgesToBeClaimed', {
+    accepts: [
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
+    ],
+    http: {
+      path: '/list-badges-to-be-claimed',
+      verb: 'get',
+    },
+    returns: {
+      arg: 'badges',
       type: 'array',
     },
   });

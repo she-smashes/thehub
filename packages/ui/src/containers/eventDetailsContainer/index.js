@@ -1,14 +1,14 @@
 import {connect} from 'react-redux';
 import EventDetails from '../../components/eventDetails';
-import {getEventDetails, registerUserForEvent, updateEventDetails} from './action';
+import {getEventDetails, registerUserForEvent, updateEventDetails, getAllEnrollmentsForEvent, updateEventEnrollmentsData} from './action';
 
 
 const mapStateToProps = (state) => {
-
   return {
     userInfo: state.userInfo,
     eventDetails: state.eventDetails,
-    enrollmentDetails: state.enrollmentDetails
+    enrollmentDetails: state.enrollmentDetails,
+    eventEnrollmentsDetails: state.eventEnrollmentsDetails
   }
 }
 
@@ -22,6 +22,12 @@ const mapDisptchToProps = (dispatch, ownProps) => {
     },
     updateEventDetails : (userInfo, eventDetails) => {
       return dispatch(updateEventDetails(userInfo, eventDetails));
+    },
+    getAllEnrollmentsForEvent : (id, userInfo) => {
+      return dispatch(getAllEnrollmentsForEvent(id, userInfo, dispatch));
+    },
+    updateEventEnrollmentsData : (id, userInfo) => {
+      return dispatch(updateEventEnrollmentsData(id, userInfo, dispatch));
     }
   }
 }

@@ -7,8 +7,14 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
-
-import SelectField from 'material-ui/SelectField';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 class EventDetails extends Component {
@@ -25,7 +31,18 @@ class EventDetails extends Component {
 
   componentDidMount = () => {
     this.updateEventData();
+    this.updateEnrollmentsData();
   };
+
+
+  updateEnrollmentsData = () => {
+    this.props.getAllEnrollmentsForEvent(this.props.match.params.id, this.props.userInfo).then((response, error) => {
+      this.props.updateEventEnrollmentsData(this.props.userInfo, JSON.parse(response.data));     
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 
   updateEnrollmentTypeList = (participants, enrollmentParticipantId) => {
     const items = [];
@@ -93,12 +110,49 @@ class EventDetails extends Component {
       );
     }
   }
+
+  renderEventEnrollments = () => {   
+    
+     return this.props.eventEnrollmentsDetails.map((event, index) => {
+         return (
+          <TableRow key={index}> 
+            <TableRowColumn> {event.users.username} </TableRowColumn>
+            <TableRowColumn> {Moment(event.registeredOn).format('LL')} </TableRowColumn>
+          </TableRow> 
+         );
+     });
+ }
+
+ renderEventEnrollmentsDetails = () => {   
+  
+   return (
+    <Table style={{"width":'50%'}}>
+    <TableHeader displaySelectAll ={false} adjustForCheckbox={false}>
+    <TableRow>
+      <TableHeaderColumn colSpan="2" tooltip="Participants details" style={{textAlign: 'center'}}>
+      Participants details
+      </TableHeaderColumn>
+    </TableRow>
+      <TableRow>
+        <TableHeaderColumn  tooltip="The user name" >User Name</TableHeaderColumn>
+        <TableHeaderColumn  tooltip="Registered for the event on" >Registered On</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+    <TableBody displayRowCheckbox={false}>
+    {(this.props.eventEnrollmentsDetails && this.props.eventEnrollmentsDetails.length > 0) ?  this.renderEventEnrollments(): <div> </div>}
+    </TableBody>
+    </Table>
+   );
+}
+
+
   /**
    * @name render
    * @desc render the event details in the page
    * @return event details
    */
   render() {
+
     return (
       <div className="">
         <div className="event-details">
@@ -107,6 +161,9 @@ class EventDetails extends Component {
             Moment(this.props.eventDetails.endDate).format('LL')}</span>
             <p className="" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description}}/>
           {this.showRegisterButton()}
+        </div>
+        <div className="event-participants">
+        {this.props.userInfo.userId === this.props.eventDetails.createdBy ? this.renderEventEnrollmentsDetails():<div></div>}
         </div>
       </div>
     );

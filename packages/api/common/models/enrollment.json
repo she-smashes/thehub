@@ -37,18 +37,12 @@
     "participants": {
       "type": "hasMany",
       "model": "participant",
-      "foreignKey": "participantId",
-      "options": {
-        "disableInclude": true
-      }
+      "foreignKey": "participantId"
     },
     "users": {
       "type": "belongsTo",
       "model": "user",
-      "foreignKey": "userId",
-      "options": {
-        "disableInclude": true
-      }
+      "foreignKey": "userId"
     },
     "events": {
       "type": "belongsTo",

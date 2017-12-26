@@ -16,30 +16,26 @@ import goldLocked from '../images/gold-lock.png';
 import silverLocked from '../images/silver-lock.png';
 import platinumLocked from '../images/platinum-lock.png';
 import bronzeLocked from '../images/bronze-lock.png';
-/* import ReactTooltip from 'react-tooltip' */
+import ReactTooltip from 'react-tooltip';
 
 const styles = {
     image1:{
         'width': '150%',
         'overflow': 'visible',
-        'margin-left': '10px',
         'margin-top': '20px',
     },
     image2:{
         'width': '150%',
         'overflow': 'visible',
-        'margin-left': '40px',
         'margin-top': '20px',
     },
     image3:{
         'width': '150%',
         'overflow': 'visible',
-        'margin-left': '70px',
         'margin-top': '20px',
     },image4:{
         'width': '150%',
         'overflow': 'visible',
-        'margin-left': '170px',
         'margin-top': '20px',
     },
     grid:{
@@ -73,14 +69,28 @@ class BadgeWidget extends Component {
             );
         })
     }
-    renderImage = (src, style) => {
+    
+    showEventListForCatgoryLink = (categoryId) => {
+        if(categoryId !== '') {
+            return (     
+                <div>
+                    <Link to={`/viewevents?${categoryId}`}>View Events to score</Link>
+                </div>
+            );
+        } else {
+                <div>
+                </div>
+        }
+       
+    }
+
+    renderImage = (src, style, categoryId, tooltipMsg) => {
         return (     
             <div>  
-            
-            <img data-tip="React-tooltip" src={src} style={style}/>
-{/*             <ReactTooltip place="top" type="success" effect="float"/>          */}   
-                
-                </div>
+                <img data-tip={tooltipMsg} src={src} style={style}/>
+                {this.showEventListForCatgoryLink(categoryId)}
+                <ReactTooltip place="bottom" type="success" effect="float"/>            
+            </div>
         );
     }
     renderBadgeImage = (userBadge) => {
@@ -88,13 +98,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(gold, styles.image1)}
+                        {this.renderImage(gold, styles.image1, '' , 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(goldLocked, styles.image1)}
+                        {this.renderImage(goldLocked, styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -102,13 +112,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(silver, styles.image2)}
+                        {this.renderImage(silver, styles.image2, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(silverLocked, styles.image2)}
+                        {this.renderImage(silverLocked, styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -116,13 +126,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(bronze, styles.image3)}
+                        {this.renderImage(bronze, styles.image3, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(bronzeLocked, styles.image3)}
+                        {this.renderImage(bronzeLocked, styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -130,13 +140,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(platinum, styles.image4)}
+                        {this.renderImage(platinum, styles.image4, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(platinumLocked, styles.image4)}
+                        {this.renderImage(platinumLocked, styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -151,6 +161,9 @@ class BadgeWidget extends Component {
                 <GridList cols={6} cellHeight='180px' >
                     {(this.props.badges != undefined && this.props.badges.length>0)?this.renderBadges():<div></div>}
                 </GridList>
+                <br>
+                </br>
+                <Link to={`/viewallbadges`}>View All Badges</Link>
             </div>
 
         )
