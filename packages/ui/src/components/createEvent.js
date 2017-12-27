@@ -18,8 +18,6 @@ import History from '../history';
 import { INVALID_USER, EVENT_FAILURE } from "../constants/actions";
 import Checkbox from 'material-ui/Checkbox';
 import SimpleRichTextEditor from './SimpleRichTextEditor';
-
-
 const styles = {
     errorText: {
         'position': 'relative',
@@ -266,10 +264,16 @@ class CreateEvent extends Component {
         });
     };
 
-    onRichTextChange=(value)=>{
+    onRichTextChange=(event,index,value)=>{
+
+        let editorText = document.getElementById('hidden-editor').innerHTML.replace(/&apos;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&gt;/g, '>')
+        .replace(/&lt;/g, '<')
+        .replace(/&amp;/g, '&');
 
         this.setState({
-            createEventformData : {...this.state.createEventformData, description: value.toString()}
+            createEventformData : {...this.state.createEventformData, description: editorText}
         });
 
         this.setState(prevState => ({
@@ -487,7 +491,12 @@ class CreateEvent extends Component {
                     <label className="align-left bold">Enter Event description</label>
                     <br/>
 
-                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} format='html' markup='Enter description here' onChange={this.onRichTextChange}/>
+                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} 
+                    placeholder="Enter description here" 
+                    toolbarClassName="demo-toolbar"
+                    editorClassName="demo-editor"
+                    format='html' markup='Enter description here' onBlur={this.onRichTextChange}
+                    />
                     <div style={styles.errorText} className="field-line align-left">
                             <br/>
                             <br/>
