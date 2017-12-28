@@ -7,7 +7,6 @@
 import React, {Component} from 'react';
 
 class ClaimYourBadgeWidget extends Component {
-
     render = () => {
         return (
             <div>

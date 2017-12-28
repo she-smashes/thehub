@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.0",
+    "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "material-ui": "^0.19.4",
     "moment": "^2.19.2",
@@ -11,6 +12,7 @@
     "react-dom": "^16.0.0",
     "react-event-timeline": "^1.4.1",
     "react-native": "^0.50.3",
+    "react-portal-tooltip": "^2.3.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-rte": "^0.15.0",

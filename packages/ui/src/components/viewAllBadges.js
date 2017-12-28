@@ -7,18 +7,25 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import { Link } from 'react-router-dom';
-
+import 'font-awesome/css/font-awesome.min.css';
 import { GridList, GridTile } from 'material-ui/GridList';
-import gold from '../images/gold.png';
-import silver from '../images/silver.png';
-import platinum from '../images/platinum.png';
-import bronze from '../images/bronze.png';
-import goldLocked from '../images/gold-lock.png';
-import silverLocked from '../images/silver-lock.png';
-import platinumLocked from '../images/platinum-lock.png';
-import bronzeLocked from '../images/bronze-lock.png';
+import Paper from 'material-ui/Paper';
 
-
+const paperStyle = {
+    height: 100,
+    width: '500px',
+    margin: 20,
+    align: 'center',
+    display: 'inline-block',
+    display: 'flex',
+  };
+const colors = {
+    diamond: '#E57D70',
+    platinum: '#606062',
+    gold: '#D2AB46',
+    silver: '#8E8E8E',
+    bronze: '#B47E59',
+}
 const styles = {
     image: {
         'width': '40%!important',
@@ -61,7 +68,9 @@ class ViewAllBadges extends Component {
                         <GridTile key={index} cols={6} rows={1} style={styles.grid}>
                         {userBadges[0].badge.level.category.name}
                         </GridTile>
+                        <Paper style={paperStyle} zDepth={1} rounded={false} >
                         {this.renderCategoryBadges(userBadges)}
+                        </Paper>
                     </GridList>
                 );
             });
@@ -89,41 +98,41 @@ class ViewAllBadges extends Component {
         if (userBadge.badge.imageFileName === 'gold') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <img src={gold} style={styles.image} />
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>                    
                 );
             } else {
                 return (
-                    <img src={goldLocked} style={styles.image} />
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>                    
                 );
             }
         } else if (userBadge.badge.imageFileName === 'silver') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <img src={silver} style={styles.image} />
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>                    
                 );
             } else {
                 return (
-                    <img src={silverLocked} style={styles.image} />
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>                    
                 );
             }
         } else if (userBadge.badge.imageFileName === 'bronze') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <img src={bronze} style={styles.image} />
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>
                 );
             } else {
                 return (
-                    <img src={bronzeLocked} style={styles.image} />
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>                    
                 );
             }
         } else if (userBadge.badge.imageFileName === 'platinum') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <img src={platinum} style={styles.image} />
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>                    
                 );
             } else {
                 return (
-                    <img src={platinumLocked} style={styles.image} />
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>                    
                 );
             }
         }

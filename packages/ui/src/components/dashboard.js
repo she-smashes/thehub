@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {Card, CardHeader} from 'material-ui/Card';
 
-import AttendanceWidget from './attendanceWidget';
+import AttendanceWidget from '../containers/attendanceContainer/index'
 import ProgressWidget from '../containers/progressCategoriesContainer/index';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
 import ClaimYourBadgeWidget from './claimYourBadgeWidget';
