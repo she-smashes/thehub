@@ -24,6 +24,8 @@ const AsyncCreateEvent = asyncComponent(() => import('../containers/createEventC
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
 const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsContainer/index'));
 const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBadgesContainer/index'));
+const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
+
 
 class App extends Component {
   render() {
@@ -47,6 +49,8 @@ class App extends Component {
               <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
               <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
               <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
+              <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
+
 
               <Route component={PageNotFound}/>
 
