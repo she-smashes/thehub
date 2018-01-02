@@ -74,7 +74,9 @@ class BadgeWidget extends Component {
             );
         })
     }
-    
+    /**
+     * This method renders the view events under category link.
+     */
     showEventListForCatgoryLink = (categoryId) => {
         if(categoryId !== '') {
             return (     
@@ -83,12 +85,13 @@ class BadgeWidget extends Component {
                 </div>
             );
         } else {
-                <div>
-                </div>
+                <div></div>
         }
-       
     }
 
+    /**
+     * This method renders the badge image.
+     */
     renderImage = (color, classType, style, categoryId, tooltipMsg) => {
         
         const badge =  <i data-tip={tooltipMsg} class={classType} aria-hidden="true" style={{"color":color}}></i>
@@ -162,7 +165,9 @@ class BadgeWidget extends Component {
         }
    
     }
-
+    /**
+     * This method renders the badges that the user has and the default badges.
+     */
     render = () => {
         return (
             <div>
