@@ -29,6 +29,9 @@ import createEvent from './containers/createEventContainer/reducer';
 import approvedInitiatives from './containers/createEventContainer/getInitReducer';
 import categories from './containers/createEventContainer/categoriesReducer';
 import participants from './containers/createEventContainer/participantsReducer';
+import badgesToBeClaimedList from './containers/ViewAllBadgesToBeClaimedContainer/reducer';
+import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer';
+
 
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
@@ -56,7 +59,9 @@ const rootReducer = persistCombineReducers(config, {
     initiativeDetails,
     badgesList,
     allBadgesList,
-    progressCategoriesList
+    progressCategoriesList,
+    badgesToBeClaimedList,
+    badgesCanBeClaimedList
 });
 
 

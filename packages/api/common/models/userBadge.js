@@ -596,9 +596,9 @@ module.exports = function(UserBadge) {
           getBadgesForUser(ctx, resolve1, false);
         })).then((userBadges) => {
           // Check if the score and the badge is of the same category
-          let badgesMatchingScore = badgesMatchingScore(userScores, allBadges);
+          let badgesWithScore = badgesMatchingScore(userScores, allBadges);
           // Check if the user has already claimed the badge
-          let claimBadges = badgesToBeClaimed(badgesMatchingScore, userBadges);
+          let claimBadges = badgesToBeClaimed(badgesWithScore, userBadges);
           cb(null, claimBadges);
         });
       });

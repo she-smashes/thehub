@@ -10,7 +10,7 @@ import {Card, CardHeader} from 'material-ui/Card';
 import AttendanceWidget from '../containers/attendanceContainer/index'
 import ProgressWidget from '../containers/progressCategoriesContainer/index';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
-import ClaimYourBadgeWidget from './claimYourBadgeWidget';
+import ClaimYourBadgeWidget from '../containers/claimYourBadgeContainer/index';
 import BadgeWidget from '../containers/badgesContainer/index';
 
 
