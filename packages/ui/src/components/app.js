@@ -8,6 +8,7 @@ import Header from '../containers/headerContainer/index';
 import NavigationContainer from '../containers/navigationContainer/'
 import Footer from './footer';
 import '../css/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../css/app.css';
 import '../css/global.css';
 import '../css/singles.css';
@@ -37,7 +38,7 @@ class App extends Component {
           <Header/>
         {
           !loggedIn? <Login />:
-          <div>            
+          <div>
             <NavigationContainer />
             <Switch>
               <Route path='/' exact={true} component={AsyncDashboard} />

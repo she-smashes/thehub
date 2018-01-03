@@ -127,6 +127,7 @@
            <h2 className="card-heading">Login</h2>
 
            <div className="field-line">
+             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
              <TextField
                floatingLabelText="Username"
                name="username"
@@ -138,6 +139,7 @@
            </div>
 
            <div className="field-line">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
              <TextField
                floatingLabelText="Password"
                type="password"
@@ -147,7 +149,7 @@
                className="align-left"
                errorText={this.state.errors.password}
              />
-           </div>
+           </div>           
 
            <div className="button-line">
              <RaisedButton type="submit" label="Log in" primary />
@@ -163,8 +165,8 @@
          >
            { INVALID_LOGIN }
          </Dialog>
-
        </Card>
+
      );
    }
 

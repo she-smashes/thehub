@@ -1,8 +1,11 @@
 .App, .login-page {
   text-align: center;
 }
+.input-group-addon:first-child{ width: auto; background: none; border: none; }
 .checklist, .field-line{ width: 500px!important; margin: 0 auto;}
 .field-line > div, .align-left{ width: 500px !important;}
+.login-page .field-line, .login-page .field-line > div, .login-page .align-left{ width: 350px!important; display: inline;}
+
 .DraftEditor-root{ min-height: 300px; }
 .field-line .align-left div{ margin-right: 15px !important;}
 .App-logo {
@@ -19,9 +22,6 @@ label{
 }
 .margin-30{
   margin: 0 30px;
-}
-.menu-bar{
-  display: block;
 }
 .App-header {
   background-color: #222;
@@ -52,8 +52,8 @@ label{
 }
 .login-page{
   padding: 20px 0;
-  margin: 20px 0;
-  width: 600px;
+  margin: 20px auto!important;
+  width: 410px;
   margin: 0 auto;
 }
 .login-page .button-line{
@@ -82,11 +82,12 @@ label{
   color: inherit;
 }
 a {
-  color: rgba(0, 0, 0, 0.4);
+  color: #fff;
 }
 a:focus,
 a:hover {
     text-decoration: none;
+    color: #fff;
 }
 
 

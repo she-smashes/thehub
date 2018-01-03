@@ -49,10 +49,10 @@ class NavigationWidget extends Component {
               </IconButton>
             }
           >
-          <MenuItem primaryText={
+          <MenuItem className="menu-item" primaryText={
             <Link to={`/createevent`}> Create Event</Link>
           } />
-          <MenuItem primaryText={
+          <MenuItem className="menu-item" primaryText={
             <Link to={`/viewevents`}> View Events</Link>
           } />
           </IconMenu>
@@ -65,10 +65,10 @@ class NavigationWidget extends Component {
               </IconButton>
             }
           >
-            <MenuItem primaryText={
+            <MenuItem className="menu-item" primaryText={
               <Link to={`/createinitiative`}> Create Initiative</Link>
             } />
-            <MenuItem primaryText={
+            <MenuItem className="menu-item" primaryText={
               <Link to={`/viewinitiative`}> View Initiatives</Link>
             } />
 
