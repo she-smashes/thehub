@@ -529,11 +529,11 @@ class CreateEvent extends Component {
 
                     </div>
 
-                    <div class="checklist">
+                    <div className="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
                     </div>
-                    <div class="checklist">
+                    <div className="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>
