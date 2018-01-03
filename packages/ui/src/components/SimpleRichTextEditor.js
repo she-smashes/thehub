@@ -10,6 +10,7 @@ class SimpleRichTextEditor extends Component {
     autobind(this);
     this.state = {
       editorValue: createEmptyValue(),
+      parsedValue: ''
     };
   }
 
@@ -38,17 +39,28 @@ class SimpleRichTextEditor extends Component {
 
   render() {
     let {value, format, onChange, ...otherProps} = this.props; // eslint-disable-line no-unused-vars
+    
     return (
-      <RichTextEditor
-        {...otherProps}
-        value={this.state.editorValue}
-        onChange={this._onChange}
-      />
+      <div class="SimpleRichTextEditor">
+        <RichTextEditor
+          {...otherProps}
+          value={this.state.editorValue}
+          onChange={this._onChange}
+        />
+        <textarea
+        id="hidden-editor"
+            className="hidden-source"
+            value={this.state.parsedValue}
+            style={{"display":"none"}}
+            onChange={this.props.onParsedValueChange}
+        />
+
+
+      </div>
     );
   }
 
   _onChange(editorValue) {
-      //console.log('hhhhhhhhhhhhhh');
     let {format, onChange} = this.props;
     let oldEditorValue = this.state.editorValue;
     this.setState({editorValue});
@@ -59,6 +71,9 @@ class SimpleRichTextEditor extends Component {
       // Optimization so if we receive new props we don't need
       // to parse anything unnecessarily.
       this._currentValue = [format, stringValue];
+      this.setState({
+        parsedValue: this._currentValue[1],
+      });
       if (onChange && stringValue !== this.props.value) {
         onChange(stringValue);
       }

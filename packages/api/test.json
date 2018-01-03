@@ -1,0 +1,145 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 5,
+    "ACL": 1,
+    "RoleMapping": 13,
+    "Role": 4,
+    "userBadge": 1,
+    "badge": 1,
+    "category": 14,
+    "config": 5,
+    "event": 7,
+    "initiative": 6,
+    "level": 1,
+    "enrollment": 1,
+    "score": 1,
+    "task": 12,
+    "user": 13,
+    "eventUserVO": 1,
+    "eventInitiativeVO": 1,
+    "participant": 9,
+    "eventparticipant": 13
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {
+      "fFD4VA9AMMJskPn1wXSvz0yi4ghujEdiDuQrkSZI5LqpTnHZzMyutmkA66Mh3FBk": "{\"id\":\"fFD4VA9AMMJskPn1wXSvz0yi4ghujEdiDuQrkSZI5LqpTnHZzMyutmkA66Mh3FBk\",\"ttl\":3600,\"created\":\"2017-12-07T17:25:04.387Z\",\"userId\":7}",
+      "Ky0m13sehm4qlzUfy5K2l1zh0ZNt2ZJ9YstTNhD5VfGBgNlZbLrzOWiiXXSQauyo": "{\"id\":\"Ky0m13sehm4qlzUfy5K2l1zh0ZNt2ZJ9YstTNhD5VfGBgNlZbLrzOWiiXXSQauyo\",\"ttl\":3600,\"created\":\"2017-12-09T03:09:40.953Z\",\"userId\":7}"
+    },
+    "ACL": {},
+    "RoleMapping": {
+      "1": "{\"principalType\":\"USER\",\"principalId\":\"1\",\"roleId\":1,\"id\":1}",
+      "2": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":1,\"id\":2}",
+      "3": "{\"principalType\":\"USER\",\"principalId\":\"3\",\"roleId\":1,\"id\":3}",
+      "4": "{\"principalType\":\"USER\",\"principalId\":\"4\",\"roleId\":1,\"id\":4}",
+      "5": "{\"principalType\":\"USER\",\"principalId\":\"5\",\"roleId\":1,\"id\":5}",
+      "6": "{\"principalType\":\"USER\",\"principalId\":\"6\",\"roleId\":1,\"id\":6}",
+      "7": "{\"principalType\":\"USER\",\"principalId\":\"7\",\"roleId\":2,\"id\":7}",
+      "8": "{\"principalType\":\"USER\",\"principalId\":\"8\",\"roleId\":2,\"id\":8}",
+      "9": "{\"principalType\":\"USER\",\"principalId\":\"9\",\"roleId\":2,\"id\":9}",
+      "10": "{\"principalType\":\"USER\",\"principalId\":\"10\",\"roleId\":3,\"id\":10}",
+      "11": "{\"principalType\":\"USER\",\"principalId\":\"11\",\"roleId\":3,\"id\":11}",
+      "12": "{\"principalType\":\"USER\",\"principalId\":\"12\",\"roleId\":3,\"id\":12}"
+    },
+    "Role": {
+      "1": "{\"name\":\"employee\",\"description\":\"employee\",\"id\":1}",
+      "2": "{\"name\":\"approver\",\"description\":\"approver\",\"id\":2}",
+      "3": "{\"name\":\"sysadmin\",\"description\":\"sysadmin\",\"id\":3}"
+    },
+    "userBadge": {},
+    "badge": {},
+    "category": {
+      "1": "{\"name\":\"Sports\",\"type\":\"\",\"id\":1}",
+      "2": "{\"name\":\"Music\",\"type\":\"\",\"id\":2}",
+      "3": "{\"name\":\"Dance\",\"type\":\"\",\"id\":3}",
+      "4": "{\"name\":\"CSR\",\"type\":\"\",\"id\":4}",
+      "5": "{\"name\":\"Cricket\",\"type\":\"Sports\",\"id\":5}",
+      "6": "{\"name\":\"FootBall\",\"type\":\"Sports\",\"id\":6}",
+      "7": "{\"name\":\"Zumba\",\"type\":\"Sports\",\"id\":7}",
+      "8": "{\"name\":\"Marathon\",\"type\":\"Sports\",\"id\":8}",
+      "9": "{\"name\":\"Carnatic\",\"type\":\"Music\",\"id\":9}",
+      "10": "{\"name\":\"Western\",\"type\":\"Music\",\"id\":10}",
+      "11": "{\"name\":\"Classical\",\"type\":\"Dance\",\"id\":11}",
+      "12": "{\"name\":\"Western\",\"type\":\"Dance\",\"id\":12}",
+      "13": "{\"name\":\"Gifting\",\"type\":\"CSR\",\"id\":13}"
+    },
+    "config": {
+      "1": "{\"name\":\"refreshToken_onceIn\",\"value\":\"1800\",\"id\":1}",
+      "2": "{\"name\":\"refreshToken_ttl\",\"value\":\"3600\",\"id\":2}",
+      "3": "{\"name\":\"no_of_past_events\",\"value\":\"5\",\"id\":3}",
+      "4": "{\"name\":\"no_of_future_events\",\"value\":\"5\",\"id\":4}"
+    },
+    "event": {
+      "1": "{\"initiativeId\":1,\"title\":\"School Painting\",\"startDate\":\"2017-09-02T11:49:20.305Z\",\"endDate\":\"2017-09-08T11:49:20.305Z\",\"location\":\"Bangalore\",\"status\":\"not approved\",\"description\":\"Painting the government school walls\",\"lead\":1,\"createdOn\":\"2017-11-01T11:49:20.305Z\",\"createdBy\":7,\"categoryId\":4,\"participantId\":[1,2],\"id\":1}",
+      "2": "{\"initiativeId\":1,\"title\":\"Diya Painting\",\"startDate\":\"2017-08-02T11:49:20.305Z\",\"endDate\":\"2017-08-04T11:49:20.305Z\",\"location\":\"Bangalore\",\"status\":\"not approved\",\"description\":\"With Diwali approaching, you are invited to participate in the making of diyas with the children of Sandesh, a community that works with, and for, the members of our society who have developmental and intellectual disabilities. \",\"lead\":1,\"createdOn\":\"2017-10-02T11:49:20.305Z\",\"createdBy\":8,\"categoryId\":4,\"participantId\":[1,2],\"id\":2}",
+      "3": "{\"initiativeId\":1,\"title\":\"School Teaching\",\"startDate\":\"2017-07-02T11:49:20.305Z\",\"endDate\":\"2017-07-04T11:49:20.305Z\",\"location\":\"Gurgoan\",\"status\":\"not approved\",\"description\":\"Teaching in government schools\",\"lead\":2,\"createdOn\":\"2017-11-02T11:49:20.305Z\",\"createdBy\":7,\"categoryId\":4,\"participantId\":[1,2],\"id\":3}",
+      "4": "{\"initiativeId\":3,\"title\":\"Pinkathon\",\"startDate\":\"2017-06-02T11:49:20.305Z\",\"endDate\":\"2017-06-04T11:49:20.305Z\",\"location\":\"Bangalore\",\"status\":\"not approved\",\"description\":\"The run will begin at 9:00 A.M. Participants must be registered by this point. We are expecting to have around 100 participants. We will have sent registration applications out prior to the event, to smaller running clubs in the area. Registration fees are $20. The fees are to help cover park permit fees, park participant fees, parking fees, and refreshments. If a participant has registered early they will have a parking pass distributed by us and the East Bay Regional Parks will be reimbursed by the end of the event. If a participant has not registered early they will not have a parking pass and will have to pay for parking on their own. \",\"lead\":3,\"createdOn\":\"2017-09-02T11:49:20.305Z\",\"createdBy\":9,\"categoryId\":8,\"participantId\":[1,2],\"id\":4}",
+      "5": "{\"initiativeId\":4,\"title\":\"Auction\",\"startDate\":\"2017-11-16T11:49:20.305Z\",\"endDate\":\"2017-12-20T11:49:20.305Z\",\"location\":\"Bangalore\",\"status\":\"not approved\",\"description\":\"Silent auction for a cause\",\"lead\":2,\"createdOn\":\"2017-09-02T11:49:20.305Z\",\"createdBy\":9,\"categoryId\":4,\"participantId\":[1,2],\"id\":5}",
+      "6": "{\"initiativeId\":5,\"title\":\"Sapient Football League - Men\",\"startDate\":\"2017-11-18T11:49:20.305Z\",\"endDate\":\"2017-12-22T11:49:20.305Z\",\"location\":\"Bangalore\",\"status\":\"not approved\",\"description\":\"The match will begin at 9:00 A.M. Participants must be registered by this point. We are expecting to have around 20 participants. We will have sent registration applications out prior to the event, to smaller running clubs in the area. Registration fees are $20. The fees are to help cover park permit fees, park participant fees, parking fees, and refreshments. If a participant has registered early they will have a parking pass distributed by us and the East Bay Regional Parks will be reimbursed by the end of the event. If a participant has not registered early they will not have a parking pass and will have to pay for parking on their own. \",\"lead\":2,\"createdOn\":\"2017-09-02T11:49:20.305Z\",\"createdBy\":9,\"categoryId\":6,\"participantId\":[1,2],\"id\":6}"
+    },
+    "initiative": {
+      "1": "{\"title\":\"Prayaas\",\"description\":\"Helping people\",\"status\":\"approved\",\"createdOn\":\"2017-05-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":7,\"id\":1}",
+      "2": "{\"title\":\"Fitness\",\"description\":\"Keeping people fit\",\"status\":\"approved\",\"createdOn\":\"2017-06-01T11:49:20.305Z\",\"lead\":2,\"createdBy\":7,\"id\":2}",
+      "3": "{\"title\":\"Run for fun\",\"description\":\"Marathon for Sapient Nitro\",\"status\":\"approved\",\"createdOn\":\"2017-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":3}",
+      "4": "{\"title\":\"Silent Auction\",\"description\":\"Silent Auction is a Sapient India corporate social responsibility initiative run once every two years. The two-fold objectives are:To bring the Sapient India community together and, To highlight our Corporate Social Responsibility effort and people contribution.\",\"status\":\"not approved\",\"createdOn\":\"2015-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":4}",
+      "5": "{\"title\":\"Annual Sports Tournament\",\"description\":\"Annual Sports Tournament\",\"status\":\"not approved\",\"createdOn\":\"2015-04-01T11:49:20.305Z\",\"lead\":1,\"createdBy\":8,\"id\":5}"
+    },
+    "level": {},
+    "enrollment": {},
+    "score": {},
+    "task": {
+      "1": "{\"status\":\"approved\",\"created\":\"2017-12-07T16:33:26.160Z\",\"type\":\"initiative\",\"approvableId\":\"1\",\"id\":1}",
+      "2": "{\"status\":\"approved\",\"created\":\"2017-12-07T16:33:26.174Z\",\"type\":\"initiative\",\"approvableId\":\"2\",\"id\":2}",
+      "3": "{\"status\":\"approved\",\"created\":\"2017-12-07T16:33:26.176Z\",\"type\":\"initiative\",\"approvableId\":\"3\",\"id\":3}",
+      "4": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.182Z\",\"type\":\"initiative\",\"approvableId\":\"4\",\"id\":4}",
+      "5": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.187Z\",\"type\":\"initiative\",\"approvableId\":\"5\",\"id\":5}",
+      "6": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.198Z\",\"type\":\"event\",\"approvableId\":\"1\",\"id\":6}",
+      "7": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.201Z\",\"type\":\"event\",\"approvableId\":\"2\",\"id\":7}",
+      "8": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.203Z\",\"type\":\"event\",\"approvableId\":\"3\",\"id\":8}",
+      "9": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.209Z\",\"type\":\"event\",\"approvableId\":\"4\",\"id\":9}",
+      "10": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.215Z\",\"type\":\"event\",\"approvableId\":\"5\",\"id\":10}",
+      "11": "{\"status\":\"Pending\",\"created\":\"2017-12-07T16:33:26.225Z\",\"type\":\"event\",\"approvableId\":\"6\",\"id\":11}"
+    },
+    "user": {
+      "1": "{\"password\":\"$2a$10$nQcXV4rXHDLNnO4ckcAoEO4H0yElMUPXEtp6Hs.SudF8xixd5K7c6\",\"firstname\":\"customer1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer1\",\"email\":\"customer1@example.com\",\"id\":1}",
+      "2": "{\"password\":\"$2a$10$CD7NG0HEdODqFztNt6R5j.BS07EWI82DS88uRgi/yEDGkLZ0laLb.\",\"firstname\":\"customer2\",\"lastname\":\"customer2\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer2\",\"email\":\"customer2@example.com\",\"id\":2}",
+      "3": "{\"password\":\"$2a$10$bf0y.nl9QCttSKbj3scxCe9m2XTVpxudx7D8V/exS1pgYZwu1eBbW\",\"firstname\":\"customer3\",\"lastname\":\"customer3\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer3\",\"email\":\"customer3@example.com\",\"id\":3}",
+      "4": "{\"password\":\"$2a$10$NCotNsrDAYUInt8Pw34XO.19HsM7wNgmwxKUWLGvg3AVxAxBZHigu\",\"firstname\":\"customer4\",\"lastname\":\"customer4\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer4\",\"email\":\"customer4@example.com\",\"id\":4}",
+      "5": "{\"password\":\"$2a$10$mpBJoWQqhKwxpytsZq.mzOWqllK5z0iElno69yAVb/UnzUBM92jhK\",\"firstname\":\"customer5\",\"lastname\":\"customer5\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer5\",\"email\":\"customer5@example.com\",\"id\":5}",
+      "6": "{\"password\":\"$2a$10$OwyzPRrJJcsNpXgM5cvAAub7DQzHvkH2EURzavRnSqhL4ntyp9NMu\",\"firstname\":\"customer6\",\"lastname\":\"customer6\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"customer6\",\"email\":\"customer6@example.com\",\"id\":6}",
+      "7": "{\"password\":\"$2a$10$1SK4e4wWuzrQuWJP5YKPR.sgoJt1Ve1zLctS/jYh07s8vjCuC51wC\",\"firstname\":\"approver1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver1\",\"email\":\"approver1@example.com\",\"id\":7}",
+      "8": "{\"password\":\"$2a$10$SlvnkIRYZzJi.vXL1XLW8O/0gU2ZIQctw7PFZJrQaG.JQTsjXt9GG\",\"firstname\":\"approver2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver2\",\"email\":\"approver2@example.com\",\"id\":8}",
+      "9": "{\"password\":\"$2a$10$iD0mXkcq8Ib4pbSu68TbDuYiwm9F31fvMi7rqBrU4Dkr.ztiMfpKe\",\"firstname\":\"approver3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"approver3\",\"email\":\"approver3@example.com\",\"id\":9}",
+      "10": "{\"password\":\"$2a$10$jnPdshRWRHQiIKZ0luP55OWwW/gguXmtEIE5zrNfrqb8eOLnAChTm\",\"firstname\":\"sysadmin1\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin1\",\"email\":\"sysadmin1@example.com\",\"id\":10}",
+      "11": "{\"password\":\"$2a$10$fMQdQs956UJFEb4KgOXtWuOttn96dxRzSLw2P.K.YXbwLIJXItz4y\",\"firstname\":\"sysadmin2\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin2\",\"email\":\"sysadmin2@example.com\",\"id\":11}",
+      "12": "{\"password\":\"$2a$10$BMfGVz9K4LMG37DTwMyyye2/Gniw5uSAo2U7Op2Yv4yB4HlnRatbG\",\"firstname\":\"sysadmin3\",\"lastname\":\"customer1\",\"modifiedon\":\"2017-11-01T11:49:20.305Z\",\"registeredon\":\"2017-11-01T11:49:20.305Z\",\"location\":\"Bangalore\",\"username\":\"sysadmin3\",\"email\":\"sysadmin3@example.com\",\"id\":12}"
+    },
+    "eventUserVO": {},
+    "eventInitiativeVO": {},
+    "participant": {
+      "1": "{\"participantType\":\"volunteer\",\"hourly\":false,\"id\":1}",
+      "2": "{\"participantType\":\"speaker\",\"hourly\":false,\"id\":2}",
+      "3": "{\"participantType\":\"organiser\",\"hourly\":false,\"id\":3}",
+      "4": "{\"participantType\":\"participant\",\"hourly\":false,\"id\":4}",
+      "5": "{\"participantType\":\"volunteer\",\"hourly\":true,\"id\":5}",
+      "6": "{\"participantType\":\"speaker\",\"hourly\":true,\"id\":6}",
+      "7": "{\"participantType\":\"organiser\",\"hourly\":true,\"id\":7}",
+      "8": "{\"participantType\":\"participant\",\"hourly\":true,\"id\":8}"
+    },
+    "eventparticipant": {
+      "1": "{\"eventId\":1,\"participantId\":1,\"id\":1}",
+      "2": "{\"eventId\":1,\"participantId\":2,\"id\":2}",
+      "3": "{\"eventId\":2,\"participantId\":1,\"id\":3}",
+      "4": "{\"eventId\":2,\"participantId\":2,\"id\":4}",
+      "5": "{\"eventId\":3,\"participantId\":1,\"id\":5}",
+      "6": "{\"eventId\":3,\"participantId\":2,\"id\":6}",
+      "7": "{\"eventId\":4,\"participantId\":1,\"id\":7}",
+      "8": "{\"eventId\":4,\"participantId\":2,\"id\":8}",
+      "9": "{\"eventId\":5,\"participantId\":1,\"id\":9}",
+      "10": "{\"eventId\":5,\"participantId\":2,\"id\":10}",
+      "11": "{\"eventId\":6,\"participantId\":1,\"id\":11}",
+      "12": "{\"eventId\":6,\"participantId\":2,\"id\":12}"
+    }
+  }
+}

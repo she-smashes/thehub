@@ -7,6 +7,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {List, ListItem} from 'material-ui/List';
+import {Link} from 'react-router-dom';
+
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
@@ -17,34 +19,15 @@ class ViewInitiative extends Component {
           });
     }
 
-    showDetails = (initiativeId) => {
-        var element=React.createElement(
-            'div'
-        );
-        this.props.viewInitiatives.map( (initiative) => {
-            if (initiative.id === initiativeId){
-                    element = (
-                        <div>
-                            <h1> Initiative Details </h1>
-                            <p> <b> Title : </b> <span> { initiative.title } </span> </p>
-                            <p> <b> Date : </b> <span> { initiative.createdOn } </span> </p>                            
-                            <p> <b> Description : </b> <span> { initiative.description } </span> </p>
-                        </div>
-                    );
-            }
-        })
-        ReactDOM.render(
-            element,
-            document.getElementById('initiativeDetails')
-        );
-    }
-
     renderInitiatives = () => {
-        return this.props.viewInitiatives.map((event, index) => {
+        return this.props.viewInitiatives.map((initiative, index) => {
             return <ListItem
             key={index}
-            primaryText={event.title}
-            onClick= {() => this.showDetails(event.id)}
+            primaryText={
+                <div>
+                    <Link to={`/initiativeDetails/${initiative.id}`}>{initiative.title}</Link>
+                </div>
+            }
             />
         })
     }
@@ -56,7 +39,6 @@ class ViewInitiative extends Component {
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }
                 </List>
-                {/* { this.showDetails(1) } */}
                 <div id="initiativeDetails"></div>
             </div>
 

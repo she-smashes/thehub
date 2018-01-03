@@ -11,9 +11,8 @@
     "Timestamp": {}
   },
   "properties": {
-    "points": {
-      "type": "number",
-      "required": false
+    "scoreId": {
+      "type": "array"
     },
     "password": {
       "type": "object",
@@ -57,6 +56,11 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "scores": {
+      "type": "hasAndBelongsToMany",
+      "model": "score",
+      "foreignKey": "scoreId"
     }
   },
   "acls": [

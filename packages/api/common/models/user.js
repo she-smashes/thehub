@@ -10,34 +10,45 @@ module.exports = function(User) {
     let permissions = getPermissibleActions(User, accessToken);
 
     Promise.resolve(permissions)
-			.then((results) => {
-  let permissionObj = [];
-  results.forEach(function(result) {
-    if (result.isAllowed.permission === 'ALLOW') {
-      permissionObj.push(result.isAllowed.model +
-	  '_' + result.isAllowed.property);
-    }
+      .then((results) => {
+        let permissionObj = [];
+        results.forEach(function(result) {
+          if (result.isAllowed.permission === 'ALLOW') {
+            permissionObj.push(result.isAllowed.model +
+              '_' + result.isAllowed.property);
+          }
+        });
+        context.result.allowedActionList = permissionObj;
+      })
+      .then(() => {
+        let countReq = false;
+        context.result.allowedActionList.map(allowedAction => {
+          if (allowedAction.indexOf('task_find') >= 0) {
+            countReq = true;
+          }
+        });
+        if (countReq) {
+          User.app.models.Task.count({status: 'Pending'}, function(err, count) {
+            if (count > 0) {
+              context.result.notificationCount = new String(count);
+            }
+            next();
+          });
+        } else {
+          next();
+        }
+      });
   });
-  context.result.allowedActionList = permissionObj;
-})
-			.then(() => {
-  let countReq = false;
-  context.result.allowedActionList.map(allowedAction => {
-    if (allowedAction.indexOf('task_find') >= 0) {
-      countReq = true;
-    }
-  });
-  if (countReq) {
-    User.app.models.Task.count({status: 'Pending'}, function(err, count) {
-      if (count > 0) {
-        context.result.notificationCount = new String(count);
+
+  User.observe('after save', function(ctx, next) {
+    if (ctx.instance) {
+      if (ctx.instance.scoreId != undefined) {
+        ctx.instance.scoreId.forEach(sId => {
+          ctx.instance.scores.add(sId);
+        });
       }
-      next();
-    });
-  } else {
+    }
     next();
-  }
-});
   });
 };
 
@@ -91,13 +102,13 @@ function getPermissibleActions(user, accessToken) {
       };
 
       let accessTokenResult = user.app.models.ACL.checkAccessForContext(context)
-				.then((result) => {
-  return {
-    isAllowed: result,
-    modelName: modelName,
-    methodName: property,
-  };
-});
+        .then((result) => {
+          return {
+            isAllowed: result,
+            modelName: modelName,
+            methodName: property,
+          };
+        });
       promises.push(accessTokenResult);
     });
   });

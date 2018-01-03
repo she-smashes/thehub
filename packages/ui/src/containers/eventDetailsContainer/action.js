@@ -1,8 +1,30 @@
 import { GET_EVENTDETAILS } from "../../constants/actions";
 import { GET_ENROLLMENTDETAILS } from "../../constants/actions";
-import { UPDATE_ENROLLMENTDETAILS } from "../../constants/actions";
+import { GET_EVENTENROLLMENTDETAILS } from "../../constants/actions";
 
 import Swagger from 'swagger-client';
+
+export const getAllEnrollmentsForEvent = (eventId, userInfo) => {
+  
+    return function (dispatch) {
+      return Swagger(process.env.REACT_APP_API_URI,
+        {
+          requestInterceptor: (req) => {
+            req.headers['Authorization'] = userInfo.id;
+            return req;
+          },
+        })
+        .then((client) => {
+          let filterQuery = { include: ["users", "participants"] };
+          filterQuery = JSON.stringify(filterQuery)
+
+          return client
+          .apis
+          .event
+          .event_prototype___get__enrollments({ id: eventId, filter: filterQuery });
+        });
+    }
+  }
 
 export const getEventDetails = (eventId, userInfo) => {
 
@@ -40,11 +62,18 @@ export const registerUserForEvent = (eventId, userInfo, enrollmentInfo) => {
       .then((client) => {
 
         if (!enrollmentInfo.registered) {
-          let postBody = {
+
+          // commenting since enrollment type is not required while registering for an event
+         /*  let postBody = {
             "eventId": eventId,
             "userId": userInfo.userId,
             "registeredOn": new Date(),
             "enrollmentType": enrollmentInfo.enrollmentParticipantId
+          }; */
+          let postBody = {
+            "eventId": eventId,
+            "userId": userInfo.userId,
+            "registeredOn": new Date()
           };
           postBody = JSON.stringify(postBody);
           return client
@@ -86,3 +115,9 @@ export const updateEventDetails = (userInfo, eventDetailsInfo) => {
 }
 
 
+export const updateEventEnrollmentsData = (userInfo, eventEnrollmentsInfo) => {
+    return {
+      type: GET_EVENTENROLLMENTDETAILS,
+      payload: eventEnrollmentsInfo
+    };
+  }

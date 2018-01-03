@@ -14,11 +14,11 @@ module.exports = function(app, cb) {
     });
   });
 
-	 Promise.all(promises.map(p => p.catch(() => undefined)))
-			.then((res) => {
-  console.log('Roles set up', res.length);
-  return cb();
-});
+  Promise.all(promises.map(p => p.catch(() => undefined)))
+    .then((res) => {
+      console.log('Roles set up', res.length);
+      return cb();
+    });
 };
 
 function errorHandler(promises) {

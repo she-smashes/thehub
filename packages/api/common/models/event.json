@@ -51,9 +51,12 @@
       "type" : "number",
       "required" : true
     },
-     "categoryId":{
+    "categoryId":{
       "type" : "number",
       "required" : true
+    },
+    "hours":{
+      "type" : "number"
     },
     "participantId":{
       "type" : "array"
@@ -161,6 +164,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "__destroyById__enrollments"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "updateAttendance"
     }
   ],
   "methods": {}

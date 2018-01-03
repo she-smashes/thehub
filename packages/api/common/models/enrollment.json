@@ -18,17 +18,16 @@
     "points": {
       "type": "number"
     },
-    "attendanceHours": {
-      "type": "string"
-    },
     "attendanceFlag": {
       "type": "string"
     },
     "registeredOn": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "enrollmentType": {
+      "type": "string"
+    },
+    "status": {
       "type": "string",
       "required": true
     }
@@ -38,18 +37,12 @@
     "participants": {
       "type": "hasMany",
       "model": "participant",
-      "foreignKey": "participantId",
-      "options": {
-        "disableInclude": true
-      }
+      "foreignKey": "participantId"
     },
     "users": {
       "type": "belongsTo",
       "model": "user",
-      "foreignKey": "userId",
-      "options": {
-        "disableInclude": true
-      }
+      "foreignKey": "userId"
     },
     "events": {
       "type": "belongsTo",

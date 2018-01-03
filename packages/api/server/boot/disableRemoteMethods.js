@@ -3,20 +3,20 @@ module.exports = function(app) {
   var RoleMapping = app.models.RoleMapping;
   var User = app.models.user;
 
-  User.disableRemoteMethodByName('replaceOrCreate');
-  User.disableRemoteMethodByName('patchOrCreate');
-  User.disableRemoteMethodByName('destroyById');
-  User.disableRemoteMethodByName('count');
-  User.disableRemoteMethodByName('replaceById');
-  User.disableRemoteMethodByName('prototype.patchAttributes');
-  User.disableRemoteMethodByName('createChangeStream');
-  User.disableRemoteMethodByName('updateAll');
-  User.disableRemoteMethodByName('replaceOrCreate');
-  User.disableRemoteMethodByName('replaceById');
-  User.disableRemoteMethodByName('upsertWithWhere');
-  User.disableRemoteMethodByName('resetPassword');
-  User.disableRemoteMethodByName('reset');
-  User.disableRemoteMethodByName('changePassword');
+  /*   User.disableRemoteMethodByName('replaceOrCreate');
+    User.disableRemoteMethodByName('patchOrCreate');
+    User.disableRemoteMethodByName('destroyById');
+    User.disableRemoteMethodByName('count');
+    User.disableRemoteMethodByName('replaceById');
+    User.disableRemoteMethodByName('prototype.patchAttributes');
+    User.disableRemoteMethodByName('createChangeStream');
+    User.disableRemoteMethodByName('updateAll');
+    User.disableRemoteMethodByName('replaceOrCreate');
+    User.disableRemoteMethodByName('replaceById');
+    User.disableRemoteMethodByName('upsertWithWhere');
+    User.disableRemoteMethodByName('resetPassword');
+    User.disableRemoteMethodByName('reset');
+    User.disableRemoteMethodByName('changePassword'); */
 
   User.disableRemoteMethodByName('prototype.__count__accessTokens');
   User.disableRemoteMethodByName('prototype.__create__accessTokens');
