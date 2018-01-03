@@ -89,11 +89,12 @@ a:hover {
     text-decoration: none;
     color: #fff;
 }
-
-
-
-
-
+#taskAccordian h3{ font-size: 16px!important; text-transform: none!important;}
+.list-data a{ color: #000!important; }
+.fa{ padding-right: 10px; }
+.well{ border: none!important; }
+.hub-progress-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
+.inner-container{ padding: 19px; }
 .m-controls .x-slider {
   width: 100%;
 }

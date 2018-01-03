@@ -13,7 +13,7 @@ class ViewInitiative extends Component {
 
     componentDidMount =  () => {
         this.props.getInitiativeList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateViewInitiativeInfo(JSON.parse(response.data));    
+            this.props.updateViewInitiativeInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -25,6 +25,7 @@ class ViewInitiative extends Component {
             key={index}
             primaryText={
                 <div>
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
                     <Link to={`/initiativeDetails/${initiative.id}`}>{initiative.title}</Link>
                 </div>
             }
@@ -34,7 +35,7 @@ class ViewInitiative extends Component {
 
     render = () => {
         return (
-            <div>
+            <div className="list-data">
                 <h3>List of Initiatives </h3>
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }

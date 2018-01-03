@@ -20,7 +20,7 @@ class Dashboard extends Component {
         const styles ={
             card: {margin: 10}
           }
-        return (            
+        return (
             <div>
             <main className="hub-main-grid">
               <div className="claim-badge event-timeline well">
@@ -31,7 +31,7 @@ class Dashboard extends Component {
                 <div className="widget-container row">
                   <div className="col-md-4 col-xs-12">
                     <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
-                    <div className="widget well">{<BadgeWidget />}</div>
+                    <div className="widget well badge-widget">{<BadgeWidget />}</div>
                     <div className="widget well">{<AttendanceWidget />}</div>
                   </div>
                   <div className="col-md-8 col-xs-12">

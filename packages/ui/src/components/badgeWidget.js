@@ -49,10 +49,10 @@ const styles = {
 }
 
 class BadgeWidget extends Component {
-   
+
     componentDidMount =  () => {
         this.props.getBadgesList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateBadgesInfo(JSON.parse(response.data));    
+            this.props.updateBadgesInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -67,7 +67,7 @@ class BadgeWidget extends Component {
         return this.props.badges.map((userBadge, index) => {
             return (
                 <div>
-                    <GridTile  key={index} cols= {1} rows={1} style={styles.grid}> 
+                    <GridTile  key={index} cols= {1} rows={1} style={styles.grid}>
                         {this.renderBadgeImage(userBadge)}
                     </GridTile>
                 </div>
@@ -79,7 +79,7 @@ class BadgeWidget extends Component {
      */
     showEventListForCatgoryLink = (categoryId) => {
         if(categoryId !== '') {
-            return (     
+            return (
                 <div>
                     <Link to={`/viewevents?${categoryId}`}>View Events to score</Link>
                 </div>
@@ -93,15 +93,15 @@ class BadgeWidget extends Component {
      * This method renders the badge image.
      */
     renderImage = (color, classType, style, categoryId, tooltipMsg) => {
-        
+
         const badge =  <i data-tip={tooltipMsg} class={classType} aria-hidden="true" style={{"color":color}}></i>
-        return (     
-            <div>  
-                
+        return (
+            <div>
+
                 <StatefulToolTip parent={ badge }>
                     {tooltipMsg}
                     {this.showEventListForCatgoryLink(categoryId)}
-                </StatefulToolTip>       
+                </StatefulToolTip>
             </div>
         );
     }
@@ -163,7 +163,7 @@ class BadgeWidget extends Component {
                 );
             }
         }
-   
+
     }
     /**
      * This method renders the badges that the user has and the default badges.
@@ -171,12 +171,16 @@ class BadgeWidget extends Component {
     render = () => {
         return (
             <div>
+                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0", "text-align":"left"}}>Badges Widget</div>
+                <div  className="inner-container">
                 <GridList cols={6} cellHeight='180px' style={{"align": "center"}}>
                     {(this.props.badges != undefined && this.props.badges.length>0)?this.renderBadges():<div></div>}
                 </GridList>
+
                 <br>
                 </br>
                 <Link to={`/viewallbadges`} style={styles.link}>View All Badges</Link>
+                </div>
             </div>
 
         )

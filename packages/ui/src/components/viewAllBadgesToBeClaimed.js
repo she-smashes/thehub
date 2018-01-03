@@ -53,10 +53,10 @@ class ViewAllBadgesToBeClaimed extends Component {
           claimedBadges: []
         }
       }
-    
+
     componentDidMount =  () => {
         this.props.getBadgesToBeClaimedList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateBadgesToBeClaimedInfo(JSON.parse(response.data));    
+            this.props.updateBadgesToBeClaimedInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -80,7 +80,7 @@ class ViewAllBadgesToBeClaimed extends Component {
       showClaimData = (claimBadge) => {
         if(this.state.claimedBadges.indexOf(claimBadge.id) <= -1) {
             return (
-                
+
                 <div className="button-line">
                     <RaisedButton type="button" label="Claim Your Badge" primary  onClick={() => { this.claimBadge(claimBadge.id) }} />
                 </div>
@@ -90,7 +90,7 @@ class ViewAllBadgesToBeClaimed extends Component {
                 this.showClaimMessage()
             );
         }
-          
+
       }
       showClaimMessage = () => {
         return (
@@ -111,13 +111,13 @@ class ViewAllBadgesToBeClaimed extends Component {
             console.log(claimBadge);
             return (
                 <div>
-                    <GridTile  key={index} style={styles.grid}> 
+                    <GridTile  key={index} style={styles.grid}>
                         <Paper style={paperStyle} zDepth={1} rounded={false} >
                             <GridList cols={2}>
-                                <GridTile  cols={1} rows={1} key={index} style={styles.gridTile}> 
+                                <GridTile  cols={1} rows={1} key={index} style={styles.gridTile}>
                                     {this.renderBadgeImage(claimBadge)}
                                 </GridTile>
-                                <GridTile    cols={1} rows={1} key={index} style={styles.gridTile}> 
+                                <GridTile    cols={1} rows={1} key={index} style={styles.gridTile}>
                                     <b>Category:</b> {claimBadge.level.category.name}
                                     <br></br>
                                     <b>Badge Name:</b> {claimBadge.description}
@@ -125,7 +125,7 @@ class ViewAllBadgesToBeClaimed extends Component {
                                     <b>Level:</b> {claimBadge.level.name}
                                     <br></br>
                                     <br></br>
-                                    {this.showClaimData(claimBadge)}                                   
+                                    {this.showClaimData(claimBadge)}
                                 </GridTile>
                             </GridList>
                         </Paper>
@@ -134,13 +134,13 @@ class ViewAllBadgesToBeClaimed extends Component {
             );
         })
     }
-    
+
     renderImage = (color, classType) => {
-        
+
         const badge =  <i class={classType} aria-hidden="true" style={{"color":color}}></i>
-        return (     
-            <div>  
-                { badge }     
+        return (
+            <div>
+                { badge }
             </div>
         );
     }
@@ -157,21 +157,21 @@ class ViewAllBadgesToBeClaimed extends Component {
                         {this.renderImage(colors.silver, 'fa fa-shield fa-4x')}
                     </div>
                 );
-            
+
         } else if(claimBadge.imageFileName === 'bronze') {
                 return (
                     <div>
                         {this.renderImage(colors.bronze, 'fa fa-shield fa-4x')}
                     </div>
                 );
-           
+
         } else if(claimBadge.imageFileName === 'platinum') {
                 return (
                     <div>
                         {this.renderImage(colors.platinum, 'fa fa-shield fa-4x')}
                     </div>
                 );
-            
+
         } else if(claimBadge.imageFileName === 'diamond') {
             return (
                 <div>
@@ -179,13 +179,14 @@ class ViewAllBadgesToBeClaimed extends Component {
                 </div>
             );
     }
-   
+
     }
 
     render = () => {
-        
+
         return (
             <div>
+                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0"}}>Badges Widget</div>
                 <GridList cols={2} cellHeight='180px' style={{"align": "center"}}>
                     {(this.props.badgesToBeClaimedList != undefined && this.props.badgesToBeClaimedList.length>0)?this.renderBadges():<div></div>}
                 </GridList>
@@ -198,4 +199,3 @@ class ViewAllBadgesToBeClaimed extends Component {
 }
 
 export default ViewAllBadgesToBeClaimed;
-

@@ -17,10 +17,10 @@ const styles = {
 }
 class EventTimelineWidget extends Component {
 
-    
+
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateEventTimelineInfo(JSON.parse(response.data));    
+            this.props.updateEventTimelineInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -62,7 +62,7 @@ class EventTimelineWidget extends Component {
             return  "#8BC34A";
         }
     }
-    
+
 
     /**
      * @name renderEvents
@@ -88,11 +88,13 @@ class EventTimelineWidget extends Component {
 
     render = () => {
         return (
-            <div style= {styles.timeline}>
-                <h3>This is event timeline!</h3>
+            <div>
+                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0"}}>Events Timeline</div>
+                <div  style= {styles.timeline} className="inner-container">
                 <Timeline>
                     {this.props.events.length > 0 ? this.renderEvents() : <div></div>}
                 </Timeline>
+                </div>
             </div>
 
         )

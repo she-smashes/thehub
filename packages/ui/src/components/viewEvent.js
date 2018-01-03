@@ -16,9 +16,9 @@ import {Link} from 'react-router-dom';
 import * as qs from 'querystring';
 
 /**
- * 
+ *
  * This class the component for rendering the events in the approval page.
- * 
+ *
  */
 
 class ViewEvent extends Component {
@@ -44,12 +44,12 @@ class ViewEvent extends Component {
                 categoryId = queryParams.categoryId;
             }
         }
-        
+
         this.props.getEventList(this.props.userInfo.id, categoryId).then((response, error) => {
             if(categoryId !== '' && categoryId !== undefined) {
-                this.props.updateCategoryEventsInfo(JSON.parse(response.data));    
+                this.props.updateCategoryEventsInfo(JSON.parse(response.data));
             } else {
-                this.props.updateViewEventsInfo(JSON.parse(response.data));    
+                this.props.updateViewEventsInfo(JSON.parse(response.data));
             }
           }, (error) => {
             console.log(error);
@@ -59,8 +59,8 @@ class ViewEvent extends Component {
     /**
      * This method renders the list of events.
      */
-    renderEvents = () => {   
-       
+    renderEvents = () => {
+
         return this.props.viewEvents.map((event, index) => {
             return <ListItem
             key={index}
@@ -74,12 +74,12 @@ class ViewEvent extends Component {
     }
 
     render = () => {
-        return (       
-            <div>
+        return (
+            <div className="list-data">
                 <h3>List of Events </h3>
                 <div id="ViewEvent">
                     {
-                        
+
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
                         }
                 </div>
