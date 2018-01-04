@@ -105,7 +105,7 @@ class ProgressWidget extends Component {
         } else if (pointsNeededForNextLevel <= 0) {
             msg = "You have completed " + "Level " + (parseInt(currentLevel))
         } else {
-            msg = "You need " + pointsNeededForNextLevel + " more points to reach level " + (parseInt(currentLevel) + 1)
+            msg = "You need " + pointsNeededForNextLevel + " more points to reach level " + (parseInt(currentLevel))
         }
 
         return (

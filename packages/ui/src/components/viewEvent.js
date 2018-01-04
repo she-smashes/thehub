@@ -14,11 +14,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 import {Link} from 'react-router-dom';
 import * as qs from 'querystring';
+import emptyevent from '../images/emptyevent.png';
+
 
 /**
- *
+ * 
  * This class the component for rendering the events in the approval page.
- *
+ * 
  */
 
 class ViewEvent extends Component {
@@ -44,12 +46,12 @@ class ViewEvent extends Component {
                 categoryId = queryParams.categoryId;
             }
         }
-
+        
         this.props.getEventList(this.props.userInfo.id, categoryId).then((response, error) => {
             if(categoryId !== '' && categoryId !== undefined) {
-                this.props.updateCategoryEventsInfo(JSON.parse(response.data));
+                this.props.updateCategoryEventsInfo(JSON.parse(response.data));    
             } else {
-                this.props.updateViewEventsInfo(JSON.parse(response.data));
+                this.props.updateViewEventsInfo(JSON.parse(response.data));    
             }
           }, (error) => {
             console.log(error);
@@ -60,30 +62,35 @@ class ViewEvent extends Component {
      * This method renders the list of events.
      */
     renderEvents = () => {
-
-        return this.props.viewEvents.map((event, index) => {
-            return <ListItem
-            key={index}
-            primaryText={
-                <div>
-                    <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+        if (this.props.viewEvents.length <= 0) {
+            return (
+                <div>                        
+                    <img src={emptyevent} style={{ 'align-items': 'center' }} />
                 </div>
-            }
-            className = "event-timeline"/>
-        });
+            );
+        } else {
+            return this.props.viewEvents.map((event, index) => {
+                return <ListItem
+                    key={index}
+                    primaryText={
+                        <div>
+                            <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+                        </div>
+                    }
+                    className="event-timeline" />
+            });
+        }
     }
 
     render = () => {
-        return (
-            <div className="list-data">
-                <h3>List of Events </h3>
+        return (       
+            <div>
+                
                 <div id="ViewEvent">
                     {
-
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
-                        }
+                    }
                 </div>
-                {/* { this.showDetails(1) } */}
                 <div id="eventDetails"></div>
             </div>
 

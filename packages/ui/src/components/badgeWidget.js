@@ -81,7 +81,7 @@ class BadgeWidget extends Component {
         if(categoryId !== '') {
             return (
                 <div>
-                    <Link to={`/viewevents?${categoryId}`}>View Events to score</Link>
+                    <Link to={`/viewevents?categoryId=${categoryId}`}>View Events to score</Link>
                 </div>
             );
         } else {
