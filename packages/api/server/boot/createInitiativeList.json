@@ -2,8 +2,8 @@
   "initiative": [
     {"title": "Prayaas", "description": "Helping people", "status":"not approved", "createdOn":"2017-05-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver1"},
     {"title": "Fitness", "description": "Keeping people fit", "status":"not approved", "createdOn":"2017-06-01T11:49:20.305Z", "leadUser":"customer2", "createdByUser":"approver1"},
-    {"title": "Run for fun", "description": "Marathon for Sapient Nitro", "status":"not approved", "createdOn":"2017-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
-    {"title": "Silent Auction", "description": "Silent Auction is a Sapient India corporate social responsibility initiative run once every two years. The two-fold objectives are:To bring the Sapient India community together and, To highlight our Corporate Social Responsibility effort and people contribution.", "status":"not approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
+    {"title": "Run for fun", "description": "Marathon", "status":"not approved", "createdOn":"2017-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
+    {"title": "Silent Auction", "description": "Silent Auction is a India corporate social responsibility initiative run once every two years. The two-fold objectives are:To bring the India community together and, To highlight our Corporate Social Responsibility effort and people contribution.", "status":"not approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"},
     {"title": "Annual Sports Tournament", "description": "Annual Sports Tournament", "status":"not approved", "createdOn":"2015-04-01T11:49:20.305Z", "leadUser":"customer1", "createdByUser":"approver2"}
   ]
 }

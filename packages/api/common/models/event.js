@@ -254,9 +254,12 @@ module.exports = function(Event) {
   /**
   * This remote method is to update the attendance for the event.
   */
-  Event.updateAttendance = function(ctx, userRoles,
-    eventId, attendanceFlag, cb) {
+  Event.updateAttendance = function(ctx, data, cb) {
     const promises = [];
+
+    let eventId = data['eventId'];
+    let userRoles = data['userRoles'];
+    let attendanceFlag = data['attendanceFlag'];
 
     // Find the event details
     Event.find({
@@ -265,7 +268,6 @@ module.exports = function(Event) {
       },
     }, function(err, eventInstance) {
       let eventHours = eventInstance[0].hours;
-
       // Iterate over the roles
       Object.keys(userRoles).forEach(function(roleId) {
         // Iterate over the users for each role (participant) type
@@ -336,16 +338,9 @@ module.exports = function(Event) {
         http: {source: 'context'},
       },
       {
-        arg: 'userRoles',
+        arg: 'data',
         type: 'object',
-      },
-      {
-        arg: 'eventId',
-        type: 'string',
-      },
-      {
-        arg: 'attendanceFlag',
-        type: 'string',
+        http: {source: 'body'},
       },
     ],
     http: {

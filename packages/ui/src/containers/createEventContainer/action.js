@@ -94,6 +94,9 @@ export const sendEventDetails = (eventObj, userInfoObj) => {
           "participantId": eventObj.participantsSelected,
           "categoryId": categoryId
         };
+        if(eventObj.eventHours !== undefined) {
+          postBody['hours'] = eventObj.eventHours;
+        }
         postBody = JSON.stringify(postBody)
         return client
           .apis

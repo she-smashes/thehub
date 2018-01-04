@@ -38,6 +38,7 @@ const styles = {
     },
 };
 
+
 class ProgressWidget extends Component {
 
     constructor(props) {
