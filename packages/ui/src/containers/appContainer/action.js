@@ -55,7 +55,7 @@ export const getUserInfo = (userInfo) => {
     return Swagger(process.env.REACT_APP_API_URI,
       {
         requestInterceptor: (req) => {
-
+          req.headers['Authorization'] = userInfo.id;
           return req;
         },
       })
