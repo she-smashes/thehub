@@ -40,7 +40,7 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return { backgroundColor: "#B1EA7B", color: "#000000",  "font-weight": "bold", "padding": "3px"};
+            return { backgroundColor: "#F9C454", color: "#000000",  "font-weight": "bold", "padding": "3px"};
         }
         // Present events
         else {
@@ -55,7 +55,7 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return  "#B1EA7B";
+            return  "#F9C454";
         }
         // Present events
         else {
@@ -80,7 +80,13 @@ class EventTimelineWidget extends Component {
                 style={{ borderRadius: 3 }}
                 cardHeaderStyle={ this.resolveBackgroundColor(event.startDate, event.endDate) }
             >
-            <b style={{padding: "5px"}}>{event.title}</b>
+           
+            <Link to={`/eventDetails/${event.id}`}> 
+                <b style={{padding: "5px", color: "black"}}>
+                    {event.title}
+                </b>
+            </Link>
+           
             </TimelineEvent>
         })
     }

@@ -28,7 +28,11 @@ const styles = {
         'transition': 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
     }
 }
-
+const location = [
+    <MenuItem key={1} value="Bangalore" primaryText="Bangalore" />,
+    <MenuItem key={2} value="Noida" primaryText="Noida" />,
+    <MenuItem key={3} value="Gurgaon" primaryText="Gurgaon" />,
+];
 class CreateEvent extends Component {
     /**
      * Class constructor.
@@ -57,6 +61,7 @@ class CreateEvent extends Component {
                 location: '',
                 categoryType: '',
                 subCategoryType: '',
+                eventHours: '',
                 eventTypeSelected: '',
                 participantsSelected: []
             },
@@ -112,6 +117,13 @@ class CreateEvent extends Component {
              });
         });
     }
+
+    onLocationDropdownChange = (event, index, value) => {
+        this.setState({
+            createEventformData: { ...this.state.createEventformData, location: value }
+        });
+    };
+
     /**
      * Function to validate the form
      *
@@ -156,6 +168,10 @@ class CreateEvent extends Component {
         if (!fields["eventTypeSelected"]) {
             formIsValid = false;
             errors["eventType"] = "Select event type";
+        }
+        if (fields["eventTypeSelected"] === 'hourly' && !fields["eventHours"]) {
+            formIsValid = false;
+            errors["eventHours"] = "Enter Event Hours";
         }
         if (!fields["participantsSelected"]) {
             formIsValid = false;
@@ -483,7 +499,9 @@ class CreateEvent extends Component {
                         </div>
                     </div>
                     <div className="field-line">
-                        <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
+                        <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value) => this.onLocationDropdownChange(event, index, value)} errorText={this.state.errors.location}>
+                            {location}
+                        </SelectField>
                     </div>
 
                     <div className="field-line">
@@ -541,6 +559,16 @@ class CreateEvent extends Component {
                     <div className="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
+                        {
+                            this.state.createEventformData.eventTypeSelected === 'hourly' ? 
+                                <div className="field-line">
+                                    <TextField floatingLabelText="No Of Hours" className="align-left" name="eventHours" onChange={this.changeUser} value={this.state.createEventformData.eventHours} errorText={this.state.errors.eventHours} />
+                                </div> 
+                                : 
+                                <div></div>
+                        }
+
+                        
                     </div>
                     <div className="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
@@ -549,7 +577,7 @@ class CreateEvent extends Component {
                     <div style={styles.errorText} className="align-left">
                     <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
-                    </div>
+                    </div>                
 
                     <div className="button-line margin35">
                         <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />

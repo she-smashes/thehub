@@ -16,6 +16,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import {Link} from 'react-router-dom';
 
 class EventDetails extends Component {
   constructor(props) {
@@ -111,6 +112,14 @@ class EventDetails extends Component {
     }
   }
 
+  showUploadAttendanceButton = () => {
+    if (this.props.eventDetails.status === 'approved' && Moment() < Moment(this.props.eventDetails.endDate)) {
+      return (
+        <Link to={`/uploadattendance/${this.props.match.params.id}`}>Upload Attendance</Link>
+      );
+    }
+  }
+
   renderEventEnrollments = () => {   
     
      return this.props.eventEnrollmentsDetails.map((event, index) => {
@@ -128,18 +137,18 @@ class EventDetails extends Component {
    return (
     <Table style={{"width":'50%'}}>
     <TableHeader displaySelectAll ={false} adjustForCheckbox={false}>
-    <TableRow>
-      <TableHeaderColumn colSpan="2" tooltip="Participants details" style={{textAlign: 'center'}}>
-      Participants details
-      </TableHeaderColumn>
-    </TableRow>
+      <TableRow>
+        <TableHeaderColumn colSpan="2" tooltip="Participants details" style={{textAlign: 'center'}}>
+        Participants details
+        </TableHeaderColumn>
+      </TableRow>
       <TableRow>
         <TableHeaderColumn  tooltip="The user name" >User Name</TableHeaderColumn>
         <TableHeaderColumn  tooltip="Registered for the event on" >Registered On</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
-    {(this.props.eventEnrollmentsDetails && this.props.eventEnrollmentsDetails.length > 0) ?  this.renderEventEnrollments(): <div> </div>}
+    {this.renderEventEnrollments()}
     </TableBody>
     </Table>
    );
@@ -159,12 +168,30 @@ class EventDetails extends Component {
           <h1 className=""> {this.props.eventDetails.title} </h1>
           <span className="date"> {Moment(this.props.eventDetails.startDate).format('LL') + " - " +
             Moment(this.props.eventDetails.endDate).format('LL')}</span>
-            <p className="" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description}}/>
+          <p className="" dangerouslySetInnerHTML={{ __html: this.props.eventDetails.description }} />
+          <span className="hours"> <b>Event Hours: </b>{this.props.eventDetails.hours} </span>
+          <br></br>
+          <br></br>
           {this.showRegisterButton()}
+          <br></br>
+          <br></br>
+          <div className="event-attendance">
+            {
+              (this.props.userInfo.userId === this.props.eventDetails.createdBy) ?
+                this.showUploadAttendanceButton() : <div></div>
+            }
+          </div>
         </div>
+        
         <div className="event-participants">
-        {this.props.userInfo.userId === this.props.eventDetails.createdBy ? this.renderEventEnrollmentsDetails():<div></div>}
+        {
+          (this.props.userInfo.userId === this.props.eventDetails.createdBy && 
+          this.props.eventEnrollmentsDetails && 
+          this.props.eventEnrollmentsDetails.length > 0) ? 
+          this.renderEventEnrollmentsDetails():<div></div>
+        }
         </div>
+        
       </div>
     );
   }

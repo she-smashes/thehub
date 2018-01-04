@@ -47,7 +47,6 @@ class ViewAllBadges extends Component {
 
     componentDidMount = () => {
         this.props.getAllBadgesList(this.props.userInfo.id).then((response, error) => {
-            console.log(response);
             this.props.updateAllBadgesInfo(JSON.parse(response.data));
         }, (error) => {
             console.log(error);
@@ -66,7 +65,7 @@ class ViewAllBadges extends Component {
                 return (
                     <GridList cols={6} cellHeight='180px' >
                         <GridTile key={index} cols={6} rows={1} style={styles.grid}>
-                        {userBadges[0].badge.level.category.name}
+                        <b>{userBadges[0].badge.level.category.name}</b>
                         </GridTile>
                         <Paper style={paperStyle} zDepth={1} rounded={false} >
                         {this.renderCategoryBadges(userBadges)}
@@ -75,11 +74,8 @@ class ViewAllBadges extends Component {
                 );
             });
         }
-
     }
-
     renderCategoryBadges = (userBadges) => {
-
         return userBadges.map((userBadge, index) => {
             return (
                 <div key={index}>
@@ -88,11 +84,8 @@ class ViewAllBadges extends Component {
                     </GridTile>
                 </div>
             );
-        })
-
-
+        });
     }
-
     renderBadgeImage = (userBadge) => {
 
         if (userBadge.badge.imageFileName === 'gold') {
@@ -135,6 +128,16 @@ class ViewAllBadges extends Component {
                     <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>
                 );
             }
+        } else if (userBadge.badge.imageFileName === 'diamond') {
+            if (userBadge.userId !== undefined && userBadge.userId !== '') {
+                return (
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.diamond}}></i>                    
+                );
+            } else {
+                return (
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.diamond}}></i>                    
+                );
+            }
         }
 
     }
@@ -142,7 +145,7 @@ class ViewAllBadges extends Component {
     render = () => {
         return (
             <div style={styles.border}>
-                <h3>List of Badges</h3>
+                <h3>Badges</h3>
                 {(this.props.badges != undefined) ? this.renderBadges() : <div></div>}
             </div>
 

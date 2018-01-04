@@ -43,11 +43,14 @@ class ClaimYourBadgeWidget extends Component {
      */
     renderBadges = () => {
         return (
-            <div>
-                <Link to={`/viewallbadgestobeclaimed`}>
-                    <img src={congratulations} style={{ 'align-items': 'center' }} />
-                </Link>
+            <div className="claim-badge event-timeline well">
+                <div>
+                    <Link to={`/viewallbadgestobeclaimed`}>
+                        <img src={congratulations} style={{ 'align-items': 'center' }} />
+                    </Link>
+                </div>
             </div>
+
         );
     }
 
@@ -59,7 +62,7 @@ class ClaimYourBadgeWidget extends Component {
     render = () => {
         return (
             <div>
-                {(this.props.badgesCanBeClaimedList != undefined && this.props.badgesCanBeClaimedList.length > 0) ? this.renderBadges() : <div></div>}
+                {(this.props.badgesCanBeClaimedList != undefined && this.props.badgesCanBeClaimedList.length > 0) ? this.renderBadges() : <div style={{"margin-bottom": "20px"}}></div>}
             </div>
         )
     }
