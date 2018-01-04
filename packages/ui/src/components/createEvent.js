@@ -57,6 +57,7 @@ class CreateEvent extends Component {
                 location: '',
                 categoryType: '',
                 subCategoryType: '',
+                eventHours: '',
                 eventTypeSelected: '',
                 participantsSelected: []
             },
@@ -156,6 +157,10 @@ class CreateEvent extends Component {
         if (!fields["eventTypeSelected"]) {
             formIsValid = false;
             errors["eventType"] = "Select event type";
+        }
+        if (fields["eventTypeSelected"] === 'hourly' && !fields["eventHours"]) {
+            formIsValid = false;
+            errors["eventHours"] = "Enter Event Hours";
         }
         if (!fields["participantsSelected"]) {
             formIsValid = false;
@@ -541,6 +546,16 @@ class CreateEvent extends Component {
                     <div class="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
+                        {
+                            this.state.createEventformData.eventTypeSelected === 'hourly' ? 
+                                <div className="field-line">
+                                    <TextField floatingLabelText="No Of Hours" className="align-left" name="eventHours" onChange={this.changeUser} value={this.state.createEventformData.eventHours} errorText={this.state.errors.eventHours} />
+                                </div> 
+                                : 
+                                <div></div>
+                        }
+
+                        
                     </div>
                     <div class="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
@@ -549,7 +564,7 @@ class CreateEvent extends Component {
                     <div style={styles.errorText} className="align-left">
                     <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
-                    </div>
+                    </div>                
 
                     <div className="button-line margin35">
                         <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />
