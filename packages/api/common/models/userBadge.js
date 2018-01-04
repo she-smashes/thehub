@@ -120,7 +120,9 @@ module.exports = function(UserBadge) {
           let tempBadges = {
             'badge': resp,
           };
+
           let tBadge = tempBadges.badge.toJSON();
+
           let nextPoints = tBadge.level.pointsEndRange;
           if (catScoreMap[tBadge.level.categoryId] !== undefined) {
             nextPoints = tBadge.level.pointsEndRange -
@@ -187,7 +189,8 @@ module.exports = function(UserBadge) {
           let tempBadges = {
             'badge': resp,
           };
-          let tBadge = tempBadges.badge.toJSON();
+
+          let tBadge = tempBadges.badge;
 
           let nextPoints = tBadge.level.pointsEndRange;
           if (catScoreMap[tBadge.level.categoryId] !== undefined) {
