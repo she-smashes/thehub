@@ -206,7 +206,8 @@ class CreateEvent extends Component {
               this.props.getUserInfo(this.props.userInfo)
               .then((response, error) => {
                 // You get the logged in response here
-                this.props.updateNotificationCount(JSON.parse(response.data));
+                this.props.userInfo.notificationCount = JSON.stringify(response.obj.count);
+                this.props.updateNotificationCount(JSON.parse(response.obj.count));
                 History.push("/");
 
               }, (error) => {

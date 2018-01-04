@@ -63,7 +63,7 @@ export const getUserInfo = (userInfo) => {
         return client
           .apis
           .user
-          .user_findById({id: userInfo.userId});
+          .user_getNotificationCount();
       });
   }
 
