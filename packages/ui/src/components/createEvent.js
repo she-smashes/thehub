@@ -28,7 +28,11 @@ const styles = {
         'transition': 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
     }
 }
-
+const location = [
+    <MenuItem key={1} value="Bangalore" primaryText="Bangalore" />,
+    <MenuItem key={2} value="Noida" primaryText="Noida" />,
+    <MenuItem key={3} value="Gurgaon" primaryText="Gurgaon" />,
+];
 class CreateEvent extends Component {
     /**
      * Class constructor.
@@ -113,6 +117,13 @@ class CreateEvent extends Component {
              });
         });
     }
+
+    onLocationDropdownChange = (event, index, value) => {
+        this.setState({
+            createEventformData: { ...this.state.createEventformData, location: value }
+        });
+    };
+
     /**
      * Function to validate the form
      *
@@ -488,7 +499,9 @@ class CreateEvent extends Component {
                         </div>
                     </div>
                     <div className="field-line">
-                        <TextField floatingLabelText="Location" className="align-left" name="location" onChange={this.changeUser} value={this.state.createEventformData.location} errorText={this.state.errors.location} />
+                        <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value) => this.onLocationDropdownChange(event, index, value)} errorText={this.state.errors.location}>
+                            {location}
+                        </SelectField>
                     </div>
 
                     <div className="field-line">
