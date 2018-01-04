@@ -50,6 +50,26 @@ module.exports = function(User) {
     }
     next();
   });
+  User.getNotificationCount = function(ctx, cb) {
+    User.app.models.Task.count({status: 'Pending'}, function(err, count) {
+      if (count > 0) {
+        cb(null, count);
+      }
+    });
+  };
+  User.remoteMethod('getNotificationCount', {
+    accepts: [
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
+    ],
+    http: {
+      path: '/get-notification-count',
+      verb: 'get',
+    },
+    returns: {
+      arg: 'count',
+      type: 'string',
+    },
+  });
 };
 
 function getPermissibleActions(user, accessToken) {
