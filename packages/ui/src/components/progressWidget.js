@@ -38,7 +38,6 @@ const styles = {
     },
 };
 
-
 class ProgressWidget extends Component {
 
     constructor(props) {
@@ -167,7 +166,7 @@ class ProgressWidget extends Component {
         return (
             <div>
                 <div id="ViewEvent">
-                    <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0", "text-align":"left" }}>Progress Widget</div>
+                    <div style={{"boxSizing": "border-box" , "color": "rgb(255, 255, 255)", "fontSize": "24px", "fontWeight": "300", "lineHeight": "48px", "paddingLeft": "16px", "width": "100%", "backgroundColor": "#f0ad4e", "borderRadius":"10px 10px 0 0", "text-align":"left" }}>Progress Widget</div>
                     <div className="inner-container">
                     <GridList style={styles.gridList} cols={2.2}>
                         {

@@ -32,6 +32,7 @@ import participants from './containers/createEventContainer/participantsReducer'
 import badgesToBeClaimedList from './containers/ViewAllBadgesToBeClaimedContainer/reducer';
 import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer';
 import eventData from './containers/uploadAttendanceContainer/reducer';
+import updateCount from './containers/appContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';

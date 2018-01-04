@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import CreateEvent from '../../components/createEvent';
 import {sendEventDetails, getApprovedInitiatives, getCategories, getParticipantList, updateParticipantsList, updateCategoriesList, updateApprovedInitiativesList} from './action';
-import {verifyUser} from '../appContainer/action';
+import {verifyUser,getUserInfo, updateNotificationCount} from '../appContainer/action';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,6 +18,12 @@ const mapDisptchToProps = (dispatch, ownProps) => {
   return {
     sendEventDetails : (eventObj,userInfoObj) => {
        return dispatch(sendEventDetails(eventObj,userInfoObj, dispatch))
+    },
+    getUserInfo : (userInfo) => {
+      return dispatch(getUserInfo(userInfo, dispatch))
+    },
+    updateNotificationCount : (userInfo) => {
+      return dispatch(updateNotificationCount(userInfo))
     },
     getApprovedInitiatives : (userInfo) => {
       return dispatch(getApprovedInitiatives(userInfo, dispatch))

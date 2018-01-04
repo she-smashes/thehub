@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
 import LoginWidget from '../../components/login';
-import {getUserInfo, updateUserInfo} from './action';
+import {loginUser, updateUserInfo} from './action';
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
   return {
     user: state.userInfo
   }
@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getUserInfo : (userInfo) => {
-      return dispatch(getUserInfo(userInfo, dispatch))
+    loginUser : (userInfo) => {
+      return dispatch(loginUser(userInfo, dispatch))
     },
     updateUserInfo : (userInfo) => {
       return dispatch(updateUserInfo(userInfo))

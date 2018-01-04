@@ -40,7 +40,7 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return { backgroundColor: "#F9C454", color: "#000000",  "font-weight": "bold", "padding": "3px"};
+            return { backgroundColor: "#B1EA7B", color: "#000000",  "font-weight": "bold", "padding": "3px"};
         }
         // Present events
         else {
@@ -55,7 +55,7 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return  "#F9C454";
+            return  "#B1EA7B";
         }
         // Present events
         else {
@@ -80,13 +80,7 @@ class EventTimelineWidget extends Component {
                 style={{ borderRadius: 3 }}
                 cardHeaderStyle={ this.resolveBackgroundColor(event.startDate, event.endDate) }
             >
-           
-            <Link to={`/eventDetails/${event.id}`}> 
-                <b style={{padding: "5px", color: "black"}}>
-                    {event.title}
-                </b>
-            </Link>
-           
+            <b style={{padding: "5px"}}>{event.title}</b>
             </TimelineEvent>
         })
     }
@@ -95,7 +89,7 @@ class EventTimelineWidget extends Component {
     render = () => {
         return (
             <div>
-                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0"}}>Events Timeline</div>
+                <div style={{"boxSizing": "border-box" , "color": "rgb(255, 255, 255)", "fontSize": "24px", "fontWeight": "300", "lineHeight": "48px", "paddingLeft": "16px", "width": "100%", "backgroundColor": "#f0ad4e", "borderRadius":"10px 10px 0 0"}}>Events Timeline</div>
                 <div  style= {styles.timeline} className="inner-container">
                 <Timeline>
                     {this.props.events.length > 0 ? this.renderEvents() : <div></div>}
