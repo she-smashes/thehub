@@ -7,6 +7,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {List, ListItem} from 'material-ui/List';
+import {Link} from 'react-router-dom';
+
 class ViewInitiative extends Component {
 
     componentDidMount =  () => {
@@ -40,11 +42,14 @@ class ViewInitiative extends Component {
     }
 
     renderInitiatives = () => {
-        return this.props.viewInitiatives.map((event, index) => {
+        return this.props.viewInitiatives.map((initiative, index) => {
             return <ListItem
             key={index}
-            primaryText={event.title}
-            onClick= {() => this.showDetails(event.id)}
+            primaryText={
+                <div>
+                    <Link to={`/initiativeDetails/${initiative.id}`}>{initiative.title}</Link>
+                </div>
+            }
             />
         })
     }
@@ -56,7 +61,6 @@ class ViewInitiative extends Component {
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }
                 </List>
-                {/* { this.showDetails(1) } */}
                 <div id="initiativeDetails"></div>
             </div>
 

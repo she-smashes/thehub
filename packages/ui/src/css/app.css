@@ -92,6 +92,41 @@ a:hover {
     color:#fff;
 }
 
+
+
+
+
+.m-controls .x-slider {
+  width: 100%;
+}
+.m-nested {
+  width: 350px;
+  /*padding: 50px;*/
+  height:  147px;
+}
+.m-nested .example {
+  position: relative;
+}
+.m-nested svg {
+  position: absolute;
+}
+.m-nested .label-1 {
+  top: 0;
+  left: 0;
+}
+.m-nested .label-2 {
+  top: 30px;
+  left: 30px;
+}
+.m-nested .label-3 {
+  top: 55px;
+  left: 55px;
+}
+
+.shield-style {
+  padding: 20px;
+  margin-left: 20px;
+}
 .navbar.navbar-inverse.navbar-hub
  button svg{
    color: #fff !important;

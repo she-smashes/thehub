@@ -46,6 +46,60 @@ class Task extends Component {
           });
     }
 
+    renderEventTask = (item) => {
+        return (
+            <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
+                <b>Type: </b> {item.type}
+                <br /> <br />
+                <b>Date & Time: </b> {Moment(item.approvable.startDate).format('LL') + " - " + Moment(item.approvable.endDate).format('LL')}
+                <br /> <br />
+                <b>Location: </b> {item.approvable.location}
+                <br /> <br />
+                <div>
+                    <b>Description: </b>
+                    <p className="" dangerouslySetInnerHTML={{ __html: item.approvable.description }} />
+                </div>
+                <br /> <br />
+                <div className="button-line">
+                    <RaisedButton type="submit" label="APPROVE" primary key={item.id} onClick={() => { this.processForm(item.id) }} />
+                </div>
+            </AccordionItem>
+        );
+    }
+
+    renderInitiativeTask = (item) => {
+        return (
+            <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
+                <b>Type: </b> {item.type}
+                <br /> <br />
+                <div>
+                    <b>Description: </b>
+                    <p className="" dangerouslySetInnerHTML={{ __html: item.approvable.description }} />
+                </div>
+                <br /> <br />
+                <div className="button-line">
+                    <RaisedButton type="submit" label="APPROVE" primary key={item.id} onClick={() => { this.processForm(item.id) }} />
+                </div>
+            </AccordionItem>
+        );
+    }
+
+    renderEnrollmentTask = (item) => {
+        let title =  "Attendance Approval for "  + item.approvable.title;
+        return (
+            <AccordionItem class="react-sanfona-item" title={title} key={item.id}>
+                <div>
+                    <b>Description: </b>
+                    <p className="" >Attendance Approval</p>
+                </div>
+                <br /> <br />
+                <div className="button-line">
+                    <RaisedButton type="submit" label="APPROVE" primary key={item.id} onClick={() => { this.processForm(item.id) }} />
+                </div>
+            </AccordionItem>
+        );
+    }
+
     /**
      * This method renders the list of tasks in an accordion format.
      */
@@ -53,27 +107,17 @@ class Task extends Component {
 
         return (
             <Accordion class="react-sanfona">
-                {this.props.viewTasks.map(item => {
-                        return (
-                            <AccordionItem class="react-sanfona-item" title={item.approvable.title} key={item.id}>
-                                <b>Type: </b> {item.type}
-                                <br /> <br />
-                                <b>Date & Time: </b> {Moment(item.approvable.startDate).format('LL') + " - " + Moment(item.approvable.endDate).format('LL')}
-                                <br /> <br />
-                                <b>Location: </b> {item.approvable.location}
-                                <br /> <br />
-                                <div>
-                                <b>Description: </b>
-                                <p className="" dangerouslySetInnerHTML={{ __html: item.approvable.description}}/>
-                                </div>
-                                <br /> <br />
-                                <div className="button-line">
-                                    <RaisedButton type="submit" label="APPROVE" primary  key={item.id} onClick={()=>{this.processForm(item.id)}}/>
-                                </div>
-                            </AccordionItem>
-                        );
-
-                })}
+                {
+                    this.props.viewTasks.map(item => {
+                        if(item.type === 'event') {
+                            return this.renderEventTask(item);
+                        } else if(item.type === 'initiative') {
+                            return this.renderInitiativeTask(item);
+                        } else if(item.type === 'enrollment') {
+                            return this.renderEnrollmentTask(item);
+                        }
+                    })
+                }
             </Accordion>
         );
     }

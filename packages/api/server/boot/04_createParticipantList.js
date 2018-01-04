@@ -11,17 +11,19 @@ module.exports = function(app, cb) {
 
     modelItems.forEach(modelItem => {
       promises.push(Model.upsertWithWhere(
-        {'participantType': modelItem.participantType,
-          'hourly': modelItem.hourly}
+        {
+          'participantType': modelItem.participantType,
+          'hourly': modelItem.hourly,
+        }
         , modelItem));
     });
   });
 
-	 Promise.all(promises.map(p => p.catch(() => undefined)))
-			.then((res) => {
-  console.log('Participants set up', res.length);
-  return cb();
-});
+  Promise.all(promises.map(p => p.catch(() => undefined)))
+    .then((res) => {
+      console.log('Participants set up', res.length);
+      return cb();
+    });
 };
 
 function errorHandler(promises) {

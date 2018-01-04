@@ -14,7 +14,6 @@ var dataSource = app.dataSource('testdb', {
 
 var models = require('../server/model-config.json');
 for (var key in models) {
-  console.log('key = ' + key);
   if (key !== '_meta') {
     var model = loopback.getModel(key);
     loopback.configureModel(model, {dataSource: dataSource});
@@ -123,12 +122,14 @@ async.each(tests, function(data, asyncCallback) {
             .end(function(err, res) {
               if (err) { return done(err); }
               assert.equal(res.status, expectStatus);
-              if (count === 'true') {
-                assert.isAbove(res.body[expectVar], expectValue);
-              } else if (method.toUpperCase() === 'POST') {
-                assert.isNotEmpty(res.body[expectVar] + '', expectValue);
-              } else {
-                assert.equal(res.body[expectVar] + '', expectValue);
+              if (expectStatus === '200') {
+                if (count === 'true') {
+                  assert.isAbove(res.body[expectVar], expectValue);
+                } else if (method.toUpperCase() === 'POST') {
+                  assert.isNotEmpty(res.body[expectVar] + '', expectValue);
+                } else {
+                  assert.equal(res.body[expectVar] + '', expectValue);
+                }
               }
               done();
             });

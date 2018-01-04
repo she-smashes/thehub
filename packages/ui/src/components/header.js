@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import '../css/header.css'
 import {LogoUrl, AvatarUrl} from '../constants/links.js'
 import Badge from 'material-ui/Badge';
+import Logo from '../images/logo.jpg';
 
 
 /**
@@ -49,7 +50,7 @@ class Header extends Component {
     return (<header className="project-hub-header">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
         <div className="header-project-title-container">
-          <img className="project-hub-logo header-project-image" src={LogoUrl} alt="Logo" />
+          <img className="project-hub-logo header-project-image" src={Logo} alt="Logo" />
           <span className="header-project-title">THE HUB</span>
         </div>
         {this.user()}

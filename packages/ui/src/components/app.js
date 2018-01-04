@@ -19,10 +19,13 @@ const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));
 const AsyncViewInitiative = asyncComponent(() => import('../containers/viewInitiativeContainer/index'));
+const AsyncInitiative = asyncComponent(() => import('../containers/initiativeDetailsContainer/index'));
 const AsyncCreateinitiative = asyncComponent(() => import('../containers/createInitiativeContainer/index'));
 const AsyncCreateEvent = asyncComponent(() => import('../containers/createEventContainer/index'));
 const AsyncViewApprovals = asyncComponent(() => import('../containers/viewApprovalContainer/index'));
 const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsContainer/index'));
+const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBadgesContainer/index'));
+const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
 
 
 class App extends Component {
@@ -41,11 +44,17 @@ class App extends Component {
               <Route path='/' exact={true} component={AsyncDashboard} />
               <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
               <Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
+              <Route path='/initiativedetails/:id' exact={true} component = {AsyncInitiative} />
               <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
               <Route path='/createevent' exact={true} component={AsyncCreateEvent} />
               <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
               <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
+              <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
+              <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
+
+
               <Route component={PageNotFound}/>
+
             </Switch>
           </div>
         }

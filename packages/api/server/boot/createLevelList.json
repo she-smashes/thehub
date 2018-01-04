@@ -1,0 +1,55 @@
+{
+  "level": [
+    {"name":"Level 1", "category": "Sports", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"1000"},	
+    {"name":"Level 2", "category": "Sports", "sequence": "2", "pointsStartRange": "1001", "pointsEndRange":"2000"},	
+    {"name":"Level 3", "category": "Sports", "sequence": "3", "pointsStartRange": "2001", "pointsEndRange":"3000"},	
+    {"name":"Level 4", "category": "Sports", "sequence": "4", "pointsStartRange": "3001", "pointsEndRange":"4000"},	
+
+
+    {"name":"Level 1", "category": "Music", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"500"},	
+    {"name":"Level 2", "category": "Music", "sequence": "2", "pointsStartRange": "501", "pointsEndRange":"1000"},	
+    {"name":"Level 3", "category": "Music", "sequence": "3", "pointsStartRange": "1001", "pointsEndRange":"1500"},	
+    {"name":"Level 4", "category": "Music", "sequence": "4", "pointsStartRange": "1501", "pointsEndRange":"2000"},	
+
+    {"name":"Level 1", "category": "Dance", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"500"},	
+    {"name":"Level 2", "category": "Dance", "sequence": "2", "pointsStartRange": "501", "pointsEndRange":"1000"},	
+    {"name":"Level 3", "category": "Dance", "sequence": "3", "pointsStartRange": "1001", "pointsEndRange":"1500"},	
+    {"name":"Level 4", "category": "Dance", "sequence": "4", "pointsStartRange": "1501", "pointsEndRange":"2000"},	
+        
+    {"name":"Level 1", "category": "CSR", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "CSR", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+
+    {"name":"Level 1", "category": "Cricket", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Cricket", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Cricket", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 4", "category": "Cricket", "sequence": "4", "pointsStartRange": "301", "pointsEndRange":"400"},	
+    {"name":"Level 5", "category": "Cricket", "sequence": "5", "pointsStartRange": "401", "pointsEndRange":"500"},
+
+    {"name":"Level 1", "category": "FootBall", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "FootBall", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "FootBall", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+        
+    {"name":"Level 1", "category": "Zumba", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Zumba", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+
+    {"name":"Level 1", "category": "Marathon", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Marathon", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Marathon", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+        
+    {"name":"Level 1", "category": "Carnatic", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Carnatic", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Carnatic", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    
+    {"name":"Level 1", "category": "Western", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Western", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Western", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+
+    {"name":"Level 1", "category": "Classical", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
+    {"name":"Level 2", "category": "Classical", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    
+    {"name":"Level 1", "category": "Western", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
+    {"name":"Level 2", "category": "Western", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    
+	{"name":"Level 1", "category": "Gifting", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"10"}	
+  ]
+}

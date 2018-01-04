@@ -33,7 +33,6 @@ class NavigationWidget extends Component {
 
  handleChange = (event, index, value) => this.setState({value});
   render = () => {
-    console.log('Navigatio', this.props)
     return (
       <div className="navbar navbar-inverse navbar-hub">
       <Toolbar style={{background:"#222d33", height:"45px", "fontSize":"14px", "paddingLeft":"200px"}}>

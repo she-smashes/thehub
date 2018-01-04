@@ -7,7 +7,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
+    "userId": {
       "type": "string",
       "required": true
     },
@@ -20,12 +20,22 @@
       "required": true
     },
     "type": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "category": {
+     "type": "belongsTo",
+     "model": "category",
+     "foreignKey": "categoryId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
