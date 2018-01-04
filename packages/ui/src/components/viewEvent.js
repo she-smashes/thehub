@@ -14,6 +14,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 import {Link} from 'react-router-dom';
 import * as qs from 'querystring';
+import emptyevent from '../images/emptyevent.png';
+
 
 /**
  * 
@@ -59,31 +61,36 @@ class ViewEvent extends Component {
     /**
      * This method renders the list of events.
      */
-    renderEvents = () => {   
-       
-        return this.props.viewEvents.map((event, index) => {
-            return <ListItem
-            key={index}
-            primaryText={
-                <div>
-                    <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+    renderEvents = () => {
+        if (this.props.viewEvents.length <= 0) {
+            return (
+                <div>                        
+                    <img src={emptyevent} style={{ 'align-items': 'center' }} />
                 </div>
-            }
-            className = "event-timeline"/>
-        });
+            );
+        } else {
+            return this.props.viewEvents.map((event, index) => {
+                return <ListItem
+                    key={index}
+                    primaryText={
+                        <div>
+                            <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
+                        </div>
+                    }
+                    className="event-timeline" />
+            });
+        }
     }
 
     render = () => {
         return (       
             <div>
-                <h3>List of Events </h3>
+                
                 <div id="ViewEvent">
                     {
-                        
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
-                        }
+                    }
                 </div>
-                {/* { this.showDetails(1) } */}
                 <div id="eventDetails"></div>
             </div>
 
