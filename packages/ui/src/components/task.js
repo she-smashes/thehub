@@ -5,15 +5,14 @@
  */
 
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import { List, ListItem } from 'material-ui/List';
-// import Divider from 'material-ui/Divider';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import './accordian.css';
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 import { DEFAULT_TASKS } from "../constants/actions";
 import { APPROVE_TASK } from "../constants/actions";
+import {Link} from 'react-router-dom';
+
 
 /**
  *
@@ -29,6 +28,17 @@ class Task extends Component {
     processForm = (taskId) => {
         this.props.approveTask(this.props.userInfo.id, taskId).then((response, error) => {
             this.props.updateTaskInfo(APPROVE_TASK, JSON.parse(response.data));
+            if(this.props.userInfo.allowedActionList.indexOf('task_count')) {
+                let notificationCount = 0;
+                if(this.props.userInfo.notificationCount !== undefined && 
+                    this.props.userInfo.notificationCount !== null ||
+                    this.props.userInfo.notificationCount !== '') {
+                    notificationCount = this.props.userInfo.notificationCount;
+                }
+                this.props.userInfo.notificationCount = parseInt(notificationCount) - 1;
+                let userString = JSON.stringify(this.props.userInfo)
+                this.props.updateUserInfo(JSON.parse(userString));
+            }
           }, (error) => {
             console.log(error);
           });
@@ -85,14 +95,25 @@ class Task extends Component {
     }
 
     renderEnrollmentTask = (item) => {
+        console.log(item);
         let title =  "Attendance Approval for "  + item.approvable.title;
         return (
             <AccordionItem class="react-sanfona-item" title={title} key={item.id}>
                 <div>
-                    <b>Description: </b>
-                    <p className="" >Attendance Approval</p>
+                    <b>Event Title: </b> {item.approvable.title}
+                    <br /> <br />
+
+                    <b>Event Date & Time: </b> {Moment(item.approvable.startDate).format('LL') + " - " + Moment(item.approvable.endDate).format('LL')}
+                    <br /> <br />
+                    <b>Event Location: </b> {item.approvable.location}
+                    <br /> <br />
+                    <div>
+                        <b>Event Description: </b>
+                        <p className="" dangerouslySetInnerHTML={{ __html: item.approvable.description }} />
+                    </div>
+                    <Link to={`/uploadattendance/${item.approvable.id}`}>View Uploaded Attendance</Link>
                 </div>
-                <br /> <br />
+                <br />
                 <div className="button-line">
                     <RaisedButton type="submit" label="APPROVE" primary key={item.id} onClick={() => { this.processForm(item.id) }} />
                 </div>
