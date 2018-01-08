@@ -5,7 +5,7 @@ import { AUTHORIZED_USER } from "../../constants/actions";
 * Logs in the user
 * @param {*the user data to login the user} userInfo
 */
-export const loginUser = (userInfo) => {
+export const loginUser  = (userInfo) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,

@@ -32,7 +32,9 @@ import participants from './containers/createEventContainer/participantsReducer'
 import badgesToBeClaimedList from './containers/ViewAllBadgesToBeClaimedContainer/reducer';
 import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer';
 import eventData from './containers/uploadAttendanceContainer/reducer';
-import updateCount from './containers/appContainer/reducer';
+
+import { reducer as reduxFormReducer } from 'redux-form';
+import userdet from './containers/simpleFormContainer/reducer';
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -53,7 +55,7 @@ const rootReducer = persistCombineReducers(config, {
     eventDetails,
     eventEnrollmentsDetails,
     viewEvents,
-	approvedInitiatives,
+    approvedInitiatives,
     categories,
     participants,
     initiativeDetails,
@@ -62,7 +64,9 @@ const rootReducer = persistCombineReducers(config, {
     progressCategoriesList,
     badgesToBeClaimedList,
     badgesCanBeClaimedList,
-    eventData
+    eventData,
+    userdet,
+    form: reduxFormReducer
 });
 
 
