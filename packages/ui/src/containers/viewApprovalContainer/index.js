@@ -7,6 +7,7 @@
 import {connect} from 'react-redux';
 import Task from '../../components/task';
 import {getTaskList, approveTask, updateTaskInfo} from './action';
+import { updateUserInfo } from '../loginFormContainer/action';
 
 const mapStateToProps = (state) => {
   return {
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     updateTaskInfo : (type, taskDetails) => {
       return dispatch(updateTaskInfo(type, taskDetails));
+    },
+    updateUserInfo : (userInfo) => {
+      return dispatch(updateUserInfo(userInfo))
     }
   }
 }

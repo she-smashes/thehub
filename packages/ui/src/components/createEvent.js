@@ -201,10 +201,22 @@ class CreateEvent extends Component {
 
 
         if (this.handleValidation()) {
-            this.props.sendEventDetails(this.state.createEventformData,this.props.userInfo)
-            .then((response,error) =>{
-                History.push("/");
-            },(error)=>{
+            this.props.sendEventDetails(this.state.createEventformData, this.props.userInfo)
+                .then((response, error) => {
+                    if (this.props.userInfo.allowedActionList.indexOf('task_count')) {
+                        let notificationCount = 0;
+                        if (this.props.userInfo.notificationCount !== undefined &&
+                            this.props.userInfo.notificationCount !== null ||
+                            this.props.userInfo.notificationCount !== '') {
+                            notificationCount = this.props.userInfo.notificationCount;
+                        }
+                        this.props.userInfo.notificationCount = parseInt(notificationCount) + 1;
+                        let userString = JSON.stringify(this.props.userInfo)
+                        this.props.updateUserInfo(JSON.parse(userString));
+
+                    }
+                    History.push("/");
+                }, (error) => {
               this.handleOpen();
               this.setState({
                   open: true,

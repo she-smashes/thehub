@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import UploadAttendance from '../../components/uploadAttendance';
 import {getEventDetails, updateEventDetails, saveAttendanceData, submitAttendanceData} from './action';
+import { updateUserInfo } from '../loginFormContainer/action';
 import {verifyUsers} from '../appContainer/action';
 
 
@@ -29,6 +30,9 @@ const mapDisptchToProps = (dispatch, ownProps) => {
     },
     verifyUsers : (id, userInfo) => {
       return dispatch(verifyUsers(id, userInfo, dispatch));
+    },
+    updateUserInfo : (userInfo) => {
+      return dispatch(updateUserInfo(userInfo))
     }
   }
 }

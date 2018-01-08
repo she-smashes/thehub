@@ -75,7 +75,7 @@
     event.preventDefault();
     this.setState({isLoading: true});
     if(this.handleValidation()){
-      this.props.getUserInfo(this.state.user)
+      this.props.loginUser(this.state.user)
       .then((response, error) => {
         // You get the logged in response here
         this.setState({isLoading: false});
