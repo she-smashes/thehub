@@ -34,7 +34,7 @@ import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer
 import eventData from './containers/uploadAttendanceContainer/reducer';
 
 import { reducer as reduxFormReducer } from 'redux-form';
-import userdet from './containers/simpleFormContainer/reducer';
+
 import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
