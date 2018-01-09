@@ -165,7 +165,7 @@ class ProgressWidget extends Component {
         let progress = 50;
         return (
             <div>
-                <div id="ViewEvent">
+                <div>
                     <div  className="widget-header">Progress Widget</div>
                     <div className="inner-container">
                     <GridList style={styles.gridList} cols={2.2}>
