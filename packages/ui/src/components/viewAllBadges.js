@@ -12,13 +12,13 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import Paper from 'material-ui/Paper';
 
 const paperStyle = {
-    height: 100,
+    height: '120px',
     width: '500px',
     margin: 20,
     align: 'center',
-    display: 'inline-block',
     display: 'flex',
-  };
+};
+
 const colors = {
     diamond: '#E57D70',
     platinum: '#606062',
@@ -65,10 +65,10 @@ class ViewAllBadges extends Component {
                 return (
                     <GridList cols={6} cellHeight='180px' >
                         <GridTile key={index} cols={6} rows={1} style={styles.grid}>
-                        <b>{userBadges[0].badge.level.category.name}</b>
+                            <b>{userBadges[0].badge.level.category.name}</b>
                         </GridTile>
                         <Paper style={paperStyle} zDepth={1} rounded={false} >
-                        {this.renderCategoryBadges(userBadges)}
+                            {this.renderCategoryBadges(userBadges)}
                         </Paper>
                     </GridList>
                 );
@@ -91,51 +91,51 @@ class ViewAllBadges extends Component {
         if (userBadge.badge.imageFileName === 'gold') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>
+                    <div><i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{ "color": colors.gold }}></i><br></br><b className="shield-style">gold</b></div>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>
+                    <div><i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{ "color": colors.gold }}></i><br></br><b className="shield-style">gold</b></div>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'silver') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>
+                    <div><i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{ "color": colors.silver }}></i><br></br><b className="shield-style">silver</b></div>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>
+                    <div><i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{ "color": colors.silver }}></i><br></br><b className="shield-style">silver</b></div>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'bronze') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>
+                    <div><i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{ "color": colors.bronze }}></i><br></br><b className="shield-style">bronze</b></div>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>
+                    <div> <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{ "color": colors.bronze }}></i><br></br><b className="shield-style">bronze</b></div>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'platinum') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>
+                    <div><i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{ "color": colors.platinum }}></i><br></br><b className="shield-style">platinum</b></div>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>
+                    <div>  <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{ "color": colors.platinum }}></i><br></br><b className="shield-style">platinum</b></div>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'diamond') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.diamond}}></i>                    
+                    <div> <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{ "color": colors.diamond }}></i><br></br><b className="shield-style">diamond</b></div>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.diamond}}></i>                    
+                    <div><i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{ "color": colors.diamond }}></i><br></br><b className="shield-style">diamond</b></div>
                 );
             }
         }

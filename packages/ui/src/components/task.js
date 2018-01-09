@@ -146,12 +146,14 @@ class Task extends Component {
     render = () => {
         return (
             <div>
-                <h3></h3>
-                <div id="taskAccordian">
-                    {this.props.viewTasks ? this.renderTasks() : <div> </div>}
+                <div className="widget well hub-widget leftAlign">
+                    <div className="widget-header">Pending Approvals</div>
+                    <div id="taskAccordian">
+                        {this.props.viewTasks ? this.renderTasks() : <div> </div>}
+                    </div>
+                    {/* { this.showDetails(1) } */}
+                    <div id="taskDetails"></div>
                 </div>
-                {/* { this.showDetails(1) } */}
-                <div id="taskDetails"></div>
             </div>
 
         )

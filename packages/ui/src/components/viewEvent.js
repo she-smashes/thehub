@@ -65,7 +65,6 @@ class ViewEvent extends Component {
         if (this.props.viewEvents.length <= 0) {
             return (
                 <div>
-                    <img src={emptyevent} style={{ 'align-items': 'center' }} />
                 </div>
             );
         } else {

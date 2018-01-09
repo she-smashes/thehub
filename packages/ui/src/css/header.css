@@ -20,9 +20,9 @@
     display: inline;
 }
 .menu-bar{
-  display: block; background-color: #000!important; width: 100%;
+  display: block; background-color: #5d7e91!important; width: 100%;
 }
-.menu-bar >  div{ margin: 0 auto; background-color: #000!important; display: table!important;}
+.menu-bar >  div{ margin: 0 auto; background-color: #5d7e91!important; display: table!important;}
 .menu-bar span{ font-size: 16px!important; text-transform: none!important; color: #fff!important; }
 .menu-bar button svg{ color: #fff!important; }
 .menu-item a{ color: #000!important; font-size: 14px!important;}
