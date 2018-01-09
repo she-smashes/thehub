@@ -142,3 +142,8 @@ a:hover {
  border-radius:10px 10px 0 0;
  text-align:left;
 }
+#ViewEvent, #initiativeDetails {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}

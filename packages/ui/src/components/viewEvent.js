@@ -74,6 +74,7 @@ class ViewEvent extends Component {
                     key={index}
                     primaryText={
                         <div>
+                            <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
                         </div>
                     }

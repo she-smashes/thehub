@@ -37,11 +37,11 @@ class ViewInitiative extends Component {
         return (
           <div className="widget list-data well hub-widget">
           <div className="widget-header">View Initiatives</div>
-                <h3>List of Initiatives </h3>
+                <div id="initiativeDetails">
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }
                 </List>
-                <div id="initiativeDetails"></div>
+                </div>
             </div>
 
         )

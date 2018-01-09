@@ -149,18 +149,6 @@ class CreateInitiative extends React.Component {
         event.preventDefault();
         if (this.handleValidation()) {
             this.props.sendInitiativeDetails(this.state.createInitiativeformData, this.props.userInfo).then((response, error) => {
-                if (this.props.userInfo.allowedActionList.indexOf('task_count')) {
-                    let notificationCount = 0;
-                    if (this.props.userInfo.notificationCount !== undefined &&
-                        this.props.userInfo.notificationCount !== null ||
-                        this.props.userInfo.notificationCount !== '') {
-                        notificationCount = this.props.userInfo.notificationCount;
-                    }
-                    this.props.userInfo.notificationCount = parseInt(notificationCount) + 1;
-                    let userString = JSON.stringify(this.props.userInfo)
-                    this.props.updateUserInfo(JSON.parse(userString));
-
-                }
                 History.push("/viewinitiative");
             }, (error) => {
                 console.log(error);
@@ -199,23 +187,23 @@ class CreateInitiative extends React.Component {
             />,
         ];
         return (
-            <div className="container  App">
-                <form onSubmit={this.processForm}>
-                    <h2 className="card-heading">Create Initiative Form</h2>
-                    <div className="field-line">
-                        <TextField className="align-left" floatingLabelText="Title" name="title" onChange={this.changeStateData} value={this.state.createInitiativeformData.title} errorText={this.state.errors.title} />
-                    </div>
-                    <div className="field-line">
-                        <TextField className="align-left" floatingLabelText="Description" name="description" onChange={this.changeStateData} value={this.state.createInitiativeformData.description} errorText={this.state.errors.description} />
-                    </div>
-                    <div className="field-line">
-                        <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} onBlur={this.verifyLeadUser} errorText={this.state.errors.lead} />
-                    </div>
-                    <div className="button-line">
-                        <RaisedButton type="submit" label="Create" primary />
-                    </div>
+              <div className="widget well hub-widget">
+              <div className="widget-header">Create Initiative</div>
+                  <form onSubmit={this.processForm}>
+                      <div className="field-line">
+                          <TextField className="align-left" floatingLabelText="Title" name="title" onChange={this.changeStateData} value={this.state.createInitiativeformData.title} errorText={this.state.errors.title} />
+                      </div>
+                      <div className="field-line">
+                          <TextField className="align-left" floatingLabelText="Description" name="description" onChange={this.changeStateData} value={this.state.createInitiativeformData.description} errorText={this.state.errors.description} />
+                      </div>
+                      <div className="field-line">
+                          <TextField className="align-left" floatingLabelText="Lead" name="lead" onChange={this.changeStateData} value={this.state.createInitiativeformData.lead} onBlur={this.verifyLeadUser} errorText={this.state.errors.lead} />
+                      </div>
+                      <div className="button-line">
+                          <RaisedButton type="submit" label="Create" primary />
+                      </div>
 
-                </form>
+                  </form>
                 <Dialog
                     title="Message"
                     className="dialog-ui"
