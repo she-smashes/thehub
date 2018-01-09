@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import CreateInitiative from '../../components/createInitiative';
 import { sendInitiativeDetails, updateInitiativeInfo } from './action';
 import { verifyUser } from '../appContainer/action';
-
+import { updateUserInfo } from '../loginFormContainer/action';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,6 +19,8 @@ const mapDisptchToProps = (dispatch, ownProps) => {
       return dispatch(updateInitiativeInfo(initiativeInfo))
     }, verifyUser: (username, userInfo) => {
       return dispatch(verifyUser(username, userInfo, dispatch))
+    }, updateUserInfo : (userInfo) => {
+      return dispatch(updateUserInfo(userInfo))
     }
   }
 }

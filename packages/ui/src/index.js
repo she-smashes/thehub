@@ -64,9 +64,7 @@ const rootReducer = persistCombineReducers(config, {
     progressCategoriesList,
     badgesToBeClaimedList,
     badgesCanBeClaimedList,
-    eventData,
-    userdet,
-    form: reduxFormReducer
+    eventData
 });
 
 
