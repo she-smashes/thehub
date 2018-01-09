@@ -147,7 +147,7 @@ class Task extends Component {
         return (
             <div>
                 <div className="widget well hub-widget leftAlign">
-                    <div className="widget-header">Pending Approvals</div>
+                    <div className="widget-header">My Pending Approvals</div>
                     <div id="taskAccordian">
                         {this.props.viewTasks ? this.renderTasks() : <div> </div>}
                     </div>
