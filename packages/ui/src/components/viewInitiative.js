@@ -35,7 +35,8 @@ class ViewInitiative extends Component {
 
     render = () => {
         return (
-            <div className="list-data">
+          <div className="widget list-data well hub-widget">
+          <div className="widget-header">View Initiatives</div>
                 <h3>List of Initiatives </h3>
                 <List>
                     { this.props.viewInitiatives? this.renderInitiatives() : <div> </div> }

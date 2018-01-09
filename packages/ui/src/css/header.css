@@ -34,6 +34,8 @@
   height:75px;
   display:inline;
   float: left;
+  border-radius: 5px;
+  margin: 7px;
 }
 .avatar{
     width:50px;
@@ -49,6 +51,7 @@
   font-weight: bold;
   float: right;
   color: white;
+  margin: 11px;
 }
 .user-name a{
   text-decoration: none;

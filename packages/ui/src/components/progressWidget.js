@@ -166,19 +166,20 @@ class ProgressWidget extends Component {
         return (
             <div>
                 <div id="ViewEvent">
-                    <div style={{"boxSizing": "border-box" , "color": "rgb(255, 255, 255)", "fontSize": "24px", "fontWeight": "300", "lineHeight": "48px", "paddingLeft": "16px", "width": "100%", "backgroundColor": "#f0ad4e", "borderRadius":"10px 10px 0 0", "text-align":"left" }}>Progress Widget</div>
+                    <div  className="widget-header">Progress Widget</div>
                     <div className="inner-container">
                     <GridList style={styles.gridList} cols={2.2}>
                         {
                             this.props.progressCategories ? this.renderProgressCategories() : <div> </div>
                         }
                     </GridList>
+                    <br></br>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Level Progress</i>
+                    <br></br>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Point Progress</i>
                     </div>
                 </div>
-                <br></br><br></br>
-                <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Level Progress</i>
-                <br></br>
-                <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Point Progress</i>
+
             </div>
         )
     }

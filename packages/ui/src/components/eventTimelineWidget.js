@@ -89,7 +89,7 @@ class EventTimelineWidget extends Component {
     render = () => {
         return (
             <div>
-                <div style={{"boxSizing": "border-box" , "color": "rgb(255, 255, 255)", "fontSize": "24px", "fontWeight": "300", "lineHeight": "48px", "paddingLeft": "16px", "width": "100%", "backgroundColor": "#f0ad4e", "borderRadius":"10px 10px 0 0"}}>Events Timeline</div>
+                <div  className="widget-header">Events Timeline</div>
                 <div  style= {styles.timeline} className="inner-container">
                 <Timeline>
                     {this.props.events.length > 0 ? this.renderEvents() : <div></div>}

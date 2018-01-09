@@ -1,3 +1,6 @@
+body{
+  font-family: Arial;
+}
 .App, .login-page {
   text-align: center;
 }
@@ -93,8 +96,9 @@ a:hover {
 .list-data a{ color: #000!important; }
 .fa{ padding-right: 10px; }
 .well{ border: none!important; }
-.hub-progress-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
+.badge-widget.well, .hub-progress-widget.well,.hub-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
 .inner-container{ padding: 19px; }
+.hub-widget.well{ margin: 20px auto; padding-bottom: 30px;max-width: 600px;}
 .m-controls .x-slider {
   width: 100%;
 }
@@ -125,4 +129,16 @@ a:hover {
 .shield-style {
   padding: 20px;
   margin-left: 20px;
+}
+.widget-header{
+ box-sizing: border-box;
+ color: rgb(255, 255, 255);
+ font-size: 18px;
+ font-weight: 300;
+ line-height: 48px;
+ padding-left: 16px;
+ width: 100%;
+ background-color: #f0ad4e;
+ border-radius:10px 10px 0 0;
+ text-align:left;
 }

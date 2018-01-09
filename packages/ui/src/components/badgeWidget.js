@@ -171,7 +171,7 @@ class BadgeWidget extends Component {
     render = () => {
         return (
             <div>
-                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0", "text-align":"left"}}>Badges Widget</div>
+                <div  className="widget-header">Badges Widget</div>
                 <div  className="inner-container">
                 <GridList cols={6} cellHeight='180px' style={{"align": "center"}}>
                     {(this.props.badges != undefined && this.props.badges.length>0)?this.renderBadges():<div></div>}
