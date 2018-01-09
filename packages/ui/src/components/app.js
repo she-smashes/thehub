@@ -27,8 +27,6 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBadgesContainer/index'));
 const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
 const AsyncUploadAttendance = asyncComponent(() => import('../containers/uploadAttendanceContainer/index'));
-const AsyncUpdateCount = asyncComponent(() => import('../containers/appContainer/index'));
-
 
 class App extends Component {
   render() {
