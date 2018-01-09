@@ -52,7 +52,6 @@ class App extends Component {
               <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
               <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
               <Route path='/uploadattendance/:id' exact={true} component = {AsyncUploadAttendance} />
-              <Route component={PageNotFound}/>
             </Switch>
           </div>
         }
