@@ -9,7 +9,7 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
+
 import '../css/header.css';
 
 /**
@@ -81,7 +81,7 @@ class NavigationWidget extends Component {
           <ToolbarSeparator className="margin-30" />
           <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
         </ToolbarGroup>
-      </Toolbar>   
+      </Toolbar>
 
       </div>
     );
