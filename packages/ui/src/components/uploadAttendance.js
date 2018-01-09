@@ -6,6 +6,8 @@
 
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom';
+
 import {
   Table,
   TableBody,
@@ -291,6 +293,12 @@ class UploadAttendance extends Component {
   render() {
     return (
       <div className="">
+    
+        {
+          (this.props.eventData !== '' && this.props.eventData !== undefined && this.props.eventData !== null) ? <Link to={`/eventDetails/${this.props.eventData.id}`} style={{"color":"black"}}>Back ></Link> : <div></div>
+        }
+        
+
         {
           (this.props.eventData !== '' && this.props.eventData !== undefined && this.props.eventData !== null) ? this.renderAttendanceForm(this.props.eventData) : <div></div>
         }

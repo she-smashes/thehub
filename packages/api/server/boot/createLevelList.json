@@ -36,19 +36,19 @@
     {"name":"Level 2", "category": "Marathon", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
     {"name":"Level 3", "category": "Marathon", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
         
-    {"name":"Level 1", "category": "Carnatic", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
-    {"name":"Level 2", "category": "Carnatic", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "Carnatic", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 1", "category": "Carnatic Music", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Carnatic Music", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Carnatic Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
     
-    {"name":"Level 1", "category": "Western", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
-    {"name":"Level 2", "category": "Western", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "Western", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 1", "category": "Western Music", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
+    {"name":"Level 2", "category": "Western Music", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 3", "category": "Western Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
 
-    {"name":"Level 1", "category": "Classical", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
-    {"name":"Level 2", "category": "Classical", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    {"name":"Level 1", "category": "Classical Dance", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
+    {"name":"Level 2", "category": "Classical Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
     
-    {"name":"Level 1", "category": "Western", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
-    {"name":"Level 2", "category": "Western", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    {"name":"Level 1", "category": "Western Dance", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
+    {"name":"Level 2", "category": "Western Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
     
 	{"name":"Level 1", "category": "Gifting", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"10"}	
   ]

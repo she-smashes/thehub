@@ -35,19 +35,19 @@
     {"title":"Silver", "description":"Silver Badge", "category": "Marathon", "level": "Level 2", "imageFileName": "silver", "default":false},	
     {"title":"Gold", "description":"Gold Badge", "category": "Marathon", "level": "Level 3", "imageFileName": "gold", "default":false},	
         
-    {"title":"Bronze", "description":"Bronze Badge", "category": "Carnatic", "level": "Level 1", "imageFileName": "bronze", "default":true},	
-    {"title":"Silver", "description":"Silver Badge", "category": "Carnatic", "level": "Level 2", "imageFileName": "silver", "default":false},	
-    {"title":"Gold", "description":"Gold Badge", "category": "Carnatic", "level": "Level 3", "imageFileName": "gold", "default":false},	
+    {"title":"Bronze", "description":"Bronze Badge", "category": "Carnatic Music", "level": "Level 1", "imageFileName": "bronze", "default":true},	
+    {"title":"Silver", "description":"Silver Badge", "category": "Carnatic Music", "level": "Level 2", "imageFileName": "silver", "default":false},	
+    {"title":"Gold", "description":"Gold Badge", "category": "Carnatic Music", "level": "Level 3", "imageFileName": "gold", "default":false},	
     
-    {"title":"Bronze", "description":"Bronze Badge", "category": "Western", "level": "Level 1", "imageFileName": "bronze", "default":true},	
-    {"title":"Silver", "description":"Silver Badge", "category": "Western", "level": "Level 2", "imageFileName": "silver", "default":false},	
-    {"title":"Gold", "description":"Gold Badge", "category": "Western", "level": "Level 3", "imageFileName": "gold", "default":false},	
+    {"title":"Bronze", "description":"Bronze Badge", "category": "Western Music", "level": "Level 1", "imageFileName": "bronze", "default":true},	
+    {"title":"Silver", "description":"Silver Badge", "category": "Western Music", "level": "Level 2", "imageFileName": "silver", "default":false},	
+    {"title":"Gold", "description":"Gold Badge", "category": "Western Music", "level": "Level 3", "imageFileName": "gold", "default":false},	
 
-    {"title":"Silver", "description":"Silver Badge", "category": "Classical", "level": "Level 1", "imageFileName": "silver", "default":true},
-    {"title":"Gold", "description":"Gold Badge", "category": "Classical", "level": "Level 2", "imageFileName": "gold", "default":false},
+    {"title":"Silver", "description":"Silver Badge", "category": "Classical Dance", "level": "Level 1", "imageFileName": "silver", "default":true},
+    {"title":"Gold", "description":"Gold Badge", "category": "Classical Dance", "level": "Level 2", "imageFileName": "gold", "default":false},
     
-    {"title":"Silver", "description":"Silver Badge", "category": "Western", "level": "Level 1", "imageFileName": "silver", "default":true},
-    {"title":"Gold", "description":"Gold Badge", "category": "Western", "level": "Level 2", "imageFileName": "gold", "default":false},
+    {"title":"Silver", "description":"Silver Badge", "category": "Western Dance", "level": "Level 1", "imageFileName": "silver", "default":true},
+    {"title":"Gold", "description":"Gold Badge", "category": "Western Dance", "level": "Level 2", "imageFileName": "gold", "default":false},
     
   	{"title":"Gold", "description":"Gold Badge", "category": "Gifting", "level": "Level 1", "imageFileName": "gold", "default":true}	
   ]
