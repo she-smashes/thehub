@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import {Link} from 'react-router-dom';
 import '../css/header.css'
-import logo from '../images/logo.png'
-import avatar from '../images/avatar.jpg'
+import logo from '../images/hub_logo.PNG'
+import avatar from '../images/man-user.png'
 import Badge from 'material-ui/Badge';
 
 
@@ -52,7 +52,7 @@ class Header extends Component {
       <nav className="navbar navbar-fixed">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
           <img className="logo" src={logo} alt="Logo" />
-          <h1 className="brand-title">The Hub</h1>
+
           {this.user()}
       </nav>
     );

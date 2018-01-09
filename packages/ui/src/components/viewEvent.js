@@ -18,9 +18,9 @@ import emptyevent from '../images/emptyevent.png';
 
 
 /**
- * 
+ *
  * This class the component for rendering the events in the approval page.
- * 
+ *
  */
 
 class ViewEvent extends Component {
@@ -46,12 +46,12 @@ class ViewEvent extends Component {
                 categoryId = queryParams.categoryId;
             }
         }
-        
+
         this.props.getEventList(this.props.userInfo.id, categoryId).then((response, error) => {
             if(categoryId !== '' && categoryId !== undefined) {
-                this.props.updateCategoryEventsInfo(JSON.parse(response.data));    
+                this.props.updateCategoryEventsInfo(JSON.parse(response.data));
             } else {
-                this.props.updateViewEventsInfo(JSON.parse(response.data));    
+                this.props.updateViewEventsInfo(JSON.parse(response.data));
             }
           }, (error) => {
             console.log(error);
@@ -64,7 +64,7 @@ class ViewEvent extends Component {
     renderEvents = () => {
         if (this.props.viewEvents.length <= 0) {
             return (
-                <div>                        
+                <div>
                     <img src={emptyevent} style={{ 'align-items': 'center' }} />
                 </div>
             );
@@ -74,6 +74,7 @@ class ViewEvent extends Component {
                     key={index}
                     primaryText={
                         <div>
+                            <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             <Link to={`/eventDetails/${event.id}`}>{event.title}</Link>
                         </div>
                     }
@@ -83,9 +84,9 @@ class ViewEvent extends Component {
     }
 
     render = () => {
-        return (       
-            <div>
-                
+        return (
+          <div className="widget list-data well hub-widget">
+            <div className="widget-header">View events</div>
                 <div id="ViewEvent">
                     {
                         this.props.viewEvents ? this.renderEvents() : <div> </div>

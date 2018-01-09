@@ -12,9 +12,9 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import ReactTooltip from 'react-tooltip';
 import { StatefulToolTip } from "react-portal-tooltip"
 /**
-* 
+*
  * This class the component for rendering the events in the approval page.
-* 
+*
  */
 const styles = {
     root: {
@@ -39,17 +39,17 @@ class AttendanceWidget extends Component {
 
     constructor(props) {
         super(props);
-       
+
     }
-        
- 
+
+
     /**
      * This method invokes the gets the list of events when the component is mounted.
      */
 
     componentDidMount = () => {
         this.props.getProgressCategoriesList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateProgressCategoriesInfo(JSON.parse(response.data));    
+            this.props.updateProgressCategoriesInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -70,7 +70,7 @@ class AttendanceWidget extends Component {
             if(parseInt(points) > parseInt(event.pointsStartRange) && parseInt(points) <= parseInt(event.pointsEndRange)) {
                 currentLevel = event.sequence;
                 pointsNeededForNextLevel = parseInt(event.pointsEndRange) - parseInt(points);
-            } 
+            }
             if(parseInt(points)+1 === parseInt(event.pointsStartRange)) {
                 pointsNeededForNextLevel = parseInt(event.pointsEndRange) - parseInt(points);
             }
@@ -104,22 +104,22 @@ class AttendanceWidget extends Component {
                  <StatefulToolTip parent={ PLabel }>
                     {msg}
                 </StatefulToolTip>
-            </div>    
+            </div>
         );
     }
 
     /**
      * This method renders the list of events.
      */
-    renderProgressCategories = () => {   
-       
+    renderProgressCategories = () => {
+
         return this.props.progressCategories.map((event, index) => {
             return (
             <div>
                  <GridTile  key={index}>
                     {this.renderProgressBar(event.category.id, event.points, event.levels)}
                     <h4>{event.category.name}</h4>
-                </GridTile> 
+                </GridTile>
             </div>);
         });
     }
@@ -130,18 +130,20 @@ class AttendanceWidget extends Component {
             'textAnchor': 'middle'
           };
           let progress = 50;
-        return (       
+        return (
             <div>
+                <div className="widget-header">Progress Widget</div>
+                <div className="inner-container">
                 <div id="ViewEvent">
                     <GridList style={styles.gridList} cols={2.2}>
                         {
                             this.props.progressCategories ? this.renderProgressCategories() : <div> </div>
                         }
-                    </GridList>                 
+                    </GridList>
                 </div>
                 {/* { this.showDetails(1) } */}
                 <div id="eventDetails"></div>
-                
+                </div>
 
             </div>
 
@@ -150,5 +152,3 @@ class AttendanceWidget extends Component {
 }
 
 export default AttendanceWidget;
-
-

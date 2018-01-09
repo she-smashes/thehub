@@ -91,21 +91,21 @@ class ViewAllBadges extends Component {
         if (userBadge.badge.imageFileName === 'gold') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>                    
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>                    
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.gold}}></i>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'silver') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>                    
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>                    
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.silver}}></i>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'bronze') {
@@ -115,17 +115,17 @@ class ViewAllBadges extends Component {
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>                    
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.bronze}}></i>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'platinum') {
             if (userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
-                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>                    
+                    <i class="fa fa-shield fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>
                 );
             } else {
                 return (
-                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>                    
+                    <i class="fa fa-lock fa-4x shield-style" aria-hidden="true" style={{"color":colors.platinum}}></i>
                 );
             }
         } else if (userBadge.badge.imageFileName === 'diamond') {

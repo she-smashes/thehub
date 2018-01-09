@@ -1,8 +1,14 @@
+body{
+  font-family: Arial;
+}
 .App, .login-page {
   text-align: center;
 }
+.input-group-addon:first-child{ width: auto; background: none; border: none; }
 .checklist, .field-line{ width: 500px!important; margin: 0 auto;}
 .field-line > div, .align-left{ width: 500px !important;}
+.login-page .field-line, .login-page .field-line > div, .login-page .align-left{ width: 350px!important; display: inline;}
+
 .DraftEditor-root{ min-height: 300px; }
 .field-line .align-left div{ margin-right: 15px !important;}
 .App-logo {
@@ -19,9 +25,6 @@ label{
 }
 .margin-30{
   margin: 0 30px;
-}
-.menu-bar{
-  display: block;
 }
 .App-header {
   background-color: #222;
@@ -52,8 +55,8 @@ label{
 }
 .login-page{
   padding: 20px 0;
-  margin: 20px 0;
-  width: 600px;
+  margin: 20px auto!important;
+  width: 410px;
   margin: 0 auto;
 }
 .login-page .button-line{
@@ -82,17 +85,20 @@ label{
   color: inherit;
 }
 a {
-  color: rgba(0, 0, 0, 0.4);
+  color: #fff;
 }
 a:focus,
 a:hover {
     text-decoration: none;
+    color: #fff;
 }
-
-
-
-
-
+#taskAccordian h3{ font-size: 16px!important; text-transform: none!important;}
+.list-data a{ color: #000!important; }
+.fa{ padding-right: 10px; }
+.well{ border: none!important; }
+.badge-widget.well, .hub-progress-widget.well,.hub-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
+.inner-container{ padding: 19px; }
+.hub-widget.well{ margin: 20px auto; padding-bottom: 30px;max-width: 600px;}
 .m-controls .x-slider {
   width: 100%;
 }
@@ -123,4 +129,24 @@ a:hover {
 .shield-style {
   padding: 20px;
   margin-left: 20px;
+}
+.widget-header{
+ box-sizing: border-box;
+ color: rgb(255, 255, 255);
+ font-size: 18px;
+ font-weight: 300;
+ line-height: 48px;
+ padding-left: 16px;
+ width: 100%;
+ background-color: #f0ad4e;
+ border-radius:10px 10px 0 0;
+ text-align:left;
+}
+#ViewEvent, #initiativeDetails {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.ToolTipPortal a, .event-attendance a{
+  color: rgb(99, 194, 222);
 }

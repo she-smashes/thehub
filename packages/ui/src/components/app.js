@@ -8,6 +8,7 @@ import Header from '../containers/headerContainer/index';
 import NavigationContainer from '../containers/navigationContainer/'
 import Footer from './footer';
 import '../css/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../css/app.css';
 import '../css/global.css';
 import '../css/singles.css';
@@ -27,7 +28,6 @@ const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBad
 const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
 const AsyncUploadAttendance = asyncComponent(() => import('../containers/uploadAttendanceContainer/index'));
 
-
 class App extends Component {
   render() {
     const loggedIn = (this.props.userInfo && this.props.userInfo.user) ? true : false;
@@ -38,7 +38,7 @@ class App extends Component {
           <Header/>
         {
           !loggedIn? <Login />:
-          <div>            
+          <div>
             <NavigationContainer />
             <Switch>
               <Route path='/' exact={true} component={AsyncDashboard} />

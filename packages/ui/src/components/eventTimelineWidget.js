@@ -17,10 +17,10 @@ const styles = {
 }
 class EventTimelineWidget extends Component {
 
-    
+
     componentDidMount =  () => {
         this.props.getEventList(this.props.userInfo.id).then((response, error) => {
-            this.props.updateEventTimelineInfo(JSON.parse(response.data));    
+            this.props.updateEventTimelineInfo(JSON.parse(response.data));
           }, (error) => {
             console.log(error);
           });
@@ -40,7 +40,7 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return { backgroundColor: "#F9C454", color: "#000000",  "font-weight": "bold", "padding": "3px"};
+            return { backgroundColor: "#B1EA7B", color: "#000000",  "font-weight": "bold", "padding": "3px"};
         }
         // Present events
         else {
@@ -55,14 +55,14 @@ class EventTimelineWidget extends Component {
         }
         // Start date > current date => Future event
         else if(new Date(startDate).getTime() > Date.now()) {
-            return  "#F9C454";
+            return  "#B1EA7B";
         }
         // Present events
         else {
             return  "#8BC34A";
         }
     }
-    
+
 
     /**
      * @name renderEvents
@@ -80,13 +80,7 @@ class EventTimelineWidget extends Component {
                 style={{ borderRadius: 3 }}
                 cardHeaderStyle={ this.resolveBackgroundColor(event.startDate, event.endDate) }
             >
-           
-            <Link to={`/eventDetails/${event.id}`}> 
-                <b style={{padding: "5px", color: "black"}}>
-                    {event.title}
-                </b>
-            </Link>
-           
+            <b style={{padding: "5px"}}>{event.title}</b>
             </TimelineEvent>
         })
     }
@@ -94,11 +88,13 @@ class EventTimelineWidget extends Component {
 
     render = () => {
         return (
-            <div style= {styles.timeline}>
-                <h3>This is event timeline!</h3>
+            <div>
+                <div  className="widget-header">Events Timeline</div>
+                <div  style= {styles.timeline} className="inner-container">
                 <Timeline>
                     {this.props.events.length > 0 ? this.renderEvents() : <div></div>}
                 </Timeline>
+                </div>
             </div>
 
         )

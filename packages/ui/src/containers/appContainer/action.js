@@ -1,6 +1,5 @@
 import Swagger from 'swagger-client';
 
-
 export const verifyUser = (username, userInfo) => {
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,

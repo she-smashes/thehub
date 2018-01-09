@@ -19,7 +19,13 @@
     padding: 0 20px;
     display: inline;
 }
-
+.menu-bar{
+  display: block; background-color: #000!important; width: 100%;
+}
+.menu-bar >  div{ margin: 0 auto; background-color: #000!important; display: table!important;}
+.menu-bar span{ font-size: 16px!important; text-transform: none!important; color: #fff!important; }
+.menu-bar button svg{ color: #fff!important; }
+.menu-item a{ color: #000!important; font-size: 14px!important;}
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
     background-color: rgb(0, 188, 212);
 }
@@ -28,6 +34,8 @@
   height:75px;
   display:inline;
   float: left;
+  border-radius: 5px;
+  margin: 7px;
 }
 .avatar{
     width:50px;
@@ -43,6 +51,7 @@
   font-weight: bold;
   float: right;
   color: white;
+  margin: 11px;
 }
 .user-name a{
   text-decoration: none;

@@ -13,9 +13,9 @@ import ReactTooltip from 'react-tooltip';
 
 
 /**
- * 
+ *
  * This class the component for rendering the events in the approval page.
- * 
+ *
  */
 const pw = 6;
 const cw = pw / 2;
@@ -37,7 +37,6 @@ const styles = {
         height: 30
     },
 };
-
 
 class ProgressWidget extends Component {
 
@@ -166,17 +165,21 @@ class ProgressWidget extends Component {
         let progress = 50;
         return (
             <div>
-                <div id="ViewEvent">
+                <div>
+                    <div  className="widget-header">Progress Widget</div>
+                    <div className="inner-container">
                     <GridList style={styles.gridList} cols={2.2}>
                         {
                             this.props.progressCategories ? this.renderProgressCategories() : <div> </div>
                         }
                     </GridList>
+                    <br></br>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Level Progress</i>
+                    <br></br>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Point Progress</i>
+                    </div>
                 </div>
-                <br></br><br></br>
-                <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Level Progress</i>
-                <br></br>
-                <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Point Progress</i>
+
             </div>
         )
     }

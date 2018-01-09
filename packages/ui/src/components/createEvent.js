@@ -481,9 +481,9 @@ class CreateEvent extends Component {
         />,
       ];
         return (
-           <div className="container  App">
-                <form onSubmit={this.processForm}>
-                    <h2 className="card-heading">Create Event</h2>
+           <div className="widget well hub-widget">
+           <div className="widget-header">Create Event</div>
+                <form onSubmit={this.processForm}>                    
                     <div className="field-line">
                         <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
                     </div>
@@ -521,8 +521,8 @@ class CreateEvent extends Component {
                     <label className="align-left bold">Enter Event description</label>
                     <br/>
 
-                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description} 
-                    placeholder="Enter description here" 
+                    <SimpleRichTextEditor name= 'description' value={this.state.createEventformData.description}
+                    placeholder="Enter description here"
                     toolbarClassName="demo-toolbar"
                     editorClassName="demo-editor"
                     format='html' markup='Enter description here' onBlur={this.onRichTextChange}
@@ -572,15 +572,15 @@ class CreateEvent extends Component {
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? <label className="align-left bold">Select Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'hourly' ? this.handleHourlyParticipantsDisplay() : <div></div>}
                         {
-                            this.state.createEventformData.eventTypeSelected === 'hourly' ? 
+                            this.state.createEventformData.eventTypeSelected === 'hourly' ?
                                 <div className="field-line">
                                     <TextField floatingLabelText="No Of Hours" className="align-left" name="eventHours" onChange={this.changeUser} value={this.state.createEventformData.eventHours} errorText={this.state.errors.eventHours} />
-                                </div> 
-                                : 
+                                </div>
+                                :
                                 <div></div>
                         }
 
-                        
+
                     </div>
                     <div class="checklist">
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
@@ -589,12 +589,13 @@ class CreateEvent extends Component {
                     <div style={styles.errorText} className="align-left">
                     <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
-                    </div>                
+                    </div>
 
                     <div className="button-line margin35">
                         <RaisedButton disabled={this.state.disabled} type="submit" label="Submit" primary />
                     </div>
                 </form>
+
                 <Dialog
                   title="Message"
                   className="dialog-ui"
@@ -606,6 +607,7 @@ class CreateEvent extends Component {
                   { this.state.message }
                 </Dialog>
             </div>
+
         );
     }
 }
