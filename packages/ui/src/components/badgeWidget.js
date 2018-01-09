@@ -93,11 +93,10 @@ class BadgeWidget extends Component {
      * This method renders the badge image.
      */
     renderImage = (color, classType, style, categoryId, tooltipMsg) => {
-
-        const badge =  <i data-tip={tooltipMsg} class={classType} aria-hidden="true" style={{"color":color}}></i>
-        return (
-            <div>
-
+        
+        const badge =  <div><i data-tip={tooltipMsg} class={classType} aria-hidden="true" style={{"color":colors[color]}}></i><b>{color}</b></div>
+        return (     
+            <div>  
                 <StatefulToolTip parent={ badge }>
                     {tooltipMsg}
                     {this.showEventListForCatgoryLink(categoryId)}
@@ -110,13 +109,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(colors.gold, 'fa fa-shield fa-4x', styles.image1, '' , 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('gold', 'fa fa-shield fa-4x', styles.image1, '' , 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(colors.gold, 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('gold', 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -124,13 +123,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(colors.silver, 'fa fa-shield fa-4x', styles.image2, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('silver', 'fa fa-shield fa-4x', styles.image2, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(colors.silver, 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('silver', 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -138,13 +137,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(colors.bronze, 'fa fa-shield fa-4x', styles.image3, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('bronze', 'fa fa-shield fa-4x', styles.image3, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(colors.bronze, 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('bronze', 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
@@ -152,13 +151,13 @@ class BadgeWidget extends Component {
             if(userBadge.userId !== undefined && userBadge.userId !== '') {
                 return (
                     <div>
-                        {this.renderImage(colors.platinum, 'fa fa-shield fa-4x', styles.image4, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('platinum', 'fa fa-shield fa-4x', styles.image4, '', 'You have earned the badge for participation in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             } else {
                 return (
                     <div>
-                        {this.renderImage(colors.platinum, 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('platinum', 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
                     </div>
                 );
             }
