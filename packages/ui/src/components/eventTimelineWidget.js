@@ -80,7 +80,11 @@ class EventTimelineWidget extends Component {
                 style={{ borderRadius: 3 }}
                 cardHeaderStyle={ this.resolveBackgroundColor(event.startDate, event.endDate) }
             >
-            <b style={{padding: "5px"}}>{event.title}</b>
+            <b style={{padding: "5px"}}>
+                
+                <Link to={`/eventDetails/${event.id}`} style={{"color":"black"}}>{event.title}</Link>
+
+              </b>
             </TimelineEvent>
         })
     }

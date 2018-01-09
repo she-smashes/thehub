@@ -49,7 +49,8 @@ class UploadAttendance extends Component {
             if(enrollment.attendanceFlag === 'submit') {
               attendanceSubmitted = true;
             }
-            if (enrollment.enrollmentType !== undefined && parseInt(enrollment.enrollmentType) === participant.id) {
+            let participantIdStr = participant.id + '';
+            if (enrollment.enrollmentType !== undefined && enrollment.enrollmentType === participantIdStr) {
               userNames = enrollment.users.username + ", " + userNames;
             }
           });
