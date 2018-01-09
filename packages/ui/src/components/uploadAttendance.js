@@ -261,9 +261,14 @@ class UploadAttendance extends Component {
     return (
       <div>
         <br></br>
-        <div class="alert alert-success" role="alert" style={{"width": "50%"}}>
+
+        {
+          (this.state.attendanceMessage !== '' && this.state.attendanceMessage !== undefined && this.state.attendanceMessage !== null) ? <div class="alert alert-success" role="alert" style={{"width": "50%"}}>
           <p style={{"margin-left": "201px"}}>{this.state.attendanceMessage}</p>
-        </div>
+        </div>: <div></div>
+        }
+
+        
         <Table style={{ "width": '50%' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
