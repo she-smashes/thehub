@@ -17,7 +17,7 @@
 .floatRight {float:right;}
 
 .textAlignLeft {
-	text-align:left;
+	text-align:left !important;
 }
 .textAlignRight {
 	text-align:right;

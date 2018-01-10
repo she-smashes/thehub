@@ -134,13 +134,13 @@
 /*For simplifying the layout of an ordered or unordered list element*/
 
 ul.inlineList > li{
-	margin-right:1rem;	
+	margin-right:1rem;
 	display:inline-block;
 }
 ul.inlineList > li:last-of-type{
-	margin-right:0;	
+	margin-right:0;
 }
-			
+
 
 
 /***************************************************
@@ -164,9 +164,9 @@ ul.inlineList > li:last-of-type{
 
 .margin5 {margin:5px;}
 .margin10 {margin:10px;}
-.margin15 {margin:15px;}  
+.margin15 {margin:15px;}
 .margin20 {margin:20px;}
-.margin25 {margin:25px;}  
+.margin25 {margin:25px;}
 .margin30 {margin:30px;}
 .margin35 {margin:35px;}
 .margin40 {margin:40px;}
@@ -186,9 +186,9 @@ ul.inlineList > li:last-of-type{
 .margin4pct {margin:0 4%;}
 .margin5pct {margin:0 5%;}
 .margin10pct {margin:0 10%;}
-.margin15pct {margin:0 15%;}  
+.margin15pct {margin:0 15%;}
 .margin20pct {margin:0 20%;}
-.margin25pct {margin:0 25%;}  
+.margin25pct {margin:0 25%;}
 .margin30pct {margin:0 30%;}
 .margin35pct {margin:0 35%;}
 .margin40pct {margin:0 40%;}
@@ -263,7 +263,7 @@ ul.inlineList > li:last-of-type{
 					   Padding
 ***************************************************/
 .pad6 {padding:6px;}
-.pad10 {padding:10px;}
+.pad10 {padding:10px !important;}
 .pad12 {padding:12px;}
 .pad18 {padding:18px;}
 .pad20 {padding:20px;}
@@ -287,13 +287,13 @@ ul.inlineList > li:last-of-type{
 }
 .pad15 {
 	padding:15px;
-}  
+}
 .pad20 {
 	padding:20px;
 }
 .pad25 {
 	padding:25px;
-}  
+}
 .pad30 {
 	padding:30px;
 }
@@ -359,7 +359,7 @@ an actual table.
 .table_td {display:table-cell;}
 
 /* for hiding from view for screen readers */
-.a11yHideText { 
+.a11yHideText {
 	overflow:hidden;
 	white-space: nowrap;
 	display:inline-block;
