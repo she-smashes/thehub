@@ -113,9 +113,15 @@ class BadgeWidget extends Component {
                     </div>
                 );
             } else {
+                let msg = "";
+                if(userBadge.pointsForNextLevel <= 0) {
+                    msg =  'You can claim this badge in ' + userBadge.badge.level.category.name + ' category';
+                } else {
+                    msg = 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category'
+                }
                 return (
                     <div>
-                        {this.renderImage('gold', 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('gold', 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , msg)}
                     </div>
                 );
             }
@@ -127,9 +133,15 @@ class BadgeWidget extends Component {
                     </div>
                 );
             } else {
+                let msg = "";
+                if(userBadge.pointsForNextLevel <= 0) {
+                    msg =  'You can claim this badge in ' + userBadge.badge.level.category.name + ' category';
+                } else {
+                    msg = 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category'
+                }
                 return (
                     <div>
-                        {this.renderImage('silver', 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('silver', 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , msg)}
                     </div>
                 );
             }
@@ -141,9 +153,15 @@ class BadgeWidget extends Component {
                     </div>
                 );
             } else {
+                let msg = "";
+                if(userBadge.pointsForNextLevel <= 0) {
+                    msg =  'You can claim this badge in ' + userBadge.badge.level.category.name + ' category';
+                } else {
+                    msg = 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category'
+                }
                 return (
                     <div>
-                        {this.renderImage('bronze', 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('bronze', 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , msg)}
                     </div>
                 );
             }
@@ -155,9 +173,15 @@ class BadgeWidget extends Component {
                     </div>
                 );
             } else {
+                let msg = "";
+                if(userBadge.pointsForNextLevel <= 0) {
+                    msg =  'You can claim this badge in ' + userBadge.badge.level.category.name + ' category';
+                } else {
+                    msg = 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category'
+                }
                 return (
                     <div>
-                        {this.renderImage('platinum', 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
+                        {this.renderImage('platinum', 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, msg)}
                     </div>
                 );
             }
