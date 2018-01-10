@@ -17,39 +17,39 @@
     {"name":"Level 4", "category": "Dance", "sequence": "4", "pointsStartRange": "1501", "pointsEndRange":"2000"},	
         
     {"name":"Level 1", "category": "CSR", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
-    {"name":"Level 2", "category": "CSR", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 2", "category": "CSR", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"800"},	
 
     {"name":"Level 1", "category": "Cricket", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
     {"name":"Level 2", "category": "Cricket", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
     {"name":"Level 3", "category": "Cricket", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
     {"name":"Level 4", "category": "Cricket", "sequence": "4", "pointsStartRange": "301", "pointsEndRange":"400"},	
-    {"name":"Level 5", "category": "Cricket", "sequence": "5", "pointsStartRange": "401", "pointsEndRange":"500"},
+    {"name":"Level 5", "category": "Cricket", "sequence": "5", "pointsStartRange": "401", "pointsEndRange":"1000"},
 
     {"name":"Level 1", "category": "FootBall", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
     {"name":"Level 2", "category": "FootBall", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "FootBall", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 3", "category": "FootBall", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"900"},	
         
     {"name":"Level 1", "category": "Zumba", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
-    {"name":"Level 2", "category": "Zumba", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
+    {"name":"Level 2", "category": "Zumba", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"600"},	
 
     {"name":"Level 1", "category": "Marathon", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
     {"name":"Level 2", "category": "Marathon", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "Marathon", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 3", "category": "Marathon", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"900"},	
         
     {"name":"Level 1", "category": "Carnatic Music", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
     {"name":"Level 2", "category": "Carnatic Music", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "Carnatic Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 3", "category": "Carnatic Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"900"},	
     
     {"name":"Level 1", "category": "Western Music", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},	
     {"name":"Level 2", "category": "Western Music", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},	
-    {"name":"Level 3", "category": "Western Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"300"},	
+    {"name":"Level 3", "category": "Western Music", "sequence": "3", "pointsStartRange": "201", "pointsEndRange":"900"},	
 
     {"name":"Level 1", "category": "Classical Dance", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
-    {"name":"Level 2", "category": "Classical Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    {"name":"Level 2", "category": "Classical Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"800"},
     
     {"name":"Level 1", "category": "Western Dance", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"},
-    {"name":"Level 2", "category": "Western Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"200"},
+    {"name":"Level 2", "category": "Western Dance", "sequence": "2", "pointsStartRange": "101", "pointsEndRange":"800"},
     
-	{"name":"Level 1", "category": "Gifting", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"10"}	
+	{"name":"Level 1", "category": "Gifting", "sequence": "1", "pointsStartRange": "0", "pointsEndRange":"100"}	
   ]
 }
