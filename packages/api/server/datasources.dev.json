@@ -1,5 +1,5 @@
 {
-	"db": {
+	"db1": {
 		"name": "test",
 		"host": "ds243325.mlab.com",
 		"database": "shesmashes-dev",
@@ -7,5 +7,10 @@
 		"password": "admin",
 		"connector": "mongodb",
 		"port": 43325
-	}
+	},
+	"db": {
+		"name": "db",
+		"connector": "memory",
+		"file": "test.json"
+	  }
 }
