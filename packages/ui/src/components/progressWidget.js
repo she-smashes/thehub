@@ -10,6 +10,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import ProgressLabel from './progressLabelWidget';
 import { GridList, GridTile } from 'material-ui/GridList';
 import ReactTooltip from 'react-tooltip';
+import { StatefulToolTip } from "react-portal-tooltip"
 
 
 /**
@@ -89,6 +90,7 @@ class ProgressWidget extends Component {
 
         if (currentLevel !== "0") {
             pointProgress = 100 - ((pointsNeededForNextLevel / totalPointsForCurrentLevel) * 100);
+            
             if (points >= endLevelPoints) {
                 levelProgress = ((currentLevel) / totalLevels) * 100;
             } else {
@@ -98,17 +100,21 @@ class ProgressWidget extends Component {
             pointProgress = "1";
             levelProgress = "1";
         }
-        let msg = "";
-        if (currentLevel === "0") {
-            pointsNeededForNextLevel = startLevelPoints;
-            msg = "You need " + pointsNeededForNextLevel + " points to reach level " + (parseInt(currentLevel) + 1)
-        } else if (pointsNeededForNextLevel <= 0) {
-            msg = "You have completed " + "Level " + (parseInt(currentLevel))
-        } else {
-            msg = "You need " + pointsNeededForNextLevel + " more points to reach level " + (parseInt(currentLevel))
+       
+        if(levelProgress === 0) {
+            levelProgress = "1";
         }
 
-        return (
+        let msg = "";
+        if(currentLevel === "0") {
+            pointsNeededForNextLevel = startLevelPoints;
+            msg = "You need " + pointsNeededForNextLevel + " points to reach level " + (parseInt(currentLevel)+1)
+        } else if(pointsNeededForNextLevel <= 0){
+            msg = "You have completed "  + "Level " + (parseInt(currentLevel))
+        } else {
+            msg = "You need " + pointsNeededForNextLevel + " more points to complete level " + (parseInt(currentLevel));
+        }
+        const pLabel =
             <div className="m-nested">
                 <div className="example">
                     <ProgressLabel
@@ -137,6 +143,12 @@ class ProgressWidget extends Component {
                         startDegree={0}>
                     </ProgressLabel>
                 </div>
+            </div>
+        return (
+            <div>
+                <StatefulToolTip parent={pLabel}>
+                    {msg}
+                </StatefulToolTip>
             </div>
         );
     }
@@ -174,9 +186,9 @@ class ProgressWidget extends Component {
                         }
                     </GridList>
                     <br></br>
-                    <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Level Progress</i>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Total Levels</i>
                     <br></br>
-                    <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Point Progress</i>
+                    <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Points In Level</i>
                     </div>
                 </div>
 

@@ -115,7 +115,7 @@ class BadgeWidget extends Component {
             } else {
                 return (
                     <div>
-                        {this.renderImage('gold', 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('gold', 'fa fa-lock fa-4x', styles.image1, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             }
@@ -129,7 +129,7 @@ class BadgeWidget extends Component {
             } else {
                 return (
                     <div>
-                        {this.renderImage('silver', 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('silver', 'fa fa-lock fa-4x', styles.image2, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             }
@@ -143,7 +143,7 @@ class BadgeWidget extends Component {
             } else {
                 return (
                     <div>
-                        {this.renderImage('bronze', 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('bronze', 'fa fa-lock fa-4x', styles.image3, userBadge.badge.level.categoryId , 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             }
@@ -157,7 +157,7 @@ class BadgeWidget extends Component {
             } else {
                 return (
                     <div>
-                        {this.renderImage('platinum', 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge')}
+                        {this.renderImage('platinum', 'fa fa-lock fa-4x', styles.image4, userBadge.badge.level.categoryId, 'Earn ' + userBadge.pointsForNextLevel + ' more points to claim this badge in ' + userBadge.badge.level.category.name + ' category')}
                     </div>
                 );
             }
