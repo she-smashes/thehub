@@ -63,14 +63,16 @@ class ViewAllBadges extends Component {
             return Object.keys(this.props.badges).map((key, index) => {
                 let userBadges = this.props.badges[key];
                 return (
+                    <div className="badge-container">
                     <GridList cols={6} cellHeight='180px' >
-                        <GridTile key={index} cols={6} rows={1} style={styles.grid}>
-                            <b>{userBadges[0].badge.level.category.name}</b>
+                        <GridTile key={index} cols={6} rows={1} >
+                            <b className="textAlignLeft pad20">{userBadges[0].badge.level.category.name}</b>
                         </GridTile>
-                        <Paper style={paperStyle} zDepth={1} rounded={false} >
+                        <Paper className="badge-container" style={paperStyle} zDepth={1} rounded={false} >
                             {this.renderCategoryBadges(userBadges)}
                         </Paper>
                     </GridList>
+                    </div>
                 );
             });
         }
@@ -144,8 +146,8 @@ class ViewAllBadges extends Component {
 
     render = () => {
         return (
-            <div style={styles.border}>
-                <h3>Badges</h3>
+            <div className="widget well all-badges">
+                <div  className="widget-header">My Badges</div>
                 {(this.props.badges != undefined) ? this.renderBadges() : <div></div>}
             </div>
 
