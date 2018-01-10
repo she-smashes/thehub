@@ -547,8 +547,7 @@ module.exports = function(UserBadge) {
         // Check if the score and the badge is of the same category
         if (score.categoryId === badge.level.categoryId) {
           // Check if the score falls in the badge point range
-          if (score.points > badge.level.pointsStartRange &&
-            score.points <= badge.level.pointsEndRange) {
+          if (score.points >= badge.level.pointsEndRange) {
             claimBadges.push(badge);
           }
         }
@@ -600,6 +599,7 @@ module.exports = function(UserBadge) {
         })).then((userBadges) => {
           // Check if the score and the badge is of the same category
           let badgesWithScore = badgesMatchingScore(userScores, allBadges);
+
           // Check if the user has already claimed the badge
           let claimBadges = badgesToBeClaimed(badgesWithScore, userBadges);
           cb(null, claimBadges);
