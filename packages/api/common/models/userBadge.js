@@ -173,12 +173,54 @@ module.exports = function(UserBadge) {
   function processDefBadges(defBadges, uBadges, noOfDefBadges, catScoreMap) {
     let index = 0;
     let defaultBadges = [];
+
+    Object.keys(catScoreMap).forEach(function(catId) {
+      let foundCatInUserList = false;
+      uBadges.forEach(function(uBadge) {
+        uBadge = uBadge.toJSON();
+        // Check if user already has a badge in this category
+        if (uBadge.badge.level.categoryId == catId) {
+          foundCatInUserList = true;
+        }
+      });
+      if (!foundCatInUserList) {
+        defBadges.forEach(function(resp) {
+          resp = resp.toJSON();
+          if ((resp.level.categoryId + '') === (catId + '')) {
+            // if (catScoreMap[catId] > resp.level.pointsStartRange &&
+              // catScoreMap[catId] <= resp.level.pointsEndRange) {
+            if (index < noOfDefBadges) {
+              let tempBadges = {
+                'badge': resp,
+              };
+              let tBadge = tempBadges.badge;
+              let nextPoints = tBadge.level.pointsEndRange -
+                  catScoreMap[tBadge.level.categoryId];
+                // Get the points for the next level
+              if (nextPoints < 0) {
+                nextPoints = 0;
+              }
+              tempBadges.pointsForNextLevel = nextPoints;
+              defaultBadges = defaultBadges.concat(tempBadges);
+              ++index;
+            }
+            // }
+          }
+        });
+      }
+    });
+
+    let newBadgeList = defaultBadges;
     defBadges.forEach(function(resp) {
       resp = resp.toJSON();
       if (index < noOfDefBadges) {
         let foundCat = false;
-        uBadges.forEach(function(uBadge) {
-          uBadge = uBadge.toJSON();
+        newBadgeList.forEach(function(uBadge) {
+          try {
+            uBadge = uBadge.toJSON();
+          } catch (e) {
+            // uBadge = uBadge.toJSON();
+          }
           // Check if user already has a badge in this category
           if (uBadge.badge.level.categoryId == resp.categoryId) {
             foundCat = true;
