@@ -170,7 +170,7 @@ class BadgeWidget extends Component {
     render = () => {
         return (
             <div>
-                <div  className="widget-header">Badges Widget</div>
+                <div  className="widget-header">My Badges</div>
                 <div  className="inner-container">
                 <GridList cols={6} cellHeight='180px' style={{"align": "center"}}>
                     {(this.props.badges != undefined && this.props.badges.length>0)?this.renderBadges():<div></div>}

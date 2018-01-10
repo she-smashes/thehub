@@ -112,7 +112,9 @@ class ViewAllBadgesToBeClaimed extends Component {
             return (
                 <div>
                     <GridTile  key={index} style={styles.grid}>
+                        
                         <Paper style={paperStyle} zDepth={1} rounded={false} >
+                            
                             <GridList cols={2}>
                                 <GridTile  cols={1} rows={1} key={index} style={styles.gridTile}>
                                     {this.renderBadgeImage(claimBadge)}
@@ -148,34 +150,34 @@ class ViewAllBadgesToBeClaimed extends Component {
         if(claimBadge.imageFileName === 'gold') {
             return (
                 <div>
-                    {this.renderImage(colors.gold, 'fa fa-shield fa-4x')}
+                    {this.renderImage(colors.gold, 'fa fa-shield fa-5x')}
                 </div>
             );
         } else if(claimBadge.imageFileName === 'silver') {
             return (
                     <div>
-                        {this.renderImage(colors.silver, 'fa fa-shield fa-4x')}
+                        {this.renderImage(colors.silver, 'fa fa-shield fa-5x')}
                     </div>
                 );
 
         } else if(claimBadge.imageFileName === 'bronze') {
                 return (
                     <div>
-                        {this.renderImage(colors.bronze, 'fa fa-shield fa-4x')}
+                        {this.renderImage(colors.bronze, 'fa fa-shield fa-5x')}
                     </div>
                 );
 
         } else if(claimBadge.imageFileName === 'platinum') {
                 return (
                     <div>
-                        {this.renderImage(colors.platinum, 'fa fa-shield fa-4x')}
+                        {this.renderImage(colors.platinum, 'fa fa-shield fa-5x')}
                     </div>
                 );
 
         } else if(claimBadge.imageFileName === 'diamond') {
             return (
                 <div>
-                    {this.renderImage(colors.diamond, 'fa fa-shield fa-4x')}
+                    {this.renderImage(colors.diamond, 'fa fa-shield fa-5x')}
                 </div>
             );
     }
@@ -186,7 +188,7 @@ class ViewAllBadgesToBeClaimed extends Component {
 
         return (
             <div>
-                <div style={{"box-sizing": "border-box" , "color": "rgb(255, 255, 255)", "font-size": "24px", "font-weight": "300", "line-height": "48px", "padding-left": "16px", "width": "100%", "background-color": "#f0ad4e", "border-radius":"10px 10px 0 0"}}>Badges Widget</div>
+                
                 <GridList cols={2} cellHeight='180px' style={{"align": "center"}}>
                     {(this.props.badgesToBeClaimedList != undefined && this.props.badgesToBeClaimedList.length>0)?this.renderBadges():<div></div>}
                 </GridList>
