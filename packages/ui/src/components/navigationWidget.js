@@ -45,6 +45,7 @@ class NavigationWidget extends Component {
           } />
           <ToolbarSeparator className="margin-30" />
           <ToolbarTitle text="Events" />
+          <Link to={`/createevent`}> Events</Link>
           <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
@@ -76,9 +77,7 @@ class NavigationWidget extends Component {
             } />
 
           </IconMenu>
-          <ToolbarSeparator  className="margin-30"/>
-          <ToolbarTitle text="Gallery" />
-          <ToolbarSeparator className="margin-30" />
+          <ToolbarSeparator  className="margin-30"/>          
           <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
         </ToolbarGroup>
       </Toolbar>
