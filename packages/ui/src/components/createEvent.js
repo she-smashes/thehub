@@ -201,6 +201,8 @@ class CreateEvent extends Component {
 
 
         if (this.handleValidation()) {
+            alert(this.state.createEventformData.eventStartDate+"DATE");
+            alert(this.state.createEventformData.eventEndDate+"END");
             this.props.sendEventDetails(this.state.createEventformData, this.props.userInfo)
                 .then((response, error) => {
                     if (this.props.userInfo.allowedActionList.indexOf('task_count')) {
@@ -319,12 +321,13 @@ class CreateEvent extends Component {
     */
     handleStartDateChange=(event,date)=>{
         this.setState({
-            createEventformData : {...this.state.createEventformData, eventStartDate: date}
+            createEventformData : {...this.state.createEventformData, eventStartDate: date, eventEndDate: date}
         });
         this.setState(prevState => ({
             errors: {
                 ...prevState.errors,
-                startDate: ''
+                startDate: '',
+                endDate: ''
             }
         }));
     };
@@ -483,7 +486,7 @@ class CreateEvent extends Component {
         return (
            <div className="widget well hub-widget">
            <div className="widget-header">Create Event</div>
-                <form onSubmit={this.processForm}>                    
+                <form onSubmit={this.processForm}>
                     <div className="field-line">
                         <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
                     </div>
@@ -503,13 +506,7 @@ class CreateEvent extends Component {
                             {(this.state.errors.startDate != undefined && this.state.errors.startDate != '') ? this.state.errors.startDate : <div></div>}
                         </div>
                     </div>
-                    <div>
-                        <DatePicker  className="field-line" hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
-                        <div style={styles.errorText} className="field-line align-left">
-                        <br/>
-                            {(this.state.errors.endDate != undefined && this.state.errors.endDate != '') ? this.state.errors.endDate : <div></div>}
-                        </div>
-                    </div>
+
                     <div className="field-line">
                         <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value) => this.onLocationDropdownChange(event, index, value)} errorText={this.state.errors.location}>
                             {location}
