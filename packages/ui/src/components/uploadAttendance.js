@@ -41,7 +41,7 @@ class UploadAttendance extends Component {
   getEventData = () => {
     this.props.getEventDetails(this.props.match.params.id, this.props.userInfo).then((response, error) => {
       this.props.updateEventDetails(this.props.userInfo, JSON.parse(response.data));
-      
+
       let eventData = JSON.parse(response.data);
       let attendanceSubmitted = false;
       eventData.participants.map((participant, participantIndex) => {
@@ -57,7 +57,7 @@ class UploadAttendance extends Component {
             }
           });
         }
-        userNames = userNames.substring(0, userNames.length - 2);      
+        userNames = userNames.substring(0, userNames.length - 2);
         let attendanceData = this.state.attendanceData;
         attendanceData[participant.id] = userNames;
         this.setState({
@@ -71,7 +71,7 @@ class UploadAttendance extends Component {
             attendanceMessage: "Attendance submitted for the event"
           });
         }
-      });      
+      });
     }, (error) => {
       console.log(error);
     });
@@ -81,13 +81,13 @@ class UploadAttendance extends Component {
     if (participants !== undefined) {
       return participants.map((participant, participantIndex) => {
         console.log(this.state.attendanceData[participant.id]);
-        let usName = "userNames_" + participant.id;        
+        let usName = "userNames_" + participant.id;
         return (<TableRow key={participantIndex}>
           <TableRowColumn key={1} > {participant.participantType} </TableRowColumn>
           <TableRowColumn key={2}>
             <div className="field-line">
-              <TextField floatingLabelText="Participant Names" className="align-left" name={usName} multiline="true"
-                value={this.state.attendanceData[participant.id]} onChange={this.changeAttendanceData} errorText={this.state.errorData[participant.id]} 
+              <TextField floatingLabelText="Participant Names" multiLine={true} rows={2} className="align-left participant-input" name={usName} multiline="true"
+                value={this.state.attendanceData[participant.id]} onChange={this.changeAttendanceData} errorText={this.state.errorData[participant.id]}
                 disabled = {this.state.fieldsDisabled}/>
             </div>
           </TableRowColumn>
@@ -237,7 +237,7 @@ class UploadAttendance extends Component {
   }
 
   submitAttendanceData = () => {
-    this.verifyUsers('submit');    
+    this.verifyUsers('submit');
   }
 
   showAttendanceButtons = (participants) => {
@@ -263,20 +263,15 @@ class UploadAttendance extends Component {
         <br></br>
 
         {
-          (this.state.attendanceMessage !== '' && this.state.attendanceMessage !== undefined && this.state.attendanceMessage !== null) ? <div class="alert alert-success" role="alert" style={{"width": "50%"}}>
+          (this.state.attendanceMessage !== '' && this.state.attendanceMessage !== undefined && this.state.attendanceMessage !== null) ? <div class="alert alert-success" role="alert" style={{"width": "100%"}}>
           <p style={{"margin-left": "201px"}}>{this.state.attendanceMessage}</p>
         </div>: <div></div>
         }
 
-        
-        <Table style={{ "width": '50%' }}>
+
+        <Table style={{ "width": '100%' }}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn colSpan="2" tooltip="Upload Attendance" style={{ textAlign: 'center' }}>
-                Upload Attendance
-          </TableHeaderColumn>
-            </TableRow>
-            <TableRow>
+            <TableRow className="table-header">
               <TableHeaderColumn tooltip="Role" >Role</TableHeaderColumn>
               <TableHeaderColumn tooltip="User Name" >User Name</TableHeaderColumn>
             </TableRow>
@@ -297,16 +292,18 @@ class UploadAttendance extends Component {
    */
   render() {
     return (
-      <div className="">
-    
+      <div className="widget well hub-widget">
+        <div className="widget-header">Upload Attendance</div>
+        <div class="event-details">
         {
-          (this.props.eventData !== '' && this.props.eventData !== undefined && this.props.eventData !== null) ? <Link to={`/eventDetails/${this.props.eventData.id}`} style={{"color":"black"}}>Back ></Link> : <div></div>
+          (this.props.eventData !== '' && this.props.eventData !== undefined && this.props.eventData !== null) ? <Link to={`/eventDetails/${this.props.eventData.id}`} style={{"color":"#337ab7"}}>Back ></Link> : <div></div>
         }
-        
+
 
         {
           (this.props.eventData !== '' && this.props.eventData !== undefined && this.props.eventData !== null) ? this.renderAttendanceForm(this.props.eventData) : <div></div>
         }
+        </div>
       </div>
     );
   }
