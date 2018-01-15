@@ -30,7 +30,8 @@ class InitiativeDetails extends Component {
    */
   render() {
     return (
-      <div className="">
+      <div className="widget well hub-widget">
+        <div className="widget-header">Initiative Details</div>
         <div className="event-details">
           <h1 className=""> {this.props.initiativeDetails.title} </h1>
             <p className="" dangerouslySetInnerHTML={{ __html: this.props.initiativeDetails.description}}/>

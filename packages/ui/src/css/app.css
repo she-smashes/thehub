@@ -75,6 +75,17 @@ label{
 
 .event-details{
   padding:20px;
+  text-align: left;
+}
+ .participant-input  div{ width: 50% !important;}
+.table-header th{
+  font-size: 14px !important;
+  color: #000 !important;
+  font-weight: bold!important;
+}
+.table-body th{
+  font-size: 16px !important;
+  
 }
 .event-details > .date
 {

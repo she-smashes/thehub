@@ -38,7 +38,7 @@ class EventDetails extends Component {
 
   updateEnrollmentsData = () => {
     this.props.getAllEnrollmentsForEvent(this.props.match.params.id, this.props.userInfo).then((response, error) => {
-      this.props.updateEventEnrollmentsData(this.props.userInfo, JSON.parse(response.data));     
+      this.props.updateEventEnrollmentsData(this.props.userInfo, JSON.parse(response.data));
     }, (error) => {
       console.log(error);
     });
@@ -60,7 +60,7 @@ class EventDetails extends Component {
 
   updateEventData = () => {
     this.props.getEventDetails(this.props.match.params.id, this.props.userInfo).then((response, error) => {
-     
+
       this.props.updateEventDetails(this.props.userInfo, JSON.parse(response.data));
       this.setState({
         enrollmentDetails: {
@@ -120,29 +120,29 @@ class EventDetails extends Component {
     }
   }
 
-  renderEventEnrollments = () => {   
-    
+  renderEventEnrollments = () => {
+
      return this.props.eventEnrollmentsDetails.map((event, index) => {
          return (
-          <TableRow key={index}> 
+          <TableRow key={index}>
             <TableRowColumn> {event.users.username} </TableRowColumn>
             <TableRowColumn> {Moment(event.registeredOn).format('LL')} </TableRowColumn>
-          </TableRow> 
+          </TableRow>
          );
      });
  }
 
- renderEventEnrollmentsDetails = () => {   
-  
+ renderEventEnrollmentsDetails = () => {
+
    return (
-    <Table style={{"width":'50%'}}>
+    <Table style={{"width":'96%',"margin":"auto"}} className="event-details">
     <TableHeader displaySelectAll ={false} adjustForCheckbox={false}>
-      <TableRow>
+      <TableRow className="table-body">
         <TableHeaderColumn colSpan="2" tooltip="Participants details" style={{textAlign: 'center'}}>
         Participants details
         </TableHeaderColumn>
       </TableRow>
-      <TableRow>
+      <TableRow className="table-header">
         <TableHeaderColumn  tooltip="The user name" >User Name</TableHeaderColumn>
         <TableHeaderColumn  tooltip="Registered for the event on" >Registered On</TableHeaderColumn>
       </TableRow>
@@ -163,8 +163,10 @@ class EventDetails extends Component {
   render() {
 
     return (
-      <div className="">
+      <div className="widget well hub-widget">
+        <div className="widget-header">View events</div>
         <div className="event-details">
+
           <h1 className=""> {this.props.eventDetails.title} </h1>
           <span className="date"> {Moment(this.props.eventDetails.startDate).format('LL') + " - " +
             Moment(this.props.eventDetails.endDate).format('LL')}</span>
@@ -182,16 +184,16 @@ class EventDetails extends Component {
             }
           </div>
         </div>
-        
+
         <div className="event-participants">
         {
-          (this.props.userInfo.userId === this.props.eventDetails.createdBy && 
-          this.props.eventEnrollmentsDetails && 
-          this.props.eventEnrollmentsDetails.length > 0) ? 
+          (this.props.userInfo.userId === this.props.eventDetails.createdBy &&
+          this.props.eventEnrollmentsDetails &&
+          this.props.eventEnrollmentsDetails.length > 0) ?
           this.renderEventEnrollmentsDetails():<div></div>
         }
         </div>
-        
+
       </div>
     );
   }

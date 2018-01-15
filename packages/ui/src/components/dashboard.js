@@ -35,8 +35,7 @@ class Dashboard extends Component {
                 <div className="event-timeline-widget well hub-home-event-timeline">{<EventTimelineWidget />}</div>
               </div>
             </div>
-          </div>
-          <div className="event-timeline well hub-home-event-gallery">Gallery</div>
+          </div>          
         </main>
       </div>
     )
