@@ -201,8 +201,6 @@ class CreateEvent extends Component {
 
 
         if (this.handleValidation()) {
-            alert(this.state.createEventformData.eventStartDate+"DATE");
-            alert(this.state.createEventformData.eventEndDate+"END");
             this.props.sendEventDetails(this.state.createEventformData, this.props.userInfo)
                 .then((response, error) => {
                     if (this.props.userInfo.allowedActionList.indexOf('task_count')) {
@@ -500,7 +498,7 @@ class CreateEvent extends Component {
                     </SelectField>
                     </div>
                     <div>
-                        <DatePicker className="field-line" hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
+                        <DatePicker className="field-line" hintText="Select Event date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
                         <div style={styles.errorText} className="field-line align-left">
                             <br/>
                             {(this.state.errors.startDate != undefined && this.state.errors.startDate != '') ? this.state.errors.startDate : <div></div>}
