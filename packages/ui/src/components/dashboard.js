@@ -23,7 +23,8 @@ class Dashboard extends Component {
     return (
       <div>
         <main className="hub-main-grid">
-          {<ClaimYourBadgeWidget />}
+        <div style={{"margin-bottom": "20px"}}></div>
+   {/*        {<ClaimYourBadgeWidget />} */}
           <div>
             <div className="widget-container row">
               <div className="col-md-4 col-xs-12">
