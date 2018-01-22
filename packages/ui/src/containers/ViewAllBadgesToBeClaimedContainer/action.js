@@ -34,7 +34,7 @@ export const updateBadgesToBeClaimedInfo = (badgesInfo) => {
 }
 
 
-export const claimBadge = (badgeId, userInfo) => {
+export const claimBadge = (userBadgeId, badgeId, userInfo) => {
   
     return function (dispatch) {
       return Swagger(process.env.REACT_APP_API_URI,
@@ -45,15 +45,15 @@ export const claimBadge = (badgeId, userInfo) => {
           },
         })
         .then((client) => {    
-          let postBody = {
-            "badgeId": badgeId,
-            "userId": userInfo.userId
-          };
-          postBody = JSON.stringify(postBody);     
-            return client
-              .apis
-              .userBadge
-              .userBadge_create({ data: postBody}); 
+      
+          let putBody = { "claimed": true };
+          putBody = JSON.stringify(putBody);
+  
+          return client
+            .apis
+            .userBadge
+            .userBadge_prototype_patchAttributes({ id: userBadgeId, data: putBody });
+
         });
     }
   }
