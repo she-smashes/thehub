@@ -381,7 +381,7 @@ class CreateEvent extends Component {
     handleHourlyParticipantsDisplay = () => {
 
         return this.state.hourlyList.map((event, index) => {
-            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left centerMe" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
     }
     displayCategoryRadioButtons = () => {
@@ -466,7 +466,7 @@ class CreateEvent extends Component {
 
     handleNonHourlyParticipantsDisplay = () => {
         return this.state.nonhourlyList.map((event, index) => {
-            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left centerMe" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
     }
     /**
@@ -533,7 +533,7 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <label className="align-left bold">Select Category</label>
                         <br/>
-                        <RadioButtonGroup className="align-left" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
+                        <RadioButtonGroup className="align-left centerMe" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
                             {this.state.categoryMap != undefined ? this.displayCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
 
@@ -545,14 +545,14 @@ class CreateEvent extends Component {
                     <br/>
                     <div className="field-line">
                     {this.displaySubCategoryRadioButtons()?<label className="align-left bold">Select Sub Category</label>:<div></div>}
-                        <RadioButtonGroup className="align-left" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
+                        <RadioButtonGroup className="align-left centerMe" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
                             {this.state.createEventformData.categoryType != undefined ? this.displaySubCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
                     </div>
                     <div className="field-line border-line"></div>
                     <div className="field-line">
                         <label className="align-left bold">Select Event Type</label>
-                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
+                        <RadioButtonGroup className="align-left centerMe" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
                             <RadioButton value="hourly" label ="hourly" style={{ width: '100%' }} />
                             <RadioButton value="nonhourly" label="non-hourly" style={{ width: '100%' }} />
                         </RadioButtonGroup>
@@ -581,7 +581,7 @@ class CreateEvent extends Component {
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>
-                    <div style={styles.errorText} className="align-left">
+                    <div style={styles.errorText} className="align-left centerMe">
                     <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
                     </div>
