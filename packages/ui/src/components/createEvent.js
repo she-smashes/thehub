@@ -319,12 +319,13 @@ class CreateEvent extends Component {
     */
     handleStartDateChange=(event,date)=>{
         this.setState({
-            createEventformData : {...this.state.createEventformData, eventStartDate: date}
+            createEventformData : {...this.state.createEventformData, eventStartDate: date, eventEndDate: date}
         });
         this.setState(prevState => ({
             errors: {
                 ...prevState.errors,
-                startDate: ''
+                startDate: '',
+                endDate: ''
             }
         }));
     };
@@ -380,7 +381,7 @@ class CreateEvent extends Component {
     handleHourlyParticipantsDisplay = () => {
 
         return this.state.hourlyList.map((event, index) => {
-            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left centerMe" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
     }
     displayCategoryRadioButtons = () => {
@@ -465,7 +466,7 @@ class CreateEvent extends Component {
 
     handleNonHourlyParticipantsDisplay = () => {
         return this.state.nonhourlyList.map((event, index) => {
-            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
+            return  <Checkbox key={event.id} value={event.id} label={event.participantType} className="align-left centerMe" onCheck={this.saveParticipantSelection} style={{ width: 'auto' }}/>
         });
     }
     /**
@@ -483,7 +484,7 @@ class CreateEvent extends Component {
         return (
            <div className="widget well hub-widget">
            <div className="widget-header">Create Event</div>
-                <form onSubmit={this.processForm}>                    
+                <form onSubmit={this.processForm}>
                     <div className="field-line">
                         <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
                     </div>
@@ -497,19 +498,13 @@ class CreateEvent extends Component {
                     </SelectField>
                     </div>
                     <div>
-                        <DatePicker className="field-line" hintText="Event start date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
+                        <DatePicker className="field-line" hintText="Select Event date" name="eventStartDate" onChange={(event, date)=>this.handleStartDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())}/>
                         <div style={styles.errorText} className="field-line align-left">
                             <br/>
                             {(this.state.errors.startDate != undefined && this.state.errors.startDate != '') ? this.state.errors.startDate : <div></div>}
                         </div>
                     </div>
-                    <div>
-                        <DatePicker  className="field-line" hintText="Event end date" name="eventEndDate" onChange={(event, date)=>this.handleEndDateChange(event,date)} shouldDisableDate={this.pastDateCheck(new Date())} />
-                        <div style={styles.errorText} className="field-line align-left">
-                        <br/>
-                            {(this.state.errors.endDate != undefined && this.state.errors.endDate != '') ? this.state.errors.endDate : <div></div>}
-                        </div>
-                    </div>
+
                     <div className="field-line">
                         <SelectField className="align-left" multiple={true} hintText="Location" name="location" value={this.state.createEventformData.location} onChange={(event, index, value) => this.onLocationDropdownChange(event, index, value)} errorText={this.state.errors.location}>
                             {location}
@@ -538,7 +533,7 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <label className="align-left bold">Select Category</label>
                         <br/>
-                        <RadioButtonGroup className="align-left" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
+                        <RadioButtonGroup className="align-left centerMe" name="categoryType" onChange={this.handleCategoryTypeSelection} style={{ display: 'flex' }} errorText={this.state.errors.categoryType}>
                             {this.state.categoryMap != undefined ? this.displayCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
 
@@ -550,14 +545,14 @@ class CreateEvent extends Component {
                     <br/>
                     <div className="field-line">
                     {this.displaySubCategoryRadioButtons()?<label className="align-left bold">Select Sub Category</label>:<div></div>}
-                        <RadioButtonGroup className="align-left" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
+                        <RadioButtonGroup className="align-left centerMe" name="subCategoryType" onChange={this.handleSubCategoryTypeSelection} style={{ display: 'flex' }}>
                             {this.state.createEventformData.categoryType != undefined ? this.displaySubCategoryRadioButtons() : <div> </div>}
                         </RadioButtonGroup>
                     </div>
                     <div className="field-line border-line"></div>
                     <div className="field-line">
                         <label className="align-left bold">Select Event Type</label>
-                        <RadioButtonGroup className="align-left" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
+                        <RadioButtonGroup className="align-left centerMe" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
                             <RadioButton value="hourly" label ="hourly" style={{ width: '100%' }} />
                             <RadioButton value="nonhourly" label="non-hourly" style={{ width: '100%' }} />
                         </RadioButtonGroup>
@@ -586,7 +581,7 @@ class CreateEvent extends Component {
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? <label className="align-left bold">Select Non-Hourly Participant Type</label> : <div></div>}
                         {this.state.createEventformData.eventTypeSelected === 'nonhourly' ? this.handleNonHourlyParticipantsDisplay() : <div></div>}
                     </div>
-                    <div style={styles.errorText} className="align-left">
+                    <div style={styles.errorText} className="align-left centerMe">
                     <br/>
                         {((this.state.errors.eventType === undefined || this.state.errors.eventType === '') && this.state.errors.participants != undefined && this.state.errors.participants != '') ? this.state.errors.participants : <div></div>}
                     </div>
