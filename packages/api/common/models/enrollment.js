@@ -81,7 +81,6 @@ module.exports = function(Enrollment) {
             categoryId: event.categoryId,
           },
         }, function(err, score) {
-
           if (score.length > 0) {
             score = score[0];
             // If a score already exists for the user for this event category,
