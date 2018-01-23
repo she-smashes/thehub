@@ -121,7 +121,7 @@ module.exports = function(UserBadge) {
               uBadge = uBadge.toJSON();
 
               // Check if the user allready has this badge in the system badge list
-              if (uBadge.badge.id == resp.id) {
+              if ((uBadge.badge.id + '') === (resp.id + '')) {
                 resp.userId = uBadge.userId;
                 resp.user = uBadge.user;
               }
