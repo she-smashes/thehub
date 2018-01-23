@@ -5,8 +5,8 @@ body{
   text-align: center;
 }
 .input-group-addon:first-child{ width: auto; background: none; border: none; }
-.checklist, .field-line{ width: 500px!important; margin: 0 auto;}
-.field-line > div, .align-left{ width: 500px !important;}
+.checklist, .field-line{ width: 100%!important; margin: 0 auto;}
+.field-line > div, .align-left{ width: 84% !important;}
 .login-page .field-line, .login-page .field-line > div, .login-page .align-left{ width: 350px!important; display: inline;}
 
 .DraftEditor-root{ min-height: 300px; }
@@ -19,6 +19,7 @@ body{
   width: 100%;
   margin: 0 auto;
 }
+
 .container > div{
   position: relative;
 }
@@ -85,7 +86,7 @@ label{
 }
 .table-body th{
   font-size: 16px !important;
-  
+
 }
 .event-details > .date
 {

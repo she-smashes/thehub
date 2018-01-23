@@ -39,9 +39,9 @@ class SimpleRichTextEditor extends Component {
 
   render() {
     let {value, format, onChange, ...otherProps} = this.props; // eslint-disable-line no-unused-vars
-    
+
     return (
-      <div class="SimpleRichTextEditor">
+      <div class="SimpleRichTextEditor centerMe">
         <RichTextEditor
           {...otherProps}
           value={this.state.editorValue}

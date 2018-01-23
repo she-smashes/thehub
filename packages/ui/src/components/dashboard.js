@@ -27,16 +27,22 @@ class Dashboard extends Component {
    {/*        {<ClaimYourBadgeWidget />} */}
           <div>
             <div className="widget-container row">
-              <div className="col-md-4 col-xs-12">
-                <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
-                <div className="widget well badge-widget">{<BadgeWidget />}</div>
-                <div className="widget well hub-progress-widget">{<AttendanceWidget />}</div>
+              <div class="col-md-12 col-xs-12 noPad">
+                <div className="col-md-4 col-xs-12">
+                  <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
+                </div>
+                <div className="col-md-8 col-xs-12">
+                  <div className="event-timeline-widget well hub-home-event-timeline">{<EventTimelineWidget />}</div>
+                </div>
+                <div className="col-md-4 col-xs-12">
+                  <div className="widget well badge-widget">{<BadgeWidget />}</div>
+                  <div className="widget well hub-progress-widget">{<AttendanceWidget />}</div>
+                </div>
               </div>
-              <div className="col-md-8 col-xs-12">
-                <div className="event-timeline-widget well hub-home-event-timeline">{<EventTimelineWidget />}</div>
-              </div>
+
+
             </div>
-          </div>          
+          </div>
         </main>
       </div>
     )
