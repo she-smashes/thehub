@@ -205,7 +205,7 @@ module.exports = function(Enrollment) {
       foundUserbadge = false;
       userBadges.forEach(function(userBadge) {
         userBadge = userBadge.toJSON();
-        if (userBadge.badge.id === badgeMatchingScore.id) {
+        if ((userBadge.badge.id + '') === (badgeMatchingScore.id + '')) {
           foundUserbadge = true;
         }
       });
