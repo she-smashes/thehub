@@ -38,7 +38,7 @@ module.exports = function(app, cb) {
 
   Promise.all(promises)
     .then((res) => {
-      console.log('Levels set up ' + res.length);
+      console.log('Badges set up ' + res.length);
       return cb();
     });
 };
