@@ -106,18 +106,7 @@
     min-height:200px;
     margin-bottom: 20px;
   }
-  /* .widget-container.row .col-md-4.col-xs-12{
-    padding: 0;
-  }
-  .widget-container.row .col-md-8.col-xs-12{
-    padding: 0 0 0 30px;
-  } */
-/*
-@media (max-width:992px){
-  .hub-main-grid .claim-badge{
-      width:91.666666%;
-  }
-}*/
+  
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
   @media (max-width: 768px) {
@@ -139,7 +128,6 @@
     }
     .widget{
       border-radius: 0px;
-      margin: 0px;
     }
     .navbar{
       display: none;
