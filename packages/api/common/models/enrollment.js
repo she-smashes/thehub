@@ -129,9 +129,6 @@ module.exports = function(Enrollment) {
                                 categoryId,
                                 totalPts,
                                 allBadges);
-        console.log('badgeWithScore');
-
-        console.log(badgeWithScore);
 
         // Check if the user has already claimed the badge
         let claimBadges = badgeToBeClaimed(badgeWithScore, userBadges);
@@ -267,7 +264,7 @@ module.exports = function(Enrollment) {
     if (ctx.instance && ctx.instance.status === 'approved') {
       calculateUserScore(ctx);
     } else if (ctx.instance && ctx.instance.attendanceFlag === 'submit') {
-      submitAttendanceTask(ctx);
+      // submitAttendanceTask(ctx);
     } else {
       // do nothing
     }

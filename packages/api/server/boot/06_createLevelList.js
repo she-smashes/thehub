@@ -9,7 +9,6 @@ module.exports = function(app, cb) {
     const Model = app.models[modelName];
     const modelItems = sampleLevelData[modelName];
     modelItems.forEach(modelItem => {
-      console.log(modelItem.category);
       catPromises.push(new Promise(function(resolve) {
         app.models.category.findOne(
           {
@@ -38,7 +37,9 @@ module.exports = function(app, cb) {
               'name': modelItem.name,
               'categoryId': modelItem.categoryId,
             }, modelItem, function(err, i) {
-              console.log(i);
+              if (err) {
+                console.log(err);
+              }
               resolve();
             });
           }));

@@ -280,23 +280,7 @@ module.exports = function(Event) {
       });
       Promise.all(promises)
         .then((response) => {
-          if (attendanceFlag === 'submit') {
-            Promise.resolve(new Promise(function(resolve1) {
-              findAttendanceTask(eventId, resolve1);
-            })).then((task) => {
-              if (task !== undefined && task.length > 0) {
-                processEnrollments(response, eventHours, attendanceFlag, cb);
-              } else {
-                Promise.resolve(new Promise(function(resolve2) {
-                  createAttendanceTask(eventId, resolve2);
-                })).then((task) => {
-                  processEnrollments(response, eventHours, attendanceFlag, cb);
-                });
-              }
-            });
-          } else {
-            processEnrollments(response, eventHours, attendanceFlag, cb);
-          }
+          processEnrollments(response, eventHours, attendanceFlag, cb);
         });
     });
   };
@@ -313,11 +297,11 @@ module.exports = function(Event) {
     });
   };
 
-  var createAttendanceTask = function(eventId, resolve) {
+  var createAttendanceTask = function(eventId, approvableIds, resolve) {
     Event.app.models.Task.create({
       type: 'enrollment',
       status: 'Pending',
-      approvableIds: [],
+      approvableIds: approvableIds,
       parentType: 'event',
       parentTypeId: eventId,
     }, function(err, newTaskInstance) {
@@ -327,10 +311,14 @@ module.exports = function(Event) {
 
   var processEnrollments = function(response, eventHours, attendanceFlag, cb) {
     const updatePromises = [];
+    let enrollIds = [];
+    let eventId = '';
     response.forEach(function(enrollmnt) {
       let enrollment = enrollmnt[0];
       // calculate the total points for each enrollment
       let totalPoints = getPointsForEnrollment(enrollment, eventHours);
+
+      eventId = enrollment.eventId;
       if (enrollment.id != undefined) {
         updatePromises.push(new Promise(function(resolve) {
           // Update the Enrollment instance with
@@ -367,7 +355,18 @@ module.exports = function(Event) {
     });
     Promise.all(updatePromises)
       .then((response) => {
-        cb();
+        response.forEach(resp => {
+          enrollIds.push(resp.id);
+        });
+        if (attendanceFlag === 'submit') {
+          Promise.resolve(new Promise(function(resolve2) {
+            createAttendanceTask(eventId, enrollIds, resolve2);
+          })).then((newTask) => {
+            cb();
+          });
+        } else {
+          cb();
+        }
       });
   };
   /**
