@@ -47,7 +47,7 @@ module.exports = function(Enrollment) {
         task[0].updateAttributes({
           'approvableIds': approvableIds,
         });
-      } else {
+      } /* else {
         // If an enrollment is submitted as part of attendance
         // which means (fresh and direct), without registration,
         // then, create a new task
@@ -59,7 +59,7 @@ module.exports = function(Enrollment) {
           parentType: 'event',
           parentTypeId: ctx.instance.eventId,
         });
-      }
+      } */
     });
   }
 
