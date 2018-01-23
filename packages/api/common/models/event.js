@@ -284,12 +284,14 @@ module.exports = function(Event) {
             Promise.resolve(new Promise(function(resolve1) {
               findAttendanceTask(eventId, resolve1);
             })).then((task) => {
+              console.log(task);
               if (task !== undefined && task.length > 0) {
                 processEnrollments(response, eventHours, attendanceFlag, cb);
               } else {
                 Promise.resolve(new Promise(function(resolve2) {
                   createAttendanceTask(eventId, resolve2);
-                })).then((task) => {
+                })).then((newTask) => {
+                  console.log(newTask);
                   processEnrollments(response, eventHours, attendanceFlag, cb);
                 });
               }
