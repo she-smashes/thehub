@@ -282,43 +282,46 @@ module.exports = function(Event) {
         .then((response) => {
           if (attendanceFlag === 'submit') {
             Promise.resolve(new Promise(function(resolve1) {
-              Event.app.models.Task.find({
-                where: {
-                  parentType: 'event',
-                  parentTypeId: eventId,
-                  type: 'enrollment',
-                },
-              }, function(err, task) {
-                if (task !== undefined && task.length > 0) {
-                  processEnrollments(response,
-                    eventHours,
-                    attendanceFlag,
-                    cb);
-                } else {
-                  Promise.resolve(new Promise(function(resolve1) {
-                    Event.app.models.Task.create({
-                      type: 'enrollment',
-                      status: 'Pending',
-                      approvableIds: [],
-                      parentType: 'event',
-                      parentTypeId: eventId,
-                    }, function(err, newTaskInstance) {
-                      processEnrollments(response,
-                                         eventHours,
-                                         attendanceFlag,
-                                         cb);
-                    });
-                  }));
-                }
-              });
-            }));
+              findAttendanceTask(eventId, resolve1);
+            })).then((task) => {
+              if (task !== undefined && task.length > 0) {
+                processEnrollments(response, eventHours, attendanceFlag, cb);
+              } else {
+                Promise.resolve(new Promise(function(resolve2) {
+                  createAttendanceTask(eventId, resolve2);
+                })).then((task) => {
+                  processEnrollments(response, eventHours, attendanceFlag, cb);
+                });
+              }
+            });
           } else {
-            processEnrollments(response,
-              eventHours,
-              attendanceFlag,
-              cb);
+            processEnrollments(response, eventHours, attendanceFlag, cb);
           }
         });
+    });
+  };
+
+  var findAttendanceTask = function(eventId, resolve) {
+    Event.app.models.Task.find({
+      where: {
+        parentType: 'event',
+        parentTypeId: eventId,
+        type: 'enrollment',
+      },
+    }, function(err, task) {
+      resolve(task);
+    });
+  };
+
+  var createAttendanceTask = function(eventId, resolve) {
+    Event.app.models.Task.create({
+      type: 'enrollment',
+      status: 'Pending',
+      approvableIds: [],
+      parentType: 'event',
+      parentTypeId: eventId,
+    }, function(err, newTaskInstance) {
+      resolve(newTaskInstance);
     });
   };
 
