@@ -9,7 +9,11 @@ module.exports = function(Event) {
   Event.disableRemoteMethodByName('createChangeStream');
   Event.disableRemoteMethodByName('replaceById');
   Event.disableRemoteMethodByName('replaceOrCreate');
-  Event.validatesUniquenessOf('title', {message: 'Please enter another title. This title is already used for another event.'});
+
+  const msg = 'Please enter another title.' +
+  ' This title is already used for another event.';
+  Event.validatesUniquenessOf('title', {message: msg});
+
   /**
   * This remote method is to list all the 'z' events
   * where z = x + y ,
