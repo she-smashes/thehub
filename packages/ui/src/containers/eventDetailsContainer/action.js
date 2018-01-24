@@ -26,7 +26,7 @@ export const getAllEnrollmentsForEvent = (eventId, userInfo) => {
     }
   }
 
-export const getEventDetails = (eventId, userInfo) => {
+export const getEventDetails = (id, userInfo) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
@@ -39,13 +39,19 @@ export const getEventDetails = (eventId, userInfo) => {
       .then((client) => {
 
 
-        let filterQuery = { include: ["participants", "enrollments"] };
+        let filterQuery = { 
+          "where":
+            {
+              "title":id
+            },
+            include: ["participants", "enrollments"] 
+          };
         filterQuery = JSON.stringify(filterQuery)
 
         return client
           .apis
           .event
-          .event_findById({ id: eventId, filter: filterQuery });
+          .event_find({filter: filterQuery });
       });
   }
 }
@@ -94,6 +100,7 @@ export const registerUserForEvent = (eventId, userInfo, enrollmentInfo) => {
 export const updateEventDetails = (userInfo, eventDetailsInfo) => {
 
   let evDet = {};
+  eventDetailsInfo = eventDetailsInfo[0];
   eventDetailsInfo.registered = false;
   if (eventDetailsInfo.enrollments != undefined) {
     eventDetailsInfo.enrollments.map(enrollmentDetail => {

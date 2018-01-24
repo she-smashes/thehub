@@ -82,7 +82,7 @@ class EventTimelineWidget extends Component {
             >
             <b style={{padding: "5px"}}>
                 
-                <Link to={`/eventDetails/${event.id}`} style={{"color":"black"}}>{event.title}</Link>
+                <Link to={`/eventDetails/${event.title}`} style={{"color":"black"}}>{event.title}</Link>
 
               </b>
             </TimelineEvent>

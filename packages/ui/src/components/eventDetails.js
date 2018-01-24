@@ -32,12 +32,12 @@ class EventDetails extends Component {
 
   componentDidMount = () => {
     this.updateEventData();
-    this.updateEnrollmentsData();
+
   };
 
 
   updateEnrollmentsData = () => {
-    this.props.getAllEnrollmentsForEvent(this.props.match.params.id, this.props.userInfo).then((response, error) => {
+    this.props.getAllEnrollmentsForEvent(this.props.eventDetails.id, this.props.userInfo).then((response, error) => {
       this.props.updateEventEnrollmentsData(this.props.userInfo, JSON.parse(response.data));
     }, (error) => {
       console.log(error);
@@ -59,6 +59,7 @@ class EventDetails extends Component {
   }
 
   updateEventData = () => {
+    
     this.props.getEventDetails(this.props.match.params.id, this.props.userInfo).then((response, error) => {
 
       this.props.updateEventDetails(this.props.userInfo, JSON.parse(response.data));
@@ -70,6 +71,8 @@ class EventDetails extends Component {
           registered: this.props.eventDetails.registered
         }
       });
+      
+      this.updateEnrollmentsData();
     }, (error) => {
       console.log(error);
     });
@@ -88,7 +91,7 @@ class EventDetails extends Component {
    * This method invokes the approveTask action.
    */
   processForm = () => {
-    this.props.registerUserForEvent(this.props.match.params.id, this.props.userInfo, this.state.enrollmentDetails).then((response, error) => {
+    this.props.registerUserForEvent(this.props.eventDetails.id, this.props.userInfo, this.state.enrollmentDetails).then((response, error) => {
       this.updateEventData();
     }, (error) => {
       console.log(error);
@@ -115,7 +118,7 @@ class EventDetails extends Component {
   showUploadAttendanceButton = () => {
     if (this.props.eventDetails.status === 'approved' && Moment() < Moment(this.props.eventDetails.endDate)) {
       return (
-        <Link to={`/uploadattendance/${this.props.match.params.id}`}>Upload Attendance</Link>
+        <Link to={`/uploadattendance/${this.props.eventDetails.id}`}>Upload Attendance</Link>
       );
     }
   }
