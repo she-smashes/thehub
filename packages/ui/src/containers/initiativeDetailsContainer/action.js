@@ -12,11 +12,18 @@ export const getInitiativeDetails = (initiativeId, userInfo) => {
         },
       })
       .then((client) => {
-
+       
+        let filterQuery = { 
+          "where":
+            {
+              "title":initiativeId
+            }
+          };
+        filterQuery = JSON.stringify(filterQuery)
         return client
           .apis
           .initiative
-          .initiative_findById({ id: initiativeId});
+          .initiative_find({ filter: filterQuery});
       });
   }
 }
@@ -24,7 +31,7 @@ export const getInitiativeDetails = (initiativeId, userInfo) => {
 export const updateInitiativeDetails = (userInfo, initiativeDetailsInfo) => {
   return {
     type: GET_INITIATIVEDETAILS,
-    payload: initiativeDetailsInfo
+    payload: initiativeDetailsInfo[0]
   };
 }
 

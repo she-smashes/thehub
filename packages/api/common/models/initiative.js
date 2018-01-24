@@ -14,6 +14,9 @@ module.exports = function(Initiative) {
   Initiative.disableRemoteMethodByName(
     'prototype.__findById__events_updateById');
   Initiative.disableRemoteMethodByName('prototype.__findById__events_count');
+  const msg = 'Please enter another title.' +
+    ' This title is already used for another initiative.';
+  Initiative.validatesUniquenessOf('title', {message: msg});
 
   Initiative.listInitiativesForUser = function(ctx, userId, cb) {
     userId = ctx.req.accessToken.userId;
