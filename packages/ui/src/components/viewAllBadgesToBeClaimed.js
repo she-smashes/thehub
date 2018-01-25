@@ -61,8 +61,8 @@ class ViewAllBadgesToBeClaimed extends Component {
             console.log(error);
           });
     }
-    claimBadge = (badgeId) => {
-        this.props.claimBadge(badgeId, this.props.userInfo).then((response, error) => {
+    claimBadge = (userBadgeId, badgeId) => {
+        this.props.claimBadge(userBadgeId, badgeId, this.props.userInfo).then((response, error) => {
             console.log(response);
             let userBadgeId = JSON.parse(response.data).id;
             if(userBadgeId !== undefined && userBadgeId !== '') {
@@ -77,12 +77,12 @@ class ViewAllBadgesToBeClaimed extends Component {
           console.log(error);
         });
       }
-      showClaimData = (claimBadge) => {
+      showClaimData = (userBadgeId, claimBadge) => {
         if(this.state.claimedBadges.indexOf(claimBadge.id) <= -1) {
             return (
 
                 <div className="button-line">
-                    <RaisedButton type="button" label="Claim Your Badge" primary  onClick={() => { this.claimBadge(claimBadge.id) }} />
+                    <RaisedButton type="button" label="Claim Your Badge" primary  onClick={() => { this.claimBadge(userBadgeId, claimBadge.id) }} />
                 </div>
               );
         } else {
@@ -117,17 +117,17 @@ class ViewAllBadgesToBeClaimed extends Component {
                             
                             <GridList cols={2}>
                                 <GridTile  cols={1} rows={1} key={index} style={styles.gridTile}>
-                                    {this.renderBadgeImage(claimBadge)}
+                                    {this.renderBadgeImage(claimBadge.badge)}
                                 </GridTile>
                                 <GridTile    cols={1} rows={1} key={index} style={styles.gridTile}>
-                                    <b>Category:</b> {claimBadge.level.category.name}
+                                    <b>Category:</b> {claimBadge.badge.level.category.name}
                                     <br></br>
-                                    <b>Badge Name:</b> {claimBadge.description}
+                                    <b>Badge Name:</b> {claimBadge.badge.description}
                                     <br></br>
-                                    <b>Level:</b> {claimBadge.level.name}
+                                    <b>Level:</b> {claimBadge.badge.level.name}
                                     <br></br>
                                     <br></br>
-                                    {this.showClaimData(claimBadge)}
+                                    {this.showClaimData(claimBadge.id, claimBadge.badge)}
                                 </GridTile>
                             </GridList>
                         </Paper>

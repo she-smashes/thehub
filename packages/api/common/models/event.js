@@ -280,53 +280,95 @@ module.exports = function(Event) {
       });
       Promise.all(promises)
         .then((response) => {
-          const updatePromises = [];
-          response.forEach(function(enrollmnt) {
-            let enrollment = enrollmnt[0];
-            // calculate the total points for each enrollment
-            let totalPoints = getPointsForEnrollment(enrollment, eventHours);
-            if (enrollment.id != undefined) {
-              updatePromises.push(new Promise(function(resolve) {
-                // Update the Enrollment instance with
-                // - attendance details (save/submit)
-                // - enrollment type
-                // - total points for this enrollment
-                enrollment.updateAttributes({
-                  'enrollmentType': enrollment.enrollmentType,
-                  'attendanceFlag': attendanceFlag,
-                  'points': totalPoints,
-                }, function(err, result) {
-                  resolve(result);
-                });
-              }));
-            } else {
-              updatePromises.push(new Promise(function(resolve) {
-                // Create an enrollment instance with
-                // - eventId
-                // - userId
-                // - attendance details (save/submit)
-                // - enrollment type
-                // - total points for this enrollment
-                Event.app.models.enrollment.create({
-                  'eventId': enrollment.eventId,
-                  'userId': enrollment.userId,
-                  'enrollmentType': enrollment.enrollmentType,
-                  'attendanceFlag': attendanceFlag,
-                  'points': totalPoints,
-                }, function(err, result) {
-                  resolve(result);
-                });
-              }));
-            }
-          });
-          Promise.all(updatePromises)
-            .then((response) => {
-              cb();
-            });
+          processEnrollments(response, eventHours, attendanceFlag, cb);
         });
     });
   };
 
+  var findAttendanceTask = function(eventId, resolve) {
+    Event.app.models.Task.find({
+      where: {
+        parentType: 'event',
+        parentTypeId: eventId,
+        type: 'enrollment',
+      },
+    }, function(err, task) {
+      resolve(task);
+    });
+  };
+
+  var createAttendanceTask = function(eventId, approvableIds, resolve) {
+    Event.app.models.Task.create({
+      type: 'enrollment',
+      status: 'Pending',
+      approvableIds: approvableIds,
+      parentType: 'event',
+      parentTypeId: eventId,
+    }, function(err, newTaskInstance) {
+      resolve(newTaskInstance);
+    });
+  };
+
+  var processEnrollments = function(response, eventHours, attendanceFlag, cb) {
+    const updatePromises = [];
+    let enrollIds = [];
+    let eventId = '';
+    response.forEach(function(enrollmnt) {
+      let enrollment = enrollmnt[0];
+      // calculate the total points for each enrollment
+      let totalPoints = getPointsForEnrollment(enrollment, eventHours);
+
+      eventId = enrollment.eventId;
+      if (enrollment.id != undefined) {
+        updatePromises.push(new Promise(function(resolve) {
+          // Update the Enrollment instance with
+          // - attendance details (save/submit)
+          // - enrollment type
+          // - total points for this enrollment
+          enrollment.updateAttributes({
+            'enrollmentType': enrollment.enrollmentType,
+            'attendanceFlag': attendanceFlag,
+            'points': totalPoints,
+          }, function(err, result) {
+            resolve(result);
+          });
+        }));
+      } else {
+        updatePromises.push(new Promise(function(resolve) {
+          // Create an enrollment instance with
+          // - eventId
+          // - userId
+          // - attendance details (save/submit)
+          // - enrollment type
+          // - total points for this enrollment
+          Event.app.models.enrollment.create({
+            'eventId': enrollment.eventId,
+            'userId': enrollment.userId,
+            'enrollmentType': enrollment.enrollmentType,
+            'attendanceFlag': attendanceFlag,
+            'points': totalPoints,
+          }, function(err, result) {
+            resolve(result);
+          });
+        }));
+      }
+    });
+    Promise.all(updatePromises)
+      .then((response) => {
+        response.forEach(resp => {
+          enrollIds.push(resp.id);
+        });
+        if (attendanceFlag === 'submit') {
+          Promise.resolve(new Promise(function(resolve2) {
+            createAttendanceTask(eventId, enrollIds, resolve2);
+          })).then((newTask) => {
+            cb();
+          });
+        } else {
+          cb();
+        }
+      });
+  };
   /**
   * This remote method is to update the attendance for the event.
   */

@@ -17,6 +17,11 @@
     "badgeId": {
       "type": "number",
       "required": true
+    },
+    "claimed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "validations": [],

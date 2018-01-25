@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     updateBadgesToBeClaimedInfo : (badgesDetails) => {
       return dispatch(updateBadgesToBeClaimedInfo(badgesDetails));
     },
-    claimBadge : (badgeId, userInfo) => {
-      return dispatch(claimBadge(badgeId, userInfo));
+    claimBadge : (userBadgeId, badgeId, userInfo) => {
+      return dispatch(claimBadge(userBadgeId, badgeId, userInfo));
     }
   }
 }
