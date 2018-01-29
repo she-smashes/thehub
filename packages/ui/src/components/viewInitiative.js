@@ -26,7 +26,7 @@ class ViewInitiative extends Component {
             primaryText={
                 <div>
                     <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                    <Link to={`/initiativeDetails/${initiative.title}`}>{initiative.title}</Link>
+                    <Link to={`/initiative/${initiative.title}/${initiative.id}`}>{initiative.title}</Link>
                 </div>
             }
             />

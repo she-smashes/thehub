@@ -10,10 +10,6 @@ module.exports = function(Event) {
   Event.disableRemoteMethodByName('replaceById');
   Event.disableRemoteMethodByName('replaceOrCreate');
 
-  const msg = 'Please enter another title.' +
-  ' This title is already used for another event.';
-  Event.validatesUniquenessOf('title', {message: msg});
-
   /**
   * This remote method is to list all the 'z' events
   * where z = x + y ,

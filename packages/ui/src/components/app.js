@@ -42,16 +42,16 @@ class App extends Component {
             <NavigationContainer />
             <Switch>
               <Route path='/' exact={true} component={AsyncDashboard} />
-              <Route path='/eventdetails/:id' exact={true} component = {AsyncEvent} />
+              <Route path='/event/:title/:id' exact={true} component = {AsyncEvent} />
               <Route path='/viewinitiative' exact={true} component = {AsyncViewInitiative} />
-              <Route path='/initiativedetails/:id' exact={true} component = {AsyncInitiative} />
+              <Route path='/initiative/:title/:id' exact={true} component = {AsyncInitiative} />
               <Route path='/createinitiative' exact={true} component={AsyncCreateinitiative} />
               <Route path='/createevent' exact={true} component={AsyncCreateEvent} />
               <Route path='/viewapprovals' exact={true} component={AsyncViewApprovals} />
               <Route path='/viewevents' exact={true} component={AsyncViewEvents} />
               <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
               <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
-              <Route path='/uploadattendance/:id' exact={true} component = {AsyncUploadAttendance} />
+              <Route path='/uploadattendance/:title/:id' exact={true} component = {AsyncUploadAttendance} />
             </Switch>
           </div>
         }

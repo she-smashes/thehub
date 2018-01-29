@@ -74,7 +74,7 @@ class ViewEvent extends Component {
                     primaryText={
                         <div>
                             <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                            <Link to={`/eventDetails/${event.title}`}>{event.title}</Link>
+                            <Link to={`/event/${event.title}/${event.id}`}>{event.title}</Link>
                         </div>
                     }
                     className="event-timeline" />

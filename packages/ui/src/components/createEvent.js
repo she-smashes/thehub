@@ -217,20 +217,11 @@ class CreateEvent extends Component {
                     }
                     History.push("/");
                 }, (error) => {
-
               this.handleOpen();
-              if(error.response.obj.error.details.messages.title[0] !== undefined) {
-                this.setState({
-                    open: true,
-                    message: error.response.obj.error.details.messages.title[0]
-                });
-              } else {
-                this.setState({
-                    open: true,
-                    message: EVENT_FAILURE
-                });
-              }
-             
+              this.setState({
+                  open: true,
+                  message: EVENT_FAILURE
+              });
             });
         }
     }
