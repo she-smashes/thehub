@@ -9,6 +9,11 @@ import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-mo
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import FlatButton from 'material-ui/FlatButton';
+import {List, ListItem} from 'material-ui/List';
 
 import '../css/header.css';
 
@@ -19,8 +24,11 @@ import '../css/header.css';
 class NavigationWidget extends Component {
   constructor(props) {
    super(props);
+   this.showMobileNavigation = this.showMobileNavigation.bind(this);
    this.state = {
      value: 3,
+     open:false,
+     mobileNestedList:false
    };
  }
 
@@ -34,54 +42,71 @@ class NavigationWidget extends Component {
     this.props.resetStore();
   }
 
- handleChange = (event, index, value) => this.setState({value});
+  /**
+   * Shows the mobile navigation when clicked on the hamburger
+   *
+   * @param {object} event - the JavaScript event object
+   */
+  showMobileNavigation = (event) => {
+      this.setState({open: !this.state.open});
+  };
+
+  handleNestedListToggle = (item) => {
+    this.setState({
+      open: !item.state.mobileNestedList
+    });
+  };
+
   render = () => {
     return (
-      <div className="menu-bar">
-      <Toolbar>
-        <ToolbarGroup>
-          <ToolbarTitle text={
-            <Link to={`/`}> Dashboard</Link>
-          } />
-          <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle text="Events" />          
-          <IconMenu
-            iconButtonElement={
-              <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-              </IconButton>
-            }
-          >
-          <MenuItem className="menu-item" primaryText={
-            <Link to={`/createevent`}> Create Event</Link>
-          } />
-          <MenuItem className="menu-item" primaryText={
-            <Link to={`/viewevents`}> View Events</Link>
-          } />
-          </IconMenu>
-          <ToolbarSeparator className="margin-30" />
-          <ToolbarTitle text="Initiatives" />
-          <IconMenu
-            iconButtonElement={
-              <IconButton touch={true}>
-                <NavigationExpandMoreIcon />
-              </IconButton>
-            }
-          >
-            <MenuItem className="menu-item" primaryText={
-              <Link to={`/createinitiative`}> Create Initiative</Link>
-            } />
-            <MenuItem className="menu-item" primaryText={
-              <Link to={`/viewinitiative`}> View Initiatives</Link>
-            } />
+      <div>
+    <div className="menu-bar">
+        <Toolbar>
+            <ToolbarGroup>
+                <ToolbarTitle text={ <Link to={`/`}> Dashboard</Link>
+                    } />
+                    <ToolbarSeparator className="margin-30" />
+                    <ToolbarTitle text="Events" />
+                    <IconMenu iconButtonElement={ <IconButton touch={true}>
+                        <NavigationExpandMoreIcon />
+                        </IconButton>
+                        } >
+                        <MenuItem className="menu-item" primaryText={ <Link to={`/createevent`}> Create Event</Link>
+                        } />
+                        <MenuItem className="menu-item" primaryText={ <Link to={`/viewevents`}> View Events</Link>
+                        } />
+                    </IconMenu>
+                    <ToolbarSeparator className="margin-30" />
+                    <ToolbarTitle text="Initiatives" />
+                    <IconMenu iconButtonElement={ <IconButton touch={true}>
+                        <NavigationExpandMoreIcon />
+                        </IconButton>
+                        } >
+                        <MenuItem className="menu-item" primaryText={ <Link to={`/createinitiative`}> Create Initiative</Link>
+                        } />
+                        <MenuItem className="menu-item" primaryText={ <Link to={`/viewinitiative`}> View Initiatives</Link>
+                        } />
 
-          </IconMenu>
-          <ToolbarSeparator  className="margin-30"/>
-          <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
-        </ToolbarGroup>
-      </Toolbar>
-
-      </div>
+                    </IconMenu>
+                    <ToolbarSeparator className="margin-30" />
+                    <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
+            </ToolbarGroup>
+        </Toolbar>
+    </div>
+    <div className="mobile-menu-bar">
+        <AppBar title="" isInitiallyOpen={ true } onLeftIconButtonTouchTap={ this.showMobileNavigation } />
+        <Drawer docked={false} open={this.state.open} onRequestChange={(open)=> this.setState({open})} >
+            <List>
+                <ListItem primaryText={<Link to="/"> Dashboard </Link>} />
+                    <ListItem primaryText="Events" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} primaryText={<Link to="/createevent">Create Event </Link>} />,
+                        <ListItem key={2} primaryText={<Link to="/viewevents">View Events</Link>} /> ]} />
+                            <ListItem key={3} primaryText="Initiative" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} primaryText={<Link to="/createinitiative">Create Initiative</Link>} />,
+                                <ListItem key={2} primaryText={<Link to="/viewinitiative">View Initiative</Link>} /> ]} />
+                                    <ListItem primaryText="Logout" onClick={this.logout}/>
+            </List>
+        </Drawer>
+    </div>
+</div>
     );
   }
 }

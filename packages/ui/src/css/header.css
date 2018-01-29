@@ -38,15 +38,15 @@
   margin: 7px;
 }
 .avatar{
-    width:50px;
-    height:30px;
-    display:inline;
-    float: right;
-    padding-left:20px;
-  }
-  .avatar1{
-    float: right;
-   }
+  width:50px;
+  height:30px;
+  display:inline;
+  float: right;
+  padding-left:20px;
+}
+.avatar1{
+  float: right;
+}
 .user-name{
   font-weight: bold;
   float: right;
@@ -56,4 +56,30 @@
 .user-name a{
   text-decoration: none;
   color:white;
+}
+.mobile-menu-bar{
+  display: none;
+}
+
+/*mobile navigation css starts*/
+@media (max-width: 768px) {
+  .mobile-menu-bar{
+    display: block;
+  }
+  .mobile-menu-bar span{
+    color: #222 !important; 
+  }
+  .mobile-menu-bar button svg{ color: #222!important; }
+  .mobile-menu-bar >  div{ margin:0;}
+  .mobile-menu-bar > div{
+    background-color: #5d7e91!important;
+    box-shadow: none !important;
+  }
+  .mobile-menu-bar a{
+    color: #222 !important;
+  }
+  .menu-bar{
+    display: none;
+  }
+
 }
