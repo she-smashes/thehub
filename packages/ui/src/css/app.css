@@ -177,3 +177,6 @@ a:hover {
 .footer{
  text-align: center;
 }
+@media (min-width: 768px){
+  .hub-widget.well{ margin: 20px auto;}
+}
