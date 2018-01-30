@@ -15,9 +15,10 @@ body{
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-.container{
+.body-container{
   width: 100%;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .container > div{
@@ -114,8 +115,8 @@ a:hover {
 .well{ border: none!important; }
 .all-badges.well, .badge-widget.well, .hub-progress-widget.well,.hub-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
 .inner-container{ display: inline-block; padding: 19px; }
-.widget.all-badges{ width: 640px !important; margin: 20px auto; text-align: left !important;}
-.hub-widget.well{ margin: 20px auto; padding-bottom: 30px;max-width: 600px;}
+.widget.all-badges{ width: 640px !important; margin: 20px 15px; text-align: left !important;}
+.hub-widget.well{ margin: 20px 15px; padding-bottom: 30px;max-width: 600px;}
 .m-controls .x-slider {
   width: 100%;
 }

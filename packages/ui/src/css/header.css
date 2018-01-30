@@ -35,14 +35,15 @@
   display:inline;
   float: left;
   border-radius: 5px;
-  margin: 7px;
+  margin: 7px 16px;
 }
 .avatar{
-  width:50px;
-  height:30px;
+  width:40px;
+  height:27px;
   display:inline;
   float: right;
-  padding-left:20px;
+  padding-left:10px;
+  margin-top: -5px;
 }
 .avatar1{
   float: right;
@@ -63,17 +64,25 @@
 
 /*mobile navigation css starts*/
 @media (max-width: 768px) {
+  .container{ padding: 0 !important;}
   .mobile-menu-bar{
-    display: block;
+    display: inline-block;
+    top: 15px;
+    right: -3px;
+    position: absolute;
+    background: none;
   }
+  .badge-msg { padding: 24px 40px 12px 12px!important}
+  .badge-msg span{ top: 4px!important; right: 28px!important; background-color:Red; }
   .mobile-menu-bar span{
-    color: #222 !important; 
+    color: #222 !important;
   }
   .mobile-menu-bar button svg{ color: #222!important; }
   .mobile-menu-bar >  div{ margin:0;}
   .mobile-menu-bar > div{
-    background-color: #5d7e91!important;
+    background-color: transparent !important;
     box-shadow: none !important;
+    padding: 0 !important;
   }
   .mobile-menu-bar a{
     color: #222 !important;
@@ -81,5 +90,9 @@
   .menu-bar{
     display: none;
   }
+
+}
+@media (min-width: 768px){
+  .badge-msg span{ top: 4px!important; right: 10px!important; background-color:Red; }
 
 }

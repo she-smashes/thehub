@@ -95,7 +95,7 @@ class NavigationWidget extends Component {
     </div>
     <div className="mobile-menu-bar">
         <AppBar title="" isInitiallyOpen={ true } onLeftIconButtonTouchTap={ this.showMobileNavigation } />
-        <Drawer docked={false} open={this.state.open} onRequestChange={(open)=> this.setState({open})} >
+        <Drawer docked={false} openSecondary={true} open={this.state.open} onRequestChange={(open)=> this.setState({open})} >
             <List>
                 <ListItem primaryText={<Link to="/"> Dashboard </Link>} />
                     <ListItem primaryText="Events" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} primaryText={<Link to="/createevent">Create Event </Link>} />,

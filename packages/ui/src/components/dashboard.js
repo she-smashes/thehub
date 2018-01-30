@@ -21,7 +21,7 @@ class Dashboard extends Component {
       card: { margin: 10 }
     }
     return (
-      <div>
+      <div className="body-container">
         <main className="hub-main-grid">
         <div style={{"margin-bottom": "20px"}}></div>
    {/*        {<ClaimYourBadgeWidget />} */}
