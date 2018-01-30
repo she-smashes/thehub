@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     const loggedIn = (this.props.userInfo && this.props.userInfo.user) ? true : false;
     return (
-      <div className="container">
+      <div className="">
         <Router history={History}>
         <div>
           <Header/>
