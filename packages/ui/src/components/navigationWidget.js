@@ -56,7 +56,7 @@ class NavigationWidget extends Component {
       open: !item.state.mobileNestedList
     });
   };
-
+  handleClose = () => this.setState({open: false});
   render = () => {
     return (
       <div>
@@ -97,12 +97,12 @@ class NavigationWidget extends Component {
         <AppBar title="" isInitiallyOpen={ true } onLeftIconButtonTouchTap={ this.showMobileNavigation } />
         <Drawer docked={false} openSecondary={true} open={this.state.open} onRequestChange={(open)=> this.setState({open})} >
             <List>
-                <ListItem primaryText={<Link to="/"> Dashboard </Link>} />
-                    <ListItem primaryText="Events" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} primaryText={<Link to="/createevent">Create Event </Link>} />,
-                        <ListItem key={2} primaryText={<Link to="/viewevents">View Events</Link>} /> ]} />
-                            <ListItem key={3} primaryText="Initiative" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} primaryText={<Link to="/createinitiative">Create Initiative</Link>} />,
-                                <ListItem key={2} primaryText={<Link to="/viewinitiative">View Initiative</Link>} /> ]} />
-                                    <ListItem primaryText="Logout" onClick={this.logout}/>
+                <ListItem onClick= {this.handleClose} primaryText={<Link to="/"> Dashboard </Link>} />
+                    <ListItem primaryText="Events" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} onClick= {this.handleClose} primaryText={<Link to="/createevent">Create Event </Link>} />,
+                        <ListItem key={2} onClick= {this.handleClose} primaryText={<Link to="/viewevents">View Events</Link>} /> ]} />
+                            <ListItem key={3} primaryText="Initiative" primaryTogglesNestedList={true} nestedItems={[ <ListItem key={1} onClick= {this.handleClose} primaryText={<Link to="/createinitiative">Create Initiative</Link>} />,
+                                <ListItem key={2} onClick= {this.handleClose} primaryText={<Link to="/viewinitiative">View Initiative</Link>} /> ]} />
+                                    <ListItem onClick= {this.handleClose} primaryText="Logout" onClick={this.logout}/>
             </List>
         </Drawer>
     </div>
