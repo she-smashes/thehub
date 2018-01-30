@@ -108,4 +108,6 @@ ReactDOM.render(
 
 
     , document.getElementById('root'));
-registerServiceWorker();
+
+// Commenting this line to make the Loopback API Explorer work
+//registerServiceWorker();
