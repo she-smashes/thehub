@@ -124,10 +124,9 @@
              this.state.isLoading ? 'show' : 'load-notify'
            } />
 
-           <h2 className="card-heading">Login</h2>
+           <h2 className="card-heading">Sign In</h2>
 
            <div className="field-line">
-             <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
              <TextField
                floatingLabelText="Username"
                name="username"
@@ -139,7 +138,6 @@
            </div>
 
            <div className="field-line">
-              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
              <TextField
                floatingLabelText="Password"
                type="password"
@@ -152,7 +150,7 @@
            </div>
 
            <div className="button-line">
-             <RaisedButton type="submit" label="Log in" primary />
+             <RaisedButton type="submit" label="Login" primary />
            </div>
          </form>
          <Dialog
