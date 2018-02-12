@@ -7,8 +7,8 @@ body{
 .input-group-addon:first-child{ width: auto; background: none; border: none; }
 .checklist, .field-line{ width: 100%!important; margin: 0 auto;}
 .field-line > div, .align-left{ width: 84% !important;}
-.login-page .field-line, .login-page .field-line > div, .login-page .align-left{ width: 350px!important; display: inline;}
-
+.login-page .field-line, .login-page .field-line > div, .login-page .align-left{ width: 337px!important; display: inline;}
+.card-heading { background-color: #9900FF; margin: 0 0 33px; padding: 20px 0; color: #fff; border-top-left-radius: 8px; border-top-right-radius: 8px; font-size: 22px;}
 .DraftEditor-root{ min-height: 300px; }
 .field-line .align-left div{ margin-right: 15px !important;}
 .App-logo {
@@ -59,13 +59,28 @@ label{
   font-size: large;
 }
 .login-page{
-  padding: 20px 0;
+  padding: 0 0 50px;
   margin: 20px auto!important;
-  width: 410px;
+  width: 420px;
   margin: 0 auto;
+  border-radius: 8px!important;
 }
 .login-page .button-line{
-  margin-top: 20px;
+  margin-top: 50px;
+}
+.login-page .button-line > div {
+    box-shadow: none!important;
+}
+.login-page .button-line button{
+  background-color: #FFC600!important;
+  width: 160px !important;
+  border-radius: 30px !important;
+  height: 44px !important;
+  line-height: 37px!important;
+}
+.login-page .button-line button span{
+  text-transform: none!important;
+  font-size: 18px!important;
 }
 .align-left{
   text-align: left;
@@ -177,6 +192,6 @@ a:hover {
 .footer{
  text-align: center;
 }
-@media (min-width: 768px){
+@media (min-width:768px){
   .hub-widget.well{ margin: 20px auto;}
 }
