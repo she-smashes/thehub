@@ -3,7 +3,20 @@
   padding:0;
   box-sizing: border-box;
 }
+@font-face {
+    font-family: openSansRegular;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+html{
+  font-family:openSansRegular,Arial,Helvetica,sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family:openSansRegular,Arial,Helvetica,sans-serif;
 
+}
+.container{
+  font-family: openSansRegular,Arial,Helvetica,sans-serif !important;
+}
 /* Remove the navbar's default margin-bottom and rounded borders */
   .navbar {
     margin-bottom: 0;
