@@ -14,9 +14,10 @@ h1, h2, h3, h4, h5, h6{
   font-family:openSansRegular,Arial,Helvetica,sans-serif;
 
 }
-.container{
+.container, button, input, select, textarea{
   font-family: openSansRegular,Arial,Helvetica,sans-serif !important;
 }
+label, input{ font-size: 14px !important;}
 /* Remove the navbar's default margin-bottom and rounded borders */
   .navbar {
     margin-bottom: 0;
@@ -119,7 +120,7 @@ h1, h2, h3, h4, h5, h6{
     min-height:200px;
     margin-bottom: 20px;
   }
-  
+
 
   /* Hide the carousel text when the screen is less than 600 pixels wide */
   @media (max-width: 768px) {
