@@ -120,11 +120,11 @@
      return (
        <Card className="container login-page">
        <form onSubmit={this.processForm}>
-          <CircularProgress className={
-             this.state.isLoading ? 'show' : 'load-notify'
-           } />
 
            <h2 className="card-heading">Sign In</h2>
+           <CircularProgress className={
+              this.state.isLoading ? 'show' : 'load-notify'
+            } />
 
            <div className="field-line">
              <TextField
