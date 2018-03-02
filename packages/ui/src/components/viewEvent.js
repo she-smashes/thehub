@@ -82,7 +82,7 @@ class ViewEvent extends Component {
         }
     }
 
-    render = () => {
+    render = () => {       
         return (
           <div className="widget list-data well hub-widget">
             <div className="widget-header">View events</div>
@@ -91,7 +91,7 @@ class ViewEvent extends Component {
                         this.props.viewEvents ? this.renderEvents() : <div> </div>
                     }
                 </div>
-                <div id="eventDetails"></div>
+                <div id="eventDetails"></div>                
             </div>
 
         )

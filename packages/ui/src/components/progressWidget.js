@@ -186,9 +186,9 @@ class ProgressWidget extends Component {
                         }
                     </GridList>
                     <br></br>
-                    <i class="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Total Levels</i>
+                    <i className="fa fa-adjust fa-1x" style={{ "color": "#E08345" }}>Total Levels</i>
                     <br></br>
-                    <i class="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Points In Level</i>
+                    <i className="fa fa-adjust fa-1x" style={{ "color": "#9ED1C5" }}>Points In Level</i>
                     </div>
                 </div>
 
