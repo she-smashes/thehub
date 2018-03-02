@@ -23,11 +23,11 @@ class Dashboard extends Component {
     return (
       <div className="body-container">
         <main className="hub-main-grid">
-        <div style={{"margin-bottom": "20px"}}></div>
+        <div style={{"marginBottom": "20px"}}></div>
    {/*        {<ClaimYourBadgeWidget />} */}
           <div>
             <div className="widget-container row">
-              <div class="col-md-12 col-xs-12 noPad">
+              <div className="col-md-12 col-xs-12 noPad">
                 <div className="col-md-4 col-xs-12">
                   <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
                 </div>
