@@ -86,7 +86,7 @@ class EventTimelineWidget extends Component {
         let rows = _.chunk(this.props.events, 3);        
         var settings = {
             arrows: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
