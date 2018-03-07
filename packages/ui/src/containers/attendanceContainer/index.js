@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import AttendanceWidget from '../../components/attendanceWidget';
-import { getProgressCategoriesList,updateProgressCategoriesInfo } from './action';
+import { getAttendanceInfo, updateAttendanceInfo } from './action';
 
 const mapStateToProps = (state) => {
   return {
-    progressCategories: state.progressCategoriesList,
+    attendanceInfo: state.attendanceInfo,
     userInfo: state.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getProgressCategoriesList: (accessToken) => {
-      return dispatch(getProgressCategoriesList(accessToken, dispatch))
+    getAttendanceInfo: (userId, accessToken) => {
+      return dispatch(getAttendanceInfo(userId, accessToken, dispatch))
     },
-    updateProgressCategoriesInfo : (progressCategoriesDetails) => {
-      return dispatch(updateProgressCategoriesInfo(progressCategoriesDetails));
+    updateAttendanceInfo: (attendanceInfo) => {
+      return dispatch(updateAttendanceInfo(attendanceInfo))
     }
   }
 }

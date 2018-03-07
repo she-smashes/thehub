@@ -32,6 +32,8 @@ import participants from './containers/createEventContainer/participantsReducer'
 import badgesToBeClaimedList from './containers/ViewAllBadgesToBeClaimedContainer/reducer';
 import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer';
 import eventData from './containers/uploadAttendanceContainer/reducer';
+import attendanceInfo from './containers/attendanceContainer/reducer';
+
 
 import { reducer as reduxFormReducer } from 'redux-form';
 
@@ -64,7 +66,8 @@ const rootReducer = persistCombineReducers(config, {
     progressCategoriesList,
     badgesToBeClaimedList,
     badgesCanBeClaimedList,
-    eventData
+    eventData,
+    attendanceInfo
 });
 
 
@@ -110,4 +113,4 @@ ReactDOM.render(
     , document.getElementById('root'));
 
 // Commenting this line to make the Loopback API Explorer work
-//registerServiceWorker();
+registerServiceWorker();
