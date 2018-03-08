@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import ProgressWidget from '../../components/progressWidget';
-import { getProgressCategoriesList,updateProgressCategoriesInfo } from './action';
+import { getProgressCategoriesList, updateProgressCategoriesInfo } from './action';
+import { getCategories, updateCategoriesList } from './action';
+
 
 const mapStateToProps = (state) => {
   return {
     progressCategories: state.progressCategoriesList,
+    categories: state.categories,
     userInfo: state.userInfo
   }
 }
@@ -14,7 +17,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getProgressCategoriesList: (accessToken) => {
       return dispatch(getProgressCategoriesList(accessToken, dispatch))
     },
-    updateProgressCategoriesInfo : (progressCategoriesDetails) => {
+    getCategories: (userInfo) => {
+      return dispatch(getCategories(userInfo, dispatch))
+    }, updateCategoriesList: (categoriesInfo) => {
+      return dispatch(updateCategoriesList(categoriesInfo, dispatch))
+    },
+    updateProgressCategoriesInfo: (progressCategoriesDetails) => {
       return dispatch(updateProgressCategoriesInfo(progressCategoriesDetails));
     }
   }
