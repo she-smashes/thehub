@@ -8,6 +8,8 @@ import Header from '../containers/headerContainer/index';
 import NavigationContainer from '../containers/navigationContainer/'
 import Footer from './footer';
 import '../css/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/slick-carousel/slick/slick.css';
+import '../../node_modules/slick-carousel/slick/slick-theme.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../css/app.css';
 import '../css/global.css';
@@ -32,7 +34,7 @@ class App extends Component {
   render() {
     const loggedIn = (this.props.userInfo && this.props.userInfo.user) ? true : false;
     return (
-      <div className="container">
+      <div className="thehub">
         <Router history={History}>
         <div>
           <Header/>

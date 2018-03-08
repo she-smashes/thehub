@@ -187,9 +187,9 @@ class CreateInitiative extends React.Component {
             />,
         ];
         return (
-              <div className="widget well hub-widget">
+              <div className="widget well list-data hub-widget">
               <div className="widget-header">Create Initiative</div>
-                  <form onSubmit={this.processForm}>
+                  <form className="" onSubmit={this.processForm}>
                       <div className="field-line">
                           <TextField className="align-left" floatingLabelText="Title" name="title" onChange={this.changeStateData} value={this.state.createInitiativeformData.title} errorText={this.state.errors.title} />
                       </div>

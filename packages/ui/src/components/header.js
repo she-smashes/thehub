@@ -25,7 +25,7 @@ class Header extends Component {
     return <Badge
       badgeContent={<Link to="/viewapprovals">{this.props.userInfo.notificationCount}</Link>}
       secondary={true}
-      badgeStyle={{top: 12, right: 10, background:'Red'}}>
+      className="badge-msg">
        Hello, {this.props.userInfo.user.firstname}
       <img className="avatar" src={avatar} alt="avatar" />
     </Badge>

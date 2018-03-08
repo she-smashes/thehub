@@ -484,7 +484,7 @@ class CreateEvent extends Component {
         return (
            <div className="widget well hub-widget">
            <div className="widget-header">Create Event</div>
-                <form onSubmit={this.processForm}>
+                <form className="inner-container" onSubmit={this.processForm}>
                     <div className="field-line">
                         <TextField floatingLabelText="Lead Name" className="align-left" name="lead" onChange={this.changeUser} onBlur={this.verifyLeadUser} value={this.state.createEventformData.lead} errorText={this.state.errors.lead} />
                     </div>
@@ -553,7 +553,7 @@ class CreateEvent extends Component {
                     <div className="field-line">
                         <label className="align-left bold">Select Event Type</label>
                         <RadioButtonGroup className="align-left centerMe" name="eventType" onChange={this.handleEventTypeSelection} style={{ display: 'flex' }}>
-                            <RadioButton value="hourly" label ="hourly" style={{ width: '100%' }} />
+                            <RadioButton value="hourly" label ="hourly" style={{ width: '40%' }} />
                             <RadioButton value="nonhourly" label="non-hourly" style={{ width: '100%' }} />
                         </RadioButtonGroup>
                         <div style={styles.errorText} className="align-left">
