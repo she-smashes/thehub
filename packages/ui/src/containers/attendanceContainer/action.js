@@ -6,9 +6,9 @@
 
 import Swagger from 'swagger-client';
 
-import { DEFAULT_PROGRESS_CATEGORIES } from "../../constants/actions";
+import { ATTENDANCE_INFO } from "../../constants/actions";
 
-export const getProgressCategoriesList = (access_token) => {
+export const getAttendanceInfo = (userId, access_token) => {
 
   return function (dispatch) {
     return Swagger(process.env.REACT_APP_API_URI,
@@ -19,17 +19,21 @@ export const getProgressCategoriesList = (access_token) => {
         },
       })
       .then((client) => {
+
+        let filterQuery = {"where":{"userId":userId, "attendanceFlag":"submit"}};
+        filterQuery = JSON.stringify(filterQuery)
+
         return client
           .apis
-          .userBadge
-          .userBadge_listUserCategories();
+          .enrollment
+          .enrollment_find();
       });
   }
 }
-export const updateProgressCategoriesInfo = (progressCategoriesInfo) => {
+export const updateAttendanceInfo = (attendanceInfo) => {
   return {
-    type: DEFAULT_PROGRESS_CATEGORIES,
-    payload: progressCategoriesInfo.categories
+    type: ATTENDANCE_INFO,
+    payload: attendanceInfo
   };
 }
 
