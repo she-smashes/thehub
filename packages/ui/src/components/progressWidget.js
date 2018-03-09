@@ -10,7 +10,8 @@ import CircularProgress from 'material-ui/CircularProgress';
 import ProgressLabel from './progressLabelWidget';
 import { GridList, GridTile } from 'material-ui/GridList';
 import ReactTooltip from 'react-tooltip';
-
+import Slider from 'react-slick';
+import _ from 'lodash';
 import { StatefulToolTip } from "react-portal-tooltip"
 
 
@@ -98,7 +99,7 @@ class ProgressWidget extends Component {
      * This method renders the progress bar.
      */
     renderProgressBar = (categoryName, points, allLevels) => {
-        if (points > 0) {
+        if (points > 0) {            
             let totalLevels = allLevels.length;
             let maxLevel = allLevels[totalLevels - 1];
             let maxPointsForCategory = maxLevel.pointsEndRange;
@@ -155,7 +156,8 @@ class ProgressWidget extends Component {
         }
         return (
             <div className="sub-category" id="categoryDisplay">
-                <span>{categoryName}</span><div className="display-circle"></div>                
+                <span>{categoryName}</span><div className={ (points ? 'highlight' : '')}><div className="display-circle"></div></div>
+                              
                 { console.log({points}) }
             </div>
         );
@@ -164,37 +166,38 @@ class ProgressWidget extends Component {
     renderProgressCategories = () => {
 
         let catArr = Object.keys(this.state.categoryMap);
-
+        
         return catArr.map((event, index) => {
             console.log("Category Name = " + event);
+            console.log( JSON.stringify(this.state.categoryMap[event]));
             return <div className="cat-section">
                 <div className="widget-header">{event}</div>
                 <div className="inner-container">
-                    { this.state.categoryMap[event].map((event1, index) => {
-                    let foundProgress = false;
-                    let progressCat = {};
+                    { 
+                    this.state.categoryMap[event].map((event1, index) => {
+                        let foundProgress = false;
+                        let progressCat = {};
 
-                    this.props.progressCategories.map((event2, index) => {
-                        if (event1.id === event2.category.id) {
-                            foundProgress = true;
-                            progressCat = event2;
+                        this.props.progressCategories.map((event2, index) => {
+                            if (event1.id === event2.category.id) {
+                                foundProgress = true;
+                                progressCat = event2;
+                            }
+                        });
+                        if (foundProgress) {
+                            console.log("Sub category progress = " + event1.name);                        
+                            return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
+
+                        } else {
+                            console.log("Sub category no progress = " + event1.name);
+                            return this.renderProgressBar(event1.name, 0, null);
+
                         }
-                    });
-                    if (foundProgress) {
-                        console.log("Sub category progress = " + event1.name);                        
-                        return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
-
-                    } else {
-                        console.log("Sub category no progress = " + event1.name);
-                        return this.renderProgressBar(event1.name, 0, null);
-
-                    }
-                }) 
-            }
+                    }) 
+                }
                     
                 </div>
-            </div>
-             
+            </div>            
 
         });
 
@@ -206,13 +209,8 @@ class ProgressWidget extends Component {
 
         let progress = 50;
         return (
-            <div>
-                {
-                    this.props.progressCategories && this.props.progressCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
-                }
-                
+            this.props.progressCategories && this.props.progressCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
 
-            </div>
         )
     }
 }
