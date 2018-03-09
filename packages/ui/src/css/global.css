@@ -11,6 +11,11 @@
   font-family: openSansExtraBold;
   src: url(../fonts/OpenSans-ExtraBold.ttf);
 }
+@font-face {
+  font-family: openSansSemiBold;
+  src: url(../fonts/OpenSans-SemiBold.ttf);
+}
+.font-semi-bold{ font-family: OpenSansSemiBold; font-size: 13px;}
 html, body{
   font-family:openSansRegular,Arial,Helvetica,sans-serif;
 }

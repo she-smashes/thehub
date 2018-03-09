@@ -11,12 +11,13 @@ import '../css/bootstrap/dist/css/bootstrap.min.css';
 import '../../node_modules/slick-carousel/slick/slick.css';
 import '../../node_modules/slick-carousel/slick/slick-theme.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import '../css/app.css';
+
 import '../css/global.css';
 import '../css/singles.css';
 import '../css/layout.css';
 import '../css/login.css';
-
+import '../css/app.css';
+import '../css/header.css';
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));

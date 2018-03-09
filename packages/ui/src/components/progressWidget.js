@@ -154,7 +154,7 @@ class ProgressWidget extends Component {
             }
         }
         return (
-            <div  className="sub-category" id="categoryDisplay">
+            <div className="sub-category" id="categoryDisplay">
                 <span>{categoryName}</span><div className="display-circle"></div>                
                 { console.log({points}) }
             </div>

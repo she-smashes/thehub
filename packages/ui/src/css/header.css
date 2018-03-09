@@ -68,6 +68,12 @@
   margin-right: 50px;
   color: #fff !important;
   cursor: pointer;
+  font-family: OpenSansSemiBold;
+  letter-spacing: 0.5px;
+}
+.welcome-user{
+  font-family: OpenSansExtraBold;
+  font-size:13px;
 }
 .avatar-details{
   display: inline !important;

@@ -26,7 +26,9 @@ class Header extends Component {
       logoutContent: false
     };
   }
-
+  componentDidMount =  () => {
+    
+  }
   toggleNav = event => {
     var nav = document.querySelector(".navbar-ex1-collapse");
     nav.classList.toggle("in");
@@ -37,9 +39,11 @@ class Header extends Component {
    * approvals count on top the user avatar.
    */
   badgemessagecount = () => {
+    
+
     return (
       <span className="avatar-container">
-        <Badge
+        {this.props.userInfo.notificationCount > 0 && <Badge 
           badgeContent={
             <Link to="/viewapprovals">
               {this.props.userInfo.notificationCount}
@@ -47,7 +51,7 @@ class Header extends Component {
           }
           secondary={true}
           className="badge-msg"
-        />
+        /> }
         <Chip className="avatar-details">
           <Avatar src={avatar} />
           {this.props.userInfo.user.firstname}
@@ -174,15 +178,10 @@ class Header extends Component {
             >
               LOGOUT
             </a>
-            <span>
-              {this.props.userInfo.notificationCount >= 1 ? (
+            <span className="avatar-container">
+              {this.props && this.props.userInfo &&
                 this.badgemessagecount()
-              ) : (
-                <Chip>
-                  <Avatar src={avatar} />
-                  {this.props.userInfo.user.firstname}
-                </Chip>
-              )}
+              }
             </span>
           </div>
         </div>
@@ -200,51 +199,51 @@ class Header extends Component {
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
         <img className="logo" src={logo} alt="Logo" />
         
-        {this.user()}
+        {this.user()}        
         
         {this.props && this.props.userInfo && this.props.userInfo.user && 
     
-    <div>
-      
-    {this.state.dashboardContent &&
-      <div className="dashboard-menu-content menu-content">
-        Welcome, {this.props.userInfo.user.firstname}
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco . Duis aute irure dolor in reprehenderit in voluptate .
-        </p>
-      </div>
-    }
-    {this.state.eventContent &&
-      
-      <div className="events-menu-content menu-content">
-        <ul className="menu-list-item">
-          <li>
-            <Link to="/viewevents">View Events</Link>
-          </li>
-          <li>
-            <Link to="/createevent">Create Event</Link>
-          </li>
-        </ul>
-      </div>
-    }
+        <div>
+          
+        {this.state.dashboardContent &&
+          <div className="dashboard-menu-content menu-content">
+            <span className="welcome-user">Welcome, {this.props.userInfo.user.firstname}</span> 
+            <p className="font-semi-bold">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco . Duis aute irure dolor in reprehenderit in voluptate .
+            </p>
+          </div>
+        }
+        {this.state.eventContent &&
+          
+          <div className="events-menu-content menu-content">
+            <ul className="menu-list-item font-semi-bold">
+              <li>
+                <Link to="/viewevents">View Events</Link>
+              </li>
+              <li>
+                <Link to="/createevent">Create Event</Link>
+              </li>
+            </ul>
+          </div>
+        }
 
-      {this.state.initiativeContent && 
-      <div className="initiatives-menu-content menu-content">
-        <ul className="menu-list-item">
-          <li>
-            <Link to="/viewinitiative">View initiative</Link>
-          </li>
-          <li>
-            <Link to="/createinitiative">Create initiative</Link>
-          </li>
-        </ul>
+          {this.state.initiativeContent && 
+          <div className="initiatives-menu-content menu-content">
+            <ul className="menu-list-item font-semi-bold">
+              <li>
+                <Link to="/viewinitiative">View initiative</Link>
+              </li>
+              <li>
+                <Link to="/createinitiative">Create initiative</Link>
+              </li>
+            </ul>
+          </div>
+          } 
+        
+      
       </div>
-      } 
-    
-  
-  </div>
         }       
       </nav>
     );

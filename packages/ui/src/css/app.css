@@ -124,13 +124,31 @@ a:hover {
     text-decoration: none;
     color: #fff;
 }
+.hub-progress-widget .cat-section{ margin-bottom: 20px;}
+.hub-progress-widget .sub-category{ float: left; padding: 10px 20px;}
+.hub-progress-widget .sub-category .display-circle{ 
+  height: 80px; 
+  width: 80px; 
+  border:1px solid #dcdcdc;   
+  border-width: 0.29px;
+  border-color: rgb(233, 233, 233);
+  border-style: solid;
+  border-radius: 50%;
+  background: -moz-linear-gradient( 90deg, #fafafa 0%, #fff 100%);
+ background: -webkit-linear-gradient( 90deg, #fafafa 0%, #fff 100%);
+ background: -ms-linear-gradient( 90deg, #fafafa 0%, #fff 100%);
+ box-shadow: 0px 5px 10px 0px rgba(14, 9, 14, 0.3);
+ opacity: 0.702;
+ 
+
+}
 #taskAccordian h3{ font-size: 16px!important; text-transform: none!important;}
 #taskAccordian .react-sanfona-item-expanded .react-sanfona-item-title { background-color: #b0bec5;}
 .list-data a{ color: #000!important; }
 .fa{ padding-right: 10px; }
 .well{ border: none; background: #fff; }
 .all-badges.well, .badge-widget.well, .hub-progress-widget.well,.hub-widget.well, .hub-home-event-timeline.well, .badge-widget.well{ padding: 0;}
-.inner-container{ display: inline-block; padding: 19px; border: 1px solid #dcdcdc; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+.inner-container{ display: inline-block; width: 100%; padding: 19px; border: 1px solid #dcdcdc; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
 .widget.all-badges{ width: 640px !important; margin: 20px 15px; text-align: left !important;}
 .hub-widget.well{ margin: 20px 15px; padding-bottom: 30px;max-width: 600px;}
 .m-controls .x-slider {
