@@ -170,9 +170,7 @@ class Header extends Component {
                   ? "header-menu-item selected-menu-item"
                   : "header-menu-item "
               }
-              onClick={() => {
-                this.menuItemClicked("menu5");
-              }}
+              onClick={this.logout}
             >
               LOGOUT
             </a>
@@ -186,14 +184,6 @@ class Header extends Component {
                 </Chip>
               )}
             </span>
-
-            {/*<div className="user-name">
-           {this.props.userInfo.notificationCount >=1 ?
-             this.badgemessagecount()
-           :
-            <div> Hello, {this.props.userInfo.user.firstname}
-              <img className="avatar" src={avatar} alt="avatar" /> </div>}
-            </div>*/}
           </div>
         </div>
       );
@@ -226,9 +216,6 @@ class Header extends Component {
         </p>
       </div>
     }
-  
-
-
     {this.state.eventContent &&
       
       <div className="events-menu-content menu-content">
