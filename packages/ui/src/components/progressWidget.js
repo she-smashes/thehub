@@ -14,12 +14,11 @@ import Slider from 'react-slick';
 import _ from 'lodash';
 import { StatefulToolTip } from "react-portal-tooltip"
 
-
 /**
- *
- * This class the component for rendering the events in the approval page.
- *
- */
+*
+* This class the component for rendering the events in the approval page.
+*
+*/
 const pw = 6;
 const cw = pw / 2;
 const tw = pw;
@@ -40,27 +39,19 @@ const styles = {
         height: 30
     },
 };
-
 class ProgressWidget extends Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
-
-            categoryMap: {},
-
+            categoryMap: {}
         };
     }
-
     /**
-     * This method gets the list of categories and their progress when the component is mounted.
-     */
-
+    * This method gets the list of categories and their progress when the component is mounted.
+    */
     componentDidMount = () => {
         this.props.getCategories(this.props.userInfo).then((response, error) => {
             this.props.updateCategoriesList(JSON.parse(response.data));
-
             let catMap = {};
             this.props.categories.map((event, index) => {
                 let key = event.type;
@@ -77,29 +68,23 @@ class ProgressWidget extends Component {
                     }
                 }
             });
-
             console.log(catMap);
-
             this.setState({
                 categoryMap: catMap
             });
             this.props.getProgressCategoriesList(this.props.userInfo.id).then((response, error) => {
                 this.props.updateProgressCategoriesInfo(JSON.parse(response.data));
                 console.log(this.props.progressCategories);
-
             }, (error) => {
                 console.log(error);
             });
-
         });
-
     }
-
     /**
-     * This method renders the progress bar.
-     */
+    * This method renders the progress bar.
+    */
     renderProgressBar = (categoryName, points, allLevels) => {
-        if (points > 0) {            
+        if (points > 0) {
             let totalLevels = allLevels.length;
             let maxLevel = allLevels[totalLevels - 1];
             let maxPointsForCategory = maxLevel.pointsEndRange;
@@ -126,10 +111,8 @@ class ProgressWidget extends Component {
                     totalPointsForCurrentLevel = parseInt(event.pointsEndRange);
                 }
             });
-
             if (currentLevel !== "0") {
                 pointProgress = 100 - ((pointsNeededForNextLevel / totalPointsForCurrentLevel) * 100);
-
                 if (points >= endLevelPoints) {
                     levelProgress = ((currentLevel) / totalLevels) * 100;
                 } else {
@@ -139,11 +122,9 @@ class ProgressWidget extends Component {
                 pointProgress = "1";
                 levelProgress = "1";
             }
-
             if (levelProgress === 0) {
                 levelProgress = "1";
             }
-
             let msg = "";
             if (currentLevel === "0") {
                 pointsNeededForNextLevel = startLevelPoints;
@@ -156,61 +137,99 @@ class ProgressWidget extends Component {
         }
         return (
             <div className="sub-category" id="categoryDisplay">
-                <span>{categoryName}</span><div className={ (points ? 'highlight' : '')}><div className="display-circle"></div></div>
-                              
-                { console.log({points}) }
+                <span>{categoryName}</span><div className={(points ? 'highlight' : '')}><div className="display-circle"></div></div>
+                {console.log({ points })}
             </div>
         );
     }
-    
     renderProgressCategories = () => {
-
         let catArr = Object.keys(this.state.categoryMap);
-        
+        let progressCat = {};
+        let allCat = [];   
+        let foundProgress1;       
+       
+        var settings = {
+            arrows: true,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerPadding: '50px'
+          };
+       
         return catArr.map((event, index) => {
+            let rows = _.chunk(this.state.categoryMap[event], 3);
             console.log("Category Name = " + event);
-            console.log( JSON.stringify(this.state.categoryMap[event]));
+            console.log(JSON.stringify(this.state.categoryMap[event]));
             return <div className="cat-section">
                 <div className="widget-header">{event}</div>
                 <div className="inner-container">
-                    { 
-                    this.state.categoryMap[event].map((event1, index) => {
-                        let foundProgress = false;
-                        let progressCat = {};
-
-                        this.props.progressCategories.map((event2, index) => {
-                            if (event1.id === event2.category.id) {
-                                foundProgress = true;
-                                progressCat = event2;
+                   
+                        
+                        {
+                        this.state.categoryMap[event].map((event1, index) => {
+                            let foundProgress = false;
+                           
+                           /* this.props.progressCategories.map((event2, index) => {
+                                if (event1.id === event2.category.id) {
+                                    foundProgress = true;
+                                    progressCat = event2;
+                                }
+                            });*/
+                            if (foundProgress) {
+                                console.log("Sub category progress = " + event1.name);
+                                // return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
+                            } else {
+                                console.log("Sub category no progress = " + event1.name);
+                                // return this.renderProgressBar(event1.name, 0, null);
                             }
-                        });
-                        if (foundProgress) {
-                            console.log("Sub category progress = " + event1.name);                        
-                            return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
-
-                        } else {
-                            console.log("Sub category no progress = " + event1.name);
-                            return this.renderProgressBar(event1.name, 0, null);
-
-                        }
-                    }) 
-                }
+                        }) 
+                    }
+                    
+                       <Slider {...settings}>
+                       {                       
+                        rows.map((row) => (
+                            
+                            
+                            
+                            <div className="rows">
+                             
+                             {                       
+                            row.map((event1,index) => (
+                                foundProgress1 = false,
+                                this.props.progressCategories.map((event2, index) => {
+                                    if (event1.id === event2.category.id) {
+                                        foundProgress1 = true;
+                                        progressCat = event2;
+                                    }
+                                    
+                                }),
+                                <div className="sub-category">
+                                    <span>{event1.name}</span><div className={(foundProgress1 ? 'highlight' : '')}><div className="display-circle"></div></div>
+                                </div>
+                            ))
+                           
+                            } 
+                            </div>
+                        ))
+                    }
+                    </Slider>   
+                                       
+                      
+                
+            
                     
                 </div>
-            </div>            
-
+            </div>
         });
-
     }
     /**
-     * This method renders the categories and their progress.
-     */
+    * This method renders the categories and their progress.
+    */
     render = () => {
-
-        let progress = 50;
+        let progress = 50;        
         return (
             this.props.progressCategories && this.props.progressCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
-
         )
     }
 }
