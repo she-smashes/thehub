@@ -127,20 +127,21 @@ class ProgressWidget extends Component {
             }
             let msg = "";
             if (currentLevel === "0") {
-                pointsNeededForNextLevel = startLevelPoints;
-                msg = "You need " + pointsNeededForNextLevel + " points to reach level " + (parseInt(currentLevel) + 1)
+                pointsNeededForNextLevel = startLevelPoints;                
+                msg = pointsNeededForNextLevel + "more points for next level" + (parseInt(currentLevel) + 1)
             } else if (pointsNeededForNextLevel <= 0) {
                 msg = "You have completed " + "Level " + (parseInt(currentLevel))
             } else {
-                msg = "You need " + pointsNeededForNextLevel + " more points to complete level " + (parseInt(currentLevel));
+                msg = pointsNeededForNextLevel + "more points for next level" + (parseInt(currentLevel));
             }
+            return (            
+                <div className="points">
+                   <span>Points {points}</span>
+                   <span>{msg}</span>
+               </div>
+           );
         }
-        return (
-            <div className="sub-category" id="categoryDisplay">
-                <span>{categoryName}</span><div className={(points ? 'highlight' : '')}><div className="display-circle"></div></div>
-                {console.log({ points })}
-            </div>
-        );
+        
     }
     renderProgressCategories = () => {
         let catArr = Object.keys(this.state.categoryMap);
@@ -159,41 +160,14 @@ class ProgressWidget extends Component {
        
         return catArr.map((event, index) => {
             let rows = _.chunk(this.state.categoryMap[event], 3);
-            console.log("Category Name = " + event);
-            console.log(JSON.stringify(this.state.categoryMap[event]));
+           
             return <div className="cat-section">
                 <div className="widget-header">{event}</div>
                 <div className="inner-container">
-                   
-                        
-                        {
-                        this.state.categoryMap[event].map((event1, index) => {
-                            let foundProgress = false;
-                           
-                           /* this.props.progressCategories.map((event2, index) => {
-                                if (event1.id === event2.category.id) {
-                                    foundProgress = true;
-                                    progressCat = event2;
-                                }
-                            });*/
-                            if (foundProgress) {
-                                console.log("Sub category progress = " + event1.name);
-                                // return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
-                            } else {
-                                console.log("Sub category no progress = " + event1.name);
-                                // return this.renderProgressBar(event1.name, 0, null);
-                            }
-                        }) 
-                    }
-                    
                        <Slider {...settings}>
                        {                       
                         rows.map((row) => (
-                            
-                            
-                            
                             <div className="rows">
-                             
                              {                       
                             row.map((event1,index) => (
                                 foundProgress1 = false,
@@ -213,11 +187,23 @@ class ProgressWidget extends Component {
                             </div>
                         ))
                     }
-                    </Slider>   
-                                       
-                      
-                
-            
+                    </Slider>
+                    {
+                        this.state.categoryMap[event].map((event1, index) => {
+                            let foundProgress = false;
+                           
+                            this.props.progressCategories.map((event2, index) => {
+                                if (event1.id === event2.category.id) {
+                                    foundProgress = true;
+                                    progressCat = event2;
+                                }
+                            });
+                            if (foundProgress) {
+                                console.log("Sub category progress = " + event1.name);
+                                return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
+                            } 
+                        }) 
+                    }
                     
                 </div>
             </div>
