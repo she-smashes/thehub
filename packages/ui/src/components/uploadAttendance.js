@@ -250,7 +250,7 @@ class UploadAttendance extends Component {
         </TableRowColumn>
         <TableRowColumn key={2}>
           <div className="button-line margin35">
-            <RaisedButton type="submit" label="Submit" primary onClick={() => { this.submitAttendanceData() }} disabled = {this.state.fieldsDisabled}/>
+            <RaisedButton type="submit" label="Save & Submit" primary onClick={() => { this.submitAttendanceData() }} disabled = {this.state.fieldsDisabled}/>
           </div>
         </TableRowColumn>
       </TableRow>);

@@ -115,7 +115,7 @@ class EventDetails extends Component {
   showUploadAttendanceButton = () => {
     if (this.props.eventDetails.status === 'approved' && Moment() < Moment(this.props.eventDetails.endDate)) {
       return (
-        <Link to={`/uploadattendance/${this.props.match.params.id}`}>Upload Attendance</Link>
+        <Link to={`/uploadattendance/${this.props.match.params.title}/${this.props.match.params.id}`}>Upload Attendance</Link>
       );
     }
   }

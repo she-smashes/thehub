@@ -31,7 +31,7 @@ export const getProgressCategoriesList = (access_token) => {
 export const updateProgressCategoriesInfo = (progressCategoriesInfo) => {
   return {
     type: DEFAULT_PROGRESS_CATEGORIES,
-    payload: progressCategoriesInfo.categories
+    payload: progressCategoriesInfo.userProgressInfo
   };
 }
 export const updateCategoriesList = (categoriesInfo) => {
