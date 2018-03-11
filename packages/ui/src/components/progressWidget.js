@@ -12,7 +12,8 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import ReactTooltip from 'react-tooltip';
 import Slider from 'react-slick';
 import _ from 'lodash';
-import { StatefulToolTip } from "react-portal-tooltip"
+import { StatefulToolTip } from "react-portal-tooltip"; 
+import Progress from 'react-progressbar';
 
 /**
 *
@@ -128,17 +129,21 @@ class ProgressWidget extends Component {
             let msg = "";
             if (currentLevel === "0") {
                 pointsNeededForNextLevel = startLevelPoints;                
-                msg = pointsNeededForNextLevel + "more points for next level" + (parseInt(currentLevel) + 1)
+                msg = "(" + pointsNeededForNextLevel + " points more for next level" + (parseInt(currentLevel) + 1) +")";
             } else if (pointsNeededForNextLevel <= 0) {
                 msg = "You have completed " + "Level " + (parseInt(currentLevel))
             } else {
-                msg = pointsNeededForNextLevel + "more points for next level" + (parseInt(currentLevel));
+                msg = "(" + pointsNeededForNextLevel + "  points more for next level" + (parseInt(currentLevel))+ ")";
             }
-            return (            
-                <div className="points">
-                   <span>Points {points}</span>
-                   <span>{msg}</span>
-               </div>
+            return (
+                <div className="progress-display">
+                    <Progress completed={progress} />
+                    <div className="points">
+                        <div>Points - {points}</div>
+                        <div className="msg">{msg}</div>
+                    </div>
+                </div>            
+                
            );
         }
         
@@ -155,7 +160,7 @@ class ProgressWidget extends Component {
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
-            centerPadding: '50px'
+            centerPadding: '70px'
           };
        
         return catArr.map((event, index) => {
@@ -179,7 +184,7 @@ class ProgressWidget extends Component {
                                     
                                 }),
                                 <div className="sub-category">
-                                    <span>{event1.name}</span><div className={(foundProgress1 ? 'highlight' : '')}><div className="display-circle"></div></div>
+                                    <div className= {"sub-cat-name " + (foundProgress1 ? 'subcat-highlight' : '')}>{event1.name}</div><div className={(foundProgress1 ? 'highlight' : '')}><div className="display-circle"></div></div>
                                 </div>
                             ))
                            

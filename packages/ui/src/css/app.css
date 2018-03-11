@@ -127,8 +127,8 @@ a:hover {
 .hub-progress-widget .cat-section{ margin-bottom: 20px;}
 .hub-progress-widget .sub-category{ float: left; padding: 10px 20px;}
 .hub-progress-widget .sub-category .display-circle{ 
-  height: 80px; 
-  width: 80px; 
+  height: 75px; 
+  width: 75px; 
   border:1px solid #dcdcdc;   
   border-width: 0.29px;
   border-color: rgb(233, 233, 233);
@@ -140,12 +140,40 @@ a:hover {
  box-shadow: 0px 5px 10px 0px rgba(14, 9, 14, 0.3);
  opacity: 1;
 }
+.progress-display{
+  margin:15px 0 0;
+  color:#9f9f9f;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: openSansRegular;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.hub-progress-widget .msg{ font-size: 9px; text-transform: lowercase}
+.hub-progress-widget .points{ margin-top:15px;}
+.hub-progress-widget .slick-prev{ left: 0!important;}
+.hub-progress-widget .slick-next{ right: 0!important;}
+.hub-progress-widget .slick-prev, .hub-progress-widget .slick-next{ top: 63%; }
+.hub-progress-widget .slick-list{ margin: 0 15px;}
+.hub-progress-widget .sub-cat-name{ color: #9f9f9f; letter-spacing:0.5px; margin: 10px 0; font-size: 10px; font-family: openSansExtraBold; text-transform: uppercase}
+.hub-progress-widget .subcat-highlight{ color: rgba(124, 66, 255, 1);}
+.progress-display .progressbar-progress{ 
+  max-width: 100% !important;
+  background: -moz-linear-gradient( 90deg, #ffb456 0%, #fece4b 100%) !important;
+  background:  -webkit-linear-gradient( 90deg, #ffb456 0%, #fece4b 100%) !important;
+  background: -ms-linear-gradient( 90deg, #ffb456 0%, #fece4b 100%) !important;
+  background-color: none !important;
+  height: 12px !important;
+  border-radius: 8px;
+}
 .hub-progress-widget .sub-category .highlight{
   background: -moz-linear-gradient( 90deg, rgba(151, 83, 254, 1) 0%, rgba(124, 66, 255, 1) 100%);
   background: -webkit-linear-gradient( 90deg, rgba(151, 83, 254, 1) 0%, rgba(124, 66, 255, 1) 100%);
   background: -ms-linear-gradient( 90deg, rgba(151, 83, 254, 1) 0%, rgba(124, 66, 255, 1) 100%); 
-  height: 80px; 
-  width: 80px; 
+  height: 75px; 
+  width: 75px; 
   padding: 2px;
   border-radius: 50px;
   box-sizing: content-box;
@@ -225,7 +253,7 @@ line-height: 1.226;
  text-align: center;
 }
 @media (min-width:768px){
-  .hub-widget.well{ margin: 20px auto;}
+  .hub-widget.well{ margin: 20px auto; border:1px solid #dcdcdc; }
 }
 .slick-list .row{ margin-left: 5px;}
 

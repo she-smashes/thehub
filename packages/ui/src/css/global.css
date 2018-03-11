@@ -15,7 +15,12 @@
   font-family: openSansSemiBold;
   src: url(../fonts/OpenSans-SemiBold.ttf);
 }
+@font-face {
+  font-family: openSansBold;
+  src: url(../fonts/OpenSans-Bold.ttf);
+}
 .font-semi-bold{ font-family: OpenSansSemiBold; font-size: 13px;}
+.font-bold{ font-family: OpenSansBold; font-size: 12px;}
 html, body{
   font-family:openSansRegular,Arial,Helvetica,sans-serif;
 }
