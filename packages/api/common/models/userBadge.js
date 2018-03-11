@@ -247,7 +247,6 @@ module.exports = function(UserBadge) {
           Promise.resolve(new Promise(function(resolve) {
             getBadgesForUser(ctx, resolve, false);
           })).then((userBadges) => {
-
                           // Group the badges by category before returning
             console.log(userBadges);
             let tempBadges = [];
