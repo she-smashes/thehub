@@ -137,6 +137,16 @@
   .menu-bar{
     display: none;
   }
+  .menu-content{
+    display: none;
+  }
+  .header-menu-bar{
+    display: none;
+  }
+  .logo{
+    width: 100px;
+    height: 100px;
+  }
 
 }
 @media (min-width: 768px){
