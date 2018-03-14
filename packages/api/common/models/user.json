@@ -2,21 +2,41 @@
   "name": "user",
   "plural": "users",
   "base": "User",
-  "ttl": 60,
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
+  "ttl": 3600,
   "mixins": {
     "Timestamp": {}
   },
   "properties": {
-    "points": {
-      "type": "number"
+    "scoreId": {
+      "type": "array"
     },
     "password": {
+      "type": "object",
+      "required": true
+    },
+    "firstname": {
       "type": "string",
-      "required": false
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "modifiedon": {
+      "type": "date",
+      "required": true
+    },
+    "registeredon": {
+      "type": "date",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -36,6 +56,11 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "scores": {
+      "type": "hasAndBelongsToMany",
+      "model": "score",
+      "foreignKey": "scoreId"
     }
   },
   "acls": [
@@ -55,12 +80,6 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$owner",
       "permission": "ALLOW"
     }
   ],

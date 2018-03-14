@@ -10,17 +10,33 @@
     "Timestamp": {}
   },
   "properties": {
-    "userIid": {
+    "userId": {
       "type": "object",
       "required": true
     },
-    "badgeIid": {
+    "badgeId": {
       "type": "number",
       "required": true
+    },
+    "claimed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "badge": {
+      "type": "belongsTo",
+      "model": "badge",
+      "foreignKey": "badgeId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

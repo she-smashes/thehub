@@ -6,15 +6,15 @@
  * @param {Object} action
  */
 
-import { DEFAULT_EVENTS, UPDATE_EVENT_LIST } from "../../constants/actions"; 
+import { DEFAULT_EVENTS, UPDATE_EVENT_LIST, RESET_STORE } from "../../constants/actions";
 export default function (state = [], action) {
     switch (action.type) {
         case DEFAULT_EVENTS:
-            return action.payload.data;
-        case UPDATE_EVENT_LIST:
-            return action.payload
+            return action.payload;
+        case RESET_STORE:
+            return [];
         default:
             return state;
-        
+
     }
 }
