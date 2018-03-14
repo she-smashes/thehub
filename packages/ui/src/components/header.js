@@ -165,7 +165,7 @@ class Header extends Component {
               }
               onClick={() => this.menuItemClicked("menu4")}
             >
-              ATTENDANCE
+              <Link to="/viewattendance">ATTENDANCE</Link>
             </a>
 
             <a

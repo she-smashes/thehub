@@ -30,6 +30,7 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBadgesContainer/index'));
 const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
 const AsyncUploadAttendance = asyncComponent(() => import('../containers/uploadAttendanceContainer/index'));
+const AsyncViewAttendance = asyncComponent(() => import('../containers/attendanceContainer/index'));
 
 class App extends Component {
   render() {
@@ -55,6 +56,7 @@ class App extends Component {
               <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
               <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
               <Route path='/uploadattendance/:title/:id' exact={true} component = {AsyncUploadAttendance} />
+              <Route path='/viewattendance' exact={true} component = {AsyncViewAttendance} />
             </Switch>
           </div>
         }

@@ -155,9 +155,9 @@ a:hover {
 .hub-progress-widget .points{ margin-top:15px;}
 .hub-progress-widget .slick-prev{ left: 0!important;}
 .hub-progress-widget .slick-next{ right: 0!important;}
-.hub-progress-widget .slick-prev, .hub-progress-widget .slick-next{ top: 63%; }
+.hub-progress-widget .slick-prev, .hub-progress-widget .slick-next{ top: 68%; }
 .hub-progress-widget .slick-list{ margin: 0 15px;}
-.hub-progress-widget .sub-cat-name{ color: #9f9f9f; letter-spacing:0.5px; margin: 10px 0; font-size: 10px; font-family: openSansExtraBold; text-transform: uppercase}
+.hub-progress-widget .sub-cat-name{ color: #9f9f9f; letter-spacing:0.5px; margin: 17px 0 30px; font-size: 10px; font-family: openSansExtraBold; text-transform: uppercase}
 .hub-progress-widget .subcat-highlight{ color: rgba(124, 66, 255, 1);}
 .progress-display .progressbar-progress{ 
   max-width: 100% !important;
@@ -168,6 +168,7 @@ a:hover {
   height: 12px !important;
   border-radius: 8px;
 }
+.hub-progress-widget .progressbar-container{ background-color: #f6f5f5; border-radius: 8px;}
 .hub-progress-widget .sub-category .highlight{
   background: -moz-linear-gradient( 90deg, rgba(151, 83, 254, 1) 0%, rgba(124, 66, 255, 1) 100%);
   background: -webkit-linear-gradient( 90deg, rgba(151, 83, 254, 1) 0%, rgba(124, 66, 255, 1) 100%);

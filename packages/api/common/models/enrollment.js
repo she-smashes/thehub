@@ -23,11 +23,28 @@ module.exports = function(Enrollment) {
       resolve(events);
     });
   };
-
-/**
- * This method submits the attendance for an event as a task for approval.
- * @param {*} ctx
- */
+  var getCategoryDetails = function(categoryId, resolve) {
+    Enrollment.app.models.Category.find({
+      where: {
+        id: categoryId,
+      },
+    }, function(err, categories) {
+      resolve(categories);
+    });
+  };
+  var getParentCategoryDetails = function(name, resolve) {
+    Enrollment.app.models.Category.find({
+      where: {
+        name: name,
+      },
+    }, function(err, categories) {
+      resolve(categories);
+    });
+  };
+  /**
+   * This method submits the attendance for an event as a task for approval.
+   * @param {*} ctx
+   */
   function submitAttendanceTask(ctx) {
     // Get the task and add the submitted approvalIds
     Enrollment.app.models.Task.find({
@@ -63,6 +80,47 @@ module.exports = function(Enrollment) {
     });
   }
 
+  function setUserScoreForCategory(ctx, categoryId) {
+    return new Promise(function(resolve1) {
+      // Get the already existing score for the user in this category of event
+      Enrollment.app.models.Score.find({
+        where: {
+          userId: ctx.instance.userId,
+          categoryId: categoryId,
+        },
+      }, function(err, score) {
+        if (score.length > 0) {
+          score = score[0];
+          // If a score already exists for the user for this event category,
+          // then sum the enrollment points with the existing score
+          score.updateAttributes({
+            points: score.points + ctx.instance.points,
+          }, function() {
+            claimBadgeForUser(ctx,
+              resolve1,
+              categoryId,
+              (score.points + ctx.instance.points));
+          });
+        } else {
+          // If new score for the user for this event category,
+          // then assign sum the enrollment points
+          Promise.resolve(new Promise(function(resolve2) {
+            Enrollment.app.models.Score.create({
+              userId: ctx.instance.userId,
+              categoryId: categoryId,
+              points: ctx.instance.points,
+            }, function(err, newScore) {
+              updateUserScore(ctx, newScore.id);
+              claimBadgeForUser(ctx,
+                resolve1,
+                categoryId,
+                ctx.instance.points);
+            });
+          }));
+        }
+      });
+    });
+  }
   /**
    * This method calculates the cumulative score for the user for a category.
    * @param {*} ctx
@@ -71,52 +129,36 @@ module.exports = function(Enrollment) {
     Promise.resolve(new Promise(function(resolve) {
       // Find the event details
       getEventDetails(ctx.instance.eventId, resolve);
-    })) .then((events) => {
+    })).then((events) => {
       let event = events[0];
-      Promise.resolve(new Promise(function(resolve1) {
-        // Get the already existing score for the user in this category of event
-        Enrollment.app.models.Score.find({
-          where: {
-            userId: ctx.instance.userId,
-            categoryId: event.categoryId,
-          },
-        }, function(err, score) {
-          if (score.length > 0) {
-            score = score[0];
-            // If a score already exists for the user for this event category,
-            // then sum the enrollment points with the existing score
-            score.updateAttributes({
-              points: score.points + ctx.instance.points,
-            }, function() {
-              claimBadgeForUser(ctx,
-                                resolve1,
-                                event.categoryId,
-                                (score.points + ctx.instance.points));
-            });
-          } else {
-            // If new score for the user for this event category,
-            // then assign sum the enrollment points
-            Promise.resolve(new Promise(function(resolve2) {
-              Enrollment.app.models.Score.create({
-                userId: ctx.instance.userId,
-                categoryId: event.categoryId,
-                points: ctx.instance.points,
-              }, function(err, newScore) {
-                updateUserScore(ctx, newScore.id);
-                claimBadgeForUser(ctx,
-                                  resolve1,
-                                  event.categoryId,
-                                  ctx.instance.points);
+      Promise.resolve(setUserScoreForCategory(ctx, event.categoryId))
+        .then(() => {
+          Promise.resolve(new Promise(function(resolve) {
+            // Find the category details
+            getCategoryDetails(event.categoryId, resolve);
+          })).then((categories) => {
+            let category = categories[0];
+            if (category.type !== null &&
+              category.type !== undefined && category.type !== '') {
+              Promise.resolve(new Promise(function(resolve) {
+                // Find the parent category details
+                getParentCategoryDetails(category.type, resolve);
+              })).then((parentCategories) => {
+                if (parentCategories.length > 0) {
+                  let parentCategory = parentCategories[0];
+                  Promise.resolve(
+                    setUserScoreForCategory(ctx, parentCategory.id));
+                }
               });
-            }));
-          }
+            }
+          });
         });
-      }));
     });
   }
 
   var claimBadgeForUser = function(ctx, resolve1, categoryId, totalPts) {
-     // Get the list of all system badges for all categories and levels
+    console.log('claimBadgeForUser');
+    // Get the list of all system badges for all categories and levels
     Promise.resolve(new Promise(function(allBadgesResolve) {
       getAllBadges(allBadgesResolve);
     })).then((allBadges) => {
@@ -126,13 +168,12 @@ module.exports = function(Enrollment) {
       })).then((userBadges) => {
         // Check if the score and the badge is of the same category
         let badgeWithScore = findBadgesMatchingScore(
-                                categoryId,
-                                totalPts,
-                                allBadges);
+          categoryId,
+          totalPts,
+          allBadges);
 
         // Check if the user has already claimed the badge
         let claimBadges = badgeToBeClaimed(badgeWithScore, userBadges);
-        console.log(claimBadges);
         if (null !== claimBadges) {
           const promises = [];
           claimBadges.forEach(function(clBadge) {
@@ -146,9 +187,9 @@ module.exports = function(Enrollment) {
             }));
           });
           Promise.all(promises)
-          .then((response) => {
-            resolve1();
-          });
+            .then((response) => {
+              resolve1();
+            });
         }
       });
     });
@@ -170,9 +211,9 @@ module.exports = function(Enrollment) {
       resolve(userBadges);
     });
   };
- /**
-  * This method is used find the badges that match with the score.
-  */
+  /**
+   * This method is used find the badges that match with the score.
+   */
   var findBadgesMatchingScore = function(categoryId, totalPoints, allBadges) {
     let claimBadges = [];
 
@@ -182,24 +223,20 @@ module.exports = function(Enrollment) {
       // Check if the score and the badge is of the same category
 
       if ((categoryId + '') === (badge.level.categoryId + '')) {
-      // Check if the score falls in the badge point range
+        // Check if the score falls in the badge point range
         if (totalPoints >= badge.level.pointsEndRange) {
           claimBadges.push(badge);
         }
       }
     });
-    console.log(claimBadges);
     return claimBadges;
   };
 
-    /**
-  * This method is used check if the badges that match with the score already claimed by the user.
-  */
+  /**
+* This method is used check if the badges that match with the score already claimed by the user.
+*/
   var badgeToBeClaimed = function(badgesMatchingScore, userBadges) {
     let claimBadges = [];
-    console.log('badgeMatchingScore');
-
-    console.log(badgesMatchingScore);
     let foundUserbadge = false;
     badgesMatchingScore.forEach(function(badgeMatchingScore) {
       foundUserbadge = false;
@@ -209,7 +246,7 @@ module.exports = function(Enrollment) {
           foundUserbadge = true;
         }
       });
-         // Return the badge only if not already claimed by the user
+      // Return the badge only if not already claimed by the user
       if (!foundUserbadge) {
         claimBadges.push(badgeMatchingScore);
       }

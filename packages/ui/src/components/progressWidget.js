@@ -176,7 +176,7 @@ class ProgressWidget extends Component {
                              {                       
                             row.map((event1,index) => (
                                 foundProgress1 = false,
-                                this.props.progressCategories.map((event2, index) => {
+                                this.props.progressCategories.userCategories.map((event2, index) => {
                                     if (event1.id === event2.category.id) {
                                         foundProgress1 = true;
                                         progressCat = event2;
@@ -197,7 +197,11 @@ class ProgressWidget extends Component {
                         this.state.categoryMap[event].map((event1, index) => {
                             let foundProgress = false;
                            
-                            this.props.progressCategories.map((event2, index) => {
+                            let progressCat = {};
+
+                            console.log("this.props");
+                            console.log(this.props);
+                            this.props.progressCategories.userCategories.map((event2, index) => {
                                 if (event1.id === event2.category.id) {
                                     foundProgress = true;
                                     progressCat = event2;
@@ -220,7 +224,7 @@ class ProgressWidget extends Component {
     render = () => {
         let progress = 50;        
         return (
-            this.props.progressCategories && this.props.progressCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
+            this.props.progressCategories.userCategories && this.props.progressCategories.userCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
         )
     }
 }
