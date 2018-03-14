@@ -75,7 +75,7 @@ class ProgressWidget extends Component {
             });
             this.props.getProgressCategoriesList(this.props.userInfo.id).then((response, error) => {
                 this.props.updateProgressCategoriesInfo(JSON.parse(response.data));
-                console.log(this.props.progressCategories);
+                console.log(JSON.stringify(this.props.progressCategories)+"sudha");
             }, (error) => {
                 console.log(error);
             });
@@ -150,8 +150,6 @@ class ProgressWidget extends Component {
     }
     renderProgressCategories = () => {
         let catArr = Object.keys(this.state.categoryMap);
-        let progressCat = {};
-        let allCat = [];   
         let foundProgress1;       
        
         var settings = {
@@ -162,12 +160,15 @@ class ProgressWidget extends Component {
             slidesToScroll: 1,
             centerPadding: '70px'
           };
-       
-        return catArr.map((event, index) => {
-            let rows = _.chunk(this.state.categoryMap[event], 3);
+         
+                           
+          let progressCat = {};
+        return catArr.map((eventName, index) => {
+            let foundProgress = false;
+            let rows = _.chunk(this.state.categoryMap[eventName], 3);
            
             return <div className="cat-section">
-                <div className="widget-header">{event}</div>
+                <div className="widget-header">{eventName}</div>
                 <div className="inner-container">
                        <Slider {...settings}>
                        {                       
@@ -178,8 +179,7 @@ class ProgressWidget extends Component {
                                 foundProgress1 = false,
                                 this.props.progressCategories.userCategories.map((event2, index) => {
                                     if (event1.id === event2.category.id) {
-                                        foundProgress1 = true;
-                                        progressCat = event2;
+                                        foundProgress1 = true;                                        
                                     }
                                     
                                 }),
@@ -194,24 +194,15 @@ class ProgressWidget extends Component {
                     }
                     </Slider>
                     {
-                        this.state.categoryMap[event].map((event1, index) => {
-                            let foundProgress = false;
-                           
-                            let progressCat = {};
-
-                            console.log("this.props");
-                            console.log(this.props);
-                            this.props.progressCategories.userCategories.map((event2, index) => {
-                                if (event1.id === event2.category.id) {
-                                    foundProgress = true;
-                                    progressCat = event2;
-                                }
-                            });
-                            if (foundProgress) {
-                                console.log("Sub category progress = " + event1.name);
-                                return this.renderProgressBar(event1.name, progressCat.points, progressCat.levels);
-                            } 
-                        }) 
+                        (this.props.progressCategories.userCategories).map((event2, index) => {
+                            if (eventName === event2.category.name) {
+                                foundProgress = true;
+                                progressCat = event2;
+                            }                               
+                        })
+                    }
+                    {    
+                        foundProgress && this.renderProgressBar(eventName.name, progressCat.points, progressCat.levels)
                     }
                     
                 </div>
