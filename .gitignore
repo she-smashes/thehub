@@ -32,6 +32,8 @@ bower_components
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 packages/ui/build
+packages/ui/lib
+packages/api/swagger-out.json
 
 # Dependency directories
 node_modules/
@@ -61,3 +63,6 @@ typings/
 .DS_Store
 
 src/.DS_Store
+
+.vscode/
+

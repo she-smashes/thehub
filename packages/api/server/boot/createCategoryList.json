@@ -1,12 +1,17 @@
 {
   "category": [
+    {"name": "Sports", "type": ""},	
+	{"name": "Music", "type": ""},	
+	{"name": "Dance", "type": ""},	
+	{"name": "CSR", "type": ""},	
     {"name": "Cricket", "type": "Sports"},
+    {"name": "FootBall", "type": "Sports"},
 	{"name": "Zumba", "type": "Sports"},
     {"name": "Marathon", "type": "Sports"},
-	{"name": "Carnatic", "type": "Music"},
-    {"name": "Western", "type": "Music"},
-	{"name": "Classical", "type": "Dance"},
-    {"name": "Western", "type": "Dance"},
-	{"name": "CSR", "type": "CSR"}	
+	{"name": "Carnatic Music", "type": "Music"},
+    {"name": "Western Music", "type": "Music"},
+	{"name": "Classical Dance", "type": "Dance"},
+    {"name": "Western Dance", "type": "Dance"},
+	{"name": "Gifting", "type": "CSR"}	
   ]
 }

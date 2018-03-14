@@ -1,0 +1,12 @@
+{
+  "participant": [
+    {"participantType": "volunteer", "hourly":false, "noOfPoints": 8},
+    {"participantType": "speaker", "hourly":false, "noOfPoints": 8},
+    {"participantType": "organiser", "hourly":false, "noOfPoints": 10},
+    {"participantType": "participant", "hourly":false, "noOfPoints": 4},
+    {"participantType": "volunteer", "hourly":true, "noOfPoints": 2},
+    {"participantType": "speaker", "hourly":true, "noOfPoints": 2},
+    {"participantType": "organiser", "hourly":true, "noOfPoints": 3},
+    {"participantType": "participant", "hourly":true, "noOfPoints": 1}
+  ]
+}

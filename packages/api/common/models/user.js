@@ -1,120 +1,136 @@
 'use strict';
 
 module.exports = function(User) {
+  User.afterRemote('login', function(context, modelInstance, next) {
+    let accessToken = '';
+    if (context && context.result.id != undefined) {
+      accessToken = context.result;
+    }
 
-	
-	User.listTasks = function(userId, cb) {
-		
-		User.find({
-			"filter": {
-				"where": {
-					"id": userId
-				},
-				"include": {
-					"relation": "tasks"
-				}
-			}
-		});
-		
-    };
-	User.remoteMethod('listTasks', {
-		
-		accepts: [
-		  {arg: 'userId', type: 'string'}
-		],
-		returns: {arg: 'tasks', type: 'array'},
-		http: {path:'/list-tasks', verb: 'get'}
-		
-	});
+    let permissions = getPermissibleActions(User, accessToken);
 
-	User.listEnrollments = function(userId, cb) {
-    	
-		User.find({
-			"filter": {
-				"where": {
-				  "id": userId
-				},
-				"include": {
-				  "relation": "enrollments"
-				}
-			}
-		});
-	
-	};
-	User.remoteMethod('listEnrollments', {
-		
-		accepts: [
-		  {arg: 'userId', type: 'number'}
-		],
-		returns: {arg: 'enrollments', type: 'array'},
-		http: {path:'/list-enrollments', verb: 'get'}
-		
-	});
-	
-	User.afterRemote ('login', function (context, modelInstance, next) {  
+    Promise.resolve(permissions)
+      .then((results) => {
+        let permissionObj = [];
+        results.forEach(function(result) {
+          if (result.isAllowed.permission === 'ALLOW') {
+            permissionObj.push(result.isAllowed.model +
+              '_' + result.isAllowed.property);
+          }
+        });
+        context.result.allowedActionList = permissionObj;
+      })
+      .then(() => {
+        let countReq = false;
+        context.result.allowedActionList.map(allowedAction => {
+          if (allowedAction.indexOf('task_find') >= 0) {
+            countReq = true;
+          }
+        });
+        if (countReq) {
+          User.app.models.Task.count({status: 'Pending'}, function(err, count) {
+            if (count > 0) {
+              context.result.notificationCount = new String(count);
+            }
+            next();
+          });
+        } else {
+          next();
+        }
+      });
+  });
 
-	let accessToken = "";
-	if(context && context.req.accessToken != undefined) {
-		accessToken = context.req.accessToken;
-	}
-		let permissions = getPermissibleActions(User, accessToken);
-		
-		Promise.resolve(permissions)
-		.then((results)=>{
-			let permissionObj = [];
-			results.forEach(function (result) {
-				if(result.isAllowed) {
-					permissionObj.push(result.modelName + "_" + result.methodName);
-				}
-			});
-			context.result.allowedActionList = permissionObj;
-		})
-		.then(()=>{
-			next();
-		});
-	}); 
+  User.observe('after save', function(ctx, next) {
+    if (ctx.instance) {
+      if (ctx.instance.scoreId != undefined) {
+        ctx.instance.scoreId.forEach(sId => {
+          ctx.instance.scores.add(sId);
+        });
+      }
+    }
+    next();
+  });
+  User.getNotificationCount = function(ctx, cb) {
+    User.app.models.Task.count({status: 'Pending'}, function(err, count) {
+      if (count > 0) {
+        cb(null, count);
+      }
+    });
+  };
+  User.remoteMethod('getNotificationCount', {
+    accepts: [
+      {arg: 'ctx', type: 'object', http: {source: 'context'}},
+    ],
+    http: {
+      path: '/get-notification-count',
+      verb: 'get',
+    },
+    returns: {
+      arg: 'count',
+      type: 'string',
+    },
+  });
 };
 
 function getPermissibleActions(user, accessToken) {
-	const modelNames = [
-        'user',
-        'event',
-        'initiative'
-    ];
-	
-	const methodNames = [
-        'create',
-        'upsert',
-        'deleteById',
-        'updateAll',
-        'updateAttributes',
-        'patchAttributes',
-        'createChangeStream',
-        'findOne',
-        'find',
-        'findById',
-        'count',
-        'exists',
-        'replace',
-        'replaceById',
-        'upsertWithWhere',
-        'replaceOrCreate'
-    ];
+  let modelNames = [
+    'user',
+    'event',
+    'initiative',
+    'task',
+  ];
 
-	let promises = [];
-	  
-	modelNames.forEach(function (modelName) {
-		methodNames.forEach(function (methodName) {
-			let accessTokenResult = user.app.models.ACL.checkAccessForToken({id:accessToken}, modelName, '', methodName )
-				.then((result)=>{
-					return {
-						isAllowed: result,
-						modelName: modelName,
-						methodName: methodName
-					}; 
-				});
-			promises.push(accessTokenResult);
-		});
-	});
-	return Promise.all(promises);
+  let readProperties = [
+    'findOne',
+    'find',
+    'findById',
+    'count',
+    'exists',
+  ];
+
+  let writeProperties = [
+    'create',
+    'upsert',
+    'deleteById',
+    'updateAll',
+    'updateAttributes',
+    'patchAttributes',
+    'createChangeStream',
+    'replace',
+    'replaceById',
+    'upsertWithWhere',
+    'replaceOrCreate',
+  ];
+
+  let promises = [];
+  let allProperties = [];
+  allProperties = readProperties.concat(writeProperties);
+  modelNames.forEach(function(modelName) {
+    allProperties.forEach(function(property) {
+      let accessType = '';
+      if (writeProperties.indexOf(property) >= 0) {
+        accessType = 'WRITE';
+      } else {
+        accessType = 'READ';
+      }
+
+      let context = {
+        accessToken: accessToken,
+        model: modelName,
+        property: property,
+        accessType: accessType,
+      };
+
+      let accessTokenResult = user.app.models.ACL.checkAccessForContext(context)
+        .then((result) => {
+          return {
+            isAllowed: result,
+            modelName: modelName,
+            methodName: property,
+          };
+        });
+      promises.push(accessTokenResult);
+    });
+  });
+  return Promise.all(promises);
 }
