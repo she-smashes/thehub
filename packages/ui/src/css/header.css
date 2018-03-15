@@ -105,9 +105,6 @@
 .selected-menu-item{
   text-decoration: underline;
 }
-.dashboard-menu-content{
-  width: 70%;
-}
 
 /*mobile navigation css starts*/
 @media (max-width: 768px) {

@@ -198,7 +198,14 @@ class Header extends Component {
       <nav className="navbar navbar-fixed">
         {/* <!-- Brand and toggle get grouped for better mobile display --> */}
         <img className="logo" src={logo} alt="Logo" />
-        
+        {!this.user() && <p className="intro-text font-semi-bold">
+              Welcome to THE HUB!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco . Duis aute irure dolor in reprehenderit in voluptate . Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco . Duis aute irure dolor in reprehenderit in voluptate .
+        </p>
+          }
         {this.user()}        
         
         {this.props && this.props.userInfo && this.props.userInfo.user && 
@@ -218,9 +225,14 @@ class Header extends Component {
         {this.state.eventContent &&
           
           <div className="events-menu-content menu-content">
+            <p className="font-semi-bold">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco . Duis aute irure dolor in reprehenderit in voluptate .
+            </p>
             <ul className="menu-list-item font-semi-bold">
               <li>
-                <Link to="/viewevents">View Events</Link>
+                <Link to="/viewevents" >View Events</Link>
               </li>
               <li>
                 <Link to="/createevent">Create Event</Link>
@@ -231,6 +243,11 @@ class Header extends Component {
 
           {this.state.initiativeContent && 
           <div className="initiatives-menu-content menu-content">
+            <p className="font-semi-bold">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor . Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco . Duis aute irure dolor in reprehenderit in voluptate .
+              </p>
             <ul className="menu-list-item font-semi-bold">
               <li>
                 <Link to="/viewinitiative">View initiative</Link>
