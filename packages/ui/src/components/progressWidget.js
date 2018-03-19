@@ -127,11 +127,11 @@ class ProgressWidget extends Component {
             let msg = "";
             if (currentLevel === "0") {
                 pointsNeededForNextLevel = startLevelPoints;
-                msg = "(" + pointsNeededForNextLevel + " points more for next level" + (parseInt(currentLevel) + 1) + ")";
+                msg = "Level "+ parseInt(currentLevel) + " - (" + pointsNeededForNextLevel + " points more for next level)";
             } else if (pointsNeededForNextLevel <= 0) {
                 msg = "You have completed " + "Level " + (parseInt(currentLevel))
             } else {
-                msg = "(" + pointsNeededForNextLevel + "  points more for next level" + (parseInt(currentLevel)) + ")";
+                msg = "Level "+ (parseInt(currentLevel)) +" - (" + pointsNeededForNextLevel + "  points more for next level )";
             }
             return (
                 <div className="progress-display">
