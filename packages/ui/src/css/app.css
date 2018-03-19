@@ -150,7 +150,7 @@ a:hover {
   font-size: 11px;
   font-weight: bold;
 }
-
+.badge-display-img{ text-transform: lowercase; position: absolute; right: 30px; margin-top: -27px;}
 .hub-progress-widget .msg{ font-size: 9px; text-transform: lowercase}
 .hub-progress-widget .points{ margin-top:15px;}
 .hub-progress-widget .slick-prev{ left: 0!important;}
