@@ -230,7 +230,6 @@ module.exports = function(UserBadge) {
         userId: userIdValue,
       },
       include: ['category'],
-      limit: configs[0].value,
     }, function(err, userScores) {
       const promises = [];
       const categoryIdArr = [];
