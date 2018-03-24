@@ -20,13 +20,13 @@ export const getAttendanceInfo = (userId, access_token) => {
       })
       .then((client) => {
 
-        let filterQuery = {"where":{"userId":userId, "attendanceFlag":"submit"}};
+        let filterQuery = {"where":{"userId":userId, "attendanceFlag":"submit", status:"approved"}, "include": "events"};
         filterQuery = JSON.stringify(filterQuery)
 
         return client
           .apis
           .enrollment
-          .enrollment_find();
+          .enrollment_find({filter:filterQuery});
       });
   }
 }
