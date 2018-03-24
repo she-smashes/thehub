@@ -11,12 +11,13 @@ import '../css/bootstrap/dist/css/bootstrap.min.css';
 import '../../node_modules/slick-carousel/slick/slick.css';
 import '../../node_modules/slick-carousel/slick/slick-theme.css';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import '../css/app.css';
+
 import '../css/global.css';
 import '../css/singles.css';
 import '../css/layout.css';
 import '../css/login.css';
-
+import '../css/app.css';
+import '../css/header.css';
 const AsyncLogin = asyncComponent(() => import('../containers/loginFormContainer/index'));
 const AsyncDashboard = asyncComponent(() => import('./dashboard'));
 const AsyncEvent = asyncComponent(() => import('../containers/eventDetailsContainer/index'));
@@ -29,6 +30,7 @@ const AsyncViewEvents = asyncComponent(() => import('../containers/viewEventsCon
 const AsyncViewAllBadges = asyncComponent(() => import('../containers/viewAllBadgesContainer/index'));
 const AsyncViewAllBadgesToBeClaimed = asyncComponent(() => import('../containers/ViewAllBadgesToBeClaimedContainer/index'));
 const AsyncUploadAttendance = asyncComponent(() => import('../containers/uploadAttendanceContainer/index'));
+const AsyncViewAttendance = asyncComponent(() => import('../containers/attendanceContainer/index'));
 
 class App extends Component {
   render() {
@@ -54,6 +56,7 @@ class App extends Component {
               <Route path='/viewallbadges' exact={true} component={AsyncViewAllBadges} />
               <Route path='/viewallbadgestobeclaimed' exact={true} component={AsyncViewAllBadgesToBeClaimed} />
               <Route path='/uploadattendance/:title/:id' exact={true} component = {AsyncUploadAttendance} />
+              <Route path='/viewattendance' exact={true} component = {AsyncViewAttendance} />
             </Switch>
           </div>
         }

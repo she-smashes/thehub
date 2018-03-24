@@ -61,7 +61,7 @@ class NavigationWidget extends Component {
     return (
       <div>
     <div className="menu-bar">
-        <Toolbar>
+        {/*<Toolbar>
             <ToolbarGroup>
                 <ToolbarTitle text={ <Link to={`/`}> Dashboard</Link>
                     } />
@@ -91,7 +91,9 @@ class NavigationWidget extends Component {
                     <ToolbarSeparator className="margin-30" />
                     <RaisedButton className="logout" label="Logout" onClick={this.logout} primary={true} />
             </ToolbarGroup>
-        </Toolbar>
+        </Toolbar>*/}
+        <div>
+        </div>
     </div>
     <div className="mobile-menu-bar">
         <AppBar title="" isInitiallyOpen={ true } onLeftIconButtonTouchTap={ this.showMobileNavigation } />
