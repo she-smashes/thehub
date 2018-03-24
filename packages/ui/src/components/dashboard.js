@@ -4,61 +4,45 @@
  * @desc renders dashboard component
  */
 
-import React, {Component} from 'react';
-import {Card, CardHeader} from 'material-ui/Card';
+import React, { Component } from 'react';
+import { Card, CardHeader } from 'material-ui/Card';
 
-import AttendanceWidget from './attendanceWidget';
-import ProgressWidget from './progressWidget';
+import AttendanceWidget from '../containers/attendanceContainer/index'
+import ProgressWidget from '../containers/progressCategoriesContainer/index';
 import EventTimelineWidget from '../containers/eventTimelineContainer/index';
-import LoginWidget from '../containers/loginFormContainer/index';
-import ClaimYourBadgeWidget from './claimYourBadgeWidget';
-import BadgeWidget from './badgeWidget'
+import ClaimYourBadgeWidget from '../containers/claimYourBadgeContainer/index';
+import BadgeWidget from '../containers/badgesContainer/index';
+
 
 class Dashboard extends Component {
 
-    render = () => {
-        const styles ={
-            card: {margin: 10}
-          }
-        return (
-            <div>
-                This is Dashboard!
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<ClaimYourBadgeWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<EventTimelineWidget />}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<ProgressWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<BadgeWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-                <Card style={styles.card}>
-                    <CardHeader
-                    title={<AttendanceWidget />}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                    />
-                </Card>
-            </div>
-        )
+  render = () => {
+    const styles = {
+      card: { margin: 10 }
     }
+    return (
+      <div className="body-container">
+        <main className="hub-main-grid">
+        <div style={{"marginBottom": "20px"}}></div>
+   {/*        {<ClaimYourBadgeWidget />} */}
+          <div>
+            <div className="widget-container row">
+              <div className="col-md-12 col-xs-12 noPad">
+                <div className="col-md-4 col-xs-12">
+                  <div className="widget well hub-progress-widget">{<ProgressWidget />}</div>
+                </div>
+                <div className="col-md-8 col-xs-12">
+                  <div className="event-timeline-widget well hub-home-event-timeline">{<EventTimelineWidget />}</div>
+                </div>                
+              </div>
+
+
+            </div>
+          </div>
+        </main>
+      </div>
+    )
+  }
 }
 
 export default Dashboard;

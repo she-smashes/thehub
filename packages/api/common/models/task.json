@@ -6,18 +6,20 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Timestamp": {},
+    "Approvable": {}
+  },
   "properties": {
-    "ID": {
+    "status": {
       "type": "string",
       "required": true
     },
-    "eventId": {
-      "type": "string",
-      "required": true
+    "approverId": {
+      "type": "string"
     },
-    "approverRoleId": {
-      "type": "string",
-      "required": true
+    "actionedOn": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -28,6 +30,27 @@
       "foreignKey": "userId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
   "methods": {}
 }

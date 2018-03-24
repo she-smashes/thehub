@@ -6,10 +6,14 @@
  import React, {Component} from 'react';
  import { Card } from 'material-ui/Card';
  import RaisedButton from 'material-ui/RaisedButton';
+ import Dialog from 'material-ui/Dialog';
+ import FlatButton from 'material-ui/FlatButton';
  import TextField from 'material-ui/TextField';
- import { Route } from 'react-router-dom';
  import History from '../history';
+ import CircularProgress from 'material-ui/CircularProgress';
  import { INVALID_LOGIN } from "../constants/actions";
+ import '../css/login.css';
+
  class LoginWidget extends Component {
 
    /**
@@ -21,16 +25,25 @@
      this.state = {
        errors: {},
        user: {
-         email: '',
+         username: '',
          password: ''
        },
-       response: ''
+       response: '',
+       open: false,
+       isLoading: false
      };
    }
+   handleOpen = () => {
+     this.setState({open: true});
+   };
+
+   handleClose = () => {
+     this.setState({open: false});
+   };
    resetForm = () => {
      this.setState({
        user: {
-         email: '',
+         username: '',
          password: ''
        }
    });
@@ -40,9 +53,9 @@
        let errors = {};
        let formIsValid = true;
 
-       if(!fields["email"]){
+       if(!fields["username"]){
           formIsValid = false;
-          errors["email"] = "Enter email address";
+          errors["username"] = "Enter username";
        }
        if(!fields["password"]){
           formIsValid = false;
@@ -60,15 +73,19 @@
    processForm = (event) => {
      // prevent default action. in this case, action is the form submission event
     event.preventDefault();
+    this.setState({isLoading: true});
     if(this.handleValidation()){
-      this.props.getUserInfo(this.state.user)
+      this.props.loginUser(this.state.user)
       .then((response, error) => {
         // You get the logged in response here
-        console.log(error);
-        History.push("/dashboard")
+        this.setState({isLoading: false});
+        this.props.updateUserInfo(JSON.parse(response.data));
+        History.push("/");
 
-      }, (error) => {        
-        alert(INVALID_LOGIN);
+      }, (error) => {
+        this.setState({isLoading: false});
+        console.log('error', error);
+        this.handleOpen();
         this.resetForm();
       });
     }
@@ -92,22 +109,31 @@
     * Render the component.
     */
    render = () => {
-
+     const actions = [
+       <FlatButton
+         label="OK"
+         primary={true}
+         keyboardFocused={true}
+         onClick={this.handleClose}
+       />,
+     ];
      return (
        <Card className="container login-page">
        <form onSubmit={this.processForm}>
-           <h2 className="card-heading">Login</h2>
 
-           {this.state.errors.summary && <p className="error-message">{this.state.errors.summary}</p>}
+           <h2 className="card-heading">Sign In</h2>
+           <CircularProgress className={
+              this.state.isLoading ? 'show' : 'load-notify'
+            } />
 
            <div className="field-line">
              <TextField
-               floatingLabelText="Email"
-               name="email"
+               floatingLabelText="Username"
+               name="username"
                onChange={this.changeUser}
-               value={this.state.user.email}
+               value={this.state.user.username}
                className="align-left"
-               errorText={this.state.errors.email}
+               errorText={this.state.errors.username}
              />
            </div>
 
@@ -124,10 +150,21 @@
            </div>
 
            <div className="button-line">
-             <RaisedButton type="submit" label="Log in" primary />
+             <RaisedButton type="submit" label="Login" primary />
            </div>
          </form>
+         <Dialog
+           title="Message"
+           className="dialog-ui"
+           actions={actions}
+           modal={false}
+           open={this.state.open}
+           onRequestClose={this.handleClose}
+         >
+           { INVALID_LOGIN }
+         </Dialog>
        </Card>
+
      );
    }
 

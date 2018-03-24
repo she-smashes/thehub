@@ -7,10 +7,6 @@
     "validateUpsert": true
   },
   "properties": {
-    "ID": {
-      "type": "string",
-      "required": true
-    },
     "eventId": {
       "type": "string",
       "required": true
@@ -20,28 +16,43 @@
       "required": true
     },
     "points": {
-      "type": "number",
-      "required": true
-    },
-    "ratings": {
-      "type": "string",
-      "required": true
-    },
-    "registrationFlag": {
-      "type": "string",
-      "required": true
+      "type": "number"
     },
     "attendanceFlag": {
-      "type": "string",
-      "required": true
+      "type": "string"
+    },
+    "registeredOn": {
+      "type": "date"
     },
     "enrollmentType": {
+      "type": "string"
+    },
+    "status": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "participants": {
+      "type": "hasMany",
+      "model": "participant",
+      "foreignKey": "participantId"
+    },
+    "users": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "events": {
+      "type": "belongsTo",
+      "model": "event",
+      "foreignKey": "eventId",
+      "options": {
+        "disableInclude": false
+      }
+    }
+  },
   "acls": [
     {
       "accessType": "*",
@@ -52,21 +63,40 @@
     {
       "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW",
-      "property": "listEnrollments"
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "$owner",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "create"
     },
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "approver",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "sysadmin",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
       "permission": "ALLOW",
       "property": "updateAttributes"
     }

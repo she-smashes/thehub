@@ -1,7 +1,7 @@
 {
   "name": "event",
   "plural": "events",
-  "base": "initiative",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -19,11 +19,11 @@
       "required": true
     },
     "startDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "string",
+      "type": "date",
       "required": true
     },
     "location": {
@@ -38,33 +38,70 @@
       "type": "string",
       "required": true
     },
-    "categoryId": {
-      "type": "string",
+    "lead": {
+      "type": "number",
       "required": true
     },
-    "lead": {
-      "type": "string",
-      "required": true
+    "createdOn": {
+      "type": "date",
+      "required": false,
+      "default" :  "$now"
+    },
+    "createdBy":{
+      "type" : "number",
+      "required" : true
+    },
+    "categoryId":{
+      "type" : "number",
+      "required" : true
+    },
+    "hours":{
+      "type" : "number"
+    },
+    "participantId":{
+      "type" : "array"
     }
   },
   "validations": [],
+  
   "relations": {
+    "participants": {
+      "type": "hasAndBelongsToMany",
+      "model": "participant",
+      "foreignKey": "participantId"
+    },
     "enrollments": {
       "type": "hasMany",
       "model": "enrollment",
       "foreignKey": "eventId",
       "options": {
-        "disableInclude": true
+        "disableInclude": false
       }
     },
-    "users": {
+    "usersLead": {
       "type": "belongsTo",
       "model": "user",
       "foreignKey": "lead",
       "options": {
         "disableInclude": true
       }
-    }
+    },
+     "usersCreatedBy": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "createdBy",
+      "options": {
+        "disableInclude": true
+      }
+    },
+     "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "categoryId",
+      "options": {
+        "disableInclude": true
+      }
+     }
   },
   "acls": [
     {
@@ -77,41 +114,63 @@
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
-      "permission": "ALLOW"
-	},
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$owner",
       "permission": "ALLOW",
-      "property": "findById"
-    },
+      "property": "*"
+	},
     {
       "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "$owner",
+      "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "create"
     },
     {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "appadmin",
-      "permission": "ALLOW",
-      "property": "updateAttributes"
-    },
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "sysadmin",
-      "permission": "ALLOW",
-      "property": "updateAttributes"
-    },
-    {
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__create__enrollments"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__findById__enrollments"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__get__enrollments"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__updateById__enrollments"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "__destroyById__enrollments"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "updateAttendance"
     }
   ],
   "methods": {}
