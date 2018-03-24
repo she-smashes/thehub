@@ -8,7 +8,7 @@ module.exports = function(UserBadge) {
    *
    * If invoked from List SystemBadges,
    * This method just returns all the user badges without any limit.
-   *
+   *getBadgesForUser
    * @param {*} ctx
    * @param {*} resolve
    */
@@ -230,7 +230,6 @@ module.exports = function(UserBadge) {
         userId: userIdValue,
       },
       include: ['category'],
-      limit: configs[0].value,
     }, function(err, userScores) {
       const promises = [];
       const categoryIdArr = [];
@@ -242,54 +241,34 @@ module.exports = function(UserBadge) {
             getNextLevelsInCategories(score, score.categoryId, resolve);
           }));
         });
-        let noOfCategories = configs[0].value;
-        // Find the no of default categories that has to be returned.
-        // This is apart from the user participated ones.
-        let noOfDefaultCategories = noOfCategories - userScores.length;
-        const catPromises = [];
-        if (noOfDefaultCategories > 0) {
-          catPromises.push(new Promise(function(resolve) {
-            // Get the categories list
-            UserBadge.app.models.category.find({
-              limit: configs[0].value,
-            }, function(err, categories) {
-              resolve(categories);
+
+        Promise.all(promises).then((response) => {
+          Promise.resolve(new Promise(function(resolve) {
+            getBadgesForUser(ctx, resolve, false);
+          })).then((userBadges) => {
+                          // Group the badges by category before returning
+            console.log(userBadges);
+            let tempBadges = [];
+            userBadges.forEach(function(uBadge) {
+              uBadge = uBadge.toJSON();
+              tempBadges = tempBadges.concat(uBadge);
             });
-          }));
-          Promise.all(catPromises).then((response) => {
-            let index = 0;
-            response[0].forEach(function(category) {
-              if (index < noOfDefaultCategories) {
-                // Check if the user has participated in this category
-                if (categoryIdArr.indexOf(category.id) == -1) {
-                  let score = {};
-                  score.category = category;
-                  score.categoryId = category.id;
-                  index++;
-                  // Get the list of all levels for this default category
-                  promises.push(new Promise(function(resolve) {
-                    getNextLevelsInCategories(score, category.id, resolve);
-                  }));
-                }
-              }
-            });
-            Promise.all(promises).then((response) => {
-              cb(null, response);
-            });
+            let categoryGroup = groupByCategory(tempBadges);
+            let respp = {};
+            respp.userCategories = response;
+            respp.userBadges = categoryGroup;
+
+            cb(null, respp);
           });
-        } else {
-          Promise.all(promises).then((response) => {
-            cb(null, response);
-          });
-        }
+
+            // cb(null, response);
+        });
       } else {
         cb(null);
       }
     });
   };
-
   /**
-  * This method is used to get the configuration value no_of_categories_in_widget.
   * This happens before the remote method executes.
   */
   UserBadge.beforeRemote('listUserCategories', function(context, unused, next) {
@@ -315,14 +294,14 @@ module.exports = function(UserBadge) {
       verb: 'get',
     },
     returns: {
-      arg: 'categories',
-      type: 'array',
+      arg: 'userProgressInfo',
+      type: 'object',
     },
   });
 
-/**
-  * This remote method returns the list of all badges that can be claimed by the user.
-  */
+  /**
+    * This remote method returns the list of all badges that can be claimed by the user.
+    */
   UserBadge.listBadgesToBeClaimed = function(ctx, cb) {
     UserBadge.find({
       where: {
