@@ -117,30 +117,33 @@ module.exports = function(UserBadge) {
         .then((defaultResponse) => {
           defaultResponse[0].forEach(function(resp) {
             resp = resp.toJSON();
-            userBadges.forEach(function(uBadge) {
-              uBadge = uBadge.toJSON();
+            // To return only main categories
+            if (resp.level.category.type === '') {
+              userBadges.forEach(function(uBadge) {
+                uBadge = uBadge.toJSON();
 
-              // Check if the user allready has this badge in the system badge list
-              if ((uBadge.badge.id + '') === (resp.id + '')) {
-                resp.userId = uBadge.userId;
-                resp.user = uBadge.user;
+                // Check if the user allready has this badge in the system badge list
+                if ((uBadge.badge.id + '') === (resp.id + '')) {
+                  resp.userId = uBadge.userId;
+                  resp.user = uBadge.user;
+                }
+              });
+              let tempBadges = {
+                'badge': resp,
+              };
+
+              // Push the user details into the system badge if user has obtained it.
+              if (resp.userId !== undefined && resp.userId !== '') {
+                tempBadges.userId = resp.userId;
+                tempBadges.user = resp.user;
+                delete resp.userId;
+                delete resp.user;
+              } else {
+                /* tempBadges.pointsForNextLevel =
+                  tempBadges.badge.level.pointsEndRange; */
               }
-            });
-            let tempBadges = {
-              'badge': resp,
-            };
-
-            // Push the user details into the system badge if user has obtained it.
-            if (resp.userId !== undefined && resp.userId !== '') {
-              tempBadges.userId = resp.userId;
-              tempBadges.user = resp.user;
-              delete resp.userId;
-              delete resp.user;
-            } else {
-              /* tempBadges.pointsForNextLevel =
-                tempBadges.badge.level.pointsEndRange; */
+              usBadges = usBadges.concat(tempBadges);
             }
-            usBadges = usBadges.concat(tempBadges);
           });
 
           // Group the badges by category before returning
@@ -246,7 +249,7 @@ module.exports = function(UserBadge) {
           Promise.resolve(new Promise(function(resolve) {
             getBadgesForUser(ctx, resolve, false);
           })).then((userBadges) => {
-                          // Group the badges by category before returning
+            // Group the badges by category before returning
             console.log(userBadges);
             let tempBadges = [];
             userBadges.forEach(function(uBadge) {
@@ -261,7 +264,7 @@ module.exports = function(UserBadge) {
             cb(null, respp);
           });
 
-            // cb(null, response);
+          // cb(null, response);
         });
       } else {
         cb(null);
