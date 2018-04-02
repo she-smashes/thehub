@@ -1,6 +1,17 @@
-import Swagger from 'swagger-client';
-import { AUTHORIZED_USER } from "../../constants/actions";
+import axios from 'axios';
 
+import Swagger from 'swagger-client';
+import { AUTHORIZED_USER, AUTH_USER_DETAILS } from "../../constants/actions";
+
+export const getUserAuthDetails = (token) => {
+  //const request = JSON.stringify(myData);
+
+  const request = axios.get('http://localhost:3000/api/userdetails');
+  return {
+    type: AUTH_USER_DETAILS,
+    payload:request
+  };
+}
 /**
 * Logs in the user
 * @param {*the user data to login the user} userInfo

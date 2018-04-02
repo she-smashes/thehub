@@ -9,6 +9,7 @@ import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
+
 import './index.css';
 // Components
 import App from './containers/appContainer/';
@@ -33,6 +34,7 @@ import badgesToBeClaimedList from './containers/ViewAllBadgesToBeClaimedContaine
 import badgesCanBeClaimedList from './containers/claimYourBadgeContainer/reducer';
 import eventData from './containers/uploadAttendanceContainer/reducer';
 import attendanceInfo from './containers/attendanceContainer/reducer';
+import authUserDetails from './containers/loginFormContainer/loginUserInfo';
 
 
 import { reducer as reduxFormReducer } from 'redux-form';
@@ -67,7 +69,8 @@ const rootReducer = persistCombineReducers(config, {
     badgesToBeClaimedList,
     badgesCanBeClaimedList,
     eventData,
-    attendanceInfo
+    attendanceInfo,
+    authUserDetails
 });
 
 
