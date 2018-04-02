@@ -20,15 +20,15 @@
     },
     "firstname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "lastname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "modifiedon": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "registeredon": {
       "type": "date",
