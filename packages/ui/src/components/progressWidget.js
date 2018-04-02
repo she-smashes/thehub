@@ -14,6 +14,10 @@ import Slider from 'react-slick';
 import _ from 'lodash';
 import { StatefulToolTip } from "react-portal-tooltip";
 import Progress from 'react-progressbar';
+import bronze from "../images/bronze.png";
+import silver from "../images/silver.png";
+import gold from "../images/gold.png";
+import platinum from "../images/platinum.png";
 
 /**
 *
@@ -127,11 +131,11 @@ class ProgressWidget extends Component {
             let msg = "";
             if (currentLevel === "0") {
                 pointsNeededForNextLevel = startLevelPoints;
-                msg = "(" + pointsNeededForNextLevel + " points more for next level" + (parseInt(currentLevel) + 1) + ")";
+                msg = "Level "+ parseInt(currentLevel) + " - (" + pointsNeededForNextLevel + " points more for next level)";
             } else if (pointsNeededForNextLevel <= 0) {
                 msg = "You have completed " + "Level " + (parseInt(currentLevel))
             } else {
-                msg = "(" + pointsNeededForNextLevel + "  points more for next level" + (parseInt(currentLevel)) + ")";
+                msg = "Level "+ (parseInt(currentLevel)) +" - (" + pointsNeededForNextLevel + "  points more for next level )";
             }
             return (
                 <div className="progress-display">
@@ -164,7 +168,11 @@ class ProgressWidget extends Component {
         return catArr.map((eventName, index) => {
             let foundProgress = false;
             let rows = _.chunk(this.state.categoryMap[eventName], 3);
-
+            let foundBadge = false;
+            let badgeDesc = "";
+            let prevSequence = 0;
+            let currentSequence = 0;
+            let badgeImg;
             return <div className="cat-section">
                 <div className="widget-header">
                     {eventName}
@@ -176,10 +184,7 @@ class ProgressWidget extends Component {
                                 if (eventName !== this.props.progressCategories.userBadges[eventBadgeCategory][0].badge.level.category.name) {
                                     console.log("no category name match");
                                 } else {
-                                    let foundBadge = false;
-                                    let badgeDesc = "";
-                                    let prevSequence = 0;
-                                    let currentSequence = 0;
+                                    
                                     this.props.progressCategories.userBadges[eventBadgeCategory].map((eventCategoryBadge, index) => {
                                         if (eventName === eventCategoryBadge.badge.level.category.name) {
                                             currentSequence = eventCategoryBadge.badge.level.sequence;
@@ -190,9 +195,27 @@ class ProgressWidget extends Component {
                                         }
                                     });
                                     console.log("Got " + badgeDesc +  " in " + eventName + "category.");
-                                }
+
+                                    if(badgeDesc == "Bronze"){                                        
+                                        badgeImg = bronze;
+                                    }
+                                    else if(badgeDesc == "Gold"){                                        
+                                        badgeImg = gold;
+                                    }
+                                    else if(badgeDesc == "Silver"){                                        
+                                        badgeImg = silver;
+                                    }
+                                    else if(badgeDesc == "Platinum"){                                        
+                                        badgeImg = platinum;
+                                    }
+                                    else{
+                                        badgeImg = '';
+                                    } 
+                               }
                             })) : <div></div>
                     }
+                    <img className="badge-display-img" src = {badgeImg} />
+                 
                 </div>
                 <div className="inner-container">
                     <Slider {...settings}>
