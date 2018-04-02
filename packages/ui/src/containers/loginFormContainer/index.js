@@ -1,15 +1,19 @@
 import {connect} from 'react-redux';
 import LoginWidget from '../../components/login';
-import {loginUser, updateUserInfo} from './action';
+import {loginUser, updateUserInfo, getUserAuthDetails} from './action';
 
 const mapStateToProps = (state) => {  
   return {
-    user: state.userInfo
+    user: state.userInfo,
+    authUserDetails: state.authUserDetails
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    getUserAuthDetails : (token) => {
+      return dispatch(getUserAuthDetails(dispatch))
+    },
     loginUser  : (userInfo) => {
       return dispatch(loginUser (userInfo, dispatch))
     },

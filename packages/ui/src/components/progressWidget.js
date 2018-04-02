@@ -177,6 +177,7 @@ class ProgressWidget extends Component {
                 <div className="widget-header">
                     {eventName}
                     {
+                        this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ? (
                         Object.keys(this.props.progressCategories.userBadges).map((eventBadgeCategory, index) => {
                             console.log(this.props.progressCategories.userBadges[eventBadgeCategory]);
                             if (this.props.progressCategories.userBadges[eventBadgeCategory][0] !== undefined)
@@ -194,7 +195,7 @@ class ProgressWidget extends Component {
                                         }
                                     });
                                     console.log("Got " + badgeDesc +  " in " + eventName + "category.");
-                                                                    
+
                                     if(badgeDesc == "Bronze"){                                        
                                         badgeImg = bronze;
                                     }
@@ -209,14 +210,12 @@ class ProgressWidget extends Component {
                                     }
                                     else{
                                         badgeImg = '';
-                                    }
-                                }
-                        })
-                        
+                                    } 
+                               }
+                            })) : <div></div>
                     }
-                   
-                    <img className="badge-display-img" src = {badgeImg} /> 
-                    
+                    <img className="badge-display-img" src = {badgeImg} />
+                 
                 </div>
                 <div className="inner-container">
                     <Slider {...settings}>
@@ -226,13 +225,13 @@ class ProgressWidget extends Component {
                                     {
                                         row.map((event1, index) => (
                                             foundProgress1 = false,
-                                            this.props.progressCategories.userCategories.map((event2, index) => {
-                                                if (event1.id === event2.category.id) {
-                                                    foundProgress1 = true;
-                                                }
-
-                                            }),
-                                            <div className="sub-category">
+                                            this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ?
+                                                this.props.progressCategories.userCategories.map((event2, index) => {
+                                                    if (event1.id === event2.category.id) {
+                                                        foundProgress1 = true;
+                                                    }
+                                                })
+						: foundProgress1 = false,                                            <div className="sub-category">
                                                 <div className={"sub-cat-name " + (foundProgress1 ? 'subcat-highlight' : '')}>{event1.name}</div><div className={(foundProgress1 ? 'highlight' : '')}><div className="display-circle"></div></div>
                                             </div>
                                         ))
@@ -243,12 +242,15 @@ class ProgressWidget extends Component {
                         }
                     </Slider>
                     {
+                        this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ?
                         (this.props.progressCategories.userCategories).map((event2, index) => {
                             if (eventName === event2.category.name) {
                                 foundProgress = true;
                                 progressCat = event2;
                             }
                         })
+  :
+                        foundProgress = false
                     }
                     {
                         foundProgress && this.renderProgressBar(eventName.name, progressCat.points, progressCat.levels)
@@ -264,7 +266,7 @@ class ProgressWidget extends Component {
     render = () => {
         let progress = 50;
         return (
-            this.props.progressCategories.userCategories && this.props.progressCategories.userCategories.length > 0 ? this.renderProgressCategories() : <div> </div>
+            this.renderProgressCategories()
         )
     }
 }

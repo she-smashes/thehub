@@ -53,7 +53,7 @@ class Header extends Component {
           className="badge-msg"
         /> }
         <Chip className="avatar-details">
-          <Avatar src={avatar} />
+          <Avatar src={this.props.userInfo.thirdPartyUserDetails.profilePic} />
           {this.props.userInfo.user.firstname}
         </Chip>
       </span>
