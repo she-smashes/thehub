@@ -18,7 +18,7 @@ var thirdPartyAuthDetails = {
   tokenURL: '',
 };
 var thirdPartyAuthUserDetailsAPI = '';
-var loginUser = function(user, resolve) {  
+var loginUser = function(user, resolve) {
   app.models.user.login(
     {
       'username': user.username,
@@ -172,19 +172,12 @@ app.start = function() {
   return app.listen(function() {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
-console.log(app.settings);
     thirdPartyAuthDetails.clientID = app.get('clientID');
     thirdPartyAuthDetails.clientSecret = app.get('clientSecret');
     thirdPartyAuthDetails.callbackURL = app.get('callbackURL');
     thirdPartyAuthDetails.authorizationURL = app.get('authorizationURL');
     thirdPartyAuthDetails.tokenURL = app.get('tokenURL');
     thirdPartyAuthUserDetailsAPI = app.get('userDetailsAPIURL');
-
-    console.log(thirdPartyAuthDetails);
-    
-    console.log(thirdPartyAuthUserDetailsAPI);
-    
-
     if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
     }
