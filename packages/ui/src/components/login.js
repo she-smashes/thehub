@@ -184,43 +184,36 @@ class LoginWidget extends Component {
    * Render the component.
    */
   render = () => {
-    if (process.customLogin) {
+    if (process.env.REACT_APP_customLogin) {
       return this.showCustomLogin();
     } else {
       var cookieToken;
       if(cookie !== undefined) {
         cookieToken = cookie.load('user_token');
         if (cookieToken) {
+          this.setState({ isLoading: true });
           this.props.getUserAuthDetails(cookieToken)
-          .then((response1, error) => {
-            console.log(response1);
-            
+          .then((response1, error) => {           
             var user = {
               username: response1.payload.data.name,
               password: response1.payload.data.name,
             };
             this.props.loginUser(user)
               .then((response, error) => {
+                this.setState({ isLoading: false });
                 var userInfoData = JSON.parse(response.data);
                 userInfoData.thirdPartyUserDetails = response1.payload.data;
                 this.props.updateUserInfo(userInfoData);
                 document.location.href = document.location.href;
                 History.push("/");
               }, (error) => {
+                this.setState({ isLoading: false });
                 console.log('error', error);
               });
           }, (error) => {
+            this.setState({ isLoading: false });
             console.log('error', error);
           });
-          
-          
-          
-          /* 
-          axios.get('http://localhost:3000/api/userdetails')
-            .then(function (userInfo) {
-              console.log(userInfo);
-              
-            }); */
         } else {
           return this.showLoginButtonOnly();         
         }
@@ -229,7 +222,6 @@ class LoginWidget extends Component {
         return this.showLoginButtonOnly();
       }
     }
-
   }
 
 }
