@@ -169,7 +169,7 @@ class LoginWidget extends Component {
   };
   
   showLoginButtonOnly = (event) => {
-    var authURL = process.env.customLogin;
+    var authURL = process.env.REACT_APP_USER_LOGIN_URL;
     return (
      <Card className="container login-page">
            <div className="button-line">
@@ -185,7 +185,8 @@ class LoginWidget extends Component {
    * Render the component.
    */
   render = () => {
-    if (process.env.customLogin === 'true') {
+    console.log(process.env);
+    if (process.env.REACT_APP_customLogin === 'true') {
       return this.showCustomLogin();
     } else {
       var cookieToken;
