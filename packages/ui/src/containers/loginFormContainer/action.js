@@ -3,10 +3,10 @@ import axios from 'axios';
 import Swagger from 'swagger-client';
 import { AUTHORIZED_USER, AUTH_USER_DETAILS } from "../../constants/actions";
 
-export const getUserAuthDetails = (token) => {
+export const getUserAuthDetails = (token, authURL) => {
   //const request = JSON.stringify(myData);
 
-  const request = axios.get('http://localhost:3000/api/userdetails');
+  const request = axios.get(authURL);
   return {
     type: AUTH_USER_DETAILS,
     payload:request

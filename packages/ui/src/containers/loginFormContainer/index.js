@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getUserAuthDetails : (token) => {
-      return dispatch(getUserAuthDetails(dispatch))
+    getUserAuthDetails : (token, authURL) => {
+      return dispatch(getUserAuthDetails(token, authURL, dispatch))
     },
     loginUser  : (userInfo) => {
       return dispatch(loginUser (userInfo, dispatch))
