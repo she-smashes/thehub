@@ -21,8 +21,9 @@
   },
   "clientID": "",
   "clientSecret": "",
-  "callbackURL": "",
+  "callbackURL": "http://localhost:3000/callback",
   "authorizationURL": "",
   "tokenURL": "",
-  "userDetailsAPIURL": ""
+  "userDetailsAPIURL": "",
+  "redirectURL": "http://localhost:3000/"
 }

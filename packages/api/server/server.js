@@ -18,6 +18,7 @@ var thirdPartyAuthDetails = {
   tokenURL: '',
 };
 var thirdPartyAuthUserDetailsAPI = '';
+var redirectURL = '';
 var loginUser = function(user, resolve) {
   app.models.user.login(
     {
@@ -160,7 +161,7 @@ app.get('/callback', function(req, res, next) {
           });
         }
         checkIfUserExists(app, userInfo, function(userInfo) {
-          return res.redirect('http://localhost:3000');
+          return res.redirect(redirectURL);
         });
       });
     }
@@ -178,6 +179,7 @@ app.start = function() {
     thirdPartyAuthDetails.authorizationURL = app.get('authorizationURL');
     thirdPartyAuthDetails.tokenURL = app.get('tokenURL');
     thirdPartyAuthUserDetailsAPI = app.get('userDetailsAPIURL');
+    redirectURL = app.get('redirectURL');
     if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
     }
