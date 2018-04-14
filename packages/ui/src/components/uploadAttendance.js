@@ -187,7 +187,7 @@ class UploadAttendance extends Component {
 
                     let notificationCount = 0;
                     if (this.props.userInfo.notificationCount !== undefined &&
-                      this.props.userInfo.notificationCount !== null ||
+                      this.props.userInfo.notificationCount !== null &&
                       this.props.userInfo.notificationCount !== '') {
                       notificationCount = this.props.userInfo.notificationCount;
                     }
