@@ -206,7 +206,7 @@ class CreateEvent extends Component {
                     if (this.props.userInfo.allowedActionList.indexOf('task_count')) {
                         let notificationCount = 0;
                         if (this.props.userInfo.notificationCount !== undefined &&
-                            this.props.userInfo.notificationCount !== null ||
+                            this.props.userInfo.notificationCount !== null &&
                             this.props.userInfo.notificationCount !== '') {
                             notificationCount = this.props.userInfo.notificationCount;
                         }

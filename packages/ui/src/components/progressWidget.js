@@ -177,7 +177,8 @@ class ProgressWidget extends Component {
                 <div className="widget-header">
                     {eventName}
                     {
-                        this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ? (
+                        console.log(this.props.progressCategories.userBadges)
+                        (this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0) ? (
                         Object.keys(this.props.progressCategories.userBadges).map((eventBadgeCategory, index) => {
                             console.log(this.props.progressCategories.userBadges[eventBadgeCategory]);
                             if (this.props.progressCategories.userBadges[eventBadgeCategory][0] !== undefined)
@@ -225,7 +226,7 @@ class ProgressWidget extends Component {
                                     {
                                         row.map((event1, index) => (
                                             foundProgress1 = false,
-                                            this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ?
+                                            (this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0) ?
                                                 this.props.progressCategories.userCategories.map((event2, index) => {
                                                     if (event1.id === event2.category.id) {
                                                         foundProgress1 = true;
@@ -242,7 +243,7 @@ class ProgressWidget extends Component {
                         }
                     </Slider>
                     {
-                        this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0 ?
+                        (this.props.progressCategories.userBadges && this.props.progressCategories.userBadges.length > 0) ?
                         (this.props.progressCategories.userCategories).map((event2, index) => {
                             if (eventName === event2.category.name) {
                                 foundProgress = true;

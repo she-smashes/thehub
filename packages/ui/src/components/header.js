@@ -61,6 +61,7 @@ class Header extends Component {
   };
 
   logout = () => {
+    document.cookie = 'user_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     this.props.resetStore();
   };
 
